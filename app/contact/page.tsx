@@ -2,6 +2,7 @@
 
 import { ChangeEvent, FormEvent, useRef, useState } from 'react';
 import { motion } from 'motion/react';
+import { clientBasePath, withBasePath } from '@/lib/site-path';
 
 type ContactFormValues = {
   name: string;
@@ -31,6 +32,7 @@ export default function ContactPage() {
   const [status, setStatus] = useState<SubmissionStatus>('idle');
   const [feedbackMessage, setFeedbackMessage] = useState('');
   const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const submitUrl = withBasePath('/api/contact', clientBasePath);
 
   const handleChange =
     (field: keyof ContactFormValues) =>
@@ -73,20 +75,29 @@ export default function ContactPage() {
     }
 
     try {
-      const response = await fetch('/api/contact', {
+      const response = await fetch(submitUrl, {
         method: 'POST',
         body: formData,
       });
 
-      const result = (await response.json()) as {
+      const responseText = await response.text();
+      let result: {
         ok?: boolean;
         message?: string;
         errors?: ContactFormErrors;
-      };
+      } = {};
+
+      try {
+        result = JSON.parse(responseText);
+      } catch {
+        result = {};
+      }
 
       if (!response.ok || !result.ok) {
         setStatus('error');
-        setFeedbackMessage(result.message ?? 'We could not submit your inquiry. Please try again.');
+        setFeedbackMessage(
+          result.message ?? 'We could not submit your inquiry. Please try again in a moment.',
+        );
         setErrors(result.errors ?? {});
         return;
       }
