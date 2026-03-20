@@ -2,8 +2,10 @@ import type { Metadata } from 'next';
 import { Inter, Space_Grotesk } from 'next/font/google';
 import { Footer } from '@/components/Footer';
 import { Navbar } from '@/components/Navbar';
-import { configuredBasePath, withBasePath } from '@/lib/site-path';
 import './globals.css';
+
+const faviconUrl =
+  'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/68e4e417db41aba4d67eb664_50861696-aac9-4ad9-988c-2bcebfeb%20(1).png';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -19,7 +21,7 @@ export const metadata: Metadata = {
   title: 'Maxinor Venture Studio',
   description: "India's 1st Operator Led Venture Studio",
   icons: {
-    icon: withBasePath('/logo.png', configuredBasePath),
+    icon: faviconUrl,
   },
 };
 
