@@ -1,10 +1,11 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight, Linkedin, Mail } from 'lucide-react';
-import { clientBasePath, withBasePath } from '@/lib/site-path';
+
+const logoSrc =
+  'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/68e4e417db41aba4d67eb664_50861696-aac9-4ad9-988c-2bcebfeb%20(1).png';
 
 export function Footer() {
-  const logoSrc = withBasePath('/logo.png', clientBasePath);
-
   return (
     <footer className="border-t border-grey/20 bg-warm-white pt-20 pb-10 px-6">
       <div className="max-w-7xl mx-auto">
@@ -14,7 +15,13 @@ export function Footer() {
               href="/"
               className="text-4xl font-display font-bold tracking-tighter mb-6 flex items-center gap-3"
             >
-              <img src={logoSrc} alt="Maxinor Logo" className="w-10 h-10 rounded-[99px] object-cover" />
+              <Image
+                src={logoSrc}
+                alt="Maxinor Logo"
+                width={40}
+                height={40}
+                className="w-10 h-10 rounded-[99px] object-cover"
+              />
               MAXINOR
             </Link>
             <p className="text-grey max-w-sm">

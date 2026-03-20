@@ -1,17 +1,19 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 import { Menu, X } from 'lucide-react';
-import { clientBasePath, withBasePath } from '@/lib/site-path';
+
+const logoSrc =
+  'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/68e4e417db41aba4d67eb664_50861696-aac9-4ad9-988c-2bcebfeb%20(1).png';
 
 export function Navbar() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const logoSrc = withBasePath('/logo.png', clientBasePath);
 
   const isActive = (path: string) =>
     pathname === path ? 'text-brand' : 'text-grey hover:text-navy';
@@ -41,7 +43,14 @@ export function Navbar() {
           className="text-2xl font-display font-medium tracking-tight flex items-center gap-2 relative z-50"
           onClick={() => setIsOpen(false)}
         >
-          <img src={logoSrc} alt="Maxinor Logo" className="w-8 h-8 rounded-[99px] object-cover" />
+          <Image
+            src={logoSrc}
+            alt="Maxinor Logo"
+            width={32}
+            height={32}
+            priority
+            className="w-8 h-8 rounded-[99px] object-cover"
+          />
           MAXINOR
         </Link>
 
