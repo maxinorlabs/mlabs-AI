@@ -45,7 +45,7 @@ export function Footer() {
                 <Linkedin className="w-5 h-5" />
               </Link>
               <Link
-                href="/contact"
+                href="mailto:mango@mlabs.co.in"
                 className="w-12 h-12 rounded-full border border-grey/50 flex items-center justify-center hover:bg-brand hover:text-warm-white transition-colors"
               >
                 <Mail className="w-5 h-5" />
