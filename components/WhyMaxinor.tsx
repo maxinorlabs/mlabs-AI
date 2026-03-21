@@ -9,23 +9,27 @@ const items = [
   {
     id: '01',
     title: 'THE SCALE GAP',
-    detail: '90% of Indian startups fail within 5 years. The problem usually is not the idea itself, but the lack of consistent execution, operator depth, and scale discipline..',
+    detail:
+      '90% of Indian startups fail within 5 years. The problem is usually not the idea itself, but the lack of consistent execution, operator depth, and scale discipline.',
   },
   {
     id: '02',
     title: 'OPERATORS OVER ADVISORS',
-    detail: 'Studio startups reach Series A in 25 months vs. 56 months traditionally. Embedded operators who build with you — not consultants who leave after a deck.',
+    detail:
+      'Studio startups reach Series A in 25 months versus 56 months traditionally. We bring embedded operators who build with you from inside the business, not consultants who leave after a deck.',
   },
   {
     id: '03',
     title: 'FOUR ENGINES, NOT ONE FIX',
-    detail: 'Revenue, Operations, Talent, AI & Data — synchronized growth across every lever, each led by someone who\'s scaled before.',
+    detail:
+      'Revenue, Operations, Talent, and AI & Data work together as one system, with each engine led by someone who has scaled before.',
   },
   {
     id: '04',
     title: 'MILESTONE-FIRST CAPITAL',
-    detail: 'We prove value through embedded execution before deploying capital. Skin in the game — not just a term sheet.',
-  }
+    detail:
+      'We prove value through embedded execution before deploying capital. Our model puts real skin in the game long before a term sheet enters the conversation.',
+  },
 ];
 
 export default function WhyMaxinor() {
@@ -38,7 +42,7 @@ export default function WhyMaxinor() {
           Why Maxinor
         </h3>
         <h2 className="text-4xl md:text-5xl font-display font-medium text-navy text-center mb-20 max-w-2xl leading-tight">
-          &ldquo;Building startups is hard, but scaling them without operators is harder&rdquo;
+          &ldquo;Building startups is hard, but scaling with the right operators is easier&rdquo;
         </h2>
 
         <div className="w-full space-y-4 mb-16">

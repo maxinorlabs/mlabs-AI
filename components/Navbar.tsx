@@ -29,8 +29,8 @@ export function Navbar() {
       ],
     },
     { name: 'SME', path: '/sme' },
-    { name: 'Investors', path: '/investors' },
     { name: 'Corporate', path: '/corporate' },
+    { name: 'Investors', path: '/investors' },
     { name: 'Team', path: '/team' },
     { name: 'Contact Us', path: '/contact' },
   ];

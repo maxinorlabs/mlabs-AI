@@ -22,9 +22,6 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
             >
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-grey/40 text-brand text-sm font-medium mb-8 tracking-wide">
-                <span className="w-2 h-2 rounded-full bg-brand animate-pulse" /> Guiding Founders to Venture Scale
-              </div>
               <h1 className="text-[9vw] md:text-[5.5vw] leading-[1.1] font-display font-medium tracking-tight mb-8">
                 India&apos;s 1st <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-b from-navy to-navy/70">Operator Led AI Venture Studio</span>
@@ -158,7 +155,7 @@ export default function Home() {
                 Domains We Work In
               </h2>
               <p className="text-xl text-brand font-medium">
-                Deep expertise across high-growth sectors.
+                Deep operator expertise across high-growth sectors.
               </p>
             </div>
 
@@ -166,7 +163,7 @@ export default function Home() {
               {[
                 { name: "Media", icon: MonitorPlay },
                 { name: "AI & Data", icon: Cpu },
-                { name: "D2C", icon: ShoppingCart },
+                { name: "D2C & B2C", icon: ShoppingCart },
                 { name: "SaaS", icon: Cloud },
                 { name: "Healthcare", icon: Pill },
                 { name: "Defence", icon: Shield },

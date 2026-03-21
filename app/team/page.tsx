@@ -55,6 +55,13 @@ export default function TeamPage() {
       desc: "ex-Busybody now Calmfluencer",
       image: "https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/68e4de10bf5c464cee8590af_camylla-battani-zSCoQkrLMOE-unsplash.webp",
       linkedin: "https://www.linkedin.com/company/maxinor/?viewAsMember=true"
+    },
+    {
+      name: "Aman Sharma",
+      role: "Product Growth, GTM & AI",
+      desc: "Operator across product growth, go-to-market, and AI execution",
+      image: "",
+      linkedin: "https://www.linkedin.com/in/aman-sharma-77243b2a0/"
     }
   ];
 
@@ -107,13 +114,19 @@ export default function TeamPage() {
             {programTeam.map((member, idx) => (
               <div key={idx} className="group">
                 <div className="relative w-48 h-48 md:w-56 md:h-56 mb-8 overflow-hidden rounded-full border-4 border-grey/30 group-hover:border-brand/50 transition-colors duration-500">
-                  <Image 
-                    src={member.image} 
-                    alt={member.name} 
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                    referrerPolicy="no-referrer"
-                  />
+                  {member.image ? (
+                    <Image 
+                      src={member.image} 
+                      alt={member.name} 
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                      referrerPolicy="no-referrer"
+                    />
+                  ) : (
+                    <div className="absolute inset-0 bg-gradient-to-br from-grey/10 to-grey/20 flex items-center justify-center text-5xl font-display text-grey/40">
+                      {member.name.charAt(0)}
+                    </div>
+                  )}
                 </div>
                 <h3 className="text-2xl font-display font-medium mb-2">{member.name}</h3>
                 <p className="text-brand font-medium mb-4">{member.role}</p>
