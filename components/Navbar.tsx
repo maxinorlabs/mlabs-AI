@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ChevronDown } from 'lucide-react';
 
 const logoSrc =
   'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/68e4e417db41aba4d67eb664_50861696-aac9-4ad9-988c-2bcebfeb%20(1).png';
@@ -14,6 +14,7 @@ export function Navbar() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [mobileDropdownOpen, setMobileDropdownOpen] = useState(false);
 
   const isActive = (path: string) =>
     pathname === path ? 'text-brand' : 'text-grey hover:text-navy';
@@ -142,24 +143,40 @@ export function Navbar() {
             <div className="flex flex-col px-6 py-8 gap-6">
               {navLinks.map((link) =>
                 link.dropdown ? (
-                  <div key={link.path} className="flex flex-col gap-4">
-                    <Link
-                      href={link.path}
-                      onClick={() => setIsOpen(false)}
-                      className={`text-lg font-medium tracking-wide ${isActive(link.path)}`}
+                  <div key={link.path} className="flex flex-col">
+                    <button
+                      onClick={() => setMobileDropdownOpen(!mobileDropdownOpen)}
+                      className={`flex items-center justify-between text-lg font-medium tracking-wide w-full ${isActive(link.path)}`}
                     >
                       {link.name}
-                    </Link>
-                    {link.dropdown.map((sub) => (
-                      <Link
-                        key={sub.path}
-                        href={sub.path}
-                        onClick={() => setIsOpen(false)}
-                        className="pl-4 text-lg font-medium tracking-wide text-grey hover:text-navy"
-                      >
-                        {sub.name}
-                      </Link>
-                    ))}
+                      <motion.span animate={{ rotate: mobileDropdownOpen ? 180 : 0 }} transition={{ duration: 0.2 }}>
+                        <ChevronDown className="w-5 h-5" />
+                      </motion.span>
+                    </button>
+                    <AnimatePresence>
+                      {mobileDropdownOpen && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: 'auto', opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.2 }}
+                          className="overflow-hidden"
+                        >
+                          <div className="flex flex-col gap-1 mt-3 ml-2 border-l-2 border-brand/30 pl-4">
+                            {link.dropdown.map((sub) => (
+                              <Link
+                                key={sub.path}
+                                href={sub.path}
+                                onClick={() => { setIsOpen(false); setMobileDropdownOpen(false); }}
+                                className={`py-2 text-base font-medium tracking-wide ${isActive(sub.path)}`}
+                              >
+                                {sub.name}
+                              </Link>
+                            ))}
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   </div>
                 ) : (
                   <Link
