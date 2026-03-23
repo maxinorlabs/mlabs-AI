@@ -271,7 +271,7 @@ export default function ContactPage() {
               <button
                 type="submit"
                 disabled={status === 'submitting'}
-                className="w-full bg-brand text-white font-medium tracking-wide py-4 rounded-xl hover:bg-brand/90 transition-all duration-300 shadow-[0_0_20px_rgba(243,111,33,0.1)] hover:shadow-[0_0_30px_rgba(243,111,33,0.2)] disabled:opacity-70 disabled:cursor-not-allowed"
+                className="w-full bg-brand text-warm-white font-semibold tracking-wide py-4 rounded-full hover:bg-brand/90 transition-all duration-300 shadow-[0_0_40px_rgba(243,111,33,0.15)] hover:shadow-[0_0_60px_rgba(243,111,33,0.3)] disabled:opacity-70 disabled:cursor-not-allowed"
               >
                 {status === 'submitting' ? 'Sharing...' : 'Share'}
               </button>

@@ -53,7 +53,7 @@ export default function WhyMaxinor() {
             >
               <button
                 onClick={() => setOpenId(openId === item.id ? null : item.id)}
-                className="w-full flex items-center justify-between p-8 text-left"
+                className="w-full flex items-center justify-between p-5 md:p-8 text-left"
               >
                 <div className="flex items-center gap-6">
                   <span className="text-4xl font-display font-medium text-navy/20">{item.id}</span>
@@ -86,7 +86,7 @@ export default function WhyMaxinor() {
 
         <Link
           href="/contact"
-          className="inline-flex items-center gap-2 bg-brand text-white px-12 py-5 rounded-full text-lg font-semibold tracking-wide hover:bg-brand/90 transition-all duration-300 shadow-[0_0_40px_rgba(243,111,33,0.15)] hover:shadow-[0_0_60px_rgba(243,111,33,0.3)] hover:-translate-y-1"
+          className="inline-flex items-center justify-center gap-2 bg-brand text-warm-white font-semibold tracking-wide rounded-full px-8 py-4 sm:px-12 sm:py-5 text-base sm:text-lg hover:bg-brand/90 transition-all duration-300 whitespace-nowrap hover:-translate-y-1 shadow-[0_0_40px_rgba(243,111,33,0.15)] hover:shadow-[0_0_60px_rgba(243,111,33,0.3)]"
         >
           Get in Touch <ArrowRight className="w-5 h-5" />
         </Link>

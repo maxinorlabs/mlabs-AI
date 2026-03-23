@@ -25,13 +25,13 @@ export default function Home() {
           {/* Bottom fade to page */}
           <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(247,247,245,1)_0%,transparent_60%)] pointer-events-none" />
 
-          <div className="max-w-5xl mx-auto text-center relative z-10 mt-12">
+          <div className="max-w-5xl mx-auto text-center relative z-10 -mt-8">
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
             >
-              <h1 className="text-[9vw] md:text-[5.5vw] leading-[1.1] font-display font-medium tracking-tight mb-8 text-warm-white">
+              <h1 className="text-[42px] md:text-[6.5vw] leading-[1.1] font-display font-medium tracking-tight mb-8 text-warm-white">
                 India&apos;s 1st <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-b from-brand to-brand/80">Operator Led AI Venture Studio</span>
               </h1>
@@ -41,7 +41,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              className="text-2xl md:text-4xl max-w-2xl mx-auto mb-12 font-bold leading-relaxed" style={{ color: '#1A1F2E' }}
+              className="text-2xl md:text-4xl max-w-2xl mx-auto mb-12 font-bold leading-relaxed text-warm-white md:text-[#1A1F2E]"
             >
               Operator&apos;s backing Entrepreneurs
             </motion.p>
@@ -54,13 +54,13 @@ export default function Home() {
             >
               <Link
                 href="/scale"
-                className="w-full sm:w-auto px-12 py-5 text-lg bg-brand text-warm-white font-semibold tracking-wide rounded-full hover:bg-brand/90 transition-all duration-300 flex items-center justify-center shadow-[0_0_40px_rgba(243,111,33,0.15)] hover:shadow-[0_0_60px_rgba(243,111,33,0.3)] hover:-translate-y-1"
+                className="w-[220px] sm:w-auto px-7 py-3 sm:px-12 sm:py-5 text-base sm:text-lg bg-brand text-warm-white font-semibold tracking-wide rounded-full hover:bg-brand/90 transition-all duration-300 flex items-center justify-center shadow-[0_0_40px_rgba(243,111,33,0.15)] hover:shadow-[0_0_60px_rgba(243,111,33,0.3)] hover:-translate-y-1"
               >
                 Venture Scale
               </Link>
               <Link
                 href="/build"
-                className="w-full sm:w-auto px-12 py-5 text-lg bg-white/80 text-navy font-semibold hover:bg-brand hover:text-warm-white border border-grey/40 transition-all duration-300 rounded-full flex items-center justify-center hover:-translate-y-1"
+                className="w-[220px] sm:w-auto px-7 py-3 sm:px-12 sm:py-5 text-base sm:text-lg bg-white/80 text-navy font-semibold hover:bg-brand hover:text-warm-white border border-grey/40 transition-all duration-300 rounded-full flex items-center justify-center hover:-translate-y-1"
               >
                 Venture Build
               </Link>
@@ -175,7 +175,7 @@ export default function Home() {
                 { category: "SPECIALIZED SECTORS", domains: [{ name: "Healthcare", icon: Pill }, { name: "Defence", icon: Shield }] },
               ].map((group, gi) => (
                 <div key={gi}>
-                  <p className="text-sm font-bold tracking-[0.18em] text-navy uppercase mb-4 text-center">{group.category}</p>
+                  <p className="text-sm font-bold tracking-[0.18em] uppercase mb-4 text-center mt-8 md:mt-0" style={{ color: '#F36F21' }}>{group.category}</p>
                   <div className="flex flex-col gap-4">
                     {group.domains.map((domain, di) => (
                       <div key={di} className="flex items-center gap-4 p-4 border border-grey/20 rounded-2xl bg-warm-white hover:border-brand/50 hover:bg-white transition-all duration-300 group cursor-default">

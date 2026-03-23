@@ -57,18 +57,18 @@ export default function TeamPage() {
       linkedin: "https://www.linkedin.com/in/saniya-f-369a98213/"
     },
     {
-      name: "Snoopster",
-      role: "Chief Happiness Associate",
-      desc: "ex-Busybody now Calmfluencer",
-      image: "https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/68e4de10bf5c464cee8590af_camylla-battani-zSCoQkrLMOE-unsplash.webp",
-      linkedin: "https://www.linkedin.com/company/maxinor/?viewAsMember=true"
-    },
-    {
       name: "Aman Sharma",
       role: "Product Growth, GTM & AI",
       desc: "Operator across product growth, go-to-market, and AI execution",
-      image: "",
+      image: "https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/69c123c327dd93f3976c61ef_Gemini_Generated_Image_mjcmjxmjcmjxmjcm.avif",
       linkedin: "https://www.linkedin.com/in/aman-sharma-77243b2a0/"
+    },
+    {
+      name: "Snoopster",
+      role: "Happiness Associate",
+      desc: "ex-Busybody now Calmfluencer",
+      image: "https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/68e4de10bf5c464cee8590af_camylla-battani-zSCoQkrLMOE-unsplash.webp",
+      linkedin: "https://www.linkedin.com/company/maxinor/?viewAsMember=true"
     }
   ];
 

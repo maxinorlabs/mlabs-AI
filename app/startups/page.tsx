@@ -53,8 +53,8 @@ export default function StartupsPage() {
             <p className="text-xl text-grey mb-8 max-w-2xl mx-auto font-light">
               We are constantly looking for ambitious founders building in high-growth sectors. Pitch us your idea or startup.
             </p>
-            <Link href="/contact" className="inline-flex items-center gap-2 bg-brand text-white px-10 py-5 rounded-full text-lg font-medium hover:bg-brand-dark transition-all duration-300">
-              Pitch to Maxinor <ArrowRight className="w-5 h-5" />
+            <Link href="/contact" className="inline-flex items-center justify-center gap-2 bg-brand text-white px-8 py-4 sm:px-10 sm:py-5 rounded-full text-base sm:text-lg font-semibold hover:bg-brand/90 transition-all duration-300 whitespace-nowrap hover:-translate-y-1 shadow-[0_0_40px_rgba(243,111,33,0.15)] hover:shadow-[0_0_60px_rgba(243,111,33,0.3)]">
+              Pitch to Maxinor <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" />
             </Link>
           </div>
         </div>
