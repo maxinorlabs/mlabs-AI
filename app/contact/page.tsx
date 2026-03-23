@@ -20,6 +20,7 @@ export default function ContactPage() {
       engagementType: (form.elements.namedItem('engagementType') as HTMLSelectElement).value,
       company: (form.elements.namedItem('company') as HTMLInputElement).value,
       message: (form.elements.namedItem('message') as HTMLTextAreaElement).value,
+      attachmentName: (form.elements.namedItem('attachment') as HTMLInputElement).files?.[0]?.name ?? '',
       submittedAt: new Date().toISOString(),
     };
 
@@ -141,6 +142,18 @@ export default function ContactPage() {
                     className="w-full bg-white border border-navy/20 rounded-xl px-4 py-3 text-navy focus:outline-none focus:border-brand transition-colors"
                     placeholder="Acme Corp"
                   />
+                </div>
+
+                <div className="space-y-2">
+                  <label htmlFor="contact-attachment" className="text-sm font-medium text-navy">Attachment</label>
+                  <input
+                    id="contact-attachment"
+                    name="attachment"
+                    type="file"
+                    accept=".pdf,.ppt,.pptx"
+                    className="w-full bg-white border border-navy/20 rounded-xl px-4 py-3 text-navy focus:outline-none focus:border-brand transition-colors file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-brand/10 file:text-brand hover:file:bg-brand/20"
+                  />
+                  <p className="text-sm text-navy/60">Optional. PDF, PPT, PPTX.</p>
                 </div>
 
                 <div className="space-y-2">
