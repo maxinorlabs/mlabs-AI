@@ -3,38 +3,38 @@
 import { useState } from 'react';
 import { motion } from 'motion/react';
 
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzQpyGPJkef7nHgq2BgktCA2DMqsLLBgBO0Ugxms1ICr8BOytBKLx4ZVN8BSeVI7oE/exec';
-
 export default function ContactPage() {
-  const [status, setStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
+  const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleSubmit = async (e: { preventDefault: () => void; currentTarget: HTMLFormElement }) => {
     e.preventDefault();
     setStatus('submitting');
+    setErrorMessage('');
 
     const form = e.currentTarget;
-    const data = {
-      name: (form.elements.namedItem('name') as HTMLInputElement).value,
-      email: (form.elements.namedItem('email') as HTMLInputElement).value,
-      phone: (form.elements.namedItem('phone') as HTMLInputElement).value,
-      engagementType: (form.elements.namedItem('engagementType') as HTMLSelectElement).value,
-      company: (form.elements.namedItem('company') as HTMLInputElement).value,
-      message: (form.elements.namedItem('message') as HTMLTextAreaElement).value,
-      attachmentName: (form.elements.namedItem('attachment') as HTMLInputElement).files?.[0]?.name ?? '',
-      submittedAt: new Date().toISOString(),
-    };
 
-    // Post directly to Google Apps Script — no-cors so browser doesn't block it
-    await fetch(APPS_SCRIPT_URL, {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data),
-    });
+    try {
+      const data = new FormData(form);
+      data.append('submittedAt', new Date().toISOString());
 
-    // no-cors means we can't read the response, so just assume success
-    setStatus('success');
-    form.reset();
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        body: data,
+      });
+
+      const result = await response.json();
+
+      if (!response.ok || !result.ok) {
+        throw new Error(result.message ?? 'Submission failed. Please try again.');
+      }
+
+      setStatus('success');
+      form.reset();
+    } catch (error) {
+      setStatus('error');
+      setErrorMessage(error instanceof Error ? error.message : 'Submission failed. Please try again.');
+    }
   };
 
   return (
@@ -82,6 +82,12 @@ export default function ContactPage() {
                 className="space-y-6 bg-white p-8 md:p-12 rounded-[2rem] border border-navy/10 shadow-sm"
                 onSubmit={handleSubmit}
               >
+                {status === 'error' ? (
+                  <div className="rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+                    {errorMessage}
+                  </div>
+                ) : null}
+
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label htmlFor="contact-name" className="text-sm font-medium text-navy">Name</label>
@@ -117,7 +123,7 @@ export default function ContactPage() {
                     />
                   </div>
                   <div className="space-y-2">
-                    <label htmlFor="contact-engagement" className="text-sm font-medium text-navy">I am a…</label>
+                    <label htmlFor="contact-engagement" className="text-sm font-medium text-navy">I am a...</label>
                     <select
                       id="contact-engagement"
                       name="engagementType"
@@ -153,7 +159,7 @@ export default function ContactPage() {
                     accept=".pdf,.ppt,.pptx"
                     className="w-full bg-white border border-navy/20 rounded-xl px-4 py-3 text-navy focus:outline-none focus:border-brand transition-colors file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-brand/10 file:text-brand hover:file:bg-brand/20"
                   />
-                  <p className="text-sm text-navy/60">Optional. PDF, PPT, PPTX.</p>
+                  <p className="text-sm text-navy/60">Optional. PDF, PPT, PPTX. Max 5 MB.</p>
                 </div>
 
                 <div className="space-y-2">

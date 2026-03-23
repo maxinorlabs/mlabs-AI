@@ -2,12 +2,35 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request: Request) {
   const appsScriptUrl = process.env.CONTACT_FORM_APPS_SCRIPT_URL;
+  const sharedSecret = process.env.CONTACT_FORM_SHARED_SECRET;
 
   if (!appsScriptUrl) {
     return NextResponse.json({ ok: false, message: 'Contact form not configured.' }, { status: 500 });
   }
 
   const formData = await request.formData();
+  const attachment = formData.get('attachment');
+  let attachmentPayload = {};
+
+  if (attachment instanceof File && attachment.size > 0) {
+    const maxAttachmentSizeBytes = 5 * 1024 * 1024;
+
+    if (attachment.size > maxAttachmentSizeBytes) {
+      return NextResponse.json(
+        { ok: false, message: 'Attachment is too large. Please keep it under 5 MB.' },
+        { status: 400 }
+      );
+    }
+
+    const bytes = await attachment.arrayBuffer();
+
+    attachmentPayload = {
+      attachmentName: attachment.name,
+      attachmentType: attachment.type || 'application/octet-stream',
+      attachmentSize: attachment.size,
+      attachmentData: Buffer.from(bytes).toString('base64'),
+    };
+  }
 
   const payload = {
     name: formData.get('name') ?? '',
@@ -16,7 +39,9 @@ export async function POST(request: Request) {
     engagementType: formData.get('engagementType') ?? '',
     company: formData.get('company') ?? '',
     message: formData.get('message') ?? '',
-    submittedAt: new Date().toISOString(),
+    submittedAt: formData.get('submittedAt') ?? new Date().toISOString(),
+    sharedSecret: sharedSecret ?? '',
+    ...attachmentPayload,
   };
 
   try {
