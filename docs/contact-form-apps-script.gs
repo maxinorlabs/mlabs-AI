@@ -1,6 +1,5 @@
 const SHEET_NAME = 'Contact Leads';
 const DRIVE_FOLDER_ID = '1cIPPEmk2wXQyRU3hd7EwzVFLfqTXBtbo';
-const SHARED_SECRET = '';
 
 const HEADER_ROW = [
   'Timestamp',
@@ -21,7 +20,6 @@ function doPost(e) {
     }
 
     const payload = JSON.parse(e.postData.contents);
-    validateSharedSecret_(payload);
     const sheet = getOrCreateSheet_();
     ensureHeaderRow_(sheet);
     const attachment = saveAttachment_(payload);
@@ -57,13 +55,6 @@ function ensureHeaderRow_(sheet) {
   if (!headersMatch) {
     sheet.getRange(1, 1, 1, HEADER_ROW.length).setValues([HEADER_ROW]);
     sheet.setFrozenRows(1);
-  }
-}
-
-function validateSharedSecret_(payload) {
-  if (!SHARED_SECRET) return;
-  if ((payload.sharedSecret || '') !== SHARED_SECRET) {
-    throw new Error('Invalid shared secret.');
   }
 }
 

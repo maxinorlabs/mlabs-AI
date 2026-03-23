@@ -25,8 +25,8 @@ To send contact form submissions into Google Sheets:
 
 1. Create a Google Sheet and open Extensions > Apps Script.
 2. Paste the script from [docs/contact-form-apps-script.gs](./docs/contact-form-apps-script.gs).
-3. Set the sheet tab name, `DRIVE_FOLDER_ID`, and optional shared secret in the script.
+3. Set the sheet tab name and `DRIVE_FOLDER_ID` in the script.
 4. Deploy the Apps Script as a web app.
+5. Set web app access to `Anyone`.
 5. Set `CONTACT_FORM_APPS_SCRIPT_URL` in your `.env.local`.
-6. If you enabled the shared secret in Apps Script, set the same value in `CONTACT_FORM_SHARED_SECRET`.
-7. Redeploy the Apps Script each time you change its code, or the live webhook will keep using the old version.
+6. Redeploy the Apps Script each time you change its code, or the live webhook will keep using the old version.

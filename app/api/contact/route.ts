@@ -1,8 +1,9 @@
 import { NextResponse } from 'next/server';
 
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyjiO1PlXv8bYRXa4FGJNfZ4xC3gAVAMftOfbg5Oo-x3aIvFeUoQuEaRNAYRB-qHrUW/exec';
+
 export async function POST(request: Request) {
-  const appsScriptUrl = process.env.CONTACT_FORM_APPS_SCRIPT_URL;
-  const sharedSecret = process.env.CONTACT_FORM_SHARED_SECRET;
+  const appsScriptUrl = APPS_SCRIPT_URL;
 
   if (!appsScriptUrl) {
     return NextResponse.json({ ok: false, message: 'Contact form not configured.' }, { status: 500 });
@@ -40,7 +41,6 @@ export async function POST(request: Request) {
     company: formData.get('company') ?? '',
     message: formData.get('message') ?? '',
     submittedAt: formData.get('submittedAt') ?? new Date().toISOString(),
-    sharedSecret: sharedSecret ?? '',
     ...attachmentPayload,
   };
 

@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { motion } from 'motion/react';
+import { clientBasePath, withBasePath } from '@/lib/site-path';
 
 export default function ContactPage() {
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
@@ -18,7 +19,7 @@ export default function ContactPage() {
       const data = new FormData(form);
       data.append('submittedAt', new Date().toISOString());
 
-      const response = await fetch('/api/contact', {
+      const response = await fetch(withBasePath('/api/contact', clientBasePath), {
         method: 'POST',
         body: data,
       });
