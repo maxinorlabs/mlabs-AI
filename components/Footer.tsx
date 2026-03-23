@@ -25,7 +25,7 @@ export function Footer() {
               MAXINOR
             </Link>
             <p className="text-grey max-w-sm">
-              We Scale &amp; Build, Not Just Back Startups. India&apos;s 1st Operator Led Venture Studio.
+              We Scale &amp; Build, Not Just Back Startups.<br /> India&apos;s 1st Operator Led Venture Studio.
             </p>
           </div>
           <div className="flex flex-col md:items-end justify-center gap-6">

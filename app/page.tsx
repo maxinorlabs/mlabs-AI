@@ -12,46 +12,55 @@ export default function Home() {
       <main className="pt-20">
         {/* Hero Section */}
         <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden px-6">
-          {/* Upward/North lighting effect */}
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-brand/20 blur-[120px] rounded-full pointer-events-none" />
-          <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(247,247,245,1)_0%,transparent_100%)] pointer-events-none" />
-          
+          {/* Background image */}
+          <Image
+            src="https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/68e4de10bf5c464cee859085_adrian-cuj-o_9YmCY0bag-unsplash-2.webp"
+            alt="Maxinor studio workspace"
+            fill
+            className="object-cover object-center"
+            priority
+          />
+          {/* Dark overlay */}
+          <div className="absolute inset-0 bg-navy/70 pointer-events-none" />
+          {/* Bottom fade to page */}
+          <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(247,247,245,1)_0%,transparent_60%)] pointer-events-none" />
+
           <div className="max-w-5xl mx-auto text-center relative z-10 mt-12">
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
             >
-              <h1 className="text-[9vw] md:text-[5.5vw] leading-[1.1] font-display font-medium tracking-tight mb-8">
+              <h1 className="text-[9vw] md:text-[5.5vw] leading-[1.1] font-display font-medium tracking-tight mb-8 text-warm-white">
                 India&apos;s 1st <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-b from-navy to-navy/70">Operator Led AI Venture Studio</span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-b from-brand to-brand/80">Operator Led AI Venture Studio</span>
               </h1>
             </motion.div>
-            
-            <motion.p 
+
+            <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              className="text-xl md:text-2xl text-grey max-w-2xl mx-auto mb-12 font-light leading-relaxed"
+              className="text-2xl md:text-4xl max-w-2xl mx-auto mb-12 font-bold leading-relaxed" style={{ color: '#1A1F2E' }}
             >
-              Our operating partners deliver execution depth for growth &amp; fund raise
+              Operator&apos;s backing Entrepreneurs
             </motion.p>
-            
-            <motion.div 
+
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
               className="flex flex-col sm:flex-row items-center justify-center gap-6"
             >
-              <Link 
+              <Link
                 href="/scale"
-                className="w-full sm:w-auto px-8 py-4 bg-brand text-warm-white font-medium tracking-wide rounded-full hover:bg-brand/90 transition-all duration-300 flex items-center justify-center shadow-[0_0_40px_rgba(243,111,33,0.15)] hover:shadow-[0_0_60px_rgba(243,111,33,0.3)] hover:-translate-y-1"
+                className="w-full sm:w-auto px-12 py-5 text-lg bg-brand text-warm-white font-semibold tracking-wide rounded-full hover:bg-brand/90 transition-all duration-300 flex items-center justify-center shadow-[0_0_40px_rgba(243,111,33,0.15)] hover:shadow-[0_0_60px_rgba(243,111,33,0.3)] hover:-translate-y-1"
               >
                 Venture Scale
               </Link>
-              <Link 
+              <Link
                 href="/build"
-                className="w-full sm:w-auto px-8 py-4 bg-white/80 text-navy hover:bg-brand hover:text-warm-white border border-grey/40 transition-all duration-300 rounded-full flex items-center justify-center hover:-translate-y-1"
+                className="w-full sm:w-auto px-12 py-5 text-lg bg-white/80 text-navy font-semibold hover:bg-brand hover:text-warm-white border border-grey/40 transition-all duration-300 rounded-full flex items-center justify-center hover:-translate-y-1"
               >
                 Venture Build
               </Link>
@@ -67,7 +76,7 @@ export default function Home() {
                 What We <span className="text-brand">Do</span>
               </h2>
               <p className="text-xl text-warm-white/80 max-w-3xl mx-auto font-light">
-                Maxinor is a Venture Studio that assists in Venture Scale &amp;/or Venture Build via its Maxinor Operator Platform.
+                Maxinor assists Founders to scale their ventures, SMEs to unlock growth, Corporates to craft innovation &amp; Investors to seek returns via the <br />&ldquo;Maxinor Operator Platform&rdquo;
               </p>
             </div>
 
@@ -115,10 +124,10 @@ export default function Home() {
                   {[
                     { url: "https://izfworld.com/", logo: "https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/695e7c054bb39ce328e497b7_izf%20fill%20logo.png" },
                     { url: "https://nattier.co.in/", logo: "https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/695e7d29b07f70111e63e428_Screenshot%202026-01-07%20at%209.02.56%E2%80%AFPM.png" },
-                    { url: "", logo: "https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/69b2b537ff9642970327a58b_kachslogo-dJobQBobXJiEKPjL.avif" },
+                    { url: "https://responcibleai.com/", logo: "https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/69b2b537ff9642970327a58b_kachslogo-dJobQBobXJiEKPjL.avif" },
                     { url: "https://www.adaapt.ai/", logo: "https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/695e7c0571637f2d25422210_Adaapt.svg" },
                     { url: "", logo: "https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/69b2b70ff7ee3292c3baa5a9_Gemini_Generated_Image_2c1xpu2c1xpu2c1x.png" },
-                    { url: "", logo: "https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/695e7e0dfbb6090b487952b2_Screenshot%202026-01-07%20at%209.08.21%E2%80%AFPM.png" }
+                    { url: "https://aseedinternational.org/", logo: "https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/695e7e0dfbb6090b487952b2_Screenshot%202026-01-07%20at%209.08.21%E2%80%AFPM.png" }
                   ].map((item, idx) => (
                     <Link 
                       key={`${i}-${idx}`} 
@@ -152,25 +161,31 @@ export default function Home() {
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-20">
               <h2 className="text-3xl md:text-5xl font-display font-medium tracking-tight mb-6">
-                Domains We Work In
+                Domains We <span className="text-brand">Work In</span>
               </h2>
-              <p className="text-xl text-brand font-medium">
+              <p className="text-xl text-navy/70 font-light">
                 Deep operator expertise across high-growth sectors.
               </p>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-8 text-center">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-0">
               {[
-                { name: "Media", icon: MonitorPlay },
-                { name: "AI & Data", icon: Cpu },
-                { name: "D2C & B2C", icon: ShoppingCart },
-                { name: "SaaS", icon: Cloud },
-                { name: "Healthcare", icon: Pill },
-                { name: "Defence", icon: Shield },
-              ].map((domain, idx) => (
-                <div key={idx} className="p-10 border border-grey/30 rounded-[2rem] bg-warm-white hover:bg-white hover:border-brand/30 transition-all duration-500 flex flex-col items-center justify-center gap-6 group">
-                  <domain.icon className="w-10 h-10 text-grey/80 transition-colors duration-500 group-hover:text-brand" />
-                  <h3 className="text-lg font-medium tracking-wide group-hover:text-brand transition-colors duration-500">{domain.name}</h3>
+                { category: "CONSUMER & RETAIL", domains: [{ name: "Media", icon: MonitorPlay }, { name: "D2C & B2C", icon: ShoppingCart }] },
+                { category: "TECH & INFRASTRUCTURE", domains: [{ name: "AI & Data", icon: Cpu }, { name: "SaaS", icon: Cloud }] },
+                { category: "SPECIALIZED SECTORS", domains: [{ name: "Healthcare", icon: Pill }, { name: "Defence", icon: Shield }] },
+              ].map((group, gi) => (
+                <div key={gi}>
+                  <p className="text-sm font-bold tracking-[0.18em] text-navy uppercase mb-4 text-center">{group.category}</p>
+                  <div className="flex flex-col gap-4">
+                    {group.domains.map((domain, di) => (
+                      <div key={di} className="flex items-center gap-4 p-4 border border-grey/20 rounded-2xl bg-warm-white hover:border-brand/50 hover:bg-white transition-all duration-300 group cursor-default">
+                        <div className="w-14 h-14 rounded-xl bg-grey/8 border border-grey/15 flex items-center justify-center shrink-0 group-hover:border-brand/40 group-hover:bg-brand/5 transition-all duration-300">
+                          <domain.icon className="w-6 h-6 text-grey/60 group-hover:text-brand transition-colors duration-300" />
+                        </div>
+                        <h3 className="text-base font-bold tracking-widest uppercase text-navy group-hover:text-brand transition-colors duration-300">{domain.name}</h3>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               ))}
             </div>
@@ -182,7 +197,7 @@ export default function Home() {
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-20">
               <h2 className="text-3xl md:text-5xl font-display font-medium tracking-tight mb-6">
-                We Scale, Not Just Back Startups!
+                We Scale, Not Just <span className="text-brand">Back Startups!</span>
               </h2>
               <p className="text-xl text-grey max-w-3xl mx-auto font-light">
                 Maxinor accelerates startup growth with embedded operators and milestone-based funding, shortening the path to scale and Series A.
@@ -266,13 +281,13 @@ export default function Home() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
               <Link 
                 href="/contact"
-                className="w-full sm:w-auto px-8 py-4 bg-brand text-warm-white font-medium tracking-wide rounded-full hover:bg-brand/90 transition-all duration-300 flex items-center justify-center shadow-[0_0_20px_rgba(243,111,33,0.2)]"
+                className="w-full sm:w-auto px-12 py-5 text-lg bg-brand text-warm-white font-semibold tracking-wide rounded-full hover:bg-brand/90 transition-all duration-300 flex items-center justify-center shadow-[0_0_40px_rgba(243,111,33,0.15)] hover:shadow-[0_0_60px_rgba(243,111,33,0.3)] hover:-translate-y-1"
               >
                 Get in Touch <ArrowRight className="w-4 h-4 ml-2" />
               </Link>
               <Link 
                 href="/startups"
-                className="w-full sm:w-auto px-8 py-4 bg-white/10 text-warm-white font-medium tracking-wide rounded-full hover:bg-white/20 transition-all duration-300 flex items-center justify-center border border-white/20"
+                className="w-full sm:w-auto px-12 py-5 text-lg bg-white/80 text-navy font-semibold hover:bg-brand hover:text-warm-white border border-grey/40 transition-all duration-300 rounded-full flex items-center justify-center hover:-translate-y-1"
               >
                 View Our Portfolio
               </Link>

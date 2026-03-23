@@ -38,10 +38,10 @@ export default function WhyMaxinor() {
   return (
     <section className="py-32 px-6 bg-warm-white">
       <div className="max-w-4xl mx-auto flex flex-col items-center">
-        <h3 className="text-sm font-display font-medium tracking-[0.2em] text-brand uppercase mb-6">
-          Why Maxinor
-        </h3>
-        <h2 className="text-4xl md:text-5xl font-display font-medium text-navy text-center mb-20 max-w-2xl leading-tight">
+        <h2 className="text-3xl md:text-5xl font-display font-medium tracking-tight mb-6 text-navy">
+          Why <span className="text-brand">Maxinor</span>
+        </h2>
+        <h2 className="text-xl font-light text-navy text-center mb-20 max-w-2xl leading-relaxed">
           &ldquo;Building startups is hard, but scaling with the right operators is easier&rdquo;
         </h2>
 
@@ -86,7 +86,7 @@ export default function WhyMaxinor() {
 
         <Link
           href="/contact"
-          className="inline-flex items-center gap-2 bg-brand text-white px-10 py-5 rounded-full text-lg font-medium hover:bg-brand/90 transition-all duration-300 shadow-[0_0_20px_rgba(243,111,33,0.1)] hover:shadow-[0_0_30px_rgba(243,111,33,0.2)] hover:-translate-y-1"
+          className="inline-flex items-center gap-2 bg-brand text-white px-12 py-5 rounded-full text-lg font-semibold tracking-wide hover:bg-brand/90 transition-all duration-300 shadow-[0_0_40px_rgba(243,111,33,0.15)] hover:shadow-[0_0_60px_rgba(243,111,33,0.3)] hover:-translate-y-1"
         >
           Get in Touch <ArrowRight className="w-5 h-5" />
         </Link>

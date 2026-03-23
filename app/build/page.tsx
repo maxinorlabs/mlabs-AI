@@ -10,7 +10,7 @@ export default function BuildPage() {
             <span className="text-black">Maxinor Platform</span> <span className="text-black">for</span> <span className="text-brand">Venture Build</span>
           </h1>
           <p className="text-xl text-navy/70 max-w-3xl leading-relaxed mb-8 font-light">
-            We partner with visionary founders and corporations to build category-defining companies from the ground up. Our venture building engine provides the capital, talent, and operational infrastructure needed to turn ideas into enduring businesses.
+            Maxinor&apos;s Venture Build engine creates AI-Native Companies from validated white spaces identified by operating with other founders, operating partners, and resident domain experts.
           </p>
           <div className="flex flex-wrap gap-6">
             <div className="flex items-center gap-3 bg-navy/5 px-6 py-3 rounded-full border border-navy/10">

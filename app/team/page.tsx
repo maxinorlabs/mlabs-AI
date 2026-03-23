@@ -38,6 +38,13 @@ export default function TeamPage() {
       desc: "Entrepreneur | Ex Accenture, Ex Wipro, Ex Mastek",
       image: "https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/69b299cedd0e417ecb1e2533_WhatsApp%20Image%202026-03-12%20at%204.11.45%20PM.jpeg",
       linkedin: "https://www.linkedin.com/in/rajeshramanathan/"
+    },
+    {
+      name: "Priyabrata Padhi",
+      role: "Consumer Marketing",
+      desc: "Entrepreneur | Ex Unitech Breweries, Ex ITC, Ex Britannia",
+      image: "https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/69c11ffc5c1c2e2f2a9cadaa_Gemini_Generated_Image_m5qmrom5qmrom5qm.avif",
+      linkedin: "https://www.linkedin.com/in/priyabratapadhi/"
     }
   ];
 

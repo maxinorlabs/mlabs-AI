@@ -134,9 +134,7 @@ export default function ContactPage() {
               transition={{ duration: 0.8, delay: 0.1 }}
               className="text-xl text-navy/70 font-light"
             >
-              Whether you&apos;re a founder looking to create Venture Scale via growth or want to Venture
-              Build in a new white space or an investor seeking high-potential ventures, Maxinor Platform
-              is your partner in building &amp; scaling.
+              Whether you are a founder looking to scale your venture, a SMEs seeking to unlock growth, corporates who want to drive innovation, investors who are seeking a credible investment platform, Maxinor is your partner.
             </motion.p>
           </div>
 
@@ -196,7 +194,7 @@ export default function ContactPage() {
                 </div>
                 <div className="space-y-2">
                   <label htmlFor="contact-engagement-type" className="text-sm font-medium text-navy">
-                    Engagement Type
+                    I am a…
                   </label>
                   <select
                     id="contact-engagement-type"
@@ -204,14 +202,11 @@ export default function ContactPage() {
                     onChange={handleChange('engagementType')}
                     className="w-full bg-white border border-navy/20 rounded-xl px-4 py-3 text-navy focus:outline-none focus:border-brand transition-colors"
                   >
-                    <option value="">Select Engagement Type</option>
-                    <option value="career">Career</option>
-                    <option value="investor">Investor</option>
-                    <option value="venture-scale">Venture Scale</option>
-                    <option value="venture-build">Venture Build</option>
-                    <option value="strategic-partnership">Strategic Partnership</option>
-                    <option value="mentor">Mentor</option>
+                    <option value="">Select...</option>
                     <option value="founder">Founder</option>
+                    <option value="investor">Investor</option>
+                    <option value="cxo-operator">CXO / Operator</option>
+                    <option value="job-seeker">Job Seeker</option>
                     <option value="other">Other</option>
                   </select>
                   {errors.engagementType && <p className="text-sm text-brand">{errors.engagementType}</p>}
@@ -219,7 +214,7 @@ export default function ContactPage() {
               </div>
               <div className="space-y-2">
                 <label htmlFor="contact-company" className="text-sm font-medium text-navy">
-                  Company / Startup Name
+                  My Company / Startup
                 </label>
                 <input
                   id="contact-company"
@@ -248,7 +243,7 @@ export default function ContactPage() {
               </div>
               <div className="space-y-2">
                 <label htmlFor="contact-message" className="text-sm font-medium text-navy">
-                  How can we help?
+                  I am looking for..
                 </label>
                 <textarea
                   id="contact-message"
@@ -256,7 +251,7 @@ export default function ContactPage() {
                   value={values.message}
                   onChange={handleChange('message')}
                   className="w-full bg-white border border-navy/20 rounded-xl px-4 py-3 text-navy focus:outline-none focus:border-brand transition-colors"
-                  placeholder="Tell us about your venture..."
+                  placeholder=""
                 />
                 {errors.message && <p className="text-sm text-brand">{errors.message}</p>}
               </div>
@@ -278,7 +273,7 @@ export default function ContactPage() {
                 disabled={status === 'submitting'}
                 className="w-full bg-brand text-white font-medium tracking-wide py-4 rounded-xl hover:bg-brand/90 transition-all duration-300 shadow-[0_0_20px_rgba(243,111,33,0.1)] hover:shadow-[0_0_30px_rgba(243,111,33,0.2)] disabled:opacity-70 disabled:cursor-not-allowed"
               >
-                {status === 'submitting' ? 'Submitting...' : 'Submit Inquiry'}
+                {status === 'submitting' ? 'Sharing...' : 'Share'}
               </button>
             </form>
           </motion.div>
