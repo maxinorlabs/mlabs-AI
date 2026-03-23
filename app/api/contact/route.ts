@@ -61,6 +61,16 @@ export async function POST(request: Request) {
       return NextResponse.json({ ok: true, message: 'Your inquiry has been submitted successfully.' });
     }
 
+    if (!result.ok && text.trim().startsWith('<')) {
+      return NextResponse.json(
+        {
+          ok: false,
+          message: 'Apps Script returned an HTML page instead of JSON. Redeploy the web app and set access to Anyone.'
+        },
+        { status: 502 }
+      );
+    }
+
     return NextResponse.json(
       { ok: false, message: result.message ?? 'Submission failed. Please try again.' },
       { status: 502 }

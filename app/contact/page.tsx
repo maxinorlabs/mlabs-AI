@@ -23,7 +23,14 @@ export default function ContactPage() {
         body: data,
       });
 
-      const result = await response.json();
+      const raw = await response.text();
+      let result: { ok?: boolean; message?: string } = {};
+
+      try {
+        result = JSON.parse(raw);
+      } catch {
+        throw new Error('The server returned HTML instead of JSON. Make sure the app is running with the contact API route enabled.');
+      }
 
       if (!response.ok || !result.ok) {
         throw new Error(result.message ?? 'Submission failed. Please try again.');
