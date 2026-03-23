@@ -1,118 +1,39 @@
 'use client';
 
-import { ChangeEvent, FormEvent, useRef, useState } from 'react';
+import { useState } from 'react';
 import { motion } from 'motion/react';
-import { clientBasePath, withBasePath } from '@/lib/site-path';
 
-type ContactFormValues = {
-  name: string;
-  email: string;
-  phone: string;
-  engagementType: string;
-  company: string;
-  message: string;
-};
-
-type ContactFormErrors = Partial<Record<keyof ContactFormValues | 'attachment', string>>;
-type SubmissionStatus = 'idle' | 'submitting' | 'success' | 'error';
-
-const initialValues: ContactFormValues = {
-  name: '',
-  email: '',
-  phone: '',
-  engagementType: '',
-  company: '',
-  message: '',
-};
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzQpyGPJkef7nHgq2BgktCA2DMqsLLBgBO0Ugxms1ICr8BOytBKLx4ZVN8BSeVI7oE/exec';
 
 export default function ContactPage() {
-  const [values, setValues] = useState<ContactFormValues>(initialValues);
-  const [attachment, setAttachment] = useState<File | null>(null);
-  const [errors, setErrors] = useState<ContactFormErrors>({});
-  const [status, setStatus] = useState<SubmissionStatus>('idle');
-  const [feedbackMessage, setFeedbackMessage] = useState('');
-  const fileInputRef = useRef<HTMLInputElement | null>(null);
-  const submitUrl = withBasePath('/api/contact', clientBasePath);
+  const [status, setStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
 
-  const handleChange =
-    (field: keyof ContactFormValues) =>
-    (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-      const nextValue = event.target.value;
-      setValues((current) => ({ ...current, [field]: nextValue }));
-      setErrors((current) => ({ ...current, [field]: undefined }));
-      if (status !== 'idle') {
-        setStatus('idle');
-        setFeedbackMessage('');
-      }
+  const handleSubmit = async (e: { preventDefault: () => void; currentTarget: HTMLFormElement }) => {
+    e.preventDefault();
+    setStatus('submitting');
+
+    const form = e.currentTarget;
+    const data = {
+      name: (form.elements.namedItem('name') as HTMLInputElement).value,
+      email: (form.elements.namedItem('email') as HTMLInputElement).value,
+      phone: (form.elements.namedItem('phone') as HTMLInputElement).value,
+      engagementType: (form.elements.namedItem('engagementType') as HTMLSelectElement).value,
+      company: (form.elements.namedItem('company') as HTMLInputElement).value,
+      message: (form.elements.namedItem('message') as HTMLTextAreaElement).value,
+      submittedAt: new Date().toISOString(),
     };
 
-  const handleAttachmentChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const nextFile = event.target.files?.[0] ?? null;
-    setAttachment(nextFile);
-    setErrors((current) => ({ ...current, attachment: undefined }));
-    if (status !== 'idle') {
-      setStatus('idle');
-      setFeedbackMessage('');
-    }
-  };
+    // Post directly to Google Apps Script — no-cors so browser doesn't block it
+    await fetch(APPS_SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    });
 
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setStatus('submitting');
-    setFeedbackMessage('');
-    setErrors({});
-
-    const formData = new FormData();
-    formData.append('name', values.name);
-    formData.append('email', values.email);
-    formData.append('phone', values.phone);
-    formData.append('engagementType', values.engagementType);
-    formData.append('company', values.company);
-    formData.append('message', values.message);
-
-    if (attachment) {
-      formData.append('attachment', attachment);
-    }
-
-    try {
-      const response = await fetch(submitUrl, {
-        method: 'POST',
-        body: formData,
-      });
-
-      const responseText = await response.text();
-      let result: {
-        ok?: boolean;
-        message?: string;
-        errors?: ContactFormErrors;
-      } = {};
-
-      try {
-        result = JSON.parse(responseText);
-      } catch {
-        result = {};
-      }
-
-      if (!response.ok || !result.ok) {
-        setStatus('error');
-        setFeedbackMessage(
-          result.message ?? 'We could not submit your inquiry. Please try again in a moment.',
-        );
-        setErrors(result.errors ?? {});
-        return;
-      }
-
-      setStatus('success');
-      setFeedbackMessage(result.message ?? 'Your inquiry has been submitted successfully.');
-      setValues(initialValues);
-      setAttachment(null);
-      if (fileInputRef.current) {
-        fileInputRef.current.value = '';
-      }
-    } catch {
-      setStatus('error');
-      setFeedbackMessage('We could not submit your inquiry. Please try again in a moment.');
-    }
+    // no-cors means we can't read the response, so just assume success
+    setStatus('success');
+    form.reset();
   };
 
   return (
@@ -143,139 +64,104 @@ export default function ContactPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <form
-              className="space-y-6 bg-white p-8 md:p-12 rounded-[2rem] border border-navy/10 shadow-sm"
-              onSubmit={handleSubmit}
-            >
-              <div className="grid md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label htmlFor="contact-name" className="text-sm font-medium text-navy">
-                    Name
-                  </label>
-                  <input
-                    id="contact-name"
-                    type="text"
-                    value={values.name}
-                    onChange={handleChange('name')}
-                    className="w-full bg-white border border-navy/20 rounded-xl px-4 py-3 text-navy focus:outline-none focus:border-brand transition-colors"
-                    placeholder="John Doe"
-                  />
-                  {errors.name && <p className="text-sm text-brand">{errors.name}</p>}
-                </div>
-                <div className="space-y-2">
-                  <label htmlFor="contact-email" className="text-sm font-medium text-navy">
-                    Email
-                  </label>
-                  <input
-                    id="contact-email"
-                    type="email"
-                    value={values.email}
-                    onChange={handleChange('email')}
-                    className="w-full bg-white border border-navy/20 rounded-xl px-4 py-3 text-navy focus:outline-none focus:border-brand transition-colors"
-                    placeholder="john@example.com"
-                  />
-                  {errors.email && <p className="text-sm text-brand">{errors.email}</p>}
-                </div>
-              </div>
-              <div className="grid md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label htmlFor="contact-phone" className="text-sm font-medium text-navy">
-                    Phone Number
-                  </label>
-                  <input
-                    id="contact-phone"
-                    type="tel"
-                    value={values.phone}
-                    onChange={handleChange('phone')}
-                    className="w-full bg-white border border-navy/20 rounded-xl px-4 py-3 text-navy focus:outline-none focus:border-brand transition-colors"
-                    placeholder="+1 (555) 000-0000"
-                  />
-                  {errors.phone && <p className="text-sm text-brand">{errors.phone}</p>}
-                </div>
-                <div className="space-y-2">
-                  <label htmlFor="contact-engagement-type" className="text-sm font-medium text-navy">
-                    I am a…
-                  </label>
-                  <select
-                    id="contact-engagement-type"
-                    value={values.engagementType}
-                    onChange={handleChange('engagementType')}
-                    className="w-full bg-white border border-navy/20 rounded-xl px-4 py-3 text-navy focus:outline-none focus:border-brand transition-colors"
-                  >
-                    <option value="">Select...</option>
-                    <option value="founder">Founder</option>
-                    <option value="investor">Investor</option>
-                    <option value="cxo-operator">CXO / Operator</option>
-                    <option value="job-seeker">Job Seeker</option>
-                    <option value="other">Other</option>
-                  </select>
-                  {errors.engagementType && <p className="text-sm text-brand">{errors.engagementType}</p>}
-                </div>
-              </div>
-              <div className="space-y-2">
-                <label htmlFor="contact-company" className="text-sm font-medium text-navy">
-                  My Company / Startup
-                </label>
-                <input
-                  id="contact-company"
-                  type="text"
-                  value={values.company}
-                  onChange={handleChange('company')}
-                  className="w-full bg-white border border-navy/20 rounded-xl px-4 py-3 text-navy focus:outline-none focus:border-brand transition-colors"
-                  placeholder="Acme Corp"
-                />
-                {errors.company && <p className="text-sm text-brand">{errors.company}</p>}
-              </div>
-              <div className="space-y-2">
-                <label htmlFor="contact-attachment" className="text-sm font-medium text-navy">
-                  Attachment
-                </label>
-                <input
-                  id="contact-attachment"
-                  ref={fileInputRef}
-                  type="file"
-                  accept=".pdf,.ppt,.pptx"
-                  onChange={handleAttachmentChange}
-                  className="w-full bg-white border border-navy/20 rounded-xl px-4 py-3 text-navy focus:outline-none focus:border-brand transition-colors file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-brand/10 file:text-brand hover:file:bg-brand/20"
-                />
-                <p className="text-sm text-navy/60">Optional. Accepted formats: PDF, PPT, PPTX.</p>
-                {errors.attachment && <p className="text-sm text-brand">{errors.attachment}</p>}
-              </div>
-              <div className="space-y-2">
-                <label htmlFor="contact-message" className="text-sm font-medium text-navy">
-                  I am looking for..
-                </label>
-                <textarea
-                  id="contact-message"
-                  rows={4}
-                  value={values.message}
-                  onChange={handleChange('message')}
-                  className="w-full bg-white border border-navy/20 rounded-xl px-4 py-3 text-navy focus:outline-none focus:border-brand transition-colors"
-                  placeholder=""
-                />
-                {errors.message && <p className="text-sm text-brand">{errors.message}</p>}
-              </div>
-
-              {feedbackMessage && (
-                <div
-                  className={`rounded-xl px-4 py-3 text-sm ${
-                    status === 'success'
-                      ? 'bg-brand/10 text-navy border border-brand/20'
-                      : 'bg-red-50 text-red-700 border border-red-200'
-                  }`}
+            {status === 'success' ? (
+              <div className="bg-white p-12 rounded-[2rem] border border-navy/10 shadow-sm text-center">
+                <div className="text-5xl mb-6">🎉</div>
+                <h2 className="text-2xl font-display font-medium text-navy mb-3">Thank you!</h2>
+                <p className="text-navy/70 font-light">We&apos;ve received your message and will be in touch soon.</p>
+                <button
+                  onClick={() => setStatus('idle')}
+                  className="mt-8 px-8 py-3 bg-brand text-warm-white rounded-full font-medium hover:bg-brand/90 transition-all"
                 >
-                  {feedbackMessage}
-                </div>
-              )}
-
-              <button
-                type="submit"
-                disabled={status === 'submitting'}
-                className="w-full bg-brand text-warm-white font-semibold tracking-wide py-4 rounded-full hover:bg-brand/90 transition-all duration-300 shadow-[0_0_40px_rgba(243,111,33,0.15)] hover:shadow-[0_0_60px_rgba(243,111,33,0.3)] disabled:opacity-70 disabled:cursor-not-allowed"
+                  Send another
+                </button>
+              </div>
+            ) : (
+              <form
+                className="space-y-6 bg-white p-8 md:p-12 rounded-[2rem] border border-navy/10 shadow-sm"
+                onSubmit={handleSubmit}
               >
-                {status === 'submitting' ? 'Sharing...' : 'Share'}
-              </button>
-            </form>
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <label htmlFor="contact-name" className="text-sm font-medium text-navy">Name</label>
+                    <input
+                      id="contact-name"
+                      name="name"
+                      type="text"
+                      className="w-full bg-white border border-navy/20 rounded-xl px-4 py-3 text-navy focus:outline-none focus:border-brand transition-colors"
+                      placeholder="John Doe"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label htmlFor="contact-email" className="text-sm font-medium text-navy">Email</label>
+                    <input
+                      id="contact-email"
+                      name="email"
+                      type="email"
+                      className="w-full bg-white border border-navy/20 rounded-xl px-4 py-3 text-navy focus:outline-none focus:border-brand transition-colors"
+                      placeholder="john@example.com"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <label htmlFor="contact-phone" className="text-sm font-medium text-navy">Phone Number</label>
+                    <input
+                      id="contact-phone"
+                      name="phone"
+                      type="tel"
+                      className="w-full bg-white border border-navy/20 rounded-xl px-4 py-3 text-navy focus:outline-none focus:border-brand transition-colors"
+                      placeholder="+91 98765 43210"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label htmlFor="contact-engagement" className="text-sm font-medium text-navy">I am a…</label>
+                    <select
+                      id="contact-engagement"
+                      name="engagementType"
+                      className="w-full bg-white border border-navy/20 rounded-xl px-4 py-3 text-navy focus:outline-none focus:border-brand transition-colors"
+                    >
+                      <option value="">Select...</option>
+                      <option value="Founder">Founder</option>
+                      <option value="Investor">Investor</option>
+                      <option value="CXO / Operator">CXO / Operator</option>
+                      <option value="Job Seeker">Job Seeker</option>
+                      <option value="Other">Other</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <label htmlFor="contact-company" className="text-sm font-medium text-navy">My Company / Startup</label>
+                  <input
+                    id="contact-company"
+                    name="company"
+                    type="text"
+                    className="w-full bg-white border border-navy/20 rounded-xl px-4 py-3 text-navy focus:outline-none focus:border-brand transition-colors"
+                    placeholder="Acme Corp"
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <label htmlFor="contact-message" className="text-sm font-medium text-navy">I am looking for..</label>
+                  <textarea
+                    id="contact-message"
+                    name="message"
+                    rows={4}
+                    className="w-full bg-white border border-navy/20 rounded-xl px-4 py-3 text-navy focus:outline-none focus:border-brand transition-colors"
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={status === 'submitting'}
+                  className="w-full bg-brand text-warm-white font-semibold tracking-wide py-4 rounded-full hover:bg-brand/90 transition-all duration-300 shadow-[0_0_40px_rgba(243,111,33,0.15)] hover:shadow-[0_0_60px_rgba(243,111,33,0.3)] disabled:opacity-70 disabled:cursor-not-allowed"
+                >
+                  {status === 'submitting' ? 'Sending...' : 'Share'}
+                </button>
+              </form>
+            )}
           </motion.div>
         </div>
       </div>
