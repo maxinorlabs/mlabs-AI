@@ -16,5 +16,8 @@
   ],
   "images": {
     "binding": "IMAGES"
+  },
+  "vars": {
+    "CONTACT_FORM_APPS_SCRIPT_URL": "https://script.google.com/macros/s/AKfycbzsoPjivYPmWdiE7nRTpYvTIVR9PnmU9QU8wiWqIrX_DTVZeYN-M0B0SN1REvP-o4W_/exec"
   }
 }
