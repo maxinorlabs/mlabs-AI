@@ -5,46 +5,13 @@ const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyjiO1PlXv8bYRX
 export async function POST(request: Request) {
   const appsScriptUrl = APPS_SCRIPT_URL;
 
-  if (!appsScriptUrl) {
-    return NextResponse.json({ ok: false, message: 'Contact form not configured.' }, { status: 500 });
-  }
-
-  const formData = await request.formData();
-  const attachment = formData.get('attachment');
-  let attachmentPayload = {};
-
-  if (attachment instanceof File && attachment.size > 0) {
-    const maxAttachmentSizeBytes = 5 * 1024 * 1024;
-
-    if (attachment.size > maxAttachmentSizeBytes) {
-      return NextResponse.json(
-        { ok: false, message: 'Attachment is too large. Please keep it under 5 MB.' },
-        { status: 400 }
-      );
+  try {
+    if (!appsScriptUrl) {
+      return NextResponse.json({ ok: false, message: 'Contact form not configured.' }, { status: 500 });
     }
 
-    const bytes = await attachment.arrayBuffer();
+    const payload = await request.json();
 
-    attachmentPayload = {
-      attachmentName: attachment.name,
-      attachmentType: attachment.type || 'application/octet-stream',
-      attachmentSize: attachment.size,
-      attachmentData: Buffer.from(bytes).toString('base64'),
-    };
-  }
-
-  const payload = {
-    name: formData.get('name') ?? '',
-    email: formData.get('email') ?? '',
-    phone: formData.get('phone') ?? '',
-    engagementType: formData.get('engagementType') ?? '',
-    company: formData.get('company') ?? '',
-    message: formData.get('message') ?? '',
-    submittedAt: formData.get('submittedAt') ?? new Date().toISOString(),
-    ...attachmentPayload,
-  };
-
-  try {
     const response = await fetch(appsScriptUrl, {
       method: 'POST',
       redirect: 'follow',

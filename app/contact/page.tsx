@@ -4,6 +4,41 @@ import { useState } from 'react';
 import { motion } from 'motion/react';
 import { clientBasePath, withBasePath } from '@/lib/site-path';
 
+type ContactPayload = {
+  name: string;
+  email: string;
+  phone: string;
+  engagementType: string;
+  company: string;
+  message: string;
+  submittedAt: string;
+  attachmentName?: string;
+  attachmentType?: string;
+  attachmentData?: string;
+};
+
+function fileToBase64(file: File) {
+  return new Promise<string>((resolve, reject) => {
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      if (typeof reader.result !== 'string') {
+        reject(new Error('Failed to read the attachment.'));
+        return;
+      }
+
+      const [, base64 = ''] = reader.result.split(',');
+      resolve(base64);
+    };
+
+    reader.onerror = () => {
+      reject(new Error('Failed to read the attachment.'));
+    };
+
+    reader.readAsDataURL(file);
+  });
+}
+
 export default function ContactPage() {
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
@@ -16,12 +51,36 @@ export default function ContactPage() {
     const form = e.currentTarget;
 
     try {
-      const data = new FormData(form);
-      data.append('submittedAt', new Date().toISOString());
+      const formData = new FormData(form);
+      const attachment = formData.get('attachment');
+      const payload: ContactPayload = {
+        name: String(formData.get('name') ?? ''),
+        email: String(formData.get('email') ?? ''),
+        phone: String(formData.get('phone') ?? ''),
+        engagementType: String(formData.get('engagementType') ?? ''),
+        company: String(formData.get('company') ?? ''),
+        message: String(formData.get('message') ?? ''),
+        submittedAt: new Date().toISOString(),
+      };
+
+      if (attachment instanceof File && attachment.size > 0) {
+        const maxAttachmentSizeBytes = 5 * 1024 * 1024;
+
+        if (attachment.size > maxAttachmentSizeBytes) {
+          throw new Error('Attachment is too large. Please keep it under 5 MB.');
+        }
+
+        payload.attachmentName = attachment.name;
+        payload.attachmentType = attachment.type || 'application/octet-stream';
+        payload.attachmentData = await fileToBase64(attachment);
+      }
 
       const response = await fetch(withBasePath('/api/contact', clientBasePath), {
         method: 'POST',
-        body: data,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
       });
 
       const raw = await response.text();
