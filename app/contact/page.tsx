@@ -2,7 +2,8 @@
 
 import { useState } from 'react';
 import { motion } from 'motion/react';
-import { clientBasePath, withBasePath } from '@/lib/site-path';
+
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby5YKcdTq8qwvSITIHlKf6PpFHQqbPk4XZEmhIf2RE-0_IvnuoKvHc5B79L2Cy1MFhm/exec';
 
 type ContactPayload = {
   name: string;
@@ -37,11 +38,9 @@ export default function ContactPage() {
         submittedAt: new Date().toISOString(),
       };
 
-      const response = await fetch(withBasePath('/api/contact', clientBasePath), {
+      const response = await fetch(APPS_SCRIPT_URL, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        redirect: 'follow',
         body: JSON.stringify(payload),
       });
 
@@ -51,10 +50,10 @@ export default function ContactPage() {
       try {
         result = JSON.parse(raw);
       } catch {
-        throw new Error('The server returned HTML instead of JSON. Make sure the app is running with the contact API route enabled.');
+        throw new Error('Submission failed. Please try again.');
       }
 
-      if (!response.ok || !result.ok) {
+      if (!result.ok) {
         throw new Error(result.message ?? 'Submission failed. Please try again.');
       }
 
