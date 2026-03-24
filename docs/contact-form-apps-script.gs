@@ -1,5 +1,4 @@
 const SHEET_NAME = 'Contact Leads';
-const DRIVE_FOLDER_ID = '1cIPPEmk2wXQyRU3hd7EwzVFLfqTXBtbo';
 
 const HEADER_ROW = [
   'Timestamp',
@@ -9,8 +8,6 @@ const HEADER_ROW = [
   'I am a...',
   'My Company / Startup',
   'Message',
-  'Attachment Name',
-  'Attachment URL',
 ];
 
 function doPost(e) {
@@ -22,7 +19,6 @@ function doPost(e) {
     const payload = JSON.parse(e.postData.contents);
     const sheet = getOrCreateSheet_();
     ensureHeaderRow_(sheet);
-    const attachment = saveAttachment_(payload);
 
     sheet.appendRow([
       payload.submittedAt || new Date().toISOString(),
@@ -32,8 +28,6 @@ function doPost(e) {
       payload.engagementType || '',
       payload.company || '',
       payload.message || '',
-      attachment.name || '',
-      attachment.url || '',
     ]);
 
     return jsonResponse_({ ok: true, message: 'Saved.' });
@@ -56,30 +50,6 @@ function ensureHeaderRow_(sheet) {
     sheet.getRange(1, 1, 1, HEADER_ROW.length).setValues([HEADER_ROW]);
     sheet.setFrozenRows(1);
   }
-}
-
-function saveAttachment_(payload) {
-  if (!payload.attachmentData) {
-    return { name: payload.attachmentName || '', url: '' };
-  }
-
-  if (!DRIVE_FOLDER_ID) {
-    throw new Error('Attachment upload requested but DRIVE_FOLDER_ID is not configured.');
-  }
-
-  const folder = DriveApp.getFolderById(DRIVE_FOLDER_ID);
-  const bytes = Utilities.base64Decode(payload.attachmentData);
-  const blob = Utilities.newBlob(
-    bytes,
-    payload.attachmentType || 'application/octet-stream',
-    payload.attachmentName || 'attachment'
-  );
-  const file = folder.createFile(blob);
-
-  return {
-    name: file.getName(),
-    url: file.getUrl(),
-  };
 }
 
 function jsonResponse_(payload) {

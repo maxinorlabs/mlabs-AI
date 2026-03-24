@@ -12,32 +12,7 @@ type ContactPayload = {
   company: string;
   message: string;
   submittedAt: string;
-  attachmentName?: string;
-  attachmentType?: string;
-  attachmentData?: string;
 };
-
-function fileToBase64(file: File) {
-  return new Promise<string>((resolve, reject) => {
-    const reader = new FileReader();
-
-    reader.onload = () => {
-      if (typeof reader.result !== 'string') {
-        reject(new Error('Failed to read the attachment.'));
-        return;
-      }
-
-      const [, base64 = ''] = reader.result.split(',');
-      resolve(base64);
-    };
-
-    reader.onerror = () => {
-      reject(new Error('Failed to read the attachment.'));
-    };
-
-    reader.readAsDataURL(file);
-  });
-}
 
 export default function ContactPage() {
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
@@ -52,7 +27,6 @@ export default function ContactPage() {
 
     try {
       const formData = new FormData(form);
-      const attachment = formData.get('attachment');
       const payload: ContactPayload = {
         name: String(formData.get('name') ?? ''),
         email: String(formData.get('email') ?? ''),
@@ -62,18 +36,6 @@ export default function ContactPage() {
         message: String(formData.get('message') ?? ''),
         submittedAt: new Date().toISOString(),
       };
-
-      if (attachment instanceof File && attachment.size > 0) {
-        const maxAttachmentSizeBytes = 5 * 1024 * 1024;
-
-        if (attachment.size > maxAttachmentSizeBytes) {
-          throw new Error('Attachment is too large. Please keep it under 5 MB.');
-        }
-
-        payload.attachmentName = attachment.name;
-        payload.attachmentType = attachment.type || 'application/octet-stream';
-        payload.attachmentData = await fileToBase64(attachment);
-      }
 
       const response = await fetch(withBasePath('/api/contact', clientBasePath), {
         method: 'POST',
@@ -215,18 +177,6 @@ export default function ContactPage() {
                     className="w-full bg-white border border-navy/20 rounded-xl px-4 py-3 text-navy focus:outline-none focus:border-brand transition-colors"
                     placeholder="Acme Corp"
                   />
-                </div>
-
-                <div className="space-y-2">
-                  <label htmlFor="contact-attachment" className="text-sm font-medium text-navy">Attachment</label>
-                  <input
-                    id="contact-attachment"
-                    name="attachment"
-                    type="file"
-                    accept=".pdf,.ppt,.pptx"
-                    className="w-full bg-white border border-navy/20 rounded-xl px-4 py-3 text-navy focus:outline-none focus:border-brand transition-colors file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-brand/10 file:text-brand hover:file:bg-brand/20"
-                  />
-                  <p className="text-sm text-navy/60">Optional. PDF, PPT, PPTX. Max 5 MB.</p>
                 </div>
 
                 <div className="space-y-2">
