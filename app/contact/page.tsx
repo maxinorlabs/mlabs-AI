@@ -5,6 +5,8 @@ import { motion } from 'motion/react';
 import { CheckCircle2 } from 'lucide-react';
 
 const CONTACT_API_PATH = '/api/contact';
+const APPS_SCRIPT_URL =
+  'https://script.google.com/macros/s/AKfycbwNaRtQk0BgrofDxP0mgacwtpOvqA_t0-tW5OKO4X6DRbVP7g9t2thTEQ_56qu2xXex/exec';
 
 const pagePadding = 'relative overflow-hidden bg-warm-white px-6 pt-24 pb-20 md:pt-32 md:pb-28 lg:pb-32';
 const introTitle = 'mb-5 text-4xl font-display font-medium tracking-tight text-navy sm:text-5xl md:mb-6 md:text-7xl';
@@ -26,6 +28,35 @@ type ContactPayload = {
   message: string;
   submittedAt: string;
 };
+
+type ContactSubmissionResult = {
+  ok?: boolean;
+  message?: string;
+};
+
+async function submitContactRequest(
+  url: string,
+  payload: ContactPayload,
+  contentType: string,
+): Promise<ContactSubmissionResult | null> {
+  try {
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': contentType },
+      body: JSON.stringify(payload),
+    });
+
+    const raw = await response.text();
+
+    try {
+      return JSON.parse(raw) as ContactSubmissionResult;
+    } catch {
+      return null;
+    }
+  } catch {
+    return null;
+  }
+}
 
 export default function ContactPage() {
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
@@ -50,18 +81,13 @@ export default function ContactPage() {
         submittedAt: new Date().toISOString(),
       };
 
-      const response = await fetch(CONTACT_API_PATH, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-      });
+      const apiResult = await submitContactRequest(CONTACT_API_PATH, payload, 'application/json');
+      const result =
+        apiResult && apiResult.ok
+          ? apiResult
+          : await submitContactRequest(APPS_SCRIPT_URL, payload, 'text/plain;charset=utf-8');
 
-      const raw = await response.text();
-      let result: { ok?: boolean; message?: string } = {};
-
-      try {
-        result = JSON.parse(raw);
-      } catch {
+      if (!result) {
         throw new Error('Submission failed. Please try again.');
       }
 
