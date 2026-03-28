@@ -1,4 +1,8 @@
 const SHEET_NAME = 'Contact Leads';
+const NOTIFICATION_EMAILS = [
+  'admin@mlabs.co.in',
+].filter(Boolean);
+const NOTIFICATION_SENDER_NAME = 'Maxinor Website Contact Form';
 
 const HEADER_ROW = [
   'Timestamp',
@@ -30,7 +34,13 @@ function doPost(e) {
       payload.message || '',
     ]);
 
-    return jsonResponse_({ ok: true, message: 'Saved.' });
+    const notificationSent = sendLeadNotification_(payload);
+
+    return jsonResponse_({
+      ok: true,
+      message: notificationSent ? 'Saved.' : 'Saved, but notification email was skipped.',
+      notificationSent: notificationSent,
+    });
   } catch (error) {
     return jsonResponse_({ ok: false, message: error && error.message ? error.message : 'Script error.' });
   }
@@ -49,6 +59,41 @@ function ensureHeaderRow_(sheet) {
   if (!headersMatch) {
     sheet.getRange(1, 1, 1, HEADER_ROW.length).setValues([HEADER_ROW]);
     sheet.setFrozenRows(1);
+  }
+}
+
+function sendLeadNotification_(payload) {
+  if (!NOTIFICATION_EMAILS.length) return false;
+
+  const subject = 'New Maxinor contact form submission';
+  const body = [
+    'A new contact form submission was received.',
+    '',
+    'Timestamp: ' + (payload.submittedAt || new Date().toISOString()),
+    'Name: ' + (payload.name || ''),
+    'Email: ' + (payload.email || ''),
+    'Phone: ' + (payload.phone || ''),
+    'I am a...: ' + (payload.engagementType || ''),
+    'My Company / Startup: ' + (payload.company || ''),
+    'Message:',
+    payload.message || '',
+  ].join('\n');
+
+  const primaryRecipient = NOTIFICATION_EMAILS[0];
+  const bccRecipients = NOTIFICATION_EMAILS.slice(1).join(',');
+  const options = {
+    name: NOTIFICATION_SENDER_NAME,
+  };
+
+  if (payload.email) options.replyTo = payload.email;
+  if (bccRecipients) options.bcc = bccRecipients;
+
+  try {
+    MailApp.sendEmail(primaryRecipient, subject, body, options);
+    return true;
+  } catch (error) {
+    Logger.log('Lead notification email failed: ' + error);
+    return false;
   }
 }
 

@@ -4,8 +4,7 @@ import { useState } from 'react';
 import { motion } from 'motion/react';
 import { CheckCircle2 } from 'lucide-react';
 
-const APPS_SCRIPT_URL =
-  'https://script.google.com/macros/s/AKfycby5YKcdTq8qwvSITIHlKf6PpFHQqbPk4XZEmhIf2RE-0_IvnuoKvHc5B79L2Cy1MFhm/exec';
+const CONTACT_API_PATH = '/api/contact';
 
 const pagePadding = 'relative overflow-hidden bg-warm-white px-6 pt-24 pb-20 md:pt-32 md:pb-28 lg:pb-32';
 const introTitle = 'mb-5 text-4xl font-display font-medium tracking-tight text-navy sm:text-5xl md:mb-6 md:text-7xl';
@@ -51,9 +50,9 @@ export default function ContactPage() {
         submittedAt: new Date().toISOString(),
       };
 
-      const response = await fetch(APPS_SCRIPT_URL, {
+      const response = await fetch(CONTACT_API_PATH, {
         method: 'POST',
-        redirect: 'follow',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
       });
 
