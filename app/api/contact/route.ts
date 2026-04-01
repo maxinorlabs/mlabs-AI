@@ -1,10 +1,17 @@
 import { NextResponse } from 'next/server';
 
-const APPS_SCRIPT_URL =
-  'https://script.google.com/macros/s/AKfycbwNaRtQk0BgrofDxP0mgacwtpOvqA_t0-tW5OKO4X6DRbVP7g9t2thTEQ_56qu2xXex/exec';
+const DEFAULT_APPS_SCRIPT_URL =
+  'https://script.google.com/macros/s/AKfycbxiPLVXByBZCxarTQhKYVWFNkEJoVzBMPVOJHvI5wzs3JPAKQ2PHtEs_dye15Y4q4-2/exec';
+
+type ContactSubmissionResult = {
+  ok?: boolean;
+  message?: string;
+  uploadError?: string | null;
+  attachmentLink?: string | null;
+};
 
 export async function POST(request: Request) {
-  const appsScriptUrl = APPS_SCRIPT_URL;
+  const appsScriptUrl = process.env.CONTACT_FORM_APPS_SCRIPT_URL ?? DEFAULT_APPS_SCRIPT_URL;
 
   try {
     if (!appsScriptUrl) {
@@ -22,11 +29,20 @@ export async function POST(request: Request) {
 
     const text = await response.text();
 
-    let result: { ok?: boolean; message?: string } = {};
-    try { result = JSON.parse(text); } catch { result = {}; }
+    let result: ContactSubmissionResult = {};
+    try {
+      result = JSON.parse(text) as ContactSubmissionResult;
+    } catch {
+      result = {};
+    }
 
     if (result.ok) {
-      return NextResponse.json({ ok: true, message: 'Your inquiry has been submitted successfully.' });
+      return NextResponse.json({
+        ok: true,
+        message: 'Your inquiry has been submitted successfully.',
+        uploadError: result.uploadError ?? null,
+        attachmentLink: result.attachmentLink ?? null,
+      });
     }
 
     if (!result.ok && text.trim().startsWith('<')) {
@@ -40,7 +56,11 @@ export async function POST(request: Request) {
     }
 
     return NextResponse.json(
-      { ok: false, message: result.message ?? 'Submission failed. Please try again.' },
+      {
+        ok: false,
+        message: result.message ?? 'Submission failed. Please try again.',
+        uploadError: result.uploadError ?? null,
+      },
       { status: 502 }
     );
   } catch (err) {

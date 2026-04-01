@@ -2,11 +2,9 @@
 
 import { useState } from 'react';
 import { motion } from 'motion/react';
-import { CheckCircle2 } from 'lucide-react';
+import { CheckCircle2, Paperclip, X } from 'lucide-react';
 
 const CONTACT_API_PATH = '/api/contact';
-const APPS_SCRIPT_URL =
-  'https://script.google.com/macros/s/AKfycbwNaRtQk0BgrofDxP0mgacwtpOvqA_t0-tW5OKO4X6DRbVP7g9t2thTEQ_56qu2xXex/exec';
 
 const pagePadding = 'relative overflow-hidden bg-warm-white px-6 pt-24 pb-20 md:pt-32 md:pb-28 lg:pb-32';
 const introTitle = 'mb-5 text-4xl font-display font-medium tracking-tight text-navy sm:text-5xl md:mb-6 md:text-7xl';
@@ -19,6 +17,9 @@ const primaryButtonClass =
 const formButtonClass =
   'inline-flex w-full items-center justify-center gap-2 rounded-full bg-brand px-8 py-4 text-base font-semibold tracking-wide text-warm-white transition-all duration-300 hover:bg-brand/90 shadow-[0_0_40px_rgba(243,111,33,0.15)] hover:shadow-[0_0_60px_rgba(243,111,33,0.3)] disabled:cursor-not-allowed disabled:opacity-70';
 
+const ACCEPTED_FILE_TYPES = '.pdf,.ppt,.pptx,.doc,.docx';
+const MAX_FILE_SIZE_MB = 10;
+
 type ContactPayload = {
   name: string;
   email: string;
@@ -27,40 +28,49 @@ type ContactPayload = {
   company: string;
   message: string;
   submittedAt: string;
+  fileName?: string;
+  fileMimeType?: string;
+  fileBase64?: string;
 };
 
 type ContactSubmissionResult = {
   ok?: boolean;
   message?: string;
+  uploadError?: string | null;
+  attachmentLink?: string | null;
 };
 
-async function submitContactRequest(
-  url: string,
-  payload: ContactPayload,
-  contentType: string,
-): Promise<ContactSubmissionResult | null> {
-  try {
-    const response = await fetch(url, {
-      method: 'POST',
-      headers: { 'Content-Type': contentType },
-      body: JSON.stringify(payload),
-    });
-
-    const raw = await response.text();
-
-    try {
-      return JSON.parse(raw) as ContactSubmissionResult;
-    } catch {
-      return null;
-    }
-  } catch {
-    return null;
-  }
+function fileToBase64(file: File): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      const result = reader.result as string;
+      resolve(result.split(',')[1]);
+    };
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
 }
 
 export default function ContactPage() {
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
+  const [attachedFile, setAttachedFile] = useState<File | null>(null);
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0] ?? null;
+    if (file && file.size > MAX_FILE_SIZE_MB * 1024 * 1024) {
+      setErrorMessage(`File is too large. Please upload a file under ${MAX_FILE_SIZE_MB}MB.`);
+      setStatus('error');
+      e.target.value = '';
+      return;
+    }
+    setAttachedFile(file);
+    if (status === 'error') {
+      setStatus('idle');
+      setErrorMessage('');
+    }
+  };
 
   const handleSubmit = async (e: { preventDefault: () => void; currentTarget: HTMLFormElement }) => {
     e.preventDefault();
@@ -71,6 +81,7 @@ export default function ContactPage() {
 
     try {
       const formData = new FormData(form);
+
       const payload: ContactPayload = {
         name: String(formData.get('name') ?? ''),
         email: String(formData.get('email') ?? ''),
@@ -81,13 +92,23 @@ export default function ContactPage() {
         submittedAt: new Date().toISOString(),
       };
 
-      const apiResult = await submitContactRequest(CONTACT_API_PATH, payload, 'application/json');
-      const result =
-        apiResult && apiResult.ok
-          ? apiResult
-          : await submitContactRequest(APPS_SCRIPT_URL, payload, 'text/plain;charset=utf-8');
+      if (attachedFile) {
+        payload.fileBase64 = await fileToBase64(attachedFile);
+        payload.fileName = attachedFile.name;
+        payload.fileMimeType = attachedFile.type || 'application/octet-stream';
+      }
 
-      if (!result) {
+      const response = await fetch(CONTACT_API_PATH, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      const raw = await response.text();
+      let result: ContactSubmissionResult;
+      try {
+        result = JSON.parse(raw) as ContactSubmissionResult;
+      } catch {
         throw new Error('Submission failed. Please try again.');
       }
 
@@ -95,7 +116,12 @@ export default function ContactPage() {
         throw new Error(result.message ?? 'Submission failed. Please try again.');
       }
 
+      if (result.uploadError) {
+        console.warn('Drive upload error:', result.uploadError);
+      }
+
       setStatus('success');
+      setAttachedFile(null);
       form.reset();
     } catch (error) {
       setStatus('error');
@@ -223,6 +249,41 @@ export default function ContactPage() {
                     className={inputClass}
                     placeholder="Acme Corp"
                   />
+                </div>
+
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-navy">
+                    Attachment <span className="font-normal text-navy/50">(optional — PDF, PPT, DOC, up to 10MB)</span>
+                  </label>
+                  {attachedFile ? (
+                    <div className="flex items-center gap-3 rounded-xl border border-navy/20 bg-white px-4 py-3">
+                      <Paperclip className="h-4 w-4 shrink-0 text-brand" />
+                      <span className="flex-1 truncate text-sm text-navy">{attachedFile.name}</span>
+                      <button
+                        type="button"
+                        onClick={() => setAttachedFile(null)}
+                        className="shrink-0 text-navy/40 hover:text-navy"
+                      >
+                        <X className="h-4 w-4" />
+                      </button>
+                    </div>
+                  ) : (
+                    <label
+                      htmlFor="contact-attachment"
+                      className="flex cursor-pointer items-center gap-3 rounded-xl border border-dashed border-navy/30 bg-white px-4 py-3 text-sm text-navy/60 transition-colors hover:border-brand hover:text-brand"
+                    >
+                      <Paperclip className="h-4 w-4 shrink-0" />
+                      <span>Click to attach a file</span>
+                      <input
+                        id="contact-attachment"
+                        name="attachment"
+                        type="file"
+                        accept={ACCEPTED_FILE_TYPES}
+                        className="sr-only"
+                        onChange={handleFileChange}
+                      />
+                    </label>
+                  )}
                 </div>
 
                 <div className="space-y-2">
