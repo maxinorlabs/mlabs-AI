@@ -1,7 +1,15 @@
 'use client';
 
 import { motion } from 'motion/react';
-import { MonitorPlay, Cpu, ShoppingCart, Cloud, Pill, Shield, ArrowRight } from 'lucide-react';
+import {
+  ArrowRight,
+  Bot,
+  Hospital,
+  Landmark,
+  MonitorPlay,
+  Shield,
+  Store,
+} from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 import WhyMaxinor from '../components/WhyMaxinor';
@@ -14,6 +22,54 @@ const primaryButtonClass =
   'inline-flex w-full max-w-[320px] sm:w-auto items-center justify-center rounded-full bg-brand px-8 py-4 text-base font-semibold tracking-wide text-warm-white transition-all duration-300 hover:-translate-y-1 hover:bg-brand/90 sm:px-12 sm:py-5 sm:text-lg shadow-[0_0_40px_rgba(243,111,33,0.15)] hover:shadow-[0_0_60px_rgba(243,111,33,0.3)]';
 const secondaryButtonClass =
   'inline-flex w-full max-w-[320px] sm:w-auto items-center justify-center rounded-full border border-grey/40 bg-white/80 px-8 py-4 text-base font-semibold text-navy transition-all duration-300 hover:-translate-y-1 hover:bg-brand hover:text-warm-white sm:px-12 sm:py-5 sm:text-lg';
+
+const domainGroups = [
+  {
+    category: 'CONSUMER & RETAIL',
+    domains: [
+      {
+        name: 'Media',
+        description: 'Broadcasting & Digital Media',
+        icon: MonitorPlay,
+      },
+      {
+        name: 'D2C & B2C',
+        description: 'Consumer Brands & Retail',
+        icon: Store,
+      },
+    ],
+  },
+  {
+    category: 'TECH & INFRASTRUCTURE',
+    domains: [
+      {
+        name: 'AI & Data',
+        description: 'AI Products & Data Platforms',
+        icon: Bot,
+      },
+      {
+        name: 'FinTech',
+        description: 'Financial Service & Deep Tech',
+        icon: Landmark,
+      },
+    ],
+  },
+  {
+    category: 'SPECIALIZED SECTORS',
+    domains: [
+      {
+        name: 'Healthcare',
+        description: 'Health Tech & Clinical Tools',
+        icon: Hospital,
+      },
+      {
+        name: 'Defence',
+        description: 'Defence Tech & Deep Tech',
+        icon: Shield,
+      },
+    ],
+  },
+] as const;
 
 export default function Home() {
   return (
@@ -173,20 +229,28 @@ export default function Home() {
             </div>
 
             <div className="grid grid-cols-1 gap-x-8 gap-y-6 md:grid-cols-3 md:gap-y-0">
-              {[
-                { category: "CONSUMER & RETAIL", domains: [{ name: "Media", icon: MonitorPlay }, { name: "D2C & B2C", icon: ShoppingCart }] },
-                { category: "TECH & INFRASTRUCTURE", domains: [{ name: "AI & Data", icon: Cpu }, { name: "SaaS", icon: Cloud }] },
-                { category: "SPECIALIZED SECTORS", domains: [{ name: "Healthcare", icon: Pill }, { name: "Defence", icon: Shield }] },
-              ].map((group, gi) => (
-                <div key={gi}>
-                  <p className="mt-4 mb-3 text-center text-xs font-bold uppercase tracking-[0.18em] text-brand md:mt-0 md:mb-4 md:text-sm">{group.category}</p>
+              {domainGroups.map((group) => (
+                <div key={group.category}>
+                  <p className="mt-4 mb-3 text-center text-xs font-bold uppercase tracking-[0.18em] text-brand md:mt-0 md:mb-4 md:text-sm">
+                    {group.category}
+                  </p>
                   <div className="flex flex-col gap-4">
-                    {group.domains.map((domain, di) => (
-                      <div key={di} className="group flex cursor-default items-center gap-4 rounded-2xl border border-grey/20 bg-warm-white p-4 transition-all duration-300 hover:border-brand/50 hover:bg-white md:p-5">
+                    {group.domains.map((domain) => (
+                      <div
+                        key={domain.name}
+                        className="group flex min-h-[148px] cursor-default items-center gap-4 rounded-2xl border border-grey/20 bg-warm-white p-4 transition-all duration-300 hover:border-brand/50 hover:bg-white md:min-h-[156px] md:p-5"
+                      >
                         <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-grey/15 bg-grey/8 transition-all duration-300 group-hover:border-brand/40 group-hover:bg-brand/5 md:h-14 md:w-14">
                           <domain.icon className="h-5 w-5 text-grey/60 transition-colors duration-300 group-hover:text-brand md:h-6 md:w-6" />
                         </div>
-                        <h3 className="text-sm font-bold uppercase tracking-[0.18em] text-navy transition-colors duration-300 group-hover:text-brand md:text-base">{domain.name}</h3>
+                        <div className="flex min-w-0 flex-1 flex-col justify-center">
+                          <h3 className="text-sm font-bold uppercase leading-tight tracking-[0.16em] text-navy transition-colors duration-300 group-hover:text-brand md:text-[15px]">
+                            {domain.name}
+                          </h3>
+                          <p className="mt-2 max-w-[15rem] text-sm font-light leading-[1.45] text-grey md:text-[15px]">
+                            {domain.description}
+                          </p>
+                        </div>
                       </div>
                     ))}
                   </div>
