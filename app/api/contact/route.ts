@@ -1,7 +1,5 @@
 import { NextResponse } from 'next/server';
-
-const DEFAULT_APPS_SCRIPT_URL =
-  'https://script.google.com/macros/s/AKfycbxiPLVXByBZCxarTQhKYVWFNkEJoVzBMPVOJHvI5wzs3JPAKQ2PHtEs_dye15Y4q4-2/exec';
+import { CONTACT_FORM_APPS_SCRIPT_URL } from '@/lib/contact-form';
 
 type ContactSubmissionResult = {
   ok?: boolean;
@@ -11,7 +9,7 @@ type ContactSubmissionResult = {
 };
 
 export async function POST(request: Request) {
-  const appsScriptUrl = process.env.CONTACT_FORM_APPS_SCRIPT_URL ?? DEFAULT_APPS_SCRIPT_URL;
+  const appsScriptUrl = process.env.CONTACT_FORM_APPS_SCRIPT_URL ?? CONTACT_FORM_APPS_SCRIPT_URL;
 
   try {
     if (!appsScriptUrl) {

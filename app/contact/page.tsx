@@ -3,8 +3,10 @@
 import { useState } from 'react';
 import { motion } from 'motion/react';
 import { CheckCircle2, Paperclip, X } from 'lucide-react';
-
-const CONTACT_API_PATH = '/api/contact';
+import {
+  CONTACT_FORM_APPS_SCRIPT_URL,
+  CONTACT_FORM_SIMPLE_POST_CONTENT_TYPE,
+} from '@/lib/contact-form';
 
 const pagePadding = 'relative overflow-hidden bg-warm-white px-6 pt-24 pb-20 md:pt-32 md:pb-28 lg:pb-32';
 const introTitle = 'mb-5 text-4xl font-display font-medium tracking-tight text-navy sm:text-5xl md:mb-6 md:text-7xl';
@@ -98,9 +100,9 @@ export default function ContactPage() {
         payload.fileMimeType = attachedFile.type || 'application/octet-stream';
       }
 
-      const response = await fetch(CONTACT_API_PATH, {
+      const response = await fetch(CONTACT_FORM_APPS_SCRIPT_URL, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': CONTACT_FORM_SIMPLE_POST_CONTENT_TYPE },
         body: JSON.stringify(payload),
       });
 
