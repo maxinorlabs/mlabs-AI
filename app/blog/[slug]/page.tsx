@@ -1,8 +1,6 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
-import { MDXRemote } from 'next-mdx-remote/rsc';
-import remarkGfm from 'remark-gfm';
 import { getAllPostSlugs, getPost, extractToc, formatDate } from '@/lib/blog';
 import { TableOfContents } from '@/components/TableOfContents';
 import type { Metadata } from 'next';
@@ -58,34 +56,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return { title: 'Post Not Found — Maxinor Blog' };
   }
 }
-
-function slugify(text: string) {
-  return String(text)
-    .toLowerCase()
-    .replace(/[^a-z0-9\s-]/g, '')
-    .replace(/\s+/g, '-')
-    .replace(/-+/g, '-');
-}
-
-function getTextContent(children: React.ReactNode): string {
-  if (typeof children === 'string') return children;
-  if (Array.isArray(children)) return children.map(getTextContent).join('');
-  if (children && typeof children === 'object' && 'props' in (children as object)) {
-    return getTextContent((children as { props: { children?: React.ReactNode } }).props.children);
-  }
-  return '';
-}
-
-const mdxComponents = {
-  h2: ({ children }: { children?: React.ReactNode }) => {
-    const id = slugify(getTextContent(children));
-    return <h2 id={id} style={{ scrollMarginTop: '6rem' }}>{children}</h2>;
-  },
-  h3: ({ children }: { children?: React.ReactNode }) => {
-    const id = slugify(getTextContent(children));
-    return <h3 id={id} style={{ scrollMarginTop: '6rem' }}>{children}</h3>;
-  },
-};
 
 export default async function BlogPostPage({ params }: Props) {
   const { slug } = await params;
@@ -168,21 +138,22 @@ export default async function BlogPostPage({ params }: Props) {
                 </p>
               </header>
 
-              <div className="prose prose-lg max-w-none
-                prose-headings:font-display prose-headings:font-medium prose-headings:text-navy prose-headings:tracking-tight
-                prose-p:text-navy/70 prose-p:font-light prose-p:leading-relaxed
-                prose-a:text-brand prose-a:no-underline hover:prose-a:underline
-                prose-strong:text-navy prose-strong:font-semibold
-                prose-li:text-navy/70 prose-li:font-light
-                prose-hr:border-navy/10
-                prose-blockquote:border-l-brand prose-blockquote:text-navy/60
-                prose-table:w-full prose-table:text-sm
-                prose-thead:border-b prose-thead:border-navy/20
-                prose-th:py-3 prose-th:px-4 prose-th:text-left prose-th:font-semibold prose-th:text-navy
-                prose-td:py-3 prose-td:px-4 prose-td:text-navy/70 prose-td:border-b prose-td:border-navy/10
-                prose-tr:transition-colors hover:prose-tr:bg-navy/[0.02]">
-                <MDXRemote source={post.content} components={mdxComponents} options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }} />
-              </div>
+              <div
+                className="prose prose-lg max-w-none
+                  prose-headings:font-display prose-headings:font-medium prose-headings:text-navy prose-headings:tracking-tight
+                  prose-p:text-navy/70 prose-p:font-light prose-p:leading-relaxed
+                  prose-a:text-brand prose-a:no-underline hover:prose-a:underline
+                  prose-strong:text-navy prose-strong:font-semibold
+                  prose-li:text-navy/70 prose-li:font-light
+                  prose-hr:border-navy/10
+                  prose-blockquote:border-l-brand prose-blockquote:text-navy/60
+                  prose-table:w-full prose-table:text-sm
+                  prose-thead:border-b prose-thead:border-navy/20
+                  prose-th:py-3 prose-th:px-4 prose-th:text-left prose-th:font-semibold prose-th:text-navy
+                  prose-td:py-3 prose-td:px-4 prose-td:text-navy/70 prose-td:border-b prose-td:border-navy/10
+                  prose-tr:transition-colors hover:prose-tr:bg-navy/[0.02]"
+                dangerouslySetInnerHTML={{ __html: post.htmlContent }}
+              />
 
               <div className="relative mt-16 overflow-hidden rounded-[2rem] border border-navy/10 bg-white p-8 text-center md:p-12 lg:p-16">
                 <div className="pointer-events-none absolute top-0 left-1/2 h-[220px] w-[320px] -translate-x-1/2 rounded-full bg-brand/10 blur-[70px] md:h-[300px] md:w-[600px] md:blur-[80px]" />

@@ -21,12 +21,15 @@
     "lucide-react": "^0.553.0",
     "motion": "^12.23.24",
     "next": "^15.4.9",
-    "next-mdx-remote": "^6.0.0",
     "postcss": "^8.5.6",
     "react": "^19.2.1",
     "react-dom": "^19.2.1",
+    "rehype-stringify": "^10.0.1",
     "remark-gfm": "^4.0.1",
-    "tailwind-merge": "^3.3.1"
+    "remark-parse": "^11.0.0",
+    "remark-rehype": "^11.1.2",
+    "tailwind-merge": "^3.3.1",
+    "unified": "^11.0.5"
   },
   "devDependencies": {
     "@opennextjs/cloudflare": "^1.17.1",
