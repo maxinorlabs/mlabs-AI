@@ -33,6 +33,7 @@ export function Navbar() {
     { name: 'Corporate', path: '/corporate' },
     { name: 'Investors', path: '/investors' },
     { name: 'Team', path: '/team' },
+    { name: 'Blog', path: '/blog' },
     { name: 'Contact Us', path: '/contact' },
   ];
 

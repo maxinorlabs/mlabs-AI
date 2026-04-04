@@ -20,10 +20,37 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: 'Maxinor Venture Studio',
-  description: "India's 1st Operator Led Venture Studio",
+  metadataBase: new URL('https://www.maxinor.com'),
+  title: {
+    default: 'Maxinor — India\'s Operator-Led Venture Studio',
+    template: '%s | Maxinor',
+  },
+  description: "India's first operator-led venture studio. We build, scale, and back startups, SMEs, and corporates through hands-on execution — not just capital.",
+  keywords: ['venture studio India', 'operator led venture studio', 'startup studio India', 'venture building', 'SME growth', 'Maxinor'],
+  authors: [{ name: 'Maxinor', url: 'https://www.maxinor.com' }],
+  creator: 'Maxinor',
+  openGraph: {
+    type: 'website',
+    locale: 'en_IN',
+    url: 'https://www.maxinor.com',
+    siteName: 'Maxinor',
+    title: "Maxinor — India's Operator-Led Venture Studio",
+    description: "India's first operator-led venture studio. We build, scale, and back startups, SMEs, and corporates through hands-on execution — not just capital.",
+    images: [{ url: '/og-default.png', width: 1200, height: 630, alt: 'Maxinor Venture Studio' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: "Maxinor — India's Operator-Led Venture Studio",
+    description: "India's first operator-led venture studio. Hands-on execution, not just capital.",
+    images: ['/og-default.png'],
+  },
   icons: {
     icon: faviconUrl,
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, 'max-image-preview': 'large' },
   },
 };
 
