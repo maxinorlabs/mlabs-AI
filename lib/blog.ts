@@ -1,11 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
-import { unified } from 'unified';
-import remarkParse from 'remark-parse';
-import remarkGfm from 'remark-gfm';
-import remarkRehype from 'remark-rehype';
-import rehypeStringify from 'rehype-stringify';
+import { marked, Renderer } from 'marked';
 
 const postsDirectory = path.join(process.cwd(), 'content/posts');
 
@@ -17,40 +13,18 @@ function slugifyHeading(text: string) {
     .replace(/-+/g, '-');
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function getNodeText(node: any): string {
-  if (node.type === 'text') return node.value ?? '';
-  if (node.children) return (node.children as unknown[]).map(getNodeText).join('');
-  return '';
-}
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function rehypeAddHeadingIds(): (tree: any) => void {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  return (tree: any) => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    function walk(node: any) {
-      if (node.type === 'element' && (node.tagName === 'h2' || node.tagName === 'h3')) {
-        const text = getNodeText(node);
-        node.properties = node.properties ?? {};
-        node.properties.id = slugifyHeading(text);
-        node.properties.style = 'scroll-margin-top: 6rem';
-      }
-      if (node.children) node.children.forEach(walk);
-    }
-    if (tree.children) tree.children.forEach(walk);
-  };
-}
-
 function compileMarkdown(content: string): string {
-  const result = unified()
-    .use(remarkParse)
-    .use(remarkGfm)
-    .use(remarkRehype)
-    .use(rehypeAddHeadingIds)
-    .use(rehypeStringify)
-    .processSync(content);
-  return String(result);
+  const renderer = new Renderer();
+
+  renderer.heading = function ({ text, depth }) {
+    if (depth === 2 || depth === 3) {
+      const id = slugifyHeading(text);
+      return `<h${depth} id="${id}" style="scroll-margin-top: 6rem">${text}</h${depth}>\n`;
+    }
+    return `<h${depth}>${text}</h${depth}>\n`;
+  };
+
+  return marked(content, { renderer, async: false }) as string;
 }
 
 export type PostMeta = {
@@ -157,5 +131,6 @@ export function formatDate(dateStr: string): string {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
+    timeZone: 'UTC',
   });
 }
