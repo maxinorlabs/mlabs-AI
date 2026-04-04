@@ -7,6 +7,8 @@ import { getAllPostSlugs, getPost, extractToc, formatDate } from '@/lib/blog';
 import { TableOfContents } from '@/components/TableOfContents';
 import type { Metadata } from 'next';
 
+export const dynamic = 'force-static';
+
 const SITE_URL = 'https://www.maxinor.com';
 
 type Props = {

@@ -2,6 +2,8 @@ import Link from 'next/link';
 import { getAllPosts, formatDate } from '@/lib/blog';
 import type { Metadata } from 'next';
 
+export const dynamic = 'force-static';
+
 const SITE_URL = 'https://www.maxinor.com';
 
 export const metadata: Metadata = {
