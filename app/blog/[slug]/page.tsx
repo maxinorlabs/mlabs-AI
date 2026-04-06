@@ -3,11 +3,11 @@ import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { getAllPostSlugs, getPost, extractToc, formatDate } from '@/lib/blog';
 import { TableOfContents } from '@/components/TableOfContents';
+import { buildSiteUrl, SITE_URL } from '@/lib/site';
 import type { Metadata } from 'next';
 
 export const dynamic = 'force-static';
-
-const SITE_URL = 'https://www.maxinor.com';
+export const dynamicParams = false;
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -23,10 +23,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const post = getPost(slug);
     const title = post.metaTitle ?? `${post.title} — Maxinor Blog`;
     const description = post.metaDescription ?? post.excerpt;
-    const url = `${SITE_URL}/blog/${post.slug}`;
+    const url = buildSiteUrl(`/blog/${post.slug}`);
     const image = post.coverImage
-      ? `${SITE_URL}${post.coverImage}`
-      : `${SITE_URL}/og-default.png`;
+      ? buildSiteUrl(post.coverImage)
+      : buildSiteUrl('/og-default.png');
 
     return {
       title,
@@ -68,10 +68,10 @@ export default async function BlogPostPage({ params }: Props) {
   }
 
   const toc = extractToc(post.content);
-  const url = `${SITE_URL}/blog/${post.slug}`;
+  const url = buildSiteUrl(`/blog/${post.slug}`);
   const image = post.coverImage
-    ? `${SITE_URL}${post.coverImage}`
-    : `${SITE_URL}/og-default.png`;
+    ? buildSiteUrl(post.coverImage)
+    : buildSiteUrl('/og-default.png');
 
   const jsonLd = {
     '@context': 'https://schema.org',

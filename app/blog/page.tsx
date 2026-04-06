@@ -1,19 +1,18 @@
 import Link from 'next/link';
 import { getAllPosts, formatDate } from '@/lib/blog';
+import { buildSiteUrl } from '@/lib/site';
 import type { Metadata } from 'next';
 
 export const dynamic = 'force-static';
-
-const SITE_URL = 'https://www.maxinor.com';
 
 export const metadata: Metadata = {
   title: 'Blog — Venture Building & Startup Insights | Maxinor',
   description: 'Operator-tested insights on venture building, SME growth, and the Indian startup ecosystem. Written by founders and operators who have been in the trenches.',
   keywords: ['venture studio', 'startup insights', 'SME growth India', 'venture building', 'Indian startup ecosystem'],
-  alternates: { canonical: `${SITE_URL}/blog` },
+  alternates: { canonical: buildSiteUrl('/blog') },
   openGraph: {
     type: 'website',
-    url: `${SITE_URL}/blog`,
+    url: buildSiteUrl('/blog'),
     title: 'Blog — Venture Building & Startup Insights | Maxinor',
     description: 'Operator-tested insights on venture building, SME growth, and the Indian startup ecosystem.',
     siteName: 'Maxinor',

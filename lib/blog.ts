@@ -1,9 +1,45 @@
-import fs from 'fs';
-import path from 'path';
-import matter from 'gray-matter';
 import { marked, Renderer } from 'marked';
+import postsManifest from '@/generated/blog-posts.json';
 
-const postsDirectory = path.join(process.cwd(), 'content/posts');
+export type PostMeta = {
+  slug: string;
+  title: string;
+  date: string;
+  lastModified?: string;
+  author: string;
+  category: string;
+  excerpt: string;
+  metaTitle?: string;
+  metaDescription?: string;
+  keywords?: string[];
+  coverImage?: string;
+  draft?: boolean;
+};
+
+export type Post = PostMeta & {
+  content: string;
+  htmlContent: string;
+};
+
+type PostRecord = PostMeta & {
+  content: string;
+};
+
+const posts: PostRecord[] = postsManifest.posts.map((post) => ({
+  slug: post.slug,
+  title: post.title,
+  date: post.date,
+  lastModified: post.lastModified ?? undefined,
+  author: post.author,
+  category: post.category,
+  excerpt: post.excerpt,
+  metaTitle: post.metaTitle ?? undefined,
+  metaDescription: post.metaDescription ?? undefined,
+  keywords: post.keywords,
+  coverImage: post.coverImage ?? undefined,
+  draft: post.draft,
+  content: post.content,
+}));
 
 function slugifyHeading(text: string) {
   return text
@@ -27,83 +63,65 @@ function compileMarkdown(content: string): string {
   return marked(content, { renderer, async: false }) as string;
 }
 
-export type PostMeta = {
-  slug: string;
-  title: string;
-  date: string;
-  lastModified?: string;
-  author: string;
-  category: string;
-  excerpt: string;
-  metaTitle?: string;
-  metaDescription?: string;
-  keywords?: string[];
-  coverImage?: string;
-  draft?: boolean;
-};
-
-export type Post = PostMeta & {
-  content: string;
-  htmlContent: string;
-};
+function getPublishedPosts() {
+  return posts.filter((post) => !post.draft);
+}
 
 export function getAllPostSlugs(): string[] {
-  const fileNames = fs.readdirSync(postsDirectory);
-  return fileNames
-    .filter((f) => f.endsWith('.mdx'))
-    .map((f) => f.replace(/\.mdx$/, ''))
-    .filter((slug) => {
-      const fullPath = path.join(postsDirectory, `${slug}.mdx`);
-      const { data } = matter(fs.readFileSync(fullPath, 'utf8'));
-      return !data.draft;
-    });
+  return getPublishedPosts().map((post) => post.slug);
 }
 
 export function getAllPosts(): PostMeta[] {
-  const slugs = getAllPostSlugs();
-  return slugs
-    .map((slug) => getPostMeta(slug))
+  return getPublishedPosts()
+    .map((post) => getPostMeta(post.slug))
     .sort((a, b) => (a.date < b.date ? 1 : -1));
 }
 
 export function getPostMeta(slug: string): PostMeta {
-  const fullPath = path.join(postsDirectory, `${slug}.mdx`);
-  const fileContents = fs.readFileSync(fullPath, 'utf8');
-  const { data } = matter(fileContents);
+  const post = posts.find((entry) => entry.slug === slug && !entry.draft);
+
+  if (!post) {
+    throw new Error(`Post not found: ${slug}`);
+  }
+
   return {
-    slug: data.slug ?? slug,
-    title: data.title ?? '',
-    date: data.date ?? '',
-    lastModified: data.lastModified,
-    author: data.author ?? '',
-    category: data.category ?? '',
-    excerpt: data.excerpt ?? '',
-    metaTitle: data.metaTitle,
-    metaDescription: data.metaDescription,
-    keywords: data.keywords,
-    coverImage: data.coverImage,
-    draft: data.draft,
+    slug: post.slug,
+    title: post.title,
+    date: post.date,
+    lastModified: post.lastModified,
+    author: post.author,
+    category: post.category,
+    excerpt: post.excerpt,
+    metaTitle: post.metaTitle,
+    metaDescription: post.metaDescription,
+    keywords: post.keywords,
+    coverImage: post.coverImage,
+    draft: post.draft,
   };
 }
 
 export function getPost(slug: string): Post {
-  const fullPath = path.join(postsDirectory, `${slug}.mdx`);
-  const fileContents = fs.readFileSync(fullPath, 'utf8');
-  const { data, content } = matter(fileContents);
+  const post = posts.find((entry) => entry.slug === slug && !entry.draft);
+
+  if (!post) {
+    throw new Error(`Post not found: ${slug}`);
+  }
+
   return {
-    slug: data.slug ?? slug,
-    title: data.title ?? '',
-    date: data.date ?? '',
-    lastModified: data.lastModified,
-    author: data.author ?? '',
-    category: data.category ?? '',
-    excerpt: data.excerpt ?? '',
-    metaTitle: data.metaTitle,
-    metaDescription: data.metaDescription,
-    keywords: data.keywords,
-    coverImage: data.coverImage,
-    content,
-    htmlContent: compileMarkdown(content),
+    slug: post.slug,
+    title: post.title,
+    date: post.date,
+    lastModified: post.lastModified,
+    author: post.author,
+    category: post.category,
+    excerpt: post.excerpt,
+    metaTitle: post.metaTitle,
+    metaDescription: post.metaDescription,
+    keywords: post.keywords,
+    coverImage: post.coverImage,
+    draft: post.draft,
+    content: post.content,
+    htmlContent: compileMarkdown(post.content),
   };
 }
 

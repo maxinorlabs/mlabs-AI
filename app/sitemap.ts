@@ -1,7 +1,6 @@
 import type { MetadataRoute } from 'next';
 import { getAllPosts } from '@/lib/blog';
-
-const SITE_URL = 'https://www.maxinor.com';
+import { buildSiteUrl } from '@/lib/site';
 
 const staticRoutes = [
   { path: '/', priority: 1.0, changeFrequency: 'weekly' as const },
@@ -22,14 +21,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const posts = getAllPosts();
 
   const staticEntries: MetadataRoute.Sitemap = staticRoutes.map(({ path, priority, changeFrequency }) => ({
-    url: `${SITE_URL}${path}`,
+    url: buildSiteUrl(path),
     lastModified: new Date(),
     changeFrequency,
     priority,
   }));
 
   const postEntries: MetadataRoute.Sitemap = posts.map((post) => ({
-    url: `${SITE_URL}/blog/${post.slug}`,
+    url: buildSiteUrl(`/blog/${post.slug}`),
     lastModified: new Date(post.lastModified ?? post.date),
     changeFrequency: 'monthly' as const,
     priority: 0.7,
