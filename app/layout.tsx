@@ -1,9 +1,20 @@
 import type { Metadata } from 'next';
+import { Inter, Space_Grotesk } from 'next/font/google';
 import Script from 'next/script';
 import { Footer } from '@/components/Footer';
 import { Navbar } from '@/components/Navbar';
 import { METADATA_BASE, SITE_URL } from '@/lib/site';
 import './globals.css';
+
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-sans',
+});
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ['latin'],
+  variable: '--font-display',
+});
 
 const faviconUrl =
   'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/68e4e417db41aba4d67eb664_50861696-aac9-4ad9-988c-2bcebfeb%20(1).png';
@@ -48,7 +59,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className="scroll-smooth">
       <body
-        className="font-sans bg-warm-white text-navy antialiased selection:bg-brand selection:text-warm-white flex min-h-screen flex-col"
+        className={`${inter.variable} ${spaceGrotesk.variable} font-sans bg-warm-white text-navy antialiased selection:bg-brand selection:text-warm-white flex min-h-screen flex-col`}
         suppressHydrationWarning
       >
         <Script
