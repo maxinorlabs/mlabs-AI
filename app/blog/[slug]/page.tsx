@@ -100,7 +100,7 @@ export default async function BlogPostPage({ params }: Props) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <div className="relative bg-warm-white px-6 pt-24 pb-20 md:pt-32 md:pb-28">
+      <div className="relative bg-warm-white px-6 pt-24 pb-20 md:pt-32 md:pb-28 overflow-x-hidden">
         <div className="pointer-events-none absolute top-0 left-1/2 h-[300px] w-[600px] -translate-x-1/2 rounded-full bg-brand/5 blur-[100px]" />
 
         <div className="relative z-10 max-w-6xl mx-auto">
@@ -140,11 +140,12 @@ export default async function BlogPostPage({ params }: Props) {
                   prose-li:text-navy/70 prose-li:font-light
                   prose-hr:border-navy/10
                   prose-blockquote:border-l-brand prose-blockquote:text-navy/60
-                  prose-table:w-full prose-table:text-sm
+                  prose-table:text-xs prose-table:md:text-sm
                   prose-thead:border-b prose-thead:border-navy/20
-                  prose-th:py-3 prose-th:px-4 prose-th:text-left prose-th:font-semibold prose-th:text-navy
-                  prose-td:py-3 prose-td:px-4 prose-td:text-navy/70 prose-td:border-b prose-td:border-navy/10
-                  prose-tr:transition-colors hover:prose-tr:bg-navy/[0.02]"
+                  prose-th:py-2 prose-th:px-3 prose-th:text-left prose-th:font-semibold prose-th:text-navy
+                  prose-td:py-2 prose-td:px-3 prose-td:text-navy/70 prose-td:border-b prose-td:border-navy/10
+                  prose-tr:transition-colors hover:prose-tr:bg-navy/[0.02]
+                  [&_table]:w-full [&_table]:block [&_table]:overflow-x-auto"
                 dangerouslySetInnerHTML={{ __html: post.htmlContent }}
               />
 

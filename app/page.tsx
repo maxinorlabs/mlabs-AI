@@ -140,49 +140,52 @@ export default function Home() {
               </p>
             </div>
 
-            {/* Three pillar cards */}
-            <div className="grid gap-0 md:grid-cols-3 rounded-t-2xl overflow-hidden border border-white/10">
-              {/* Venture Build */}
+            {/* Four pillar cards */}
+            <div className="grid gap-0 grid-cols-1 md:grid-cols-4 rounded-2xl overflow-hidden border border-white/10">
+              {/* Venture Build — blue */}
               <div className="group border border-white/10 bg-white/5 p-8 md:p-10 flex flex-col transition-all duration-500 hover:bg-white/10">
-                <h3 className="mb-1 text-2xl font-display font-bold text-warm-white md:text-3xl">
+                <h3 className="mb-1 text-xl font-display font-bold text-warm-white md:text-2xl">
                   Venture Build
                 </h3>
-                <p className="mb-4 text-base font-semibold text-teal">Startup Creation Engine</p>
-                <p className="text-base font-light leading-relaxed text-warm-white/75">
+                <p className="mb-4 text-sm font-semibold text-teal">Startup Creation Engine</p>
+                <p className="text-sm font-light leading-relaxed text-warm-white/75">
                   Creation of New AI-Native companies from &ldquo;Scratch&rdquo; across domains.
                 </p>
               </div>
 
-              {/* Venture Scale — featured */}
+              {/* Venture Scale — white */}
               <div className="group bg-warm-white border-r border-grey/20 p-8 md:p-10 flex flex-col transition-all duration-500 hover:bg-white border-t-4 border-t-brand">
-                <h3 className="mb-1 text-2xl font-display font-bold text-navy md:text-3xl">
+                <h3 className="mb-1 text-xl font-display font-bold text-navy md:text-2xl">
                   Venture Scale
                 </h3>
-                <p className="mb-4 text-base font-semibold text-brand">Execution Led Engine</p>
-                <p className="text-base font-light leading-relaxed text-grey">
+                <p className="mb-4 text-sm font-semibold text-brand">Execution Led Engine</p>
+                <p className="text-sm font-light leading-relaxed text-grey">
                   Operator capabilities that <strong className="font-semibold text-navy">deliver measurable business outcomes</strong> for existing startups, SMEs, and companies.
                 </p>
               </div>
 
-              {/* Venture Investment */}
+              {/* Venture Investment — blue */}
               <div className="group border border-white/10 bg-white/5 p-8 md:p-10 flex flex-col transition-all duration-500 hover:bg-white/10">
-                <h3 className="mb-1 text-2xl font-display font-bold text-warm-white md:text-3xl">
+                <h3 className="mb-1 text-xl font-display font-bold text-warm-white md:text-2xl">
                   Venture Investment
                 </h3>
-                <p className="mb-4 text-base font-semibold text-teal">Investment Engine</p>
-                <p className="text-base font-light leading-relaxed text-warm-white/75">
+                <p className="mb-4 text-sm font-semibold text-teal">Investment Engine</p>
+                <p className="text-sm font-light leading-relaxed text-warm-white/75">
                   Milestone-linked capital deployment into vetted startups, aligned with operator execution outcomes.
                 </p>
               </div>
-            </div>
 
-            {/* Shared AI Capability Centre banner */}
-            <div className="mt-0 rounded-b-2xl px-8 py-6 text-center" style={{backgroundColor: '#3D3D3D'}}>
-              <p className="text-lg font-bold text-white md:text-xl">Shared AI Capability Centre</p>
-              <p className="mt-1 text-sm text-white/90 md:text-base">
-                Technology, Product, HR, Supply Chain, Marketing &amp; Operations powering{' '}
-                <strong>Build, Scale, and Invest.</strong>
-              </p>
+              {/* Shared AI Capability Centre — white */}
+              <div className="group bg-warm-white border-l border-grey/20 p-8 md:p-10 flex flex-col transition-all duration-500 hover:bg-white border-t-4 border-t-teal">
+                <h3 className="mb-1 text-xl font-display font-bold text-navy md:text-2xl">
+                  Shared AI Capability
+                </h3>
+                <p className="mb-4 text-sm font-semibold text-teal">Capability Centre</p>
+                <p className="text-sm font-light leading-relaxed text-grey">
+                  Technology, Product, HR, Supply Chain, Marketing &amp; Operations powering{' '}
+                  <strong className="font-semibold text-navy">Build, Scale, and Invest.</strong>
+                </p>
+              </div>
             </div>
           </div>
         </section>

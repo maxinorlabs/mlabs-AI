@@ -27,3 +27,4 @@ export const configuredBasePath = normalizeBasePath(
 );
 
 export const clientBasePath = normalizeBasePath(process.env.NEXT_PUBLIC_BASE_PATH ?? '');
+
