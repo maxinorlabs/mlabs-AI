@@ -19,6 +19,7 @@ const spaceGrotesk = Space_Grotesk({
 const faviconUrl =
   'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/68e4e417db41aba4d67eb664_50861696-aac9-4ad9-988c-2bcebfeb%20(1).png';
 const googleAnalyticsId = 'G-W4B4Z3JZLC';
+const gtmId = 'GTM-NKV82HD9';
 
 export const metadata: Metadata = {
   metadataBase: METADATA_BASE,
@@ -62,11 +63,20 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         className={`${inter.variable} ${spaceGrotesk.variable} font-sans bg-warm-white text-navy antialiased selection:bg-brand selection:text-warm-white flex min-h-screen flex-col`}
         suppressHydrationWarning
       >
+        {/* Google Tag Manager */}
+        <Script id="gtm-script" strategy="afterInteractive">
+          {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+          new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+          'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+          })(window,document,'script','dataLayer','${gtmId}');`}
+        </Script>
+        {/* Google Analytics (keep alongside GTM) */}
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsId}`}
           strategy="afterInteractive"
         />
-        <Script id="google-tag-manager" strategy="afterInteractive">
+        <Script id="google-analytics" strategy="afterInteractive">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
@@ -74,6 +84,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             gtag('config', '${googleAnalyticsId}');
           `}
         </Script>
+        {/* GTM noscript fallback */}
+        <noscript>
+          <iframe
+            src={`https://www.googletagmanager.com/ns.html?id=${gtmId}`}
+            height="0"
+            width="0"
+            style={{ display: 'none', visibility: 'hidden' }}
+          />
+        </noscript>
         <Navbar />
         <main className="flex-grow">{children}</main>
         <Footer />
