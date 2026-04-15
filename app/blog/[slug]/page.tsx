@@ -100,7 +100,7 @@ export default async function BlogPostPage({ params }: Props) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <div className="relative bg-warm-white px-6 pt-24 pb-20 md:pt-32 md:pb-28 overflow-x-hidden">
+      <div className="relative bg-warm-white px-6 pt-24 pb-20 md:pt-32 md:pb-28">
         <div className="pointer-events-none absolute top-0 left-1/2 h-[300px] w-[600px] -translate-x-1/2 rounded-full bg-brand/5 blur-[100px]" />
 
         <div className="relative z-10 max-w-6xl mx-auto">
@@ -112,7 +112,7 @@ export default async function BlogPostPage({ params }: Props) {
           </Link>
 
           <div className="flex gap-16">
-            <article className="min-w-0 flex-1">
+            <article className="min-w-0 flex-1 overflow-x-hidden">
               <header className="mb-10">
                 <div className="mb-4 flex flex-wrap items-center gap-3">
                   <span className="inline-block rounded-full bg-brand/10 px-3 py-1 text-xs font-semibold text-brand">
