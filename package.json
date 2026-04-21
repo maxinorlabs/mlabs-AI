@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "predev": "node scripts/generate-blog-manifest.mjs",
+    "predev": "node scripts/generate-blog-manifest.mjs && node scripts/fetch-linkedin.mjs",
     "dev": "next dev",
-    "prebuild": "node scripts/generate-blog-manifest.mjs",
+    "prebuild": "node scripts/generate-blog-manifest.mjs && node scripts/fetch-linkedin.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",

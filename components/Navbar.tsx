@@ -13,8 +13,8 @@ const logoSrc =
 export function Navbar() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [mobileDropdownOpen, setMobileDropdownOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [mobileOpenDropdown, setMobileOpenDropdown] = useState<string | null>(null);
 
   const isActive = (path: string) =>
     pathname === path ? 'text-brand' : 'text-grey hover:text-navy';
@@ -33,7 +33,14 @@ export function Navbar() {
     { name: 'Corporate', path: '/corporate' },
     { name: 'Investors', path: '/investors' },
     { name: 'Team', path: '/team' },
-    { name: 'Blog', path: '/blog' },
+    {
+      name: 'Insights',
+      path: '/blog',
+      dropdown: [
+        { name: 'Blog', path: '/blog' },
+        { name: 'LinkedIn', path: '/linkedin' },
+      ],
+    },
     { name: 'Contact Us', path: '/contact' },
   ];
 
@@ -62,15 +69,15 @@ export function Navbar() {
               <div
                 key={link.path}
                 className="relative"
-                onMouseEnter={() => setDropdownOpen(true)}
-                onMouseLeave={() => setDropdownOpen(false)}
+                onMouseEnter={() => setOpenDropdown(link.name)}
+                onMouseLeave={() => setOpenDropdown(null)}
               >
                 <Link
                   href={link.path}
                   className={`transition-colors flex items-center gap-1 ${isActive(link.path)}`}
                 >
                   {link.name}
-                  <motion.span animate={{ rotate: dropdownOpen ? 180 : 0 }}>
+                  <motion.span animate={{ rotate: openDropdown === link.name ? 180 : 0 }}>
                     <svg
                       width="12"
                       height="12"
@@ -86,7 +93,7 @@ export function Navbar() {
                   </motion.span>
                 </Link>
                 <AnimatePresence>
-                  {dropdownOpen && (
+                  {openDropdown === link.name && (
                     <motion.div
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -146,16 +153,16 @@ export function Navbar() {
                 link.dropdown ? (
                   <div key={link.path} className="flex flex-col">
                     <button
-                      onClick={() => setMobileDropdownOpen(!mobileDropdownOpen)}
+                      onClick={() => setMobileOpenDropdown(mobileOpenDropdown === link.name ? null : link.name)}
                       className={`flex items-center justify-between text-lg font-medium tracking-wide w-full ${isActive(link.path)}`}
                     >
                       {link.name}
-                      <motion.span animate={{ rotate: mobileDropdownOpen ? 180 : 0 }} transition={{ duration: 0.2 }}>
+                      <motion.span animate={{ rotate: mobileOpenDropdown === link.name ? 180 : 0 }} transition={{ duration: 0.2 }}>
                         <ChevronDown className="w-5 h-5" />
                       </motion.span>
                     </button>
                     <AnimatePresence>
-                      {mobileDropdownOpen && (
+                      {mobileOpenDropdown === link.name && (
                         <motion.div
                           initial={{ height: 0, opacity: 0 }}
                           animate={{ height: 'auto', opacity: 1 }}
@@ -168,7 +175,7 @@ export function Navbar() {
                               <Link
                                 key={sub.path}
                                 href={sub.path}
-                                onClick={() => { setIsOpen(false); setMobileDropdownOpen(false); }}
+                                onClick={() => { setIsOpen(false); setMobileOpenDropdown(null); }}
                                 className={`py-2 text-base font-medium tracking-wide ${isActive(sub.path)}`}
                               >
                                 {sub.name}
