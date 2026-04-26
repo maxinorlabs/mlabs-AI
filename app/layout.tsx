@@ -38,13 +38,13 @@ export const metadata: Metadata = {
     siteName: 'Maxinor',
     title: "Maxinor — India's Operator-Led Venture Studio",
     description: "India's first operator-led venture studio. We build, scale, and back startups, SMEs, and corporates through hands-on execution — not just capital.",
-    images: [{ url: '/og-default.png', width: 1200, height: 630, alt: 'Maxinor Venture Studio' }],
+    images: [{ url: '/opengraph-image', width: 1200, height: 630, alt: 'Maxinor — India\'s Operator-Led Venture Studio' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: "Maxinor — India's Operator-Led Venture Studio",
     description: "India's first operator-led venture studio. Hands-on execution, not just capital.",
-    images: ['/og-default.png'],
+    images: ['/opengraph-image'],
   },
   icons: {
     icon: faviconUrl,
