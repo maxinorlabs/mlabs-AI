@@ -24,7 +24,7 @@ const gtmId = 'GTM-NKV82HD9';
 export const metadata: Metadata = {
   metadataBase: METADATA_BASE,
   title: {
-    default: 'Maxinor — India\'s Operator-Led Venture Studio',
+    default: "Maxinor — India's 1st Operator Led AI Venture Studio",
     template: '%s | Maxinor',
   },
   description: "India's first operator-led venture studio. We build, scale, and back startups, SMEs, and corporates through hands-on execution — not just capital.",
@@ -36,13 +36,13 @@ export const metadata: Metadata = {
     locale: 'en_IN',
     url: SITE_URL,
     siteName: 'Maxinor',
-    title: "Maxinor — India's Operator-Led Venture Studio",
+    title: "Maxinor — India's 1st Operator Led AI Venture Studio",
     description: "India's first operator-led venture studio. We build, scale, and back startups, SMEs, and corporates through hands-on execution — not just capital.",
-    images: [{ url: '/opengraph-image', width: 1200, height: 630, alt: 'Maxinor — India\'s Operator-Led Venture Studio' }],
+    images: [{ url: '/opengraph-image', width: 1200, height: 630, alt: "Maxinor — India's 1st Operator Led AI Venture Studio" }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: "Maxinor — India's Operator-Led Venture Studio",
+    title: "Maxinor — India's 1st Operator Led AI Venture Studio",
     description: "India's first operator-led venture studio. Hands-on execution, not just capital.",
     images: ['/opengraph-image'],
   },
