@@ -1,7 +1,6 @@
 import { ImageResponse } from 'next/og';
 
-export const runtime = 'edge';
-export const alt = "Maxinor — India's Operator-Led Venture Studio";
+export const alt = "Maxinor — India's 1st Operator Led AI Venture Studio";
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
