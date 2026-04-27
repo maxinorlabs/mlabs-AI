@@ -151,8 +151,6 @@ export default async function BlogPostPage({ params }: Props) {
                 dangerouslySetInnerHTML={{ __html: post.htmlContent }}
               />
 
-              <RelatedPostsCarousel posts={relatedPosts} />
-
               <div className="relative mt-16 overflow-hidden rounded-[2rem] border border-navy/10 bg-white p-8 text-center md:p-12 lg:p-16">
                 <div className="pointer-events-none absolute top-0 left-1/2 h-[220px] w-[320px] -translate-x-1/2 rounded-full bg-brand/10 blur-[70px] md:h-[300px] md:w-[600px] md:blur-[80px]" />
                 <div className="relative z-10 mx-auto max-w-2xl">
@@ -170,6 +168,8 @@ export default async function BlogPostPage({ params }: Props) {
                   </Link>
                 </div>
               </div>
+
+              <RelatedPostsCarousel posts={relatedPosts} />
             </article>
 
             <TableOfContents items={toc} />
