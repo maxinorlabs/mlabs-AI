@@ -1,7 +1,8 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
-import { getPost, extractToc, formatDate } from '@/lib/blog';
+import { getPost, extractToc, formatDate, getRelatedPosts } from '@/lib/blog';
+import { RelatedPostsCarousel } from '@/components/RelatedPostsCarousel';
 import { TableOfContents } from '@/components/TableOfContents';
 import { buildSiteUrl, SITE_URL } from '@/lib/site';
 import type { Metadata } from 'next';
@@ -61,6 +62,7 @@ export default async function BlogPostPage({ params }: Props) {
   }
 
   const toc = extractToc(post.content);
+  const relatedPosts = getRelatedPosts(slug, post.category);
   const url = buildSiteUrl(`/blog/${post.slug}`);
   const image = post.coverImage
     ? buildSiteUrl(post.coverImage)
@@ -148,6 +150,8 @@ export default async function BlogPostPage({ params }: Props) {
                   [&_table]:w-full [&_table]:block [&_table]:overflow-x-auto"
                 dangerouslySetInnerHTML={{ __html: post.htmlContent }}
               />
+
+              <RelatedPostsCarousel posts={relatedPosts} />
 
               <div className="relative mt-16 overflow-hidden rounded-[2rem] border border-navy/10 bg-white p-8 text-center md:p-12 lg:p-16">
                 <div className="pointer-events-none absolute top-0 left-1/2 h-[220px] w-[320px] -translate-x-1/2 rounded-full bg-brand/10 blur-[70px] md:h-[300px] md:w-[600px] md:blur-[80px]" />

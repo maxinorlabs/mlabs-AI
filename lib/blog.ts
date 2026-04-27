@@ -1,4 +1,5 @@
 import { marked, Renderer } from 'marked';
+import { configuredBasePath, withBasePath } from './site-path';
 import postsManifest from '@/generated/blog-posts.json';
 
 export type PostMeta = {
@@ -51,6 +52,11 @@ function slugifyHeading(text: string) {
 
 function compileMarkdown(content: string): string {
   const renderer = new Renderer();
+
+  renderer.link = function ({ href, text }) {
+    const resolvedHref = href?.startsWith('/') ? withBasePath(href, configuredBasePath) : href;
+    return `<a href="${resolvedHref}">${text}</a>`;
+  };
 
   renderer.heading = function ({ text, depth }) {
     if (depth === 2 || depth === 3) {
@@ -142,6 +148,13 @@ export function extractToc(content: string): TocItem[] {
     items.push({ id, text, level });
   }
   return items;
+}
+
+export function getRelatedPosts(slug: string, category: string, limit = 8): PostMeta[] {
+  const all = getPublishedPosts();
+  const same = all.filter((p) => p.slug !== slug && p.category === category);
+  const others = all.filter((p) => p.slug !== slug && p.category !== category);
+  return [...same, ...others].slice(0, limit).map((p) => getPostMeta(p.slug));
 }
 
 export function formatDate(dateStr: string): string {
