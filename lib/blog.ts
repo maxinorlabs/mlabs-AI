@@ -54,8 +54,12 @@ function compileMarkdown(content: string): string {
   const renderer = new Renderer();
 
   renderer.link = function ({ href, text }) {
-    const resolvedHref = href?.startsWith('/') ? withBasePath(href, configuredBasePath) : href;
-    return `<a href="${resolvedHref}">${text}</a>`;
+    const isInternal = href?.startsWith('/');
+    const resolvedHref = isInternal ? withBasePath(href, configuredBasePath) : href;
+    const extras = isInternal
+      ? ''
+      : ' rel="nofollow noopener noreferrer" target="_blank"';
+    return `<a href="${resolvedHref}"${extras}>${text}</a>`;
   };
 
   renderer.heading = function ({ text, depth }) {
