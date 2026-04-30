@@ -68,6 +68,14 @@ const leadership: TeamMember[] = [
       'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/69c11ffc5c1c2e2f2a9cadaa_Gemini_Generated_Image_m5qmrom5qmrom5qm.avif',
     linkedin: 'https://www.linkedin.com/in/priyabratapadhi/',
   },
+  {
+    name: 'Dr Rachit Negi',
+    role: 'Global Health & Government Partnerships',
+    desc: 'Entrepreneur | ex-Operation Smile, ex-World Bank, ex-PATH',
+    image:
+      'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/69f302142cd2dca8aba0e22a_WhatsApp%20Image%202026-04-30%20at%2012.35.34%20PM.jpeg',
+    linkedin: 'https://www.linkedin.com/in/rachitnegi/',
+  },
 ];
 
 const programTeam: TeamMember[] = [
