@@ -110,7 +110,7 @@ export default async function Image() {
                 letterSpacing: '-0.02em',
               }}
             >
-              India's First
+              India&apos;s First
               {'\n'}Operator-Led
               {'\n'}Venture Studio
             </span>
