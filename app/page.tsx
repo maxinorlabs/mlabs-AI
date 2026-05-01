@@ -175,10 +175,10 @@ export default function Home() {
                 </p>
               </div>
 
-              {/* Shared AI Capability Centre — white */}
+              {/* AI Capability Centre — white */}
               <div className="group bg-warm-white border-l border-grey/20 p-8 md:p-10 flex flex-col transition-all duration-500 hover:bg-white border-t-4 border-t-teal">
                 <h3 className="mb-1 text-xl font-display font-bold text-navy md:text-2xl">
-                  Shared AI Capability
+                  AI Capability Centre
                 </h3>
                 <p className="mb-4 text-sm font-semibold text-teal">Capability Centre</p>
                 <p className="text-sm font-light leading-relaxed text-grey">
