@@ -7,6 +7,7 @@ type TeamMember = {
   role: string;
   desc: string;
   image?: string;
+  imagePosition?: string;
   linkedin: string;
 };
 
@@ -93,15 +94,17 @@ const programTeam: TeamMember[] = [
     desc: 'Operator across product growth, go-to-market, and AI execution',
     image:
       'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/69c123c327dd93f3976c61ef_Gemini_Generated_Image_mjcmjxmjcmjxmjcm.avif',
+    imagePosition: 'top',
     linkedin: 'https://www.linkedin.com/in/aman-sharma-77243b2a0/',
   },
   {
-    name: 'Snoopster',
-    role: 'Happiness Associate',
-    desc: 'ex-Busybody now Calmfluencer',
+    name: 'Pushkar Apte',
+    role: 'Manager, Venture Operations',
+    desc: 'Marketplace operations, inventory management and platform performance',
     image:
-      'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/68e4de10bf5c464cee8590af_camylla-battani-zSCoQkrLMOE-unsplash.webp',
-    linkedin: 'https://www.linkedin.com/company/maxinor/?viewAsMember=true',
+      'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/69f8b3d00380c1ad6540ad69_WhatsApp%20Image%202026-05-04%20at%208.14.55%20PM.jpeg',
+    imagePosition: 'top',
+    linkedin: 'https://www.linkedin.com/in/aptepushkar/',
   },
 ];
 
@@ -135,6 +138,7 @@ function TeamGridSection({ title, members }: { title: string; members: TeamMembe
                   alt={member.name}
                   fill
                   className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  style={{ objectPosition: member.imagePosition ?? 'center' }}
                   referrerPolicy="no-referrer"
                 />
               ) : (
