@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { getAllPosts, formatDate } from '@/lib/blog';
+import { authorProfiles } from '@/lib/authors';
 import { buildSiteUrl } from '@/lib/site';
 import type { Metadata } from 'next';
 
@@ -68,7 +69,19 @@ export default function BlogPage() {
                 </p>
 
                 <div className="flex items-center justify-between border-t border-navy/10 pt-4">
-                  <span className="text-xs text-navy/40">{post.author}</span>
+                  {authorProfiles[post.author] ? (
+                    <a
+                      href={authorProfiles[post.author].linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                      className="text-xs text-navy/40 transition-colors hover:text-brand"
+                    >
+                      {post.author}
+                    </a>
+                  ) : (
+                    <span className="text-xs text-navy/40">{post.author}</span>
+                  )}
                   <span className="text-xs font-semibold text-brand transition-transform group-hover:translate-x-1">
                     Read →
                   </span>

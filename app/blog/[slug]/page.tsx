@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { getPost, extractToc, formatDate, getRelatedPosts } from '@/lib/blog';
+import { authorProfiles } from '@/lib/authors';
 import { RelatedPostsCarousel } from '@/components/RelatedPostsCarousel';
 import { TableOfContents } from '@/components/TableOfContents';
 import { buildSiteUrl, SITE_URL } from '@/lib/site';
@@ -77,9 +78,11 @@ export default async function BlogPostPage({ params }: Props) {
     datePublished: post.date,
     dateModified: post.lastModified ?? post.date,
     author: {
-      '@type': 'Organization',
+      '@type': 'Person',
       name: post.author,
-      url: SITE_URL,
+      url: authorProfiles[post.author]?.linkedin ?? SITE_URL,
+      jobTitle: authorProfiles[post.author]?.role,
+      worksFor: { '@type': 'Organization', name: 'Maxinor', url: SITE_URL },
     },
     publisher: {
       '@type': 'Organization',
@@ -121,7 +124,18 @@ export default async function BlogPostPage({ params }: Props) {
                     {post.category}
                   </span>
                   <span className="text-xs text-navy/40">{formatDate(post.date)}</span>
-                  <span className="text-xs text-navy/40">By {post.author}</span>
+                  {authorProfiles[post.author] ? (
+                    <a
+                      href={authorProfiles[post.author].linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xs text-navy/40 transition-colors hover:text-brand"
+                    >
+                      By {post.author}
+                    </a>
+                  ) : (
+                    <span className="text-xs text-navy/40">By {post.author}</span>
+                  )}
                 </div>
 
                 <h1 className="text-3xl font-display font-medium leading-tight tracking-tight text-navy sm:text-4xl md:text-5xl">
