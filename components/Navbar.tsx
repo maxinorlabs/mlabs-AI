@@ -22,6 +22,14 @@ export function Navbar() {
   const navLinks = [
     { name: 'Home', path: '/' },
     {
+      name: 'Platform',
+      path: '/domains',
+      dropdown: [
+        { name: 'Domains', path: '/domains' },
+        { name: 'Capabilities', path: '/capabilities' },
+      ],
+    },
+    {
       name: 'Startups',
       path: '/startups',
       dropdown: [

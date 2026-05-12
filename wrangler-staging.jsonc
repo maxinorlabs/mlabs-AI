@@ -1,0 +1,23 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "main": ".open-next/worker.js",
+  "name": "mlabs-ai-staging",
+  "compatibility_date": "2026-03-20",
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+  "services": [
+    {
+      "binding": "WORKER_SELF_REFERENCE",
+      "service": "mlabs-ai-staging"
+    }
+  ],
+  "images": {
+    "binding": "IMAGES"
+  },
+  "vars": {
+    "CONTACT_FORM_APPS_SCRIPT_URL": "https://script.google.com/macros/s/AKfycbyvjaIaBsH2LcJ65Mh3cuTu4N6bfR8S6Y8uKlVdLkIj5AVbnXpJC3YWkoOqcLaIxg4W/exec"
+  }
+}
