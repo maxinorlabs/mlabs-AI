@@ -46,7 +46,6 @@ export function Navbar() {
       path: '/blog',
       dropdown: [
         { name: 'Blog', path: '/blog' },
-        { name: 'LinkedIn', path: '/linkedin' },
       ],
     },
     { name: 'Contact Us', path: '/contact' },

@@ -15,21 +15,27 @@ const domains = [
     name: 'Media',
     sector: 'Broadcasting & Digital Media',
     problem:
-      'The attention economy is fragmenting. Legacy media is burning cash on distribution without AI-native content operations.',
+      "You've built an audience. You're not monetising it at the rate you should be.",
     capabilities: [
-      'AI-powered content workflows and monetisation',
-      'Digital media brand building and audience growth',
-      'Venture building for next-gen media startups',
+      'B2B licensing and syndication revenue',
+      'AI-native content ops that cut cost and scale output',
+      'Audience-to-revenue conversion strategy',
     ],
-    operator: 'Priyabrata Padhi',
-    operatorBg: 'ex-ITC, ex-Britannia',
+    operator: 'Samir Gupta',
+    operatorBg: 'ex-Paytm, ex-Bzinga, ex-Solv',
+    operatorSlug: 'samir-gupta',
+    howWeEngage: [
+      'Audience monetisation and revenue model design',
+      'AI-native content operations',
+      'B2B licensing and syndication strategy',
+    ],
     problemDetail:
-      "Media companies are caught between fragmented audiences, rising content costs, and platforms that own distribution. Brands that will survive aren't the ones with the most content — they're the ones with the most efficient, AI-native content operations.",
+      "Media companies are caught between fragmented audiences, rising content costs, and platforms that own distribution. Brands that will survive aren't the ones with the most content. They're the ones with the most efficient, AI-native content operations.",
     clientProblems: [
-      '"My audience is growing on social but I can\'t monetise it."',
-      '"I\'ve raised seed capital but have no GTM engine for my media product."',
-      '"I need to build an AI content workflow — I don\'t know where to start."',
-      '"I\'m competing with well-funded media houses on a fraction of the budget."',
+      '"We have 500K+ followers but monetisation per user is a fraction of what it should be."',
+      '"Our content team is growing but content ROI is declining. We need to restructure our production model."',
+      '"We\'re profitable on owned channels but can\'t crack B2B licensing and syndication at scale."',
+      '"We\'re scaling content volume but losing on distribution. We need an AI-native content ops overhaul."',
     ],
   },
   {
@@ -38,113 +44,114 @@ const domains = [
     name: 'D2C & Consumer',
     sector: 'Consumer Brands & Retail',
     problem:
-      'Most D2C brands hit ₹5 Cr and stall. The GTM muscle that got them there won\'t scale them to ₹50 Cr.',
+      "You've got GMV. Your contribution margins are the real problem.",
     capabilities: [
-      'Full-funnel GTM from brand to repeat purchase',
-      'AI-powered audience segmentation and retention',
-      'Offline expansion playbooks for D2C to omnichannel',
+      'CAC reduction and performance marketing overhaul',
+      'Repeat purchase and retention engine',
+      'Offline and omnichannel expansion playbook',
     ],
-    operator: 'Amar Daing + Priyabrata Padhi',
-    operatorBg: 'ex-Google×Tata, ex-OYO / ex-ITC, ex-Britannia',
+    operator: 'Priyabrata Padhi',
+    operatorBg: 'ex-Unitech Breweries, ex-ITC, ex-Britannia',
+    operatorSlug: 'priyabrata-padhi',
+    howWeEngage: [
+      'Full-funnel GTM and channel strategy',
+      'Offline distribution and retail expansion',
+      'AI-native D2C operating system',
+    ],
     problemDetail:
-      'D2C is no longer just about performance marketing. The brands winning in 2026 are building community, repeat-purchase engines, and omnichannel presence — while managing CAC and LTV with operator-level precision.',
+      'D2C is no longer just about performance marketing. The brands winning in 2026 are building community, repeat-purchase engines, and omnichannel presence, while managing CAC and LTV with operator-level precision.',
     clientProblems: [
-      '"I\'m growing on Instagram but losing money on every order."',
-      '"My repeat purchase rate is below 20% and I don\'t know why."',
-      '"I need to go offline but have no retail distribution playbook."',
-      '"My brand identity isn\'t converting — I need a GTM reset."',
+      '"We\'re at ₹30 Cr GMV but contribution margin is negative. Scaling revenue is making us bleed more."',
+      '"We\'re spending ₹2 Cr/month on performance marketing and CAC keeps climbing with no ceiling."',
+      '"Our D2C channel is maxed out. We need an offline retail playbook but have no distribution relationships."',
+      '"We\'ve hit product-market fit but repeat purchase is our ceiling. Retention is broken at scale."',
     ],
   },
   {
-    id: 'ai-data',
+    id: 'bfsi',
     number: '03',
-    name: 'AI & Data',
-    sector: 'AI Products & Data Platforms',
+    name: 'BFSI',
+    sector: 'Banking, Financial Services & Insurance',
     problem:
-      "Most companies have data. Almost none have the operator layer to turn it into a working AI system that ships and scales.",
+      "Your FinTech product is live. Compliance and portfolio scale are the next wall.",
     capabilities: [
-      'AI product ideation to MVP to production',
-      'Data platform architecture and AI readiness',
-      'Agentic automation and enterprise AI workflows',
-    ],
-    operator: 'Alok Kumar',
-    operatorBg: 'ex-Zee, ex-Oracle, ex-StanChart',
-    problemDetail:
-      "The AI gap isn't talent — it's judgment. Knowing which use case to build first, how to architect for scale, and how to get a model from lab to production with real business impact. That's the operator layer most teams are missing.",
-    clientProblems: [
-      '"My AI pilot worked in the demo. It\'s been 6 months and it\'s still not deployed."',
-      '"I have 3 years of data and no idea how to make it useful."',
-      '"I want to build an AI product but I don\'t know what\'s actually buildable vs hype."',
-      '"My tech team can code but no one has shipped an AI product before."',
-    ],
-  },
-  {
-    id: 'fintech',
-    number: '04',
-    name: 'FinTech',
-    sector: 'Financial Services & Deep Tech',
-    problem:
-      "India's FinTech gap isn't capital — it's domain-savvy execution that understands regulation, risk, and real user behaviour.",
-    capabilities: [
-      'FinTech product and platform build',
-      'Banking, insurance, and lending workflow transformation',
-      'AI-led compliance, risk, and operations modernisation',
+      'Risk model calibration for growing loan books',
+      'Regulatory expansion across states and products',
+      'Compliance and onboarding stack modernisation',
     ],
     operator: 'Rajesh Ramanathan',
     operatorBg: 'ex-Accenture, ex-Wipro, ex-Mastek',
+    operatorSlug: 'rajesh-ramanathan',
+    howWeEngage: [
+      'Risk model design and portfolio calibration',
+      'Regulatory compliance and multi-state expansion',
+      'AI-led financial operations and underwriting',
+    ],
     problemDetail:
-      'Indian FinTech is maturing fast. The opportunity is no longer just in payments — it\'s in lending infrastructure, embedded finance, insurtech, and B2B financial workflows. But execution here requires deep regulatory knowledge and risk discipline most product teams don\'t have.',
+      'Indian BFSI is maturing fast. The opportunity is no longer just in payments. It\'s in lending infrastructure, embedded finance, insurtech, and B2B financial workflows. But execution here requires deep regulatory knowledge and risk discipline most product teams don\'t have.',
     clientProblems: [
-      '"I\'m building in lending but the RBI compliance complexity is blocking our launch."',
-      '"My enterprise FinTech sales cycle is 12+ months and I don\'t know how to shorten it."',
-      '"I need to modernise legacy banking workflows without breaking production."',
-      '"I want to embed financial products into my platform but need the right architecture."',
+      '"We\'ve crossed ₹100 Cr in disbursals but our risk model isn\'t calibrated for the portfolio size we\'re at."',
+      '"Enterprise deals are coming in but our onboarding and compliance stack can\'t handle the volume."',
+      '"We\'re operating in 3 states. Expanding nationally means 12 different regulatory contexts we\'re not ready for."',
+      '"Our NPA rates are acceptable now but we know they\'ll blow up if we scale the book without a better model."',
     ],
   },
   {
     id: 'healthcare',
-    number: '05',
+    number: '04',
     name: 'Healthcare',
     sector: 'HealthTech & Clinical Tools',
     problem:
-      'Healthcare is digitising fast but clinical workflow software is still being built by people who\'ve never worked in a hospital.',
+      "You have hospital clients. Every deployment is still fully custom.",
     capabilities: [
-      'Health tech product development and validation',
-      'Clinical AI tools and diagnostic workflow automation',
-      'GTM for B2B healthcare SaaS',
+      'Productisation to reduce professional services cost',
+      'Tier 2 and Tier 3 hospital expansion GTM',
+      'Clinical validation and peer recognition pathway',
     ],
-    operator: 'Alok Kumar + Research Team',
-    operatorBg: 'ex-Zee, ex-Oracle, ex-StanChart',
+    operator: 'Dr Rachit Negi',
+    operatorBg: 'ex-Operation Smile, ex-World Bank, ex-PATH',
+    operatorSlug: 'dr-rachit-negi',
+    howWeEngage: [
+      'Clinical product validation and standardisation',
+      'B2B hospital sales and procurement GTM',
+      'Tier 2 and Tier 3 market expansion',
+    ],
     problemDetail:
-      'The healthcare digitisation opportunity in India is massive — but the graveyard of failed health-tech products is bigger. The gap is almost always the same: tech built without clinical workflow understanding, and GTM that tries to sell to hospitals without understanding procurement.',
+      'The healthcare digitisation opportunity in India is massive, but the graveyard of failed health-tech products is bigger. The gap is almost always the same: tech built without clinical workflow understanding, and GTM that tries to sell to hospitals without understanding procurement.',
     clientProblems: [
-      '"My health-tech product works but hospitals won\'t buy it — I don\'t understand the procurement cycle."',
-      '"I\'m building a clinical AI tool but have no validation process or regulatory pathway."',
-      '"My B2B health SaaS has pilots but can\'t convert to paid contracts."',
-      '"I need to hire clinical advisors but don\'t know how to find the right ones."',
+      '"We have 15 hospital clients but every deployment is custom. We can\'t standardise without losing deals."',
+      '"We\'re growing ARR but professional services are eating 60% of revenue. We need to productise."',
+      '"We need to expand from metros to Tier 2 cities but the procurement dynamics are completely different."',
+      '"Clinical validation worked in 2 hospitals. Getting peer-reviewed and nationally recognised is the next gate."',
     ],
   },
   {
-    id: 'defence',
-    number: '06',
-    name: 'Defence',
-    sector: 'Defence Tech & Deep Tech',
+    id: 'education',
+    number: '05',
+    name: 'Education',
+    sector: 'EdTech & Workforce Development',
     problem:
-      "India's defence modernisation is creating a multi-billion opportunity for startups that can navigate procurement and deliver.",
+      "You have learners. Employers don't recognise your outcomes yet.",
     capabilities: [
-      'Deep tech venture building for defence-adjacent sectors',
-      'Compliance, certification, and GTM for defence startups',
-      'Partner network for enterprise and government-side execution',
+      'Completion rate and learning outcome improvement',
+      'Employer linkage and certification credentialing',
+      'B2B institutional sales motion and GTM',
     ],
     operator: 'Maxinor Leadership Team',
     operatorBg: 'Multi-domain operator team',
+    operatorSlug: '',
+    howWeEngage: [
+      'Learning outcome and completion improvement',
+      'Employer linkage and credential recognition',
+      'B2B institutional sales and government GTM',
+    ],
     problemDetail:
-      "India's Make in India and iDEX initiatives have opened the door for private defence startups. But navigating DRDO, DPP procurement, and dual-use certification is a full-time job before you've even built the product. This is where operator guidance changes the outcome.",
+      "The EdTech gold rush left a graveyard of consumer apps with great content and poor outcomes. The real opportunity now is in institutional transformation, employer-linked skilling, and credentialing that actually moves the needle. Building here requires deep understanding of both learning design and enterprise sales.",
     clientProblems: [
-      '"I have a defence-adjacent deep tech product but no idea how procurement works."',
-      '"My startup qualifies for iDEX but we can\'t navigate the application and evaluation process."',
-      '"I need to find the right enterprise buyer — procurement cycles here are opaque."',
-      '"I\'m building dual-use tech and need to understand certification and compliance."',
+      '"We have 50K+ learners but completion rates are below 15% and employers don\'t recognise our certification."',
+      '"We\'ve signed 10 institutional clients but every deployment is bespoke. Customisation is eating our margins."',
+      '"Our B2C revenue is plateauing. We need a B2B institutional sales motion but have no relationships or playbook."',
+      '"We\'re growing enrolments but not outcomes. Employers are starting to question the ROI of our programmes."',
     ],
   },
 ];
@@ -230,7 +237,7 @@ export default function DomainsPage() {
             className="mb-10 max-w-xl text-base font-light leading-relaxed text-warm-white/70 md:text-lg"
           >
             Maxinor&apos;s operator network brings hands-on domain experience in six high-growth
-            sectors — from ideation through execution.
+            sectors, from ideation through execution.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -272,10 +279,10 @@ export default function DomainsPage() {
       <section id="overview" className="bg-warm-white px-6 py-20 md:py-28">
         <div className="max-w-7xl mx-auto">
           <div className="mb-14 text-center md:mb-20">
-            <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">Six Domains</p>
+            <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">Our Domains</p>
             <h2 className="text-3xl font-display font-medium tracking-tight text-navy md:text-5xl">
               Deep operator expertise.{' '}
-              <span className="text-brand">Six high-growth sectors.</span>
+              <span className="text-brand">High-growth sectors.</span>
             </h2>
           </div>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -350,26 +357,18 @@ export default function DomainsPage() {
                   {domain.problemDetail}
                 </p>
 
-                {/* Engagement paths */}
+                {/* Domain capabilities */}
                 <h3 className="mb-4 text-xs font-bold uppercase tracking-[0.18em] text-grey/50">
-                  How We Engage in {domain.name}
+                  What We Do in {domain.name}
                 </h3>
                 <div className="space-y-3">
-                  {[
-                    { name: 'Venture Sprint', detail: '30 days · Diagnosis + Roadmap' },
-                    { name: 'Venture Partner', detail: '6 months · Embedded execution + capital' },
-                    { name: 'Venture CXO', detail: '6–12 months · Fractional operator leadership' },
-                  ].map((eng) => (
+                  {domain.howWeEngage.map((item) => (
                     <div
-                      key={eng.name}
+                      key={item}
                       className="flex items-center gap-3 rounded-xl border border-grey/15 bg-warm-white px-4 py-3"
                     >
                       <span className="text-brand">→</span>
-                      <div>
-                        <span className="text-sm font-semibold text-navy">{eng.name}</span>
-                        <span className="mx-2 text-grey/30">·</span>
-                        <span className="text-sm text-grey/60">{eng.detail}</span>
-                      </div>
+                      <span className="text-sm font-light text-grey">{item}</span>
                     </div>
                   ))}
                 </div>
@@ -402,9 +401,15 @@ export default function DomainsPage() {
                 {/* Operator card */}
                 <div className="mb-8 rounded-2xl border border-grey/20 bg-navy/5 px-5 py-4">
                   <p className="mb-1 text-[11px] font-bold uppercase tracking-[0.18em] text-brand/70">
-                    Operator Behind This Domain
+                    Lead Operator
                   </p>
-                  <p className="text-base font-semibold text-navy">{domain.operator}</p>
+                  {domain.operatorSlug ? (
+                    <Link href={`/team/${domain.operatorSlug}`} className="text-base font-semibold text-navy transition-colors duration-200 hover:text-brand">
+                      {domain.operator}
+                    </Link>
+                  ) : (
+                    <p className="text-base font-semibold text-navy">{domain.operator}</p>
+                  )}
                   <p className="text-sm text-grey/60">{domain.operatorBg}</p>
                 </div>
 
@@ -458,7 +463,7 @@ export default function DomainsPage() {
             </motion.div>
 
             {/* Vertical bars */}
-            <div className="mt-8 grid grid-cols-3 gap-3 md:grid-cols-6">
+            <div className="mt-8 flex gap-3 w-full">
               {domains.map((domain, i) => (
                 <motion.div
                   key={domain.id}
@@ -466,12 +471,16 @@ export default function DomainsPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: i * 0.08 }}
-                  className="flex flex-col items-center"
+                  className="flex-1 flex flex-col items-center"
                 >
-                  <div className="mb-2 w-full rounded-2xl border border-white/10 bg-white/6 py-8 flex items-end justify-center"
-                    style={{ borderTopColor: 'var(--color-brand)', borderTopWidth: '3px' }}>
-                    <span className="rotate-180 text-[11px] font-bold uppercase tracking-[0.12em] text-warm-white/70"
-                      style={{ writingMode: 'vertical-rl' }}>
+                  <div
+                    className="w-full h-36 rounded-2xl border border-white/10 bg-white/5 flex items-center justify-center"
+                    style={{ borderTopColor: 'var(--color-brand)', borderTopWidth: '3px' }}
+                  >
+                    <span
+                      className="text-[11px] font-bold uppercase tracking-[0.12em] text-warm-white/70"
+                      style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}
+                    >
                       {domain.name}
                     </span>
                   </div>
@@ -479,7 +488,7 @@ export default function DomainsPage() {
               ))}
             </div>
             <p className="mt-4 text-center text-xs font-light text-warm-white/40">
-              Deep domain expertise — not generic execution
+              Deep domain expertise, not generic execution
             </p>
           </div>
 
@@ -498,69 +507,9 @@ export default function DomainsPage() {
         </div>
       </section>
 
-      {/* ── Partners ── */}
-      <section className="bg-[#EDE7DC] px-6 py-20 md:py-28">
-        <div className="max-w-7xl mx-auto">
-          <div className="mb-12 text-center md:mb-16">
-            <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">Domain Partners</p>
-            <h2 className="mb-4 text-3xl font-display font-medium tracking-tight text-navy md:text-5xl">
-              Our Domain Partners
-            </h2>
-          </div>
-          <div className="mx-auto max-w-3xl space-y-4">
-            {[
-              {
-                category: 'D2C & Consumer',
-                name: 'Saptharushi',
-                description: 'Audience-as-a-Service — data enrichment and retail analytics for consumer brands.',
-                url: 'https://saptharushi.com/',
-              },
-              {
-                category: 'Tech Infrastructure',
-                name: 'Hygriv',
-                description: 'Climate-tech, cooling infrastructure, and enterprise tech backbone.',
-                url: 'https://www.hygriv.com/',
-              },
-            ].map((p, i) => (
-              <motion.div
-                key={p.name}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="flex items-center justify-between gap-6 rounded-2xl border border-grey/20 bg-white px-6 py-5"
-              >
-                <div>
-                  <p className="mb-0.5 text-[11px] font-bold uppercase tracking-[0.18em] text-brand/70">
-                    {p.category}
-                  </p>
-                  <p className="text-base font-semibold text-navy">{p.name}</p>
-                  <p className="text-sm font-light text-grey">{p.description}</p>
-                </div>
-                <Link
-                  href={p.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="shrink-0 rounded-full border border-grey/25 px-4 py-2 text-sm font-medium text-navy transition-all duration-200 hover:border-brand hover:text-brand"
-                >
-                  Visit →
-                </Link>
-              </motion.div>
-            ))}
-            <div className="rounded-2xl border border-dashed border-grey/30 px-6 py-4 text-center">
-              <p className="text-sm text-grey/60">
-                Partner slots open in{' '}
-                <span className="font-medium text-navy">FinTech</span>,{' '}
-                <span className="font-medium text-navy">Healthcare</span>, and{' '}
-                <span className="font-medium text-navy">Defence</span> — selective onboarding Q3 2026
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* ── CTA ── */}
-      <section className="bg-navy px-6 py-20 text-center md:py-28">
+{/* ── CTA ── */}
+      <section className="bg-warm-white px-6 py-20 text-center md:py-28 border-t border-grey/15">
         <div className="max-w-3xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -569,10 +518,10 @@ export default function DomainsPage() {
             transition={{ duration: 0.7 }}
           >
             <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">Let&apos;s Talk</p>
-            <h2 className="mb-5 text-3xl font-display font-medium tracking-tight text-warm-white md:text-5xl">
+            <h2 className="mb-5 text-3xl font-display font-medium tracking-tight text-navy md:text-5xl">
               Not sure which domain fits your problem?
             </h2>
-            <p className="mb-8 text-base font-light leading-relaxed text-warm-white/60 md:text-lg">
+            <p className="mb-8 text-base font-light leading-relaxed text-grey md:text-lg">
               Tell us what you&apos;re building. We&apos;ll tell you where we fit — and if we don&apos;t, we&apos;ll say so.
             </p>
             <Link href="/contact" className={primaryBtn}>

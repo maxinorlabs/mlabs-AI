@@ -4,6 +4,7 @@ import { motion } from 'motion/react';
 import {
   ArrowRight,
   Bot,
+  Check,
   Hospital,
   Landmark,
   MonitorPlay,
@@ -22,6 +23,42 @@ const primaryButtonClass =
   'inline-flex w-full max-w-[320px] sm:w-auto items-center justify-center rounded-full bg-brand px-8 py-4 text-base font-semibold tracking-wide text-warm-white transition-all duration-300 hover:-translate-y-1 hover:bg-brand/90 sm:px-12 sm:py-5 sm:text-lg shadow-[0_0_40px_rgba(243,111,33,0.15)] hover:shadow-[0_0_60px_rgba(243,111,33,0.3)]';
 const secondaryButtonClass =
   'inline-flex w-full max-w-[320px] sm:w-auto items-center justify-center rounded-full border border-grey/40 bg-white/80 px-8 py-4 text-base font-semibold text-navy transition-all duration-300 hover:-translate-y-1 hover:bg-brand hover:text-warm-white sm:px-12 sm:py-5 sm:text-lg';
+
+const engagements = [
+  {
+    name: 'Venture Sprint',
+    duration: '30 days',
+    model: 'Fixed scope · Fast',
+    description: "A focused 30-day sprint to diagnose what's blocking you and build an execution roadmap.",
+    bullets: ['Problem diagnosis', 'Capability mapping', '90-day execution plan', 'Operator assignment'],
+    bestFor: 'Founders who need clarity before committing capital.',
+    commercial: 'Fixed fee.',
+    cta: 'Start a Sprint',
+    featured: false,
+  },
+  {
+    name: 'Venture Partner',
+    duration: '6 months',
+    model: 'Embedded · Equity + execution',
+    description: 'An operator joins your team, embedded, accountable, and aligned on outcomes through equity.',
+    bullets: ['Full execution ownership', 'Weekly operating cadence', 'Capital milestone tracking', 'Series A preparation'],
+    bestFor: 'Startups at ₹1 to 20 Cr ARR ready to scale.',
+    commercial: 'Equity-linked + execution fee.',
+    cta: 'Explore Partnership',
+    featured: true,
+  },
+  {
+    name: 'Venture CXO',
+    duration: '6-12 months',
+    model: 'Fractional · C-level',
+    description: 'A fractional CXO who operates as part of your leadership team: CMO, CTO, CFO, or CPO.',
+    bullets: ['Functional gap coverage', 'Team building and systems', 'Transition planning', 'Hiring the permanent hire'],
+    bestFor: 'Companies that need executive depth without full-time cost.',
+    commercial: 'Retainer.',
+    cta: 'Get a Fractional CXO',
+    featured: false,
+  },
+];
 
 const domainGroups = [
   {
@@ -283,43 +320,71 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Engagement Models */}
-        <section className={`${sectionPadding} bg-white border-y border-grey/30`}>
+        {/* Pick Your Entry Point */}
+        <section className="bg-[#EDE7DC] px-6 py-20 md:py-28">
           <div className="max-w-7xl mx-auto">
-            <div className={sectionIntro}>
-              <h2 className={sectionTitle}>
+            <div className="mb-14 text-center md:mb-20">
+              <p className="mb-3 text-xs font-bold uppercase tracking-[0.22em] text-brand">Pick Your Entry Point</p>
+              <h2 className="mb-4 text-3xl font-display font-medium tracking-tight text-navy md:text-5xl">
                 We Scale, Not Just <span className="text-brand">Back Startups!</span>
               </h2>
-              <p className={`${sectionBody} mx-auto max-w-3xl text-grey`}>
+              <p className="mx-auto max-w-xl text-base font-light text-grey md:text-lg">
                 Maxinor accelerates startup growth with embedded operators and milestone-based funding, shortening the path to scale and Series A.
               </p>
             </div>
-
             <div className="grid gap-6 md:grid-cols-3">
-              <div className="rounded-[2rem] border border-grey/20 bg-warm-white p-8 shadow-sm transition-all duration-500 hover:border-brand/30 hover:shadow-md md:p-10">
-                <h3 className="mb-4 flex items-center gap-3 text-xl font-display font-medium md:text-2xl">
-                  <span className="w-8 h-8 rounded-full bg-brand/10 text-brand flex items-center justify-center text-sm">01</span> Venture Sprint
-                </h3>
-                <p className="text-base font-light leading-relaxed text-grey md:text-lg">
-                  30-day hands-on diagnostic and tailored execution roadmap
-                </p>
-              </div>
-              <div className="rounded-[2rem] border border-grey/20 bg-warm-white p-8 shadow-sm transition-all duration-500 hover:border-brand/30 hover:shadow-md md:p-10">
-                <h3 className="mb-4 flex items-center gap-3 text-xl font-display font-medium md:text-2xl">
-                  <span className="w-8 h-8 rounded-full bg-brand/10 text-brand flex items-center justify-center text-sm">02</span> Venture Partner
-                </h3>
-                <p className="text-base font-light leading-relaxed text-grey md:text-lg">
-                  6-month embedded execution + Equity Investment &amp; Series A prep
-                </p>
-              </div>
-              <div className="rounded-[2rem] border border-grey/20 bg-warm-white p-8 shadow-sm transition-all duration-500 hover:border-brand/30 hover:shadow-md md:p-10">
-                <h3 className="mb-4 flex items-center gap-3 text-xl font-display font-medium md:text-2xl">
-                  <span className="w-8 h-8 rounded-full bg-brand/10 text-brand flex items-center justify-center text-sm">03</span> Venture CXO
-                </h3>
-                <p className="text-base font-light leading-relaxed text-grey md:text-lg">
-                  6-12 month Fractional C-level leadership for critical functional gaps
-                </p>
-              </div>
+              {engagements.map((eng, i) => (
+                <motion.div
+                  key={eng.name}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: i * 0.1 }}
+                  className={`relative flex flex-col rounded-[2rem] border bg-white p-8 transition-all duration-500 hover:shadow-xl md:p-10 ${
+                    eng.featured
+                      ? 'border-brand border-t-4 shadow-[0_0_50px_rgba(243,111,33,0.1)]'
+                      : 'border-grey/20 hover:border-brand/30'
+                  }`}
+                >
+                  {eng.featured && (
+                    <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-brand px-5 py-1 text-[11px] font-bold uppercase tracking-widest text-white shadow-lg">
+                      Most Popular
+                    </div>
+                  )}
+                  <p className="mb-2 text-[11px] font-bold uppercase tracking-[0.2em] text-brand">{eng.duration}</p>
+                  <h3 className="mb-1 text-2xl font-display font-semibold text-navy">{eng.name}</h3>
+                  <p className="mb-4 text-sm text-grey/60">{eng.model}</p>
+                  <p className="mb-6 text-sm font-light leading-relaxed text-grey">{eng.description}</p>
+                  <ul className="mb-6 flex-1 space-y-2.5">
+                    {eng.bullets.map((b) => (
+                      <li key={b} className="flex items-start gap-2.5 text-sm text-grey">
+                        <span className="mt-0.5 text-brand">
+                          <Check className="h-3.5 w-3.5" />
+                        </span>
+                        {b}
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="mb-6 rounded-2xl bg-warm-white px-4 py-3.5 space-y-1">
+                    <p className="text-xs text-grey/70">
+                      <span className="font-semibold text-navy">Best for:</span> {eng.bestFor}
+                    </p>
+                    <p className="text-xs text-grey/70">
+                      <span className="font-semibold text-navy">Model:</span> {eng.commercial}
+                    </p>
+                  </div>
+                  <Link
+                    href="/contact"
+                    className={`inline-flex w-full items-center justify-center rounded-full py-3.5 text-sm font-semibold tracking-wide transition-all duration-300 ${
+                      eng.featured
+                        ? 'bg-brand text-white hover:bg-brand/90 shadow-[0_0_30px_rgba(243,111,33,0.2)]'
+                        : 'border border-grey/25 text-navy hover:border-brand hover:text-brand'
+                    }`}
+                  >
+                    {eng.cta} <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </motion.div>
+              ))}
             </div>
           </div>
         </section>

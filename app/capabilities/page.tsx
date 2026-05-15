@@ -14,99 +14,73 @@ const outlineBtn =
 const capabilities = [
   {
     number: '01',
-    category: 'Revenue & Growth',
-    title: 'Go-To-Market Execution Engine',
+    category: 'Revenue, Product & Brand',
+    title: 'Revenue Growth, GTM & Marketing',
     description:
-      "Building revenue machines — not revenue plans. From acquisition to retention to expansion.",
+      'From first sale to scaled brand. GTM execution, product-led growth, and consumer marketing run as one operator team.',
     deliverables: [
-      'GTM strategy + channel buildout from 0',
-      'Sales process design and pipeline execution',
-      'Revenue operations and growth analytics',
+      'GTM strategy, channel buildout and sales pipeline execution',
+      'Revenue operations, growth analytics and expansion playbooks',
+      'Product roadmap prioritisation and UX redesign',
+      'CX systems built to reduce churn and drive retention',
+      'Consumer brand positioning and D2C performance marketing',
+      'Offline channel expansion and omnichannel growth',
     ],
-    operator: 'Samir Gupta',
-    operatorBg: 'ex-Paytm, ex-Solv',
+    operator: 'Samir Gupta, Amar Daing & Priyabrata Padhi',
+    operatorBg: 'Revenue, Product & Brand leads',
+    operatorLinks: [
+      { name: 'Samir Gupta', slug: 'samir-gupta' },
+      { name: 'Amar Daing', slug: 'amar-daing' },
+      { name: 'Priyabrata Padhi', slug: 'priyabrata-padhi' },
+    ],
   },
   {
     number: '02',
-    category: 'Product & Customer Experience',
-    title: 'Product-Led Growth & CX Design',
-    description:
-      "Products that people actually use. Built by someone who's shipped for tens of millions of users before.",
-    deliverables: [
-      'Product roadmap prioritisation and sprint planning',
-      'UX audit and customer journey redesign',
-      'CX systems that reduce churn and drive NPS',
-    ],
-    operator: 'Amar Daing',
-    operatorBg: 'ex-Google×Tata, ex-OYO, ex-Grofers',
-  },
-  {
-    number: '03',
     category: 'AI & Technology Build',
-    title: 'AI Product Engineering & Tech Architecture',
+    title: 'AI Services',
     description:
       'From AI strategy to working system. No pilots that never ship. No tech debt that kills scale.',
     deliverables: [
-      'AI product scoping, architecture, and MVP',
+      'AI strategy and use-case prioritisation',
+      'AI product scoping, architecture, and MVP build',
       'Agentic automation and workflow AI',
+      'Model fine-tuning, evaluation and deployment',
       'Data platform and AI-readiness buildout',
+      'Tech architecture review and debt remediation',
     ],
     operator: 'Alok Kumar',
     operatorBg: 'ex-Zee, ex-Oracle, ex-StanChart',
+    operatorLinks: [{ name: 'Alok Kumar', slug: 'alok-kumar' }],
   },
   {
-    number: '04',
-    category: 'FinTech & Financial Operations',
-    title: 'Financial Product, Risk & Compliance Execution',
-    description:
-      "FinTech products that survive regulatory scrutiny and user reality — built by someone who's been on both sides.",
-    deliverables: [
-      'FinTech product and platform architecture',
-      'Banking, insurance, and lending transformation',
-      'AI-led compliance and risk operations',
-    ],
-    operator: 'Rajesh Ramanathan',
-    operatorBg: 'ex-Accenture, ex-Wipro, ex-Mastek',
-  },
-  {
-    number: '05',
+    number: '03',
     category: 'People & Org Building',
     title: 'Talent, Culture & Organisational Design',
     description:
       'Scaling a company means scaling your people. Most founders figure this out 12 months too late.',
     deliverables: [
+      'Founding team gap analysis and role definition',
       'Org design for Series A and beyond',
       'Hiring systems, culture design, and leadership onboarding',
       'Performance frameworks for operator-led teams',
+      'ESOPs, compensation benchmarking and retention design',
+      'Interim leadership and CXO transition planning',
     ],
     operator: 'Parool Duggal',
     operatorBg: 'ex-Bijnis, ex-EcomXpress, ex-AuthBridge',
-  },
-  {
-    number: '06',
-    category: 'Consumer & Brand Marketing',
-    title: 'Consumer Marketing & D2C Growth',
-    description:
-      "Brand-building that moves product, not just impressions — from someone who's built at ITC scale.",
-    deliverables: [
-      'Consumer brand strategy and positioning',
-      'D2C content, performance, and offline marketing',
-      'Category creation for early-stage consumer brands',
-    ],
-    operator: 'Priyabrata Padhi',
-    operatorBg: 'ex-ITC, ex-Britannia, ex-Unitech',
+    operatorLinks: [{ name: 'Parool Duggal', slug: 'parool-duggal' }],
   },
 ];
 
 const problems = [
-  "I've built a product. I have no idea how to sell it.",
-  "My ARR is stuck. I've been at ₹3 Cr for 8 months.",
-  "I need to raise Series A in 6 months and I'm not ready.",
-  "My AI pilot is working in a lab. It's not deployed anywhere.",
-  "I need a CTO / CMO / CFO but can't afford full-time.",
-  "I'm scaling D2C but losing money on every order.",
-  "I want to build in FinTech but don't know the regulatory landscape.",
-  "I need to go from 0 to revenue in 90 days.",
+  "My ARR has been stuck at ₹3 Cr for 8 months. I don't know what's blocking it.",
+  "I have a sales team but no repeatable process. Every deal runs on founder effort.",
+  "I need to raise Series A in 6 months and my metrics aren't investor-ready.",
+  "Our AI is live but it hasn't moved a single business number.",
+  "I need a CMO, a CTO, and a CFO. I can only afford one.",
+  "We are growing 3x but losing money on every order. Unit economics are broken.",
+  "Our FinTech product is live but compliance is still a black box for us.",
+  "My founding team can't run a 50-person company. The org is starting to break.",
 ];
 
 const steps = [
@@ -155,7 +129,7 @@ const engagements = [
 ];
 
 const stats = [
-  { display: '6', label: 'Domains covered' },
+  { display: '5', label: 'Domains covered' },
   { display: '30', label: 'days to your roadmap' },
   { display: '3', label: 'Engagement models' },
   { display: '₹100+ Cr', label: 'ARR built by our operators' },
@@ -209,7 +183,7 @@ export default function CapabilitiesPage() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="mb-10 max-w-xl text-base font-light leading-relaxed text-grey md:text-lg"
           >
-            Not advisory. Not a deck. Embedded operator capability built around your problem — with milestone accountability.
+            Not advisory. Not a deck. Embedded operator capability built around your problem, with milestone accountability.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -230,13 +204,35 @@ export default function CapabilitiesPage() {
       {/* ── 6 Capability Blocks ── */}
       <section id="capabilities" className="bg-warm-white px-6 py-20 md:py-28 border-t border-grey/10">
         <div className="max-w-7xl mx-auto">
-          <div className="mb-14 text-center md:mb-20">
+          <div className="mb-10 text-center">
             <p className="mb-3 text-xs font-bold uppercase tracking-[0.22em] text-brand">Where Maxinor Adds Value</p>
             <h2 className="text-3xl font-display font-medium tracking-tight text-navy md:text-5xl">
-              Six operator capabilities.{' '}
+              Three operator capabilities.{' '}
               <span className="text-brand">One accountable team.</span>
             </h2>
           </div>
+
+          <motion.div
+            initial={{ opacity: 0, scaleX: 0 }}
+            whileInView={{ opacity: 1, scaleX: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="mb-14 origin-left md:mb-20"
+          >
+            <div className="flex items-center gap-0 overflow-hidden rounded-2xl">
+              {['Ideation', 'Strategy', 'Product', 'GTM', 'Revenue', 'Scale', 'Capital'].map((item) => (
+                <div
+                  key={item}
+                  className="flex-1 border-r border-navy/60 bg-brand/90 px-2 py-4 text-center last:border-r-0"
+                >
+                  <span className="text-[11px] font-bold uppercase tracking-[0.1em] text-white">{item}</span>
+                </div>
+              ))}
+            </div>
+            <p className="mt-2 text-center text-xs font-light text-grey/50">
+              Operator capabilities across the full venture lifecycle
+            </p>
+          </motion.div>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {capabilities.map((cap, i) => (
               <motion.div
@@ -267,7 +263,18 @@ export default function CapabilitiesPage() {
                 </ul>
                 <div className="border-t border-grey/12 pt-4">
                   <p className="text-xs text-grey/60">
-                    <span className="font-semibold text-navy">{cap.operator}</span> · {cap.operatorBg}
+                    {cap.operatorLinks.map((op, idx) => (
+                      <span key={op.slug}>
+                        <Link
+                          href={`/team/${op.slug}`}
+                          className="font-semibold text-navy transition-colors hover:text-brand"
+                        >
+                          {op.name}
+                        </Link>
+                        {idx < cap.operatorLinks.length - 2 ? ', ' : idx === cap.operatorLinks.length - 2 ? ' & ' : ''}
+                      </span>
+                    ))}
+                    {' '}· {cap.operatorBg}
                   </p>
                 </div>
               </motion.div>
@@ -280,10 +287,10 @@ export default function CapabilitiesPage() {
       <section className="bg-navy px-6 py-20 md:py-28">
         <div className="max-w-7xl mx-auto">
           <div className="mb-14 text-center">
-            <p className="mb-3 text-xs font-bold uppercase tracking-[0.22em] text-brand">What Clients Engage Us For</p>
+            <p className="mb-3 text-xs font-bold uppercase tracking-[0.22em] text-brand">What Brings Founders to Us</p>
             <h2 className="mx-auto max-w-2xl text-3xl font-display font-medium tracking-tight text-warm-white md:text-5xl">
-              Founders don&apos;t come with service categories.{' '}
-              <span className="text-brand">They come with problems.</span>
+              You have traction.{' '}
+              <span className="text-brand">Here is where scaling gets hard.</span>
             </h2>
           </div>
           <div className="grid gap-4 md:grid-cols-2">
@@ -393,7 +400,7 @@ export default function CapabilitiesPage() {
             </h3>
             <p className="mb-8 text-sm font-light text-warm-white/50">Your business in the centre.</p>
             <div className="mb-6 flex flex-wrap justify-center gap-3">
-              {['Revenue', 'Product', 'AI & Tech', 'FinTech', 'People', 'Marketing'].map((cap) => (
+              {['AI & Tech', 'People & Org', 'Revenue', 'Product', 'Brand & D2C'].map((cap) => (
                 <span key={cap} className="rounded-full border border-white/15 bg-white/8 px-4 py-2 text-sm font-medium text-warm-white/80">
                   {cap}
                 </span>
@@ -408,182 +415,6 @@ export default function CapabilitiesPage() {
               Your Business Outcome
             </div>
           </motion.div>
-        </div>
-      </section>
-
-      {/* ── Engagement Models ── */}
-      <section id="engage" className="bg-[#EDE7DC] px-6 py-20 md:py-28">
-        <div className="max-w-7xl mx-auto">
-          <div className="mb-14 text-center md:mb-20">
-            <p className="mb-3 text-xs font-bold uppercase tracking-[0.22em] text-brand">Pick Your Entry Point</p>
-            <h2 className="mb-4 text-3xl font-display font-medium tracking-tight text-navy md:text-5xl">
-              Start where you are.
-            </h2>
-            <p className="mx-auto max-w-xl text-base font-light text-grey md:text-lg">
-              Three engagement models so you can begin at the right stage — not where a consultant thinks you should be.
-            </p>
-          </div>
-          <div className="grid gap-6 md:grid-cols-3">
-            {engagements.map((eng, i) => (
-              <motion.div
-                key={eng.name}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: i * 0.1 }}
-                className={`relative flex flex-col rounded-[2rem] border bg-white p-8 transition-all duration-500 hover:shadow-xl md:p-10 ${
-                  eng.featured
-                    ? 'border-brand border-t-4 shadow-[0_0_50px_rgba(243,111,33,0.1)]'
-                    : 'border-grey/20 hover:border-brand/30'
-                }`}
-              >
-                {eng.featured && (
-                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-brand px-5 py-1 text-[11px] font-bold uppercase tracking-widest text-white shadow-lg">
-                    Most Popular
-                  </div>
-                )}
-                <p className="mb-2 text-[11px] font-bold uppercase tracking-[0.2em] text-brand">{eng.duration}</p>
-                <h3 className="mb-1 text-2xl font-display font-semibold text-navy">{eng.name}</h3>
-                <p className="mb-4 text-sm text-grey/60">{eng.model}</p>
-                <p className="mb-6 text-sm font-light leading-relaxed text-grey">{eng.description}</p>
-                <ul className="mb-6 flex-1 space-y-2.5">
-                  {eng.bullets.map((b) => (
-                    <li key={b} className="flex items-start gap-2.5 text-sm text-grey">
-                      <span className="mt-0.5 text-brand">→</span>
-                      {b}
-                    </li>
-                  ))}
-                </ul>
-                <div className="mb-6 rounded-2xl bg-warm-white px-4 py-3.5 space-y-1">
-                  <p className="text-xs text-grey/70">
-                    <span className="font-semibold text-navy">Best for:</span> {eng.bestFor}
-                  </p>
-                  <p className="text-xs text-grey/70">
-                    <span className="font-semibold text-navy">Model:</span> {eng.commercial}
-                  </p>
-                </div>
-                <Link
-                  href="/contact"
-                  className={`inline-flex w-full items-center justify-center rounded-full py-3.5 text-sm font-semibold tracking-wide transition-all duration-300 ${
-                    eng.featured
-                      ? 'bg-brand text-white hover:bg-brand/90 shadow-[0_0_30px_rgba(243,111,33,0.2)]'
-                      : 'border border-grey/25 text-navy hover:border-brand hover:text-brand'
-                  }`}
-                >
-                  {eng.cta} <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Operator Network / Partners ── */}
-      <section className="bg-warm-white px-6 py-20 md:py-28 border-t border-grey/10">
-        <div className="max-w-7xl mx-auto">
-          <div className="mb-14 md:mb-20">
-            <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">The Operator Network</p>
-            <h2 className="mb-4 max-w-2xl text-3xl font-display font-medium tracking-tight text-navy md:text-5xl">
-              When your problem needs depth we don&apos;t have in-house, we already know who does.
-            </h2>
-            <p className="max-w-xl text-base font-light text-grey">
-              Partner slots are selective — we only bring in operators we&apos;ve personally worked with.
-            </p>
-          </div>
-          <div className="grid gap-5 md:grid-cols-2">
-            {[
-              {
-                category: 'D2C & Consumer Data',
-                partner: 'Saptharushi',
-                description:
-                  'Audience-as-a-Service — audience segmentation, data enrichment, and retail analytics for ₹10–100 Cr D2C brands.',
-                url: 'https://saptharushi.com/',
-                image:
-                  'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/69b3cd584c566a57e84d3aae_saptharushi7_logo.jpg',
-                tags: ['D2C', 'Consumer brands', 'Audience targeting'],
-                coming: false,
-              },
-              {
-                category: 'Tech Infrastructure',
-                partner: 'Hygriv',
-                description:
-                  'Climate-tech, cooling infrastructure, and enterprise tech backbone for scaling startups and AI workloads.',
-                url: 'https://www.hygriv.com/',
-                image:
-                  'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/695e8f57198b4be76b7685ef_Logo%20with%20Capital.png',
-                tags: ['AI & Data', 'Enterprise tech', 'Infrastructure'],
-                coming: false,
-              },
-              {
-                category: 'FinTech Data & AI',
-                partner: 'Coming Q3 2026',
-                description:
-                  "Partner selection in progress. We're identifying the right operator for FinTech data and compliance workflows.",
-                url: null,
-                image: null,
-                tags: ['FinTech', 'Compliance', 'Risk ops'],
-                coming: true,
-              },
-              {
-                category: 'Healthcare Tech',
-                partner: 'Coming Q3 2026',
-                description:
-                  'Clinical workflow and health data specialist being onboarded. Selective process — timeline Q3 2026.',
-                url: null,
-                image: null,
-                tags: ['Healthcare', 'Clinical AI', 'Health SaaS'],
-                coming: true,
-              },
-            ].map((p, i) => (
-              <motion.div
-                key={p.category}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.08 }}
-                className={`rounded-[2rem] border p-6 md:p-8 ${
-                  p.coming
-                    ? 'border-dashed border-grey/25 bg-white/40'
-                    : 'border-grey/20 bg-white'
-                }`}
-              >
-                <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.2em] text-brand">{p.category}</p>
-                <div className="mb-3 flex items-center gap-3">
-                  {p.image && (
-                    <div className="relative h-7 w-20 shrink-0">
-                      <Image
-                        src={p.image}
-                        alt={p.partner}
-                        fill
-                        className="object-contain object-left"
-                        referrerPolicy="no-referrer"
-                      />
-                    </div>
-                  )}
-                  <h3
-                    className={`text-lg font-display font-semibold ${
-                      p.coming ? 'text-grey/40' : 'text-navy'
-                    }`}
-                  >
-                    {p.partner}
-                  </h3>
-                </div>
-                <p className="mb-4 text-sm font-light leading-relaxed text-grey">{p.description}</p>
-                <div className="flex flex-wrap gap-2">
-                  {p.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className={`rounded-full px-3 py-1 text-xs font-medium ${
-                        p.coming ? 'bg-grey/8 text-grey/50' : 'bg-brand/8 text-brand'
-                      }`}
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </motion.div>
-            ))}
-          </div>
         </div>
       </section>
 
