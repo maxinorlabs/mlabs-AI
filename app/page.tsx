@@ -180,7 +180,7 @@ export default function Home() {
             {/* Four pillar cards */}
             <div className="grid gap-0 grid-cols-1 md:grid-cols-4 rounded-2xl overflow-hidden border border-white/10">
               {/* Venture Build — blue */}
-              <div className="group border border-white/10 bg-white/5 p-8 md:p-10 flex flex-col transition-all duration-500 hover:bg-white/10">
+              <Link href="/build" className="group border border-white/10 bg-white/5 p-8 md:p-10 flex flex-col transition-all duration-500 hover:bg-white/10">
                 <h3 className="mb-1 text-xl font-display font-bold text-warm-white md:text-2xl">
                   Venture Build
                 </h3>
@@ -188,10 +188,10 @@ export default function Home() {
                 <p className="text-sm font-light leading-relaxed text-warm-white/75">
                   Creation of New AI-Native companies from &ldquo;Scratch&rdquo; across domains.
                 </p>
-              </div>
+              </Link>
 
               {/* Venture Scale — white */}
-              <div className="group bg-warm-white border-r border-grey/20 p-8 md:p-10 flex flex-col transition-all duration-500 hover:bg-white border-t-4 border-t-brand">
+              <Link href="/scale" className="group bg-warm-white border-r border-grey/20 p-8 md:p-10 flex flex-col transition-all duration-500 hover:bg-white border-t-4 border-t-brand">
                 <h3 className="mb-1 text-xl font-display font-bold text-navy md:text-2xl">
                   Venture Scale
                 </h3>
@@ -199,10 +199,10 @@ export default function Home() {
                 <p className="text-sm font-light leading-relaxed text-grey">
                   Operator capabilities that <strong className="font-semibold text-navy">deliver measurable business outcomes</strong> for existing startups, SMEs, and companies.
                 </p>
-              </div>
+              </Link>
 
               {/* Venture Investment — blue */}
-              <div className="group border border-white/10 bg-white/5 p-8 md:p-10 flex flex-col transition-all duration-500 hover:bg-white/10">
+              <Link href="/investment" className="group border border-white/10 bg-white/5 p-8 md:p-10 flex flex-col transition-all duration-500 hover:bg-white/10">
                 <h3 className="mb-1 text-xl font-display font-bold text-warm-white md:text-2xl">
                   Venture Investment
                 </h3>
@@ -210,19 +210,19 @@ export default function Home() {
                 <p className="text-sm font-light leading-relaxed text-warm-white/75">
                   Milestone-linked capital deployment into vetted startups, aligned with operator execution outcomes.
                 </p>
-              </div>
+              </Link>
 
               {/* AI Capability Centre — white */}
-              <div className="group bg-warm-white border-l border-grey/20 p-8 md:p-10 flex flex-col transition-all duration-500 hover:bg-white border-t-4 border-t-teal">
+              <Link href="/capability-centre" className="group bg-warm-white border-l border-grey/20 p-8 md:p-10 flex flex-col transition-all duration-500 hover:bg-white border-t-4 border-t-teal">
                 <h3 className="mb-1 text-xl font-display font-bold text-navy md:text-2xl">
                   AI Capability Centre
                 </h3>
-                <p className="mb-4 text-sm font-semibold text-teal">Capability Centre</p>
+                <p className="mb-4 text-sm font-semibold text-teal">Shared Services for the AI Capability Centre</p>
                 <p className="text-sm font-light leading-relaxed text-grey">
                   Technology, Product, HR, Supply Chain, Marketing &amp; Operations powering{' '}
                   <strong className="font-semibold text-navy">Build, Scale, and Invest.</strong>
                 </p>
-              </div>
+              </Link>
             </div>
           </div>
         </section>
