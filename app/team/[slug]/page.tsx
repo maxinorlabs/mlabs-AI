@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { ArrowLeft, ArrowRight, Linkedin } from 'lucide-react';
 import { notFound } from 'next/navigation';
 import { teamProfiles, getProfileBySlug } from '@/lib/team-profiles';
+import { CompanyLogo, hasCompanyLogo } from '@/components/CompanyLogo';
 
 export async function generateStaticParams() {
   return teamProfiles.map((p) => ({ slug: p.slug }));
@@ -174,7 +175,10 @@ export default async function TeamMemberPage({ params }: { params: Promise<{ slu
                   <span className="pointer-events-none absolute right-4 top-2 select-none text-5xl font-display font-bold text-brand/5">
                     {String(i + 1).padStart(2, '0')}
                   </span>
-                  <p className="mb-2 text-base font-semibold text-navy">{entry.company}</p>
+                  <CompanyLogo company={entry.company} />
+                  {!hasCompanyLogo(entry.company) && (
+                    <p className="mb-2 text-base font-semibold text-navy">{entry.company}</p>
+                  )}
                   <p className="text-sm font-light leading-relaxed text-grey">{entry.context}</p>
                 </div>
               ))}
