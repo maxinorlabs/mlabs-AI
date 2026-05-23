@@ -118,7 +118,7 @@ export default function InvestmentPage() {
         <div className="mb-16 md:mb-24">
           <p className="mb-3 text-xs font-bold uppercase tracking-[0.22em] text-brand">How We Invest</p>
           <h2 className="mb-10 text-2xl font-display font-medium text-navy md:text-4xl">
-            Operator first. Capital second.
+            Operator first. Capital follows.
           </h2>
           <div className="grid gap-5 sm:grid-cols-2 md:grid-cols-4">
             {process.map((p) => (
