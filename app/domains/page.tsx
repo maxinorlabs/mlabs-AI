@@ -155,6 +155,64 @@ const domains = [
       '"We\'re growing enrolments but not outcomes. Employers are starting to question the ROI of our programmes."',
     ],
   },
+  {
+    id: 'marketing',
+    number: '06',
+    name: 'Marketing',
+    sector: 'Brand Strategy & Consumer Marketing',
+    problem:
+      "Your brand is visible. Your conversion rate tells a different story.",
+    capabilities: [
+      'Brand positioning and identity strategy',
+      'Consumer marketing and channel execution',
+      'Content, community, and organic growth engine',
+    ],
+    operator: 'Aditi Agrawal',
+    operatorBg: 'Founder, StickyPins & Avyu India',
+    operatorSlug: 'aditi-agrawal',
+    howWeEngage: [
+      'Brand strategy and positioning',
+      'Consumer marketing and channel strategy',
+      'Content strategy and community building',
+    ],
+    problemDetail:
+      "Marketing for startups and SMEs in India is too often confused with advertising spend. The brands winning in 2026 are the ones with sharp positioning, channel discipline, and community built before campaigns. We bring practitioner-level marketing expertise from someone actively building in the consumer space.",
+    clientProblems: [
+      '"We have a product but no brand narrative that resonates with our target segment."',
+      '"We\'re spending on performance marketing but have zero organic growth. Nothing is compounding."',
+      '"We\'ve tried three agencies. None understood the startup or SME context we operate in."',
+      '"We need a consumer marketing strategy but our founding team is entirely product and tech."',
+    ],
+  },
+  {
+    id: 'legal',
+    number: '07',
+    name: 'Legal',
+    sector: 'Legal, Compliance & Corporate Governance',
+    problem:
+      "Your legal layer is one audit — or one co-founder dispute — away from a serious problem.",
+    capabilities: [
+      'Startup structuring and founder agreements',
+      'Regulatory compliance and licensing advisory',
+      'Contracts, IP protection, and employment law',
+    ],
+    operator: 'Manik Sood',
+    operatorBg: 'ex-Paytm, ex-Zee, ex-Healthkart | Founder, Law Grammar',
+    operatorSlug: 'manik-sood',
+    howWeEngage: [
+      'Corporate structuring and co-founder agreements',
+      'Regulatory licensing and compliance advisory',
+      'Contracts, IP, and employment law',
+    ],
+    problemDetail:
+      "Legal is the function most founders underinvest in until something breaks. By the time a compliance gap, a co-founder dispute, or a regulatory issue surfaces, the cost of fixing it is ten times what it would have cost to get it right early. We bring 20+ years of cross-industry legal expertise, and direct incorporation and legal services through Law Grammar, Manik's own law firm.",
+    clientProblems: [
+      '"We\'ve been operating for two years on agreements downloaded from the internet. We\'ve never had a legal review."',
+      '"Our co-founder agreement doesn\'t cover vesting, IP assignment, or exit. We need to fix this before our next raise."',
+      '"We\'re entering a regulated sector and have no idea what licensing we need or how long it takes to get approved."',
+      '"We\'re scaling from 5 to 50 people and have no compliant HR framework or employment contracts in place."',
+    ],
+  },
 ];
 
 const tabs = [
