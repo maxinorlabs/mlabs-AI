@@ -424,9 +424,19 @@ export default function DomainsPage() {
                   <p className="text-sm text-grey/60">{domain.operatorBg}</p>
                 </div>
 
-                <Link href="/contact" className={primaryBtn}>
-                  Work with us in {domain.name} <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
+                <div className="flex flex-wrap items-center gap-4">
+                  <Link href="/contact" className={primaryBtn}>
+                    Work with us in {domain.name} <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                  {domain.standaloneUrl && (
+                    <Link
+                      href={domain.standaloneUrl}
+                      className="inline-flex items-center gap-2 rounded-full border border-navy/20 px-6 py-4 text-sm font-semibold text-navy transition-all duration-300 hover:-translate-y-1 hover:border-brand/40 hover:text-brand"
+                    >
+                      Full Domain Blueprint <ArrowRight className="h-3.5 w-3.5" />
+                    </Link>
+                  )}
+                </div>
               </motion.div>
             </div>
           </div>
