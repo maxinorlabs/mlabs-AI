@@ -1,8 +1,9 @@
 'use client';
 
-import { motion } from 'motion/react';
+import { motion, AnimatePresence } from 'motion/react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useState } from 'react';
 import { ArrowRight, ShieldCheck, GitBranch, Layers } from 'lucide-react';
 
 const primaryBtn =
@@ -177,6 +178,120 @@ const operators = [
   },
 ];
 
+function ArchitectureExplorer() {
+  const [active, setActive] = useState(0);
+  const tier = architecture[active];
+  const totalCaps = tier.groups.reduce((sum, g) => sum + g.items.length, 0);
+
+  return (
+    <div className="mt-12 overflow-hidden rounded-[2rem] border border-grey/15 bg-white shadow-sm">
+      {/* Mobile: horizontal tab strip */}
+      <div className="flex overflow-x-auto border-b border-grey/10 md:hidden">
+        {architecture.map((t, i) => (
+          <button
+            key={t.tier}
+            onClick={() => setActive(i)}
+            className={`shrink-0 px-5 py-3.5 text-xs font-semibold transition-colors ${
+              active === i
+                ? 'border-b-2 border-brand text-brand'
+                : 'text-grey/50 hover:text-navy'
+            }`}
+          >
+            {t.tier.replace(' Layer', '')}
+          </button>
+        ))}
+      </div>
+
+      <div className="flex min-h-[520px]">
+        {/* Desktop: left sidebar */}
+        <div className="hidden w-64 shrink-0 flex-col border-r border-grey/10 bg-warm-white/50 md:flex">
+          {architecture.map((t, i) => (
+            <button
+              key={t.tier}
+              onClick={() => setActive(i)}
+              className={`group relative flex flex-col gap-1 px-6 py-5 text-left transition-all duration-200 ${
+                active === i
+                  ? 'bg-white'
+                  : 'hover:bg-white/60'
+              }`}
+            >
+              {active === i && (
+                <span className={`absolute left-0 top-0 h-full w-0.5 ${t.accent.replace('border-', 'bg-')}`} />
+              )}
+              <span className={`text-[10px] font-bold uppercase tracking-[0.18em] transition-colors ${
+                active === i ? t.labelColor : 'text-grey/40 group-hover:text-grey/60'
+              }`}>
+                0{i + 1}
+              </span>
+              <span className={`text-sm font-semibold transition-colors ${
+                active === i ? 'text-navy' : 'text-grey/60 group-hover:text-navy/70'
+              }`}>
+                {t.tier}
+              </span>
+              <span className="text-[11px] font-light text-grey/40">
+                {t.groups.reduce((s, g) => s + g.items.length, 0)} capabilities
+              </span>
+            </button>
+          ))}
+        </div>
+
+        {/* Right: detail panel */}
+        <div className="relative flex-1 overflow-hidden">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={active}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.25, ease: 'easeOut' }}
+              className="h-full p-8 md:p-10"
+            >
+              {/* Panel header */}
+              <div className="mb-8 flex flex-wrap items-start justify-between gap-4">
+                <div>
+                  <span className={`mb-2 block text-[10px] font-bold uppercase tracking-[0.2em] ${tier.labelColor}`}>
+                    {tier.tier}
+                  </span>
+                  <p className="text-base font-light text-grey/70">{tier.description}</p>
+                </div>
+                <span className={`rounded-full border px-3 py-1 text-xs font-semibold ${tier.labelColor} border-current opacity-60`}>
+                  {totalCaps} capabilities
+                </span>
+              </div>
+
+              {/* Capability groups */}
+              <div className="space-y-7">
+                {tier.groups.map((group, gi) => (
+                  <motion.div
+                    key={group.label}
+                    initial={{ opacity: 0, x: 10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.3, delay: gi * 0.06 }}
+                  >
+                    <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.16em] text-navy/40">
+                      {group.label}
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      {group.items.map((item) => (
+                        <span
+                          key={item}
+                          className="rounded-full border border-grey/15 bg-warm-white px-3.5 py-1.5 text-xs font-light text-navy/70 transition-colors hover:border-brand/30 hover:text-navy"
+                        >
+                          {item}
+                        </span>
+                      ))}
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          </AnimatePresence>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function BFSIPage() {
   return (
     <div className="font-sans">
@@ -285,56 +400,23 @@ export default function BFSIPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="mb-14 md:mb-16"
           >
             <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">Domain Architecture</p>
             <h2 className="mb-3 max-w-2xl text-3xl font-display font-medium tracking-tight text-navy md:text-4xl">
               The full banking capability stack.
             </h2>
             <p className="max-w-xl text-base font-light leading-relaxed text-grey">
-              This is the operating architecture of a full-service bank. We know every layer -- where the complexity lives, where integrations break, and where the regulatory exposure sits.
+              Five layers. Every capability mapped. Select a layer to explore what sits inside it and where the complexity lives.
             </p>
           </motion.div>
-
-          <div className="space-y-4">
-            {architecture.map((tier, ti) => (
-              <motion.div
-                key={tier.tier}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: ti * 0.08 }}
-                className={`rounded-2xl border-l-4 ${tier.accent} bg-warm-white/60 p-6 md:p-8`}
-              >
-                <div className="mb-4 flex flex-wrap items-baseline gap-3">
-                  <span className={`text-xs font-bold uppercase tracking-[0.18em] ${tier.labelColor}`}>
-                    {tier.tier}
-                  </span>
-                  <span className="text-xs font-light text-grey/60">{tier.description}</span>
-                </div>
-                <div className="space-y-4">
-                  {tier.groups.map((group) => (
-                    <div key={group.label} className="flex flex-wrap items-start gap-3">
-                      <span className="shrink-0 w-36 text-xs font-semibold text-navy/50 pt-1 hidden md:block">
-                        {group.label}
-                      </span>
-                      <div className="flex flex-wrap gap-2">
-                        <span className="shrink-0 text-xs font-semibold text-navy/50 md:hidden">{group.label}:</span>
-                        {group.items.map((item) => (
-                          <span
-                            key={item}
-                            className="rounded-full border border-grey/20 bg-white px-3 py-1 text-xs font-light text-grey"
-                          >
-                            {item}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </motion.div>
-            ))}
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.1 }}
+          >
+            <ArchitectureExplorer />
+          </motion.div>
         </div>
       </section>
 
