@@ -77,6 +77,25 @@ const leadership: TeamMember[] = [
       'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/69f302142cd2dca8aba0e22a_WhatsApp%20Image%202026-04-30%20at%2012.35.34%20PM.jpeg',
     linkedin: 'https://www.linkedin.com/in/rachitnegi/',
   },
+  {
+    name: 'Manik Sood',
+    role: 'Legal & Compliance',
+    desc: 'Lawyer | ex-Paytm, ex-Zee, ex-Healthkart | 20+ years cross-industry expertise',
+    image:
+      'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/6a142ce51a9da04ec8dc7a9a_manik.avif',
+    linkedin: 'https://www.linkedin.com/in/manik-sood-64402313/',
+  },
+];
+
+const eirTeam: TeamMember[] = [
+  {
+    name: 'Aditi Agrawal',
+    role: 'Entrepreneur in Residence',
+    desc: 'Founder, StickyPins | IIM Bangalore',
+    image:
+      'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/6a142ce6dd742f13761925d7_WhatsApp%20Image%202026-05-25%20at%203.23.59%20PM.avif',
+    linkedin: 'https://www.linkedin.com/in/aditiagrawal2609',
+  },
 ];
 
 const programTeam: TeamMember[] = [
@@ -182,6 +201,7 @@ export default function TeamPage() {
         </div>
 
         <TeamGridSection title="Leadership" members={leadership} />
+        <TeamGridSection title="Entrepreneurs in Residence" members={eirTeam} />
         <TeamGridSection title="Program Team" members={programTeam} />
 
         <section>
