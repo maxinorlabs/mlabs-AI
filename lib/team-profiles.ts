@@ -396,16 +396,16 @@ export const teamProfiles: TeamProfile[] = [
     slug: 'aditi-agrawal',
     name: 'Aditi Agrawal',
     role: 'Entrepreneur in Residence',
-    shortDesc: 'Founder, StickyPins | IIM Bangalore',
+    shortDesc: 'Founder, StickyPins & Avyu India | MBA, KJ Somaiya | IIM Bangalore',
     image:
       'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/6a142ce6dd742f13761925d7_WhatsApp%20Image%202026-05-25%20at%203.23.59%20PM.avif',
     linkedin: 'https://www.linkedin.com/in/aditiagrawal2609',
     section: 'eir',
     tagline: 'Founder building in consumer and marketing, embedded inside the Maxinor operator ecosystem.',
     bio: [
-      'Aditi is an Entrepreneur in Residence at Maxinor, working at the intersection of consumer brand building and marketing strategy. She is the founder of StickyPins and brings an IIM Bangalore pedigree alongside first-hand founder experience to her work within the studio.',
-      'As an EIR, Aditi is not an advisor on the sidelines. She is embedded in the Maxinor operator ecosystem while building, combining access to the operator network, shared infrastructure, and institutional knowledge with the urgency and ownership that only comes from being a founder actively building her own company.',
-      'Her presence in the Marketing domain brings a practitioner lens to D2C brand building and consumer marketing, informed by her experience founding and building StickyPins.',
+      'Aditi is an Entrepreneur in Residence at Maxinor, working at the intersection of consumer brand building and marketing strategy. She is the founder of StickyPins and Avyu India, and brings the sharp practitioner lens of someone actively building businesses in the consumer space.',
+      'Her academic foundation is an MBA from KJ Somaiya Institute of Management Studies and Research, Mumbai, complemented by a Leadership and Growth Programme from IIM Bangalore. This combination of management depth and institutional rigour shapes how she thinks about brand building, growth strategy, and consumer behaviour.',
+      'As an EIR, Aditi is not an advisor on the sidelines. She is embedded in the Maxinor operator ecosystem while building, combining access to the operator network, shared infrastructure, and institutional knowledge with the urgency and ownership that only comes from being a founder actively building.',
     ],
     expertise: [
       'Brand building',
@@ -420,8 +420,16 @@ export const teamProfiles: TeamProfile[] = [
         context: 'Consumer brand founded by Aditi, building in the D2C and branded merchandise space.',
       },
       {
+        company: 'Avyu India',
+        context: 'Venture founded and led by Aditi, building in the consumer and brand space.',
+      },
+      {
+        company: 'KJ Somaiya Institute of Management Studies and Research',
+        context: 'MBA from one of Mumbai\'s leading management institutes, with a strong focus on business strategy and marketing.',
+      },
+      {
         company: 'IIM Bangalore',
-        context: "Post-graduate management education at one of India's most prestigious business schools.",
+        context: "Leadership and Growth Programme at one of India's most prestigious management institutions.",
       },
     ],
   },
