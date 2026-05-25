@@ -74,7 +74,7 @@ const howItWorks = [
     step: '01',
     title: 'Plugged In on Day One',
     description:
-      'Every company under the Maxinor umbrella — Build, Scale, or Invest — gets access to the shared platform from the moment engagement begins.',
+      'Every company under the Maxinor umbrella (Build, Scale, or Invest) gets access to the shared platform from the moment engagement begins.',
   },
   {
     step: '02',

@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   try {
     const post = getPost(slug);
-    const title = post.metaTitle ?? `${post.title} — Maxinor Blog`;
+    const title = post.metaTitle ?? `${post.title} | Maxinor Blog`;
     const description = post.metaDescription ?? post.excerpt;
     const url = buildSiteUrl(`/blog/${post.slug}`);
     const coverImages = post.coverImage
@@ -172,7 +172,7 @@ export default async function BlogPostPage({ params }: Props) {
                     Ready to work with Maxinor?
                   </h2>
                   <p className="mb-8 text-base font-light leading-relaxed text-navy/70 md:mb-10 md:text-lg">
-                    Whether you&apos;re a founder, investor, or operator — we&apos;d love to hear from you.
+                    Whether you&apos;re a founder, investor, or operator, we&apos;d love to hear from you.
                   </p>
                   <Link
                     href="/contact"

@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     default: "Maxinor — India's 1st Operator Led AI Venture Studio",
     template: '%s | Maxinor',
   },
-  description: "India's first operator-led venture studio. We build, scale, and back startups, SMEs, and corporates through hands-on execution — not just capital.",
+  description: "India's first operator-led venture studio. We build, scale, and back startups, SMEs, and corporates through hands-on execution, not just capital.",
   keywords: ['venture studio India', 'operator led venture studio', 'startup studio India', 'venture building', 'SME growth', 'Maxinor'],
   authors: [{ name: 'Maxinor', url: SITE_URL }],
   creator: 'Maxinor',
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     url: SITE_URL,
     siteName: 'Maxinor',
     title: "Maxinor — India's 1st Operator Led AI Venture Studio",
-    description: "India's first operator-led venture studio. We build, scale, and back startups, SMEs, and corporates through hands-on execution — not just capital.",
+    description: "India's first operator-led venture studio. We build, scale, and back startups, SMEs, and corporates through hands-on execution, not just capital.",
     images: [{ url: '/opengraph-image', width: 1200, height: 630, alt: "Maxinor — India's 1st Operator Led AI Venture Studio" }],
   },
   twitter: {

@@ -25,7 +25,7 @@ const pillars = [
     items: [
       'Capital deployed only after operator due diligence',
       'Insider visibility into team, traction, and execution capacity',
-      'No cold deals — every investment follows operator engagement',
+      'No cold deals. Every investment follows operator engagement',
       'Significantly lower information asymmetry vs. traditional VC',
     ],
   },

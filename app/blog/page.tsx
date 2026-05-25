@@ -38,7 +38,7 @@ export default function BlogPage() {
             Insights & Perspectives
           </h1>
           <p className="mt-4 max-w-2xl text-base font-light leading-relaxed text-navy/70 md:text-lg">
-            Venture building, SME growth, and the Indian startup ecosystem — from operators who&apos;ve been in the trenches.
+            Venture building, SME growth, and the Indian startup ecosystem. From operators who&apos;ve been in the trenches.
           </p>
         </div>
 

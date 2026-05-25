@@ -84,10 +84,10 @@ const problems = [
 ];
 
 const steps = [
-  { number: '01', title: 'Discover', description: 'Understand your business, market, and the real problem — not the symptom.' },
-  { number: '02', title: 'Diagnose', description: '30-day Venture Sprint — hands-on diagnosis of what\'s blocking scale.' },
+  { number: '01', title: 'Discover', description: 'Understand your business, market, and the real problem. Not the symptom.' },
+  { number: '02', title: 'Diagnose', description: '30-day Venture Sprint: hands-on diagnosis of what\'s blocking scale.' },
   { number: '03', title: 'Plan', description: 'Tailored execution roadmap with milestones, owners, timelines, and capital triggers.' },
-  { number: '04', title: 'Embed', description: 'Operator(s) go in — not as advisors but as your team. Accountable, not adjacent.' },
+  { number: '04', title: 'Embed', description: 'Operator(s) go in, not as advisors but as your team. Accountable, not adjacent.' },
   { number: '05', title: 'Execute', description: 'Measurable work done week by week, with clear accountability and output metrics.' },
   { number: '06', title: 'Scale', description: 'Milestone-linked capital + Series A preparation. Growth that compounds.' },
 ];
@@ -108,7 +108,7 @@ const engagements = [
     name: 'Venture Partner',
     duration: '6 months',
     model: 'Embedded · Equity + execution',
-    description: 'An operator joins your team — embedded, accountable, and aligned on outcomes through equity.',
+    description: 'An operator joins your team: embedded, accountable, and aligned on outcomes through equity.',
     bullets: ['Full execution ownership', 'Weekly operating cadence', 'Capital milestone tracking', 'Series A preparation'],
     bestFor: 'Startups at ₹1–20 Cr ARR ready to scale.',
     commercial: 'Equity-linked + execution fee.',
@@ -119,7 +119,7 @@ const engagements = [
     name: 'Venture CXO',
     duration: '6–12 months',
     model: 'Fractional · C-level',
-    description: 'A fractional CXO who operates as part of your leadership team — CMO, CTO, CFO, or CPO.',
+    description: 'A fractional CXO who operates as part of your leadership team: CMO, CTO, CFO, or CPO.',
     bullets: ['Functional gap coverage', 'Team building and systems', 'Transition planning', 'Hiring the permanent hire'],
     bestFor: 'Companies that need executive depth without full-time cost.',
     commercial: 'Retainer.',

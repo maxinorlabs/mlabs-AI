@@ -195,7 +195,7 @@ export default async function TeamMemberPage({ params }: { params: Promise<{ slu
             Want {profile.name.split(' ')[0]} on your team?
           </h2>
           <p className="mb-8 text-base font-light text-warm-white/60">
-            Maxinor operators embed inside your business to execute — not just advise.
+            Maxinor operators embed inside your business to execute, not just advise.
           </p>
           <Link
             href="/contact"
