@@ -350,19 +350,20 @@ export const teamProfiles: TeamProfile[] = [
     slug: 'manik-sood',
     name: 'Manik Sood',
     role: 'Legal & Compliance',
-    shortDesc: 'Lawyer | ex-Paytm, ex-Zee, ex-Healthkart | 20+ years cross-industry expertise',
+    shortDesc: 'Lawyer | Founder, Law Grammar | ex-Paytm, ex-Zee, ex-Healthkart',
     image:
       'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/6a142ce51a9da04ec8dc7a9a_manik.avif',
     linkedin: 'https://www.linkedin.com/in/manik-sood-64402313/',
     section: 'leadership',
-    tagline: 'Seasoned legal professional with two decades of cross-industry expertise spanning Real Estate, E-commerce, Fintech, and Media & Entertainment.',
+    tagline: 'Founder of Law Grammar. Two decades of cross-industry legal expertise spanning FinTech, Real Estate, E-commerce, and Media.',
     bio: [
       'Manik brings over two decades of legal experience spanning Real Estate, E-commerce, Fintech, and Media and Entertainment. Having worked with leading corporates such as Paytm, Zee, and Healthkart and law firms including Mills Oakley and Kochhar and Co., he brings a rare blend of in-house and private practice experience that few legal professionals in India can match.',
-      'His track record covers high-stakes transactions and crafting robust legal frameworks across both corporate and individual mandates. The combination of in-house operator experience at high-growth companies and private practice depth at established law firms makes him a trusted advisor for startups navigating the legal complexity of scaling in India.',
+      'He is also the founder of Law Grammar, a law firm that works directly with startups, SMEs, and individuals on incorporation, structuring, compliance, and transactional matters. If you are looking to incorporate a company or need direct legal services, Law Grammar is the fastest route in.',
       'At Maxinor, Manik leads Legal and Compliance, helping portfolio founders build the legal infrastructure, transactional frameworks, and regulatory navigability that companies need as they scale and attract institutional capital.',
     ],
     expertise: [
       'Corporate law',
+      'Startup incorporation',
       'Fintech regulation',
       'M&A transactions',
       'Startup legal frameworks',
@@ -370,6 +371,10 @@ export const teamProfiles: TeamProfile[] = [
       'Media and entertainment law',
     ],
     career: [
+      {
+        company: 'Law Grammar',
+        context: 'Manik\'s own law firm, offering direct legal services to startups, SMEs, and individuals — from incorporation and structuring to compliance and transactional advisory.',
+      },
       {
         company: 'Paytm',
         context: "India's largest digital payments and fintech platform, navigating legal complexity at consumer and enterprise scale.",

@@ -19,9 +19,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const title = post.metaTitle ?? `${post.title} — Maxinor Blog`;
     const description = post.metaDescription ?? post.excerpt;
     const url = buildSiteUrl(`/blog/${post.slug}`);
-    const image = post.coverImage
-      ? buildSiteUrl(post.coverImage)
-      : buildSiteUrl('/og-default.png');
+    const coverImages = post.coverImage
+      ? [{ url: buildSiteUrl(post.coverImage), width: 1200, height: 630, alt: post.title }]
+      : undefined;
 
     return {
       title,
@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         url,
         title,
         description,
-        images: [{ url: image, width: 1200, height: 630, alt: post.title }],
+        ...(coverImages && { images: coverImages }),
         publishedTime: post.date,
         modifiedTime: post.lastModified ?? post.date,
         authors: [post.author],
@@ -44,7 +44,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         card: 'summary_large_image',
         title,
         description,
-        images: [image],
+        ...(coverImages && { images: [coverImages[0].url] }),
       },
     };
   } catch {
