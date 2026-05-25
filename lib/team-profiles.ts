@@ -11,7 +11,7 @@ export type TeamProfile = {
   image?: string;
   imagePosition?: string;
   linkedin: string;
-  section: 'leadership' | 'program';
+  section: 'leadership' | 'eir' | 'program';
   tagline: string;
   bio: string[];
   expertise: string[];
@@ -343,6 +343,85 @@ export const teamProfiles: TeamProfile[] = [
       {
         company: 'Maxinor',
         context: 'Product Growth, GTM & AI, working with founders across growth strategy and AI-led execution.',
+      },
+    ],
+  },
+  {
+    slug: 'manik-sood',
+    name: 'Manik Sood',
+    role: 'Legal & Compliance',
+    shortDesc: 'Lawyer | ex-Paytm, ex-Zee, ex-Healthkart | 20+ years cross-industry expertise',
+    image:
+      'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/6a142ce51a9da04ec8dc7a9a_manik.avif',
+    linkedin: 'https://www.linkedin.com/in/manik-sood-64402313/',
+    section: 'leadership',
+    tagline: 'Seasoned legal professional with two decades of cross-industry expertise spanning Real Estate, E-commerce, Fintech, and Media & Entertainment.',
+    bio: [
+      'Manik brings over two decades of legal experience spanning Real Estate, E-commerce, Fintech, and Media and Entertainment. Having worked with leading corporates such as Paytm, Zee, and Healthkart and law firms including Mills Oakley and Kochhar and Co., he brings a rare blend of in-house and private practice experience that few legal professionals in India can match.',
+      'His track record covers high-stakes transactions and crafting robust legal frameworks across both corporate and individual mandates. The combination of in-house operator experience at high-growth companies and private practice depth at established law firms makes him a trusted advisor for startups navigating the legal complexity of scaling in India.',
+      'At Maxinor, Manik leads Legal and Compliance, helping portfolio founders build the legal infrastructure, transactional frameworks, and regulatory navigability that companies need as they scale and attract institutional capital.',
+    ],
+    expertise: [
+      'Corporate law',
+      'Fintech regulation',
+      'M&A transactions',
+      'Startup legal frameworks',
+      'Real estate law',
+      'Media and entertainment law',
+    ],
+    career: [
+      {
+        company: 'Paytm',
+        context: "India's largest digital payments and fintech platform, navigating legal complexity at consumer and enterprise scale.",
+      },
+      {
+        company: 'Zee Entertainment',
+        context: "One of India's largest media and entertainment conglomerates, with complex IP, licensing, and regulatory exposure.",
+      },
+      {
+        company: 'Healthkart',
+        context: 'Leading health and nutrition e-commerce platform in India, operating across consumer and regulatory domains.',
+      },
+      {
+        company: 'Kochhar & Co.',
+        context: "One of India's largest and most respected full-service law firms, with practice across corporate, M&A, and regulatory matters.",
+      },
+      {
+        company: 'Mills Oakley',
+        context: 'Leading independent Australian law firm with cross-border transaction and advisory practice.',
+      },
+    ],
+  },
+  {
+    slug: 'aditi-agrawal',
+    name: 'Aditi Agrawal',
+    role: 'Entrepreneur in Residence',
+    shortDesc: 'Founder, StickyPins | IIM Bangalore',
+    image:
+      'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/6a142ce6dd742f13761925d7_WhatsApp%20Image%202026-05-25%20at%203.23.59%20PM.avif',
+    linkedin: 'https://www.linkedin.com/in/aditiagrawal2609',
+    section: 'eir',
+    tagline: 'Founder building in consumer and marketing, embedded inside the Maxinor operator ecosystem.',
+    bio: [
+      'Aditi is an Entrepreneur in Residence at Maxinor, working at the intersection of consumer brand building and marketing strategy. She is the founder of StickyPins and brings an IIM Bangalore pedigree alongside first-hand founder experience to her work within the studio.',
+      'As an EIR, Aditi is not an advisor on the sidelines. She is embedded in the Maxinor operator ecosystem while building, combining access to the operator network, shared infrastructure, and institutional knowledge with the urgency and ownership that only comes from being a founder actively building her own company.',
+      'Her presence in the Marketing domain brings a practitioner lens to D2C brand building and consumer marketing, informed by her experience founding and building StickyPins.',
+    ],
+    expertise: [
+      'Brand building',
+      'Consumer marketing',
+      'D2C strategy',
+      'Marketing operations',
+      'Founder strategy',
+    ],
+    career: [
+      {
+        company: 'StickyPins',
+        context: 'Consumer brand founded by Aditi, building in the D2C and branded merchandise space.',
+      },
+      {
+        company: 'IIM Bangalore',
+        context: "Post-graduate management education at one of India's most prestigious business schools.",
       },
     ],
   },
