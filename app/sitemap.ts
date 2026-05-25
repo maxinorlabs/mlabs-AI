@@ -3,9 +3,8 @@ import { getAllPosts } from '@/lib/blog';
 import { buildSiteUrl } from '@/lib/site';
 import { teamProfiles } from '@/lib/team-profiles';
 
-const staticRoutes = [
+const pageRoutes = [
   { path: '/', priority: 1.0, changeFrequency: 'weekly' as const },
-  { path: '/blog', priority: 0.9, changeFrequency: 'daily' as const },
   { path: '/domains', priority: 0.85, changeFrequency: 'monthly' as const },
   { path: '/domains/bfsi', priority: 0.8, changeFrequency: 'monthly' as const },
   { path: '/startups', priority: 0.8, changeFrequency: 'monthly' as const },
@@ -17,26 +16,34 @@ const staticRoutes = [
   { path: '/corporate', priority: 0.8, changeFrequency: 'monthly' as const },
   { path: '/investors', priority: 0.8, changeFrequency: 'monthly' as const },
   { path: '/team', priority: 0.75, changeFrequency: 'monthly' as const },
+  { path: '/blog', priority: 0.9, changeFrequency: 'daily' as const },
   { path: '/contact', priority: 0.7, changeFrequency: 'yearly' as const },
   { path: '/privacy', priority: 0.3, changeFrequency: 'yearly' as const },
   { path: '/terms', priority: 0.3, changeFrequency: 'yearly' as const },
 ];
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const posts = getAllPosts();
+export function generateSitemaps() {
+  return [{ id: 0 }, { id: 1 }];
+}
 
-  const staticEntries: MetadataRoute.Sitemap = staticRoutes.map(({ path, priority, changeFrequency }) => ({
+export default function sitemap({ id }: { id: number }): MetadataRoute.Sitemap {
+  // Sitemap 1: all blog posts
+  if (id === 1) {
+    const posts = getAllPosts();
+    return posts.map((post) => ({
+      url: buildSiteUrl(`/blog/${post.slug}`),
+      lastModified: new Date(post.lastModified ?? post.date),
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    }));
+  }
+
+  // Sitemap 0: all pages + team profiles
+  const pageEntries: MetadataRoute.Sitemap = pageRoutes.map(({ path, priority, changeFrequency }) => ({
     url: buildSiteUrl(path),
     lastModified: new Date(),
     changeFrequency,
     priority,
-  }));
-
-  const postEntries: MetadataRoute.Sitemap = posts.map((post) => ({
-    url: buildSiteUrl(`/blog/${post.slug}`),
-    lastModified: new Date(post.lastModified ?? post.date),
-    changeFrequency: 'monthly' as const,
-    priority: 0.7,
   }));
 
   const teamEntries: MetadataRoute.Sitemap = teamProfiles.map((member) => ({
@@ -46,5 +53,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
-  return [...staticEntries, ...postEntries, ...teamEntries];
+  return [...pageEntries, ...teamEntries];
 }
