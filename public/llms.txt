@@ -9,6 +9,8 @@ Maxinor (mlabs.co.in) is an operator-led venture studio based in India. Unlike t
 - [Homepage](https://mlabs.co.in/): Overview of Maxinor's model, what we do, engagement types, and portfolio
 - [Venture Build](https://mlabs.co.in/build): How Maxinor creates AI-native companies from validated white spaces — covering ideation, product, GTM, and founding team assembly
 - [Venture Scale](https://mlabs.co.in/scale): Operator-embedded execution for founder-led ventures, covering Revenue, Operations, Product & Design, and AI & Data engines
+- [Venture Investment](https://mlabs.co.in/investment): Milestone-linked capital for operator-validated startups from pre-seed to pre-Series A
+- [AI Capability Centre](https://mlabs.co.in/capability-centre): Shared AI and technology infrastructure available to all Maxinor portfolio companies
 - [For Startups](https://mlabs.co.in/startups): Portfolio companies and the pitch process for early-stage founders
 - [For SMEs](https://mlabs.co.in/sme): Venture-grade execution and operator expertise for small and medium enterprises
 - [For Corporates](https://mlabs.co.in/corporate): Corporate accelerators, venture building, and strategic partnerships
@@ -79,6 +81,9 @@ Maxinor publishes operator-tested content on venture building, startup strategy,
 - [GEO for Mid-Market B2B: The 2026 Guide](https://mlabs.co.in/blog/geo-for-mid-market-b2b-2026-guide)
 - [How to Measure SEO ROI for B2B](https://mlabs.co.in/blog/how-to-measure-seo-roi-b2b)
 - [Mid-Market SEO Playbook](https://mlabs.co.in/blog/mid-market-seo-playbook)
+- [The Cognitive Leverage Playbook: How Indian Founders Are Using AI to Think Faster](https://mlabs.co.in/blog/ai-agent-stack-indian-startup-founder-2026)
+- [D2C Brands That Win in 2026 Will Own 5 Channels](https://mlabs.co.in/blog/d2c-omnichannel-india-2026-five-channels)
+- [The 90-Day Plan to Make Your Indian Startup Series A Ready in 2026](https://mlabs.co.in/blog/series-a-ready-90-day-plan-india-startup-2026)
 
 ## Contact
 
