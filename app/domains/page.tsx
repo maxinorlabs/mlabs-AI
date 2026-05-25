@@ -431,7 +431,7 @@ export default function DomainsPage() {
                   {domain.standaloneUrl && (
                     <Link
                       href={domain.standaloneUrl}
-                      className="inline-flex items-center gap-2 rounded-full border border-navy/20 px-6 py-4 text-sm font-semibold text-navy transition-all duration-300 hover:-translate-y-1 hover:border-brand/40 hover:text-brand"
+                      className="inline-flex items-center gap-2 rounded-full border border-navy/20 px-8 py-4 text-base font-semibold tracking-wide text-navy transition-all duration-300 hover:-translate-y-1 hover:border-brand/40 hover:text-brand sm:px-10 sm:py-5"
                     >
                       Full Domain Blueprint <ArrowRight className="h-3.5 w-3.5" />
                     </Link>
