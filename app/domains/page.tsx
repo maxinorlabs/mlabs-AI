@@ -72,6 +72,7 @@ const domains = [
     number: '03',
     name: 'BFSI',
     sector: 'Banking, Financial Services & Insurance',
+    standaloneUrl: '/domains/bfsi',
     problem:
       "Your FinTech product is live. Compliance and portfolio scale are the next wall.",
     capabilities: [
@@ -314,12 +315,22 @@ export default function DomainsPage() {
                     <span className="font-semibold text-navy">{domain.operator}</span> · {domain.operatorBg}
                   </p>
                 </div>
-                <button
-                  onClick={() => scrollTo(domain.id)}
-                  className="inline-flex items-center gap-1 text-sm font-semibold text-brand transition-all duration-200 hover:gap-2"
-                >
-                  Explore <ArrowRight className="h-3.5 w-3.5" />
-                </button>
+                <div className="flex flex-wrap items-center gap-4">
+                  <button
+                    onClick={() => scrollTo(domain.id)}
+                    className="inline-flex items-center gap-1 text-sm font-semibold text-brand transition-all duration-200 hover:gap-2"
+                  >
+                    Explore <ArrowRight className="h-3.5 w-3.5" />
+                  </button>
+                  {domain.standaloneUrl && (
+                    <Link
+                      href={domain.standaloneUrl}
+                      className="inline-flex items-center gap-1 text-sm font-medium text-grey/60 transition-all duration-200 hover:text-brand hover:gap-2"
+                    >
+                      Full Blueprint <ArrowRight className="h-3 w-3" />
+                    </Link>
+                  )}
+                </div>
               </motion.div>
             ))}
           </div>
