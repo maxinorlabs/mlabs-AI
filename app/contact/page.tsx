@@ -255,7 +255,7 @@ export default function ContactPage() {
 
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-navy">
-                    Attachment <span className="font-normal text-navy/50">(optional — PDF, PPT, DOC, up to 10MB)</span>
+                    Attachment <span className="font-normal text-navy/50">(optional: PDF, PPT, DOC, up to 10MB)</span>
                   </label>
                   {attachedFile ? (
                     <div className="flex items-center gap-3 rounded-xl border border-navy/20 bg-white px-4 py-3">

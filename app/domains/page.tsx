@@ -190,7 +190,7 @@ const domains = [
     name: 'Legal',
     sector: 'Legal, Compliance & Corporate Governance',
     problem:
-      "Your legal layer is one audit — or one co-founder dispute — away from a serious problem.",
+      "Your legal layer is one audit, or one co-founder dispute, away from a serious problem.",
     capabilities: [
       'Startup structuring and founder agreements',
       'Regulatory compliance and licensing advisory',
@@ -601,7 +601,7 @@ export default function DomainsPage() {
               Not sure which domain fits your problem?
             </h2>
             <p className="mb-8 text-base font-light leading-relaxed text-grey md:text-lg">
-              Tell us what you&apos;re building. We&apos;ll tell you where we fit — and if we don&apos;t, we&apos;ll say so.
+              Tell us what you&apos;re building. We&apos;ll tell you where we fit, and if we don&apos;t, we&apos;ll say so.
             </p>
             <Link href="/contact" className={primaryBtn}>
               Start the conversation <ArrowRight className="ml-2 h-4 w-4" />
