@@ -1,17 +1,22 @@
 import type { MetadataRoute } from 'next';
 import { getAllPosts } from '@/lib/blog';
 import { buildSiteUrl } from '@/lib/site';
+import { teamProfiles } from '@/lib/team-profiles';
 
 const staticRoutes = [
   { path: '/', priority: 1.0, changeFrequency: 'weekly' as const },
   { path: '/blog', priority: 0.9, changeFrequency: 'daily' as const },
+  { path: '/domains', priority: 0.85, changeFrequency: 'monthly' as const },
+  { path: '/domains/bfsi', priority: 0.8, changeFrequency: 'monthly' as const },
   { path: '/startups', priority: 0.8, changeFrequency: 'monthly' as const },
   { path: '/scale', priority: 0.8, changeFrequency: 'monthly' as const },
   { path: '/build', priority: 0.8, changeFrequency: 'monthly' as const },
+  { path: '/investment', priority: 0.8, changeFrequency: 'monthly' as const },
+  { path: '/capability-centre', priority: 0.75, changeFrequency: 'monthly' as const },
   { path: '/sme', priority: 0.8, changeFrequency: 'monthly' as const },
   { path: '/corporate', priority: 0.8, changeFrequency: 'monthly' as const },
   { path: '/investors', priority: 0.8, changeFrequency: 'monthly' as const },
-  { path: '/team', priority: 0.7, changeFrequency: 'monthly' as const },
+  { path: '/team', priority: 0.75, changeFrequency: 'monthly' as const },
   { path: '/contact', priority: 0.7, changeFrequency: 'yearly' as const },
   { path: '/privacy', priority: 0.3, changeFrequency: 'yearly' as const },
   { path: '/terms', priority: 0.3, changeFrequency: 'yearly' as const },
@@ -34,5 +39,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [...staticEntries, ...postEntries];
+  const teamEntries: MetadataRoute.Sitemap = teamProfiles.map((member) => ({
+    url: buildSiteUrl(`/team/${member.slug}`),
+    lastModified: new Date(),
+    changeFrequency: 'monthly' as const,
+    priority: 0.6,
+  }));
+
+  return [...staticEntries, ...postEntries, ...teamEntries];
 }
