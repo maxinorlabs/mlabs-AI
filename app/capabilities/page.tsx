@@ -57,7 +57,7 @@ const capabilities = [
     category: 'People & Org Building',
     title: 'Talent, Culture & Organisational Design',
     description:
-      'Scaling a company means scaling your people. Most founders figure this out 12 months too late.',
+      'Scaling a company is ultimately about Talent Architecture, high-performing systems, and the growth and retention of people. Most founders realize this a year later than they should.',
     deliverables: [
       'Founding team gap analysis and role definition',
       'Org design for Series A and beyond',
