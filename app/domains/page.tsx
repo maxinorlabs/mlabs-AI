@@ -14,6 +14,7 @@ const domains = [
     number: '01',
     name: 'Media',
     sector: 'Broadcasting & Digital Media',
+    standaloneUrl: '/domains/media',
     problem:
       "You've built an audience. You're not monetising it at the rate you should be.",
     capabilities: [
@@ -43,6 +44,7 @@ const domains = [
     number: '02',
     name: 'D2C & Consumer',
     sector: 'Consumer Brands & Retail',
+    standaloneUrl: '/domains/d2c',
     problem:
       "You've got GMV. Your contribution margins are the real problem.",
     capabilities: [
@@ -102,6 +104,7 @@ const domains = [
     number: '04',
     name: 'Healthcare',
     sector: 'HealthTech & Clinical Tools',
+    standaloneUrl: '/domains/healthcare',
     problem:
       "You have hospital clients. Every deployment is still fully custom.",
     capabilities: [
@@ -131,6 +134,7 @@ const domains = [
     number: '05',
     name: 'Education',
     sector: 'EdTech & Workforce Development',
+    standaloneUrl: '/domains/education',
     problem:
       "You have learners. Employers don't recognise your outcomes yet.",
     capabilities: [
@@ -160,6 +164,7 @@ const domains = [
     number: '06',
     name: 'Marketing',
     sector: 'Brand Strategy & Consumer Marketing',
+    standaloneUrl: '/domains/marketing',
     problem:
       "Your brand is visible. Your conversion rate tells a different story.",
     capabilities: [
@@ -189,6 +194,7 @@ const domains = [
     number: '07',
     name: 'Legal',
     sector: 'Legal, Compliance & Corporate Governance',
+    standaloneUrl: '/domains/legal',
     problem:
       "Your legal layer is one audit, or one co-founder dispute, away from a serious problem.",
     capabilities: [
