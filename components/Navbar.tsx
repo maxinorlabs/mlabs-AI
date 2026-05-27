@@ -5,7 +5,11 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
-import { Menu, X, ChevronDown, ChevronRight } from 'lucide-react';
+import {
+  Menu, X, ChevronDown, ChevronRight,
+  Brain, Cpu, Database, Code2, Palette, Smartphone, Bot,
+  GitMerge, Building2, Zap, Layers, Users, Cloud,
+} from 'lucide-react';
 
 const logoSrc =
   'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/68e4e417db41aba4d67eb664_50861696-aac9-4ad9-988c-2bcebfeb%20(1).png';
@@ -20,11 +24,35 @@ type DropdownItem = {
   subItems?: SubItem[];
 };
 
+type MegaItem = {
+  name: string;
+  path: string;
+  icon: React.ComponentType<{ className?: string }>;
+  desc: string;
+};
+
 type NavLink = {
   name: string;
   path: string;
   dropdown?: DropdownItem[];
+  mega?: MegaItem[];
 };
+
+const capabilitiesServices: MegaItem[] = [
+  { name: 'AI & ML Advisory', path: '/capabilities/ai-services', icon: Brain, desc: 'Strategy and roadmap for AI adoption' },
+  { name: 'Artificial Intelligence', path: '/capabilities/artificial-intelligence', icon: Cpu, desc: 'LLMs, agents, and intelligent automation' },
+  { name: 'Big Data', path: '/capabilities/big-data', icon: Database, desc: 'Data pipelines, lakes, and analytics' },
+  { name: 'Software Development', path: '/capabilities/software-development', icon: Code2, desc: 'Full-stack engineering and scalable systems' },
+  { name: 'UX Design Studio', path: '/capabilities/ux-design', icon: Palette, desc: 'Research-led, human-centred product design' },
+  { name: 'Mobile App Development', path: '/capabilities/mobile-app', icon: Smartphone, desc: 'Native and cross-platform mobile apps' },
+  { name: 'RPA', path: '/capabilities/rpa', icon: Bot, desc: 'Automate workflows, eliminate repetition' },
+  { name: 'DevOps Consulting', path: '/capabilities/devops', icon: GitMerge, desc: 'CI/CD pipelines and cloud infrastructure' },
+  { name: 'Global Capability Center', path: '/capability-centre', icon: Building2, desc: 'Build and operate your offshore tech hub' },
+  { name: 'Digital Transformation', path: '/capabilities/digital-transformation', icon: Zap, desc: 'End-to-end modernisation programmes' },
+  { name: 'Platform Strategy', path: '/capabilities/platform-strategy', icon: Layers, desc: 'Architecture and product strategy for scale' },
+  { name: 'Talent & RPO', path: '/capabilities/talent-org', icon: Users, desc: 'Hire, build, and grow your teams' },
+  { name: 'Cloud Services', path: '/capabilities/cloud-services', icon: Cloud, desc: 'Cloud migration and managed services' },
+];
 
 export function Navbar() {
   const pathname = usePathname();
@@ -53,7 +81,11 @@ export function Navbar() {
         { name: 'Legal', path: '/domains/legal' },
       ],
     },
-    { name: 'Capabilities', path: '/capabilities' },
+    {
+      name: 'Capabilities',
+      path: '/capabilities',
+      mega: capabilitiesServices,
+    },
     {
       name: 'Industries',
       path: '/startups',
@@ -106,7 +138,78 @@ export function Navbar() {
         {/* Desktop nav */}
         <nav className="hidden lg:flex gap-8 text-sm font-medium tracking-wide">
           {navLinks.map((link) =>
-            link.dropdown ? (
+            link.mega ? (
+              /* Mega-menu item */
+              <div
+                key={link.path}
+                className="relative"
+                onMouseEnter={() => setOpenDropdown(link.name)}
+                onMouseLeave={() => setOpenDropdown(null)}
+              >
+                <Link
+                  href={link.path}
+                  className={`transition-colors flex items-center gap-1 ${isActive(link.path)}`}
+                >
+                  {link.name}
+                  <motion.span animate={{ rotate: openDropdown === link.name ? 180 : 0 }}>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="m6 9 6 6 6-6" />
+                    </svg>
+                  </motion.span>
+                </Link>
+
+                <AnimatePresence>
+                  {openDropdown === link.name && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 10 }}
+                      className="absolute top-full left-1/2 -translate-x-1/2 bg-navy text-warm-white border border-white/10 rounded-2xl shadow-2xl mt-2 p-6"
+                      style={{ width: '720px' }}
+                    >
+                      {/* Header row */}
+                      <div className="flex items-center justify-between mb-3">
+                        <span className="text-xs uppercase tracking-[0.15em] font-semibold text-warm-white/50">
+                          All Services
+                        </span>
+                        <Link
+                          href="/capabilities"
+                          className="text-xs text-brand hover:text-brand/80 transition-colors flex items-center gap-1"
+                        >
+                          View all capabilities
+                          <ChevronRight className="w-3 h-3" />
+                        </Link>
+                      </div>
+                      <div className="border-t border-white/10 mb-4" />
+
+                      {/* 3-column service grid */}
+                      <div className="grid grid-cols-3 gap-1.5">
+                        {link.mega.map((item) => (
+                          <Link
+                            key={item.path}
+                            href={item.path}
+                            className="flex items-start gap-3 p-3 rounded-xl hover:bg-white/5 transition-colors group"
+                          >
+                            <div className="w-8 h-8 rounded-lg bg-brand/20 flex items-center justify-center flex-shrink-0 group-hover:bg-brand/30 transition-colors mt-0.5">
+                              <item.icon className="w-4 h-4 text-brand" />
+                            </div>
+                            <div className="min-w-0">
+                              <div className="text-sm font-medium text-warm-white group-hover:text-brand transition-colors leading-snug">
+                                {item.name}
+                              </div>
+                              <div className="text-xs text-warm-white/45 mt-0.5 leading-snug">
+                                {item.desc}
+                              </div>
+                            </div>
+                          </Link>
+                        ))}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            ) : link.dropdown ? (
+              /* Standard dropdown item */
               <div
                 key={link.path}
                 className="relative"
@@ -136,12 +239,10 @@ export function Navbar() {
                     >
                       {link.dropdown.map((sub, si) => (
                         <div key={sub.path}>
-                          {/* Divider before item */}
                           {sub.header && si > 0 && <div className="mx-6 my-2 border-t border-white/10" />}
                           {sub.divider && <div className="mx-6 my-2 border-t border-white/10" />}
 
                           {sub.subItems ? (
-                            /* Item with sub-items: hover to expand */
                             <div
                               onMouseEnter={() => setHoveredSub(sub.name)}
                               onMouseLeave={() => setHoveredSub(null)}
@@ -176,7 +277,6 @@ export function Navbar() {
                               </AnimatePresence>
                             </div>
                           ) : (
-                            /* Regular item */
                             <Link
                               href={sub.path}
                               className={`block px-6 py-2.5 transition-colors hover:text-brand ${
@@ -197,6 +297,7 @@ export function Navbar() {
                 </AnimatePresence>
               </div>
             ) : (
+              /* Plain link */
               <Link key={link.path} href={link.path} className={`transition-colors ${isActive(link.path)}`}>
                 {link.name}
               </Link>
@@ -234,7 +335,45 @@ export function Navbar() {
           >
             <div className="flex flex-col px-6 py-8 gap-6">
               {navLinks.map((link) =>
-                link.dropdown ? (
+                link.mega ? (
+                  /* Mobile mega: collapsible flat list */
+                  <div key={link.path} className="flex flex-col">
+                    <button
+                      onClick={() => setMobileOpenDropdown(mobileOpenDropdown === link.name ? null : link.name)}
+                      className={`flex items-center justify-between text-lg font-medium tracking-wide w-full ${isActive(link.path)}`}
+                    >
+                      {link.name}
+                      <motion.span animate={{ rotate: mobileOpenDropdown === link.name ? 180 : 0 }} transition={{ duration: 0.2 }}>
+                        <ChevronDown className="w-5 h-5" />
+                      </motion.span>
+                    </button>
+                    <AnimatePresence>
+                      {mobileOpenDropdown === link.name && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: 'auto', opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.2 }}
+                          className="overflow-hidden"
+                        >
+                          <div className="flex flex-col gap-1 mt-3 ml-2 border-l-2 border-brand/30 pl-4">
+                            {link.mega.map((item) => (
+                              <Link
+                                key={item.path}
+                                href={item.path}
+                                onClick={() => { setIsOpen(false); setMobileOpenDropdown(null); }}
+                                className={`py-2 text-base font-medium tracking-wide ${isActive(item.path)}`}
+                              >
+                                {item.name}
+                              </Link>
+                            ))}
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                ) : link.dropdown ? (
+                  /* Mobile standard dropdown */
                   <div key={link.path} className="flex flex-col">
                     <button
                       onClick={() => setMobileOpenDropdown(mobileOpenDropdown === link.name ? null : link.name)}
@@ -310,6 +449,7 @@ export function Navbar() {
                     </AnimatePresence>
                   </div>
                 ) : (
+                  /* Plain link */
                   <Link
                     key={link.path}
                     href={link.path}
