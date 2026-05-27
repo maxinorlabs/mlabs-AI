@@ -126,7 +126,7 @@ export default function CapabilityCentrePage() {
             partner to design and run a high-performance Global Capability Centre, built for
             how business moves today.
           </p>
-          <div className="flex flex-wrap gap-3 md:gap-4">
+          <div className="mb-10 flex flex-wrap gap-3 md:gap-4">
             {['Operator-Led', 'AI-Native', 'End-to-End', '90 Days to First Delivery'].map((label) => (
               <div
                 key={label}
@@ -136,6 +136,14 @@ export default function CapabilityCentrePage() {
                 {label}
               </div>
             ))}
+          </div>
+          <div className="flex flex-wrap gap-4">
+            <Link href="/contact" className={primaryBtn}>
+              Build your AI GCC <ArrowRight className="h-4 w-4 shrink-0" />
+            </Link>
+            <Link href="/capabilities" className={ghostBtn}>
+              Our capabilities
+            </Link>
           </div>
         </div>
       </section>
