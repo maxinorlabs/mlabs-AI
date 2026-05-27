@@ -35,98 +35,82 @@ const painPoints = [
 
 const architecture = [
   {
-    tier: 'Customer Layer',
-    description: 'Who you serve and how they reach you',
+    tier: 'Product & Customer Layer',
+    description: 'Financial products you offer and the customers you serve',
     accent: 'border-teal-500',
     labelColor: 'text-teal-600',
     groups: [
       {
-        label: 'Segments',
-        items: ['Retail', 'Commercial', 'Mass Affluent', 'High Net Worth', 'Small & Medium Business'],
+        label: 'Financial Products',
+        items: ['Lending & Credit', 'Payments & Wallets', 'Insurance', 'Wealth & Investments', 'Embedded Finance', 'BNPL'],
       },
       {
-        label: 'Channels',
-        items: ['Web / App', 'Bank Branch', 'ATM', 'Call Centre', 'Kiosk', 'IVR'],
+        label: 'Customer Segments',
+        items: ['Retail Consumers', 'Mass Affluent & HNW', 'Small Business', 'Corporates', 'Underbanked & Rural', 'NRI Segment'],
       },
     ],
   },
   {
-    tier: 'Product Layer',
-    description: 'What you offer',
+    tier: 'Distribution & GTM Layer',
+    description: 'How you acquire, convert and retain financial customers',
     accent: 'border-brand',
     labelColor: 'text-brand',
     groups: [
       {
-        label: 'Products',
-        items: ['Deposits', 'Loans', 'Fixed Income & Payments', 'Digital & Transaction Banking', 'Investments', 'Insurance'],
+        label: 'Channels',
+        items: ['Digital App & Web', 'Branch & Agent Network', 'DSA & Affiliate', 'Embedded Partnerships', 'Conversational Banking', 'API-led Distribution'],
       },
       {
-        label: 'Deposit Types',
-        items: ['Savings', 'Salary', 'Fixed Deposit', 'Recurring Deposit', 'Current Account', 'NRO / NRE / FCNR'],
+        label: 'Acquisition & Growth',
+        items: ['Performance Marketing', 'Referral Programs', 'Cross-Sell & Upsell', 'Lifecycle Campaigns', 'Phygital Strategy', 'Partner GTM'],
       },
     ],
   },
   {
-    tier: 'Operations Layer',
-    description: 'How you run the core business',
+    tier: 'Technology & Integration Layer',
+    description: 'The infrastructure that powers your financial products',
     accent: 'border-indigo-400',
     labelColor: 'text-indigo-500',
     groups: [
       {
-        label: 'Account Management',
-        items: ['Origination', 'Opening', 'Configuration', 'Mandates', 'Interest', 'BillPay', 'Withdrawal', 'Closure'],
+        label: 'Core Infrastructure',
+        items: ['Core Banking System', 'LOS & LMS', 'Payment Gateway', 'API Banking Layer', 'Account Aggregator', 'NPCI Rails'],
       },
       {
-        label: 'Account Servicing',
-        items: ['Transaction Management', 'Payments', 'Utility & Bill Pay', 'Fund Transfers', 'Cash & Instrument Services', 'Doorstep Services'],
-      },
-      {
-        label: 'Customer Data',
-        items: ['Entity & Relationships', 'Contact Details', 'Preferences', 'Demographics', 'Customer Persona', 'Risk Profile'],
-      },
-      {
-        label: 'Marketing & Sales',
-        items: ['CRM', 'Campaigns', 'Cross & Upsell', 'Prospect Conversion', 'Partnerships'],
+        label: 'Digital Platform',
+        items: ['Mobile Banking App', 'Merchant Dashboard', 'Partner APIs', 'Middleware & Orchestration', 'Cloud & DevOps', 'Security Architecture'],
       },
     ],
   },
   {
-    tier: 'Intelligence Layer',
-    description: 'How you see, analyse and communicate',
+    tier: 'Data & Intelligence Layer',
+    description: 'AI, analytics and risk intelligence across the financial stack',
     accent: 'border-purple-400',
     labelColor: 'text-purple-500',
     groups: [
       {
-        label: 'Transactions',
-        items: ['Billing', 'Cheque Management', 'Batch Processing', 'Electronic Transactions', 'Loan Transaction Management', 'RTP Processing'],
+        label: 'Risk & Underwriting',
+        items: ['Credit Scorecards', 'Fraud Detection', 'Behavioural Analytics', 'Alternate Data Models', 'Portfolio Monitoring', 'Early Warning Systems'],
       },
       {
-        label: 'Statement Generation',
-        items: ['Definition & Categorisation', 'Configuration', 'Online', 'On-Demand', 'Archive'],
-      },
-      {
-        label: 'Data & Analytics',
-        items: ['Analytics', 'CIF Changes Processing', 'Reporting', 'Data Warehousing'],
-      },
-      {
-        label: 'Communications',
-        items: ['RCS Alerts', 'Email', 'SMS', 'WhatsApp Integration'],
+        label: 'AI & Analytics',
+        items: ['Customer Analytics', 'Predictive Models', 'AI Decisioning', 'NLP for Finance', 'BI Dashboards', 'Data Warehouse'],
       },
     ],
   },
   {
-    tier: 'Governance Layer',
-    description: 'How you stay safe, compliant and in control',
+    tier: 'Compliance & Governance Layer',
+    description: 'How you stay regulated, secure and operationally sound',
     accent: 'border-rose-400',
     labelColor: 'text-rose-500',
     groups: [
       {
-        label: 'Risk & Compliance',
-        items: ['AML & Fraud', 'Compliance Management', 'Risk Management', 'Regulatory Oversight', 'Quality Oversight'],
+        label: 'Regulatory Compliance',
+        items: ['RBI Licensing & Reporting', 'SEBI & IRDAI Filings', 'KYC & AML', 'FEMA & Cross-border', 'Data Localisation', 'Audit & Certifications'],
       },
       {
-        label: 'Operations',
-        items: ['Cash Management', 'Infrastructure Management'],
+        label: 'Operational Governance',
+        items: ['Information Security', 'Business Continuity', 'Vendor Risk Management', 'Incident Response', 'Grievance Redressal', 'Board Reporting'],
       },
     ],
   },
