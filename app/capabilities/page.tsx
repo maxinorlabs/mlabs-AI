@@ -66,9 +66,12 @@ const capabilities = [
       'ESOPs, compensation benchmarking and retention design',
       'Interim leadership and CXO transition planning',
     ],
-    operator: 'Parool Duggal',
-    operatorBg: 'ex-Bijnis, ex-EcomXpress, ex-AuthBridge',
-    operatorLinks: [{ name: 'Parool Duggal', slug: 'parool-duggal' }],
+    operator: 'Parool Duggal & Samir Gupta',
+    operatorBg: 'People, Org & Culture leads',
+    operatorLinks: [
+      { name: 'Parool Duggal', slug: 'parool-duggal' },
+      { name: 'Samir Gupta', slug: 'samir-gupta' },
+    ],
   },
 ];
 
