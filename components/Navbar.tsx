@@ -22,13 +22,20 @@ export function Navbar() {
   const navLinks = [
     { name: 'Home', path: '/' },
     {
-      name: 'Platform',
+      name: 'Domains',
       path: '/domains',
       dropdown: [
-        { name: 'Domains', path: '/domains' },
-        { name: 'Capabilities', path: '/capabilities' },
+        { name: 'All Domains', path: '/domains', header: true },
+        { name: 'Media', path: '/domains/media' },
+        { name: 'D2C & Consumer', path: '/domains/d2c' },
+        { name: 'BFSI', path: '/domains/bfsi' },
+        { name: 'Healthcare', path: '/domains/healthcare' },
+        { name: 'Education', path: '/domains/education' },
+        { name: 'Marketing', path: '/domains/marketing' },
+        { name: 'Legal', path: '/domains/legal' },
       ],
     },
+    { name: 'Capabilities', path: '/capabilities' },
     {
       name: 'Startups',
       path: '/startups',
@@ -41,13 +48,7 @@ export function Navbar() {
     { name: 'Corporate', path: '/corporate' },
     { name: 'Investors', path: '/investors' },
     { name: 'Team', path: '/team' },
-    {
-      name: 'Insights',
-      path: '/blog',
-      dropdown: [
-        { name: 'Blog', path: '/blog' },
-      ],
-    },
+    { name: 'Blog', path: '/blog' },
     { name: 'Contact Us', path: '/contact' },
   ];
 
@@ -105,16 +106,24 @@ export function Navbar() {
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: 10 }}
-                      className="absolute top-full left-0 bg-navy text-warm-white border border-grey/30 rounded-2xl shadow-2xl py-3 w-48 mt-2"
+                      className="absolute top-full left-0 bg-navy text-warm-white border border-grey/30 rounded-2xl shadow-2xl py-3 mt-2"
+                      style={{ minWidth: link.dropdown.length > 3 ? '13rem' : '12rem' }}
                     >
-                      {link.dropdown.map((sub) => (
-                        <Link
-                          key={sub.path}
-                          href={sub.path}
-                          className="block px-6 py-2.5 hover:text-brand transition-colors"
-                        >
-                          {sub.name}
-                        </Link>
+                      {link.dropdown.map((sub, si) => (
+                        <div key={sub.path}>
+                          {sub.header && si > 0 && <div className="mx-6 my-2 border-t border-white/10" />}
+                          <Link
+                            href={sub.path}
+                            className={`block px-6 py-2.5 transition-colors hover:text-brand ${
+                              sub.header
+                                ? 'font-semibold text-warm-white text-xs uppercase tracking-[0.15em] pb-2'
+                                : 'text-warm-white/80'
+                            }`}
+                          >
+                            {sub.name}
+                          </Link>
+                          {sub.header && <div className="mx-6 mt-1 mb-2 border-t border-white/10" />}
+                        </div>
                       ))}
                     </motion.div>
                   )}
