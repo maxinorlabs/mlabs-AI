@@ -14,7 +14,7 @@ import {
 } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Global Capability Centre - Build Your India Tech Hub',
+  title: 'Global Capability Centre | Build Your India Tech Hub',
   description: 'Set up and operate your Global Capability Centre in India. End-to-end GCC setup, talent acquisition, infrastructure, and ongoing management by experienced operators.',
 };
 

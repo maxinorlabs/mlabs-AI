@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { TrendingUp, ShieldCheck, Users, ArrowRight, CheckCircle2, BadgeIndianRupee, Handshake, LineChart } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Venture Investment - Startup Funding',
+  title: 'Venture Investment | Startup Funding',
   description: 'Maxinor invests in high-conviction startups at pre-seed and seed stage. Operator expertise alongside capital, not just a cheque.',
 };
 

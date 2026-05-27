@@ -4,7 +4,7 @@ import { Linkedin } from 'lucide-react';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Our Team - Operators and Builders at Maxinor',
+  title: 'Our Team | Operators and Builders',
   description: 'Meet the operators, founders, and domain experts who run Maxinor. A team that has built and scaled businesses across India and globally.',
 };
 

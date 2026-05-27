@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { Hammer, Lightbulb, Rocket, ArrowRight } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Venture Build - Launch Your Startup',
+  title: 'Venture Build | Launch Your Startup',
   description: 'Idea to launch in 90 days. Maxinor Venture Build covers product, technology, GTM, and fundraising for early-stage founders ready to move fast.',
 };
 
