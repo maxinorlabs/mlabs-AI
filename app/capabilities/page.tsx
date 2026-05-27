@@ -14,28 +14,48 @@ const outlineBtn =
 const capabilities = [
   {
     number: '01',
-    category: 'Revenue, Product & Brand',
-    title: 'Revenue Growth, GTM & Marketing',
+    category: 'Revenue & Operations',
+    title: 'Revenue & Operations',
     description:
-      'From first sale to scaled brand. GTM execution, product-led growth, and consumer marketing run as one operator team.',
+      'From leaky pipeline to compounding revenue. Operator-led revenue systems, CX infrastructure, and operational discipline that turn effort into repeatable outcomes.',
     deliverables: [
-      'GTM strategy, channel buildout and sales pipeline execution',
-      'Revenue operations, growth analytics and expansion playbooks',
-      'Product roadmap prioritisation and UX redesign',
+      'Revenue operations design and growth analytics',
       'CX systems built to reduce churn and drive retention',
-      'Consumer brand positioning and D2C performance marketing',
+      'Pricing architecture and unit economics improvement',
       'Offline channel expansion and omnichannel growth',
+      'Expansion playbooks and retention frameworks',
+      'Revenue forecasting and pipeline governance',
     ],
-    operator: 'Samir Gupta, Amar Daing & Priyabrata Padhi',
-    operatorBg: 'Revenue, Product & Brand leads',
+    operator: 'Samir Gupta & Amar Daing',
+    operatorBg: 'Revenue & Operations leads',
     operatorLinks: [
       { name: 'Samir Gupta', slug: 'samir-gupta' },
       { name: 'Amar Daing', slug: 'amar-daing' },
-      { name: 'Priyabrata Padhi', slug: 'priyabrata-padhi' },
     ],
   },
   {
     number: '02',
+    category: 'GTM & Marketing',
+    title: 'GTM & Marketing',
+    description:
+      'From idea to market. GTM strategy, sales motion design, and consumer brand execution run by operators who have built pipelines from zero.',
+    deliverables: [
+      'GTM strategy, channel buildout and sales pipeline execution',
+      'Consumer brand positioning and D2C performance marketing',
+      'Product roadmap prioritisation and UX redesign',
+      'Sales playbook design and qualification frameworks',
+      'Content, community and performance-led growth',
+      'Launch execution and competitive positioning',
+    ],
+    operator: 'Samir Gupta & Priyabrata Padhi',
+    operatorBg: 'GTM & Marketing leads',
+    operatorLinks: [
+      { name: 'Samir Gupta', slug: 'samir-gupta' },
+      { name: 'Priyabrata Padhi', slug: 'priyabrata-padhi' },
+    ],
+  },
+  {
+    number: '03',
     category: 'AI & Technology Build',
     title: 'AI Services',
     description:
@@ -53,7 +73,7 @@ const capabilities = [
     operatorLinks: [{ name: 'Alok Kumar', slug: 'alok-kumar' }],
   },
   {
-    number: '03',
+    number: '04',
     category: 'People & Org Building',
     title: 'Talent, Culture & Organisational Design',
     description:
@@ -210,7 +230,7 @@ export default function CapabilitiesPage() {
           <div className="mb-10 text-center">
             <p className="mb-3 text-xs font-bold uppercase tracking-[0.22em] text-brand">Where Maxinor Adds Value</p>
             <h2 className="text-3xl font-display font-medium tracking-tight text-navy md:text-5xl">
-              Three operator capabilities.{' '}
+              Four operator capabilities.{' '}
               <span className="text-brand">One accountable team.</span>
             </h2>
           </div>
@@ -261,7 +281,7 @@ export default function CapabilitiesPage() {
               Operator capabilities across the full venture lifecycle
             </p>
           </motion.div>
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-6 md:grid-cols-2">
             {capabilities.map((cap, i) => (
               <motion.div
                 key={cap.number}
