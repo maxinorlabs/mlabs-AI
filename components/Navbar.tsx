@@ -37,16 +37,19 @@ export function Navbar() {
     },
     { name: 'Capabilities', path: '/capabilities' },
     {
-      name: 'Startups',
+      name: 'Industries',
       path: '/startups',
       dropdown: [
+        { name: 'Startups', path: '/startups', header: true },
         { name: 'Venture Scale', path: '/scale' },
         { name: 'Venture Build', path: '/build' },
+        { name: 'Venture Investment', path: '/investment' },
+        { name: 'SME', path: '/sme', divider: true },
+        { name: 'Corporate', path: '/corporate' },
+        { name: 'Investors', path: '/investors' },
+        { name: 'AI GCC Centre', path: '/capability-centre' },
       ],
     },
-    { name: 'SME', path: '/sme' },
-    { name: 'Corporate', path: '/corporate' },
-    { name: 'Investors', path: '/investors' },
     { name: 'Team', path: '/team' },
     { name: 'Blog', path: '/blog' },
     { name: 'Contact Us', path: '/contact' },
@@ -112,6 +115,7 @@ export function Navbar() {
                       {link.dropdown.map((sub, si) => (
                         <div key={sub.path}>
                           {sub.header && si > 0 && <div className="mx-6 my-2 border-t border-white/10" />}
+                          {sub.divider && <div className="mx-6 my-2 border-t border-white/10" />}
                           <Link
                             href={sub.path}
                             className={`block px-6 py-2.5 transition-colors hover:text-brand ${
