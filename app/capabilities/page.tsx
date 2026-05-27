@@ -68,9 +68,12 @@ const capabilities = [
       'Data platform and AI-readiness buildout',
       'Tech architecture review and debt remediation',
     ],
-    operator: 'Alok Kumar',
-    operatorBg: 'ex-Zee, ex-Oracle, ex-StanChart',
-    operatorLinks: [{ name: 'Alok Kumar', slug: 'alok-kumar' }],
+    operator: 'Alok Kumar & Amar Daing',
+    operatorBg: 'AI & Technology leads',
+    operatorLinks: [
+      { name: 'Alok Kumar', slug: 'alok-kumar' },
+      { name: 'Amar Daing', slug: 'amar-daing' },
+    ],
   },
   {
     number: '04',
