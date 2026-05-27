@@ -74,7 +74,13 @@ export function Navbar() {
       ],
     },
     { name: 'Team', path: '/team' },
-    { name: 'Blog', path: '/blog' },
+    {
+      name: 'Insights',
+      path: '/blog',
+      dropdown: [
+        { name: 'Blog', path: '/blog' },
+      ],
+    },
     { name: 'Contact Us', path: '/contact' },
   ];
 
