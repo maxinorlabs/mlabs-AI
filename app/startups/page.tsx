@@ -1,6 +1,12 @@
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
+
+export const metadata: Metadata = {
+  title: 'Venture Studio for Startups',
+  description: 'Maxinor partners with startups at every stage - build, scale, and invest. Hands-on operator support across product, tech, GTM, and fundraising.',
+};
 
 const pagePadding = 'px-6 pt-24 pb-20 md:pt-32 md:pb-28 lg:pb-32';
 const introTitle = 'mb-5 text-4xl font-display font-medium tracking-tight sm:text-5xl md:mb-6 md:text-7xl';

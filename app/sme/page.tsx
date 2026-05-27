@@ -1,5 +1,11 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Zap, BarChart, Users, Shield, ArrowRight } from 'lucide-react';
+
+export const metadata: Metadata = {
+  title: 'AI and Growth Solutions for SMEs',
+  description: 'Maxinor brings AI-powered growth, operational efficiency, and talent solutions to small and medium enterprises across India looking to compete at scale.',
+};
 
 const pagePadding = 'bg-warm-white px-6 pt-24 pb-20 text-navy md:pt-32 md:pb-28 lg:pb-32';
 const introSpacing = 'mb-14 md:mb-24 lg:mb-28';

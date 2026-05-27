@@ -1,5 +1,11 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { TrendingUp, Target, Zap, ArrowRight } from 'lucide-react';
+
+export const metadata: Metadata = {
+  title: 'Venture Scale - Grow Your Startup',
+  description: 'Revenue operations, GTM execution, and growth systems for startups ready to scale. Operator-led support to accelerate your growth trajectory.',
+};
 
 const pagePadding = 'bg-warm-white px-6 pt-24 pb-20 md:pt-32 md:pb-28 lg:pb-32';
 const introSpacing = 'mb-14 md:mb-24 lg:mb-28';

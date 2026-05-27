@@ -1,5 +1,11 @@
+import type { Metadata } from 'next';
 import { ArrowRight, TrendingUp, ShieldCheck, Users, BarChart3 } from 'lucide-react';
 import Link from 'next/link';
+
+export const metadata: Metadata = {
+  title: 'Co-Investment and Deal Flow for Investors',
+  description: 'Access Maxinor deal flow, co-invest alongside our venture studio, and partner on portfolio support across growth-stage startups in India.',
+};
 
 const pagePadding = 'bg-warm-white px-6 pt-24 pb-20 text-navy md:pt-32 md:pb-28 lg:pb-32';
 const introSpacing = 'mb-14 md:mb-24 lg:mb-28';

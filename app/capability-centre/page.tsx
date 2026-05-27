@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import {
   ArrowRight,
@@ -11,6 +12,11 @@ import {
   Zap,
   TrendingUp,
 } from 'lucide-react';
+
+export const metadata: Metadata = {
+  title: 'Global Capability Centre - Build Your India Tech Hub',
+  description: 'Set up and operate your Global Capability Centre in India. End-to-end GCC setup, talent acquisition, infrastructure, and ongoing management by experienced operators.',
+};
 
 const primaryBtn =
   'inline-flex items-center justify-center gap-2 rounded-full bg-brand px-8 py-4 text-base font-semibold tracking-wide text-warm-white transition-all duration-300 hover:-translate-y-1 hover:bg-brand/90 shadow-[0_0_40px_rgba(243,111,33,0.15)] hover:shadow-[0_0_60px_rgba(243,111,33,0.3)] sm:px-10 sm:py-5';

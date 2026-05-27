@@ -1,5 +1,11 @@
+import type { Metadata } from 'next';
 import { ArrowRight, Building2, Lightbulb, Rocket } from 'lucide-react';
 import Link from 'next/link';
+
+export const metadata: Metadata = {
+  title: 'Enterprise AI and Innovation Solutions',
+  description: 'AI-led transformation, capability centres, and innovation programmes for corporates and large enterprises. Built for execution, not strategy decks.',
+};
 
 const pagePadding = 'bg-warm-white px-6 pt-24 pb-20 text-navy md:pt-32 md:pb-28 lg:pb-32';
 const introSpacing = 'mb-14 md:mb-24 lg:mb-28';

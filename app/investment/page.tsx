@@ -1,5 +1,11 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { TrendingUp, ShieldCheck, Users, ArrowRight, CheckCircle2, BadgeIndianRupee, Handshake, LineChart } from 'lucide-react';
+
+export const metadata: Metadata = {
+  title: 'Venture Investment - Startup Funding',
+  description: 'Maxinor invests in high-conviction startups at pre-seed and seed stage. Operator expertise alongside capital, not just a cheque.',
+};
 
 const pagePadding = 'bg-warm-white px-6 pt-24 pb-20 md:pt-32 md:pb-28 lg:pb-32';
 const introSpacing = 'mb-14 md:mb-24 lg:mb-28';
