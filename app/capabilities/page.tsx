@@ -216,54 +216,70 @@ export default function CapabilitiesPage() {
           </div>
 
           <motion.div
-            initial={{ opacity: 0, scaleX: 0 }}
-            whileInView={{ opacity: 1, scaleX: 1 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="mb-14 origin-left md:mb-20"
+            transition={{ duration: 0.6 }}
+            className="mb-14 md:mb-20"
           >
-            <div className="overflow-hidden rounded-2xl border border-navy/15">
-              {/* Labels row */}
-              <div className="grid grid-cols-3 divide-x divide-navy/15 bg-navy">
-                {[
-                  { label: 'Build', span: 3 },
-                  { label: 'Scale', span: 3 },
-                  { label: 'Invest', span: 1 },
-                ].map((g) => (
-                  <div key={g.label} className="py-2 text-center">
-                    <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-brand">{g.label}</span>
+            <div className="grid grid-cols-3 gap-4">
+              {[
+                {
+                  label: 'Build',
+                  href: '/build',
+                  topBar: 'bg-brand',
+                  accent: 'text-brand',
+                  chipBorder: 'border-brand/25',
+                  chipBg: 'bg-brand/8',
+                  items: ['Ideation', 'Strategy', 'Product'],
+                },
+                {
+                  label: 'Scale',
+                  href: '/scale',
+                  topBar: 'bg-teal',
+                  accent: 'text-teal',
+                  chipBorder: 'border-teal/25',
+                  chipBg: 'bg-teal/8',
+                  items: ['GTM', 'Operations', 'Revenue'],
+                },
+                {
+                  label: 'Invest',
+                  href: '/investment',
+                  topBar: 'bg-purple-400',
+                  accent: 'text-purple-400',
+                  chipBorder: 'border-purple-400/25',
+                  chipBg: 'bg-purple-400/8',
+                  items: ['Capital'],
+                },
+              ].map((group) => (
+                <Link
+                  key={group.label}
+                  href={group.href}
+                  className="group overflow-hidden rounded-2xl border border-grey/15 bg-navy transition-all duration-300 hover:border-grey/30 hover:shadow-lg hover:-translate-y-1"
+                >
+                  <div className={`h-1.5 w-full ${group.topBar}`} />
+                  <div className="p-5 md:p-6">
+                    <div className="mb-4 flex items-center justify-between">
+                      <span className={`text-sm font-bold uppercase tracking-[0.18em] ${group.accent}`}>
+                        {group.label}
+                      </span>
+                      <ArrowRight className={`h-3.5 w-3.5 translate-x-0 opacity-0 transition-all duration-200 group-hover:translate-x-1 group-hover:opacity-100 ${group.accent}`} />
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      {group.items.map((item) => (
+                        <span
+                          key={item}
+                          className={`rounded-full border ${group.chipBorder} ${group.chipBg} px-3 py-1.5 text-xs font-medium text-warm-white/70`}
+                        >
+                          {item}
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                ))}
-              </div>
-              {/* Items row */}
-              <div className="grid grid-cols-7 divide-x divide-navy/60">
-                {[
-                  { label: 'Ideation', group: 'build' },
-                  { label: 'Strategy', group: 'build' },
-                  { label: 'Product', group: 'build' },
-                  { label: 'GTM', group: 'scale' },
-                  { label: 'Operations', group: 'scale' },
-                  { label: 'Revenue', group: 'scale' },
-                  { label: 'Capital', group: 'invest' },
-                ].map((item, i) => (
-                  <div
-                    key={item.label}
-                    className={`px-2 py-4 text-center ${
-                      i === 2 ? 'border-r-2 border-white/20' : ''
-                    } ${i === 5 ? 'border-r-2 border-white/20' : ''} ${
-                      item.group === 'build'
-                        ? 'bg-brand'
-                        : item.group === 'scale'
-                        ? 'bg-brand/75'
-                        : 'bg-brand/55'
-                    }`}
-                  >
-                    <span className="text-[10px] font-bold uppercase tracking-[0.1em] text-white">{item.label}</span>
-                  </div>
-                ))}
-              </div>
+                </Link>
+              ))}
             </div>
-            <p className="mt-2 text-center text-xs font-light text-grey/50">
+            <p className="mt-3 text-center text-xs font-light text-grey/50">
               Operator capabilities across the full venture lifecycle
             </p>
           </motion.div>
