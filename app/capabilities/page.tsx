@@ -222,15 +222,46 @@ export default function CapabilitiesPage() {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="mb-14 origin-left md:mb-20"
           >
-            <div className="flex items-center gap-0 overflow-hidden rounded-2xl">
-              {['Ideation', 'Strategy', 'Product', 'GTM', 'Revenue', 'Scale', 'Capital'].map((item) => (
-                <div
-                  key={item}
-                  className="flex-1 border-r border-navy/60 bg-brand/90 px-2 py-4 text-center last:border-r-0"
-                >
-                  <span className="text-[11px] font-bold uppercase tracking-[0.1em] text-white">{item}</span>
-                </div>
-              ))}
+            <div className="overflow-hidden rounded-2xl border border-navy/15">
+              {/* Labels row */}
+              <div className="grid grid-cols-3 divide-x divide-navy/15 bg-navy">
+                {[
+                  { label: 'Build', span: 3 },
+                  { label: 'Scale', span: 3 },
+                  { label: 'Invest', span: 1 },
+                ].map((g) => (
+                  <div key={g.label} className="py-2 text-center">
+                    <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-brand">{g.label}</span>
+                  </div>
+                ))}
+              </div>
+              {/* Items row */}
+              <div className="grid grid-cols-7 divide-x divide-navy/60">
+                {[
+                  { label: 'Ideation', group: 'build' },
+                  { label: 'Strategy', group: 'build' },
+                  { label: 'Product', group: 'build' },
+                  { label: 'GTM', group: 'scale' },
+                  { label: 'Operations', group: 'scale' },
+                  { label: 'Revenue', group: 'scale' },
+                  { label: 'Capital', group: 'invest' },
+                ].map((item, i) => (
+                  <div
+                    key={item.label}
+                    className={`px-2 py-4 text-center ${
+                      i === 2 ? 'border-r-2 border-white/20' : ''
+                    } ${i === 5 ? 'border-r-2 border-white/20' : ''} ${
+                      item.group === 'build'
+                        ? 'bg-brand'
+                        : item.group === 'scale'
+                        ? 'bg-brand/75'
+                        : 'bg-brand/55'
+                    }`}
+                  >
+                    <span className="text-[10px] font-bold uppercase tracking-[0.1em] text-white">{item.label}</span>
+                  </div>
+                ))}
+              </div>
             </div>
             <p className="mt-2 text-center text-xs font-light text-grey/50">
               Operator capabilities across the full venture lifecycle
