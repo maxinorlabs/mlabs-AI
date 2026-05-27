@@ -376,7 +376,7 @@ export default function BFSIPage() {
         </div>
       </section>
 
-      {/* Domain Architecture */}
+      {/* Capability Stack */}
       <section className="bg-white px-6 py-20 md:py-28 border-t border-grey/10">
         <div className="max-w-7xl mx-auto">
           <motion.div
@@ -385,12 +385,12 @@ export default function BFSIPage() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">Domain Architecture</p>
+            <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">Capability Stack</p>
             <h2 className="mb-3 max-w-2xl text-3xl font-display font-medium tracking-tight text-navy md:text-4xl">
               The full banking capability stack.
             </h2>
             <p className="max-w-xl text-base font-light leading-relaxed text-grey">
-              Five layers. Every capability mapped. Select a layer to explore what sits inside it and where the complexity lives.
+              Five layers. Every capability mapped. Select a layer to explore what sits inside it and where the leverage lives.
             </p>
           </motion.div>
           <motion.div
