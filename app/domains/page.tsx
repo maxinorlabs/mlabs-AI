@@ -532,17 +532,17 @@ export default function DomainsPage() {
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
               className="mb-3 origin-left"
             >
-              <div className="overflow-hidden rounded-2xl">
+              <div className="overflow-hidden rounded-2xl border border-white/12">
                 {/* Group labels */}
-                <div className="grid grid-cols-7 bg-navy/80">
-                  <Link href="/build" className="col-span-3 border-r-2 border-white/20 py-2.5 text-center transition-colors hover:bg-white/5">
-                    <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-brand/80 hover:text-brand">Build</span>
+                <div className="grid grid-cols-7 bg-white/8">
+                  <Link href="/build" className="col-span-3 border-r-2 border-white/15 py-2.5 text-center transition-colors hover:bg-white/8">
+                    <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-warm-white/60 hover:text-brand">Build</span>
                   </Link>
-                  <Link href="/scale" className="col-span-3 border-r-2 border-white/20 py-2.5 text-center transition-colors hover:bg-white/5">
-                    <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-brand/80 hover:text-brand">Scale</span>
+                  <Link href="/scale" className="col-span-3 border-r-2 border-white/15 py-2.5 text-center transition-colors hover:bg-white/8">
+                    <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-warm-white/60 hover:text-brand">Scale</span>
                   </Link>
-                  <Link href="/investment" className="col-span-1 py-2.5 text-center transition-colors hover:bg-white/5">
-                    <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-brand/80 hover:text-brand">Invest</span>
+                  <Link href="/investment" className="col-span-1 py-2.5 text-center transition-colors hover:bg-white/8">
+                    <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-warm-white/60 hover:text-brand">Invest</span>
                   </Link>
                 </div>
                 {/* Items bar */}
