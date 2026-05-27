@@ -532,15 +532,38 @@ export default function DomainsPage() {
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
               className="mb-3 origin-left"
             >
-              <div className="flex items-center gap-0 overflow-hidden rounded-2xl">
-                {['Ideation', 'Strategy', 'Product', 'GTM', 'Revenue', 'Scale', 'Capital'].map((item, i) => (
-                  <div
-                    key={item}
-                    className="flex-1 border-r border-navy/60 bg-brand/90 px-2 py-4 text-center last:border-r-0"
-                  >
-                    <span className="text-[11px] font-bold uppercase tracking-[0.1em] text-white">{item}</span>
-                  </div>
-                ))}
+              <div className="overflow-hidden rounded-2xl">
+                {/* Group labels */}
+                <div className="grid grid-cols-7 bg-navy/80">
+                  <Link href="/build" className="col-span-3 border-r-2 border-white/20 py-2.5 text-center transition-colors hover:bg-white/5">
+                    <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-brand/80 hover:text-brand">Build</span>
+                  </Link>
+                  <Link href="/scale" className="col-span-3 border-r-2 border-white/20 py-2.5 text-center transition-colors hover:bg-white/5">
+                    <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-brand/80 hover:text-brand">Scale</span>
+                  </Link>
+                  <Link href="/investment" className="col-span-1 py-2.5 text-center transition-colors hover:bg-white/5">
+                    <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-brand/80 hover:text-brand">Invest</span>
+                  </Link>
+                </div>
+                {/* Items bar */}
+                <div className="flex">
+                  {[
+                    { label: 'Ideation',   shade: 'bg-brand',    divider: false },
+                    { label: 'Strategy',   shade: 'bg-brand',    divider: false },
+                    { label: 'Product',    shade: 'bg-brand',    divider: true  },
+                    { label: 'GTM',        shade: 'bg-brand/80', divider: false },
+                    { label: 'Operations', shade: 'bg-brand/80', divider: false },
+                    { label: 'Revenue',    shade: 'bg-brand/80', divider: true  },
+                    { label: 'Capital',    shade: 'bg-brand/60', divider: false },
+                  ].map((item) => (
+                    <div
+                      key={item.label}
+                      className={`flex-1 px-1 py-4 text-center ${item.shade} ${item.divider ? 'border-r-2 border-white/30' : 'border-r border-white/10 last:border-r-0'}`}
+                    >
+                      <span className="text-[10px] font-bold uppercase tracking-[0.1em] text-white">{item.label}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
               <p className="mt-2 text-center text-xs font-light text-warm-white/40">
                 Operator capabilities across the full venture lifecycle
