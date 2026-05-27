@@ -224,22 +224,16 @@ export default function CapabilitiesPage() {
           >
             <div className="overflow-hidden rounded-2xl">
               {/* Group labels */}
-              <div className="grid grid-cols-3 bg-navy/95">
-                {[
-                  { label: 'Build', href: '/build' },
-                  { label: 'Scale', href: '/scale' },
-                  { label: 'Invest', href: '/investment' },
-                ].map((g, i) => (
-                  <Link
-                    key={g.label}
-                    href={g.href}
-                    className={`py-2.5 text-center transition-colors hover:bg-white/5 ${i < 2 ? 'border-r border-white/10' : ''}`}
-                  >
-                    <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-brand/80 hover:text-brand">
-                      {g.label}
-                    </span>
-                  </Link>
-                ))}
+              <div className="grid grid-cols-7 bg-navy/95">
+                <Link href="/build" className="col-span-3 border-r-2 border-white/20 py-2.5 text-center transition-colors hover:bg-white/5">
+                  <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-brand/80 hover:text-brand">Build</span>
+                </Link>
+                <Link href="/scale" className="col-span-3 border-r-2 border-white/20 py-2.5 text-center transition-colors hover:bg-white/5">
+                  <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-brand/80 hover:text-brand">Scale</span>
+                </Link>
+                <Link href="/investment" className="col-span-1 py-2.5 text-center transition-colors hover:bg-white/5">
+                  <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-brand/80 hover:text-brand">Invest</span>
+                </Link>
               </div>
               {/* Items bar */}
               <div className="flex">
