@@ -216,70 +216,54 @@ export default function CapabilitiesPage() {
           </div>
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, scaleX: 0 }}
+            whileInView={{ opacity: 1, scaleX: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="mb-14 md:mb-20"
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="mb-14 origin-left md:mb-20"
           >
-            <div className="grid grid-cols-3 gap-4">
-              {[
-                {
-                  label: 'Build',
-                  href: '/build',
-                  topBar: 'bg-brand',
-                  accent: 'text-brand',
-                  chipBorder: 'border-brand/25',
-                  chipBg: 'bg-brand/8',
-                  items: ['Ideation', 'Strategy', 'Product'],
-                },
-                {
-                  label: 'Scale',
-                  href: '/scale',
-                  topBar: 'bg-teal',
-                  accent: 'text-teal',
-                  chipBorder: 'border-teal/25',
-                  chipBg: 'bg-teal/8',
-                  items: ['GTM', 'Operations', 'Revenue'],
-                },
-                {
-                  label: 'Invest',
-                  href: '/investment',
-                  topBar: 'bg-purple-400',
-                  accent: 'text-purple-400',
-                  chipBorder: 'border-purple-400/25',
-                  chipBg: 'bg-purple-400/8',
-                  items: ['Capital'],
-                },
-              ].map((group) => (
-                <Link
-                  key={group.label}
-                  href={group.href}
-                  className="group overflow-hidden rounded-2xl border border-grey/15 bg-navy transition-all duration-300 hover:border-grey/30 hover:shadow-lg hover:-translate-y-1"
-                >
-                  <div className={`h-1.5 w-full ${group.topBar}`} />
-                  <div className="p-5 md:p-6">
-                    <div className="mb-4 flex items-center justify-between">
-                      <span className={`text-sm font-bold uppercase tracking-[0.18em] ${group.accent}`}>
-                        {group.label}
-                      </span>
-                      <ArrowRight className={`h-3.5 w-3.5 translate-x-0 opacity-0 transition-all duration-200 group-hover:translate-x-1 group-hover:opacity-100 ${group.accent}`} />
-                    </div>
-                    <div className="flex flex-wrap gap-2">
-                      {group.items.map((item) => (
-                        <span
-                          key={item}
-                          className={`rounded-full border ${group.chipBorder} ${group.chipBg} px-3 py-1.5 text-xs font-medium text-warm-white/70`}
-                        >
-                          {item}
-                        </span>
-                      ))}
-                    </div>
+            <div className="overflow-hidden rounded-2xl">
+              {/* Group labels */}
+              <div className="grid grid-cols-3 bg-navy/95">
+                {[
+                  { label: 'Build', href: '/build' },
+                  { label: 'Scale', href: '/scale' },
+                  { label: 'Invest', href: '/investment' },
+                ].map((g, i) => (
+                  <Link
+                    key={g.label}
+                    href={g.href}
+                    className={`py-2.5 text-center transition-colors hover:bg-white/5 ${i < 2 ? 'border-r border-white/10' : ''}`}
+                  >
+                    <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-brand/80 hover:text-brand">
+                      {g.label}
+                    </span>
+                  </Link>
+                ))}
+              </div>
+              {/* Items bar */}
+              <div className="flex">
+                {[
+                  { label: 'Ideation',   shade: 'bg-brand',     divider: false },
+                  { label: 'Strategy',   shade: 'bg-brand',     divider: false },
+                  { label: 'Product',    shade: 'bg-brand',     divider: true  },
+                  { label: 'GTM',        shade: 'bg-brand/80',  divider: false },
+                  { label: 'Operations', shade: 'bg-brand/80',  divider: false },
+                  { label: 'Revenue',    shade: 'bg-brand/80',  divider: true  },
+                  { label: 'Capital',    shade: 'bg-brand/60',  divider: false },
+                ].map((item) => (
+                  <div
+                    key={item.label}
+                    className={`flex-1 px-1 py-4 text-center ${item.shade} ${item.divider ? 'border-r-2 border-white/30' : 'border-r border-white/10 last:border-r-0'}`}
+                  >
+                    <span className="text-[10px] font-bold uppercase tracking-[0.1em] text-white">
+                      {item.label}
+                    </span>
                   </div>
-                </Link>
-              ))}
+                ))}
+              </div>
             </div>
-            <p className="mt-3 text-center text-xs font-light text-grey/50">
+            <p className="mt-2 text-center text-xs font-light text-grey/50">
               Operator capabilities across the full venture lifecycle
             </p>
           </motion.div>
