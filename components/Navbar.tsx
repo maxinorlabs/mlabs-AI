@@ -53,7 +53,16 @@ export function Navbar() {
         { name: 'Legal', path: '/domains/legal' },
       ],
     },
-    { name: 'Capabilities', path: '/capabilities' },
+    {
+      name: 'Capabilities',
+      path: '/capabilities',
+      dropdown: [
+        { name: 'All Capabilities', path: '/capabilities', header: true },
+        { name: 'AI Services', path: '/capabilities/ai-services' },
+        { name: 'Revenue & GTM', path: '/capabilities/revenue-gtm' },
+        { name: 'Talent & Org', path: '/capabilities/talent-org' },
+      ],
+    },
     {
       name: 'Industries',
       path: '/startups',
