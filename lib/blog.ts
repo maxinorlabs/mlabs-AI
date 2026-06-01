@@ -50,8 +50,18 @@ function slugifyHeading(text: string) {
     .replace(/-+/g, '-');
 }
 
+function makeIdCounter() {
+  const seen = new Map<string, number>();
+  return function uniqueId(base: string): string {
+    const count = seen.get(base) ?? 0;
+    seen.set(base, count + 1);
+    return count === 0 ? base : `${base}-${count}`;
+  };
+}
+
 function compileMarkdown(content: string): string {
   const renderer = new Renderer();
+  const uniqueId = makeIdCounter();
 
   renderer.link = function ({ href, text }) {
     const isInternal = href?.startsWith('/');
@@ -64,7 +74,7 @@ function compileMarkdown(content: string): string {
 
   renderer.heading = function ({ text, depth }) {
     if (depth === 2 || depth === 3) {
-      const id = slugifyHeading(text);
+      const id = uniqueId(slugifyHeading(text));
       return `<h${depth} id="${id}" style="scroll-margin-top: 6rem">${text}</h${depth}>\n`;
     }
     return `<h${depth}>${text}</h${depth}>\n`;
@@ -144,11 +154,12 @@ export type TocItem = {
 export function extractToc(content: string): TocItem[] {
   const headingRegex = /^(#{2,3})\s+(.+)$/gm;
   const items: TocItem[] = [];
+  const uniqueId = makeIdCounter();
   let match;
   while ((match = headingRegex.exec(content)) !== null) {
     const level = match[1].length as 2 | 3;
     const text = match[2].trim();
-    const id = slugifyHeading(text);
+    const id = uniqueId(slugifyHeading(text));
     items.push({ id, text, level });
   }
   return items;
