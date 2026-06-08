@@ -2,6 +2,38 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Hammer, Lightbulb, Rocket, ArrowRight } from 'lucide-react';
 
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'What is Maxinor Venture Build?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Maxinor Venture Build is an operator-led startup creation engine that co-creates AI-native companies from validated white spaces. Maxinor covers ideation, product engineering, go-to-market, and founding team assembly alongside the founder.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'How does Maxinor build startups differently from an accelerator?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Unlike accelerators that provide mentorship and networking, Maxinor embeds experienced operators who execute alongside the founding team. Maxinor takes a co-founder role, not an advisory role.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'What stage does Maxinor Venture Build work with?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Maxinor Venture Build works from the idea stage through to launch and early revenue. The target is founders with a validated white space or early prototype who need operator co-creation to build and go to market fast.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'What does Maxinor Venture Build cover?',
+      acceptedAnswer: { '@type': 'Answer', text: 'The four engines covered are Ideation and Validation (market research, customer discovery, MVP definition), Product and Engineering (UI/UX, full-stack development, architecture), Go-To-Market (brand, early acquisition, sales playbook), and Founding Team Assembly (co-founder matching, key hiring, advisory setup).' },
+    },
+    {
+      '@type': 'Question',
+      name: 'How do I apply to Maxinor Venture Build?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Submit an enquiry through the Maxinor contact page. The team reviews founder pitches and responds within a few business days.' },
+    },
+  ],
+};
+
 export const metadata: Metadata = {
   title: 'Venture Build | Launch Your Startup',
   description: 'Idea to launch in 90 days. Maxinor Venture Build covers product, technology, GTM, and fundraising for early-stage founders ready to move fast.',
@@ -45,6 +77,8 @@ const engines = [
 
 export default function BuildPage() {
   return (
+    <>
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
     <div className={pagePadding}>
       <div className="max-w-7xl mx-auto">
         <div className={introSpacing}>
@@ -96,7 +130,20 @@ export default function BuildPage() {
             Start Building Now <ArrowRight className="h-4 w-4 shrink-0 sm:h-5 sm:w-5" />
           </Link>
         </div>
+
+        <div className="mt-16 md:mt-24">
+          <h2 className="mb-8 text-2xl font-display font-medium text-navy md:text-3xl">Frequently Asked Questions</h2>
+          <div className="grid gap-4">
+            {faqSchema.mainEntity.map((item) => (
+              <div key={item.name} className="rounded-[1.5rem] border border-navy/10 bg-white p-6">
+                <h3 className="mb-2 text-base font-semibold text-navy">{item.name}</h3>
+                <p className="text-sm font-light leading-relaxed text-navy/70">{item.acceptedAnswer.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
+    </>
   );
 }

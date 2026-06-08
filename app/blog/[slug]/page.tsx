@@ -69,6 +69,7 @@ export default async function BlogPostPage({ params }: Props) {
     ? buildSiteUrl(post.coverImage)
     : buildSiteUrl('/og-default.png');
 
+  const authorProfile = authorProfiles[post.author];
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
@@ -80,9 +81,11 @@ export default async function BlogPostPage({ params }: Props) {
     author: {
       '@type': 'Person',
       name: post.author,
-      url: authorProfiles[post.author]?.linkedin ?? SITE_URL,
-      jobTitle: authorProfiles[post.author]?.role,
+      url: authorProfile?.linkedin ?? SITE_URL,
+      jobTitle: authorProfile?.role,
+      knowsAbout: post.keywords?.slice(0, 5) ?? [],
       worksFor: { '@type': 'Organization', name: 'Maxinor', url: SITE_URL },
+      sameAs: authorProfile?.linkedin ? [authorProfile.linkedin] : [],
     },
     publisher: {
       '@type': 'Organization',
@@ -98,12 +101,20 @@ export default async function BlogPostPage({ params }: Props) {
     keywords: post.keywords?.join(', '),
   };
 
+  const breadcrumbLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
+      { '@type': 'ListItem', position: 2, name: 'Blog', item: `${SITE_URL}/blog` },
+      { '@type': 'ListItem', position: 3, name: post.title },
+    ],
+  };
+
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
 
       <div className="relative bg-warm-white px-6 pt-24 pb-20 md:pt-32 md:pb-28">
         <div className="pointer-events-none absolute top-0 left-1/2 h-[300px] w-[600px] -translate-x-1/2 rounded-full bg-brand/5 blur-[100px]" />
@@ -123,10 +134,15 @@ export default async function BlogPostPage({ params }: Props) {
                   <span className="inline-block rounded-full bg-brand/10 px-3 py-1 text-xs font-semibold text-brand">
                     {post.category}
                   </span>
-                  <span className="text-xs text-navy/40">{formatDate(post.date)}</span>
-                  {authorProfiles[post.author] ? (
+                  <time dateTime={post.date} className="text-xs text-navy/40">{formatDate(post.date)}</time>
+                  {post.lastModified && post.lastModified !== post.date && (
+                    <span className="text-xs text-navy/30">
+                      Updated <time dateTime={post.lastModified}>{formatDate(post.lastModified)}</time>
+                    </span>
+                  )}
+                  {authorProfile ? (
                     <a
-                      href={authorProfiles[post.author].linkedin}
+                      href={authorProfile.linkedin}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-xs text-navy/40 transition-colors hover:text-brand"

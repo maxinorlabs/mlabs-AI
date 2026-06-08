@@ -13,6 +13,38 @@ import {
   TrendingUp,
 } from 'lucide-react';
 
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'What is a Global Capability Centre (GCC)?',
+      acceptedAnswer: { '@type': 'Answer', text: 'A Global Capability Centre (GCC) is a dedicated offshore or nearshore unit set up by a company to deliver specific business functions such as technology, operations, finance, or analytics. India is the top destination for GCCs globally due to its deep talent pool and cost advantage.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'What does Maxinor offer for AI GCC setup in India?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Maxinor provides end-to-end AI GCC setup including strategy and roadmap, entity setup and legal compliance, talent acquisition, Centre of Excellence enablement, delivery management, AI technology integration, and ongoing optimisation. All engagements are operator-led, not consulting-led.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'How long does it take to set up a GCC with Maxinor?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Most Maxinor GCC engagements reach first delivery within 90 days of kickoff using tested playbooks, governance models, and operational accelerators that compress setup timelines and reduce execution risk.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'Which sectors does Maxinor support for GCC setup?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Maxinor supports GCC setup across BFSI, Healthcare, D2C and Consumer, Media and Content, SaaS, and more. Each operating model is tailored to the sector rather than using a generic off-the-shelf playbook.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'Who should consider an AI GCC in India?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Global enterprises looking to reduce costs and access deep AI and engineering talent, growth-stage startups building tech or operations capability without full entity overhead, and Indian SMEs wanting to scale business functions through a structured GCC model.' },
+    },
+  ],
+};
+
 export const metadata: Metadata = {
   title: 'Global Capability Centre | Build Your India Tech Hub',
   description: 'Set up and operate your Global Capability Centre in India. End-to-end GCC setup, talent acquisition, infrastructure, and ongoing management by experienced operators.',
@@ -103,6 +135,8 @@ const stats = [
 
 export default function CapabilityCentrePage() {
   return (
+    <>
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
     <div className="font-sans">
 
       {/* ── Section 1: Hero ── */}
@@ -297,5 +331,20 @@ export default function CapabilityCentrePage() {
       </section>
 
     </div>
+
+    <section className="bg-warm-white px-6 py-16 md:py-20">
+      <div className="max-w-7xl mx-auto">
+        <h2 className="mb-8 text-2xl font-display font-medium text-navy md:text-3xl">Frequently Asked Questions</h2>
+        <div className="grid gap-4 md:grid-cols-2">
+          {faqSchema.mainEntity.map((item) => (
+            <div key={item.name} className="rounded-[1.5rem] border border-navy/10 bg-white p-6">
+              <h3 className="mb-2 text-base font-semibold text-navy">{item.name}</h3>
+              <p className="text-sm font-light leading-relaxed text-grey">{item.acceptedAnswer.text}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+    </>
   );
 }

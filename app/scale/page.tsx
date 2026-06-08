@@ -2,6 +2,38 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { TrendingUp, Target, Zap, ArrowRight } from 'lucide-react';
 
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'What is Maxinor Venture Scale?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Maxinor Venture Scale is an operator-led execution platform for founder-led startups. Experienced operators embed into the founding team to execute critical growth initiatives, optimise operations, and prepare the venture for Series A or Series B funding.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'What stage startups does Maxinor Venture Scale work with?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Maxinor Venture Scale typically works with startups between seed and Series A, usually between Rs 1 crore and Rs 20 crore ARR, where the founder-led model has hit its ceiling and systematic operator execution is needed.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'What does Maxinor Venture Scale cover?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Venture Scale covers four engines: Revenue Engine (GTM, growth, business development, pricing), Operations Engine (supply chain, financial operations, marketing operations), Product and Design Engine (strategy, UX, product ops), and AI and Data Engine (agentic AI, automation, data infrastructure).' },
+    },
+    {
+      '@type': 'Question',
+      name: 'How is Venture Scale different from hiring a consultant?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Maxinor operators embed into the team and execute. They own outcomes, run daily operations, and are accountable to milestones. Consultants advise and leave. Maxinor operators stay and deliver.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'How do I get started with Maxinor Venture Scale?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Submit a founder enquiry through the Maxinor contact page. The team reviews applications and responds within a few business days to assess fit.' },
+    },
+  ],
+};
+
 export const metadata: Metadata = {
   title: 'Venture Scale | Grow Your Startup',
   description: 'Revenue operations, GTM execution, and growth systems for startups ready to scale. Operator-led support to accelerate your growth trajectory.',
@@ -45,6 +77,8 @@ const engines = [
 
 export default function ScalePage() {
   return (
+    <>
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
     <div className={pagePadding}>
       <div className="max-w-7xl mx-auto">
         <div className={introSpacing}>
@@ -97,7 +131,20 @@ export default function ScalePage() {
             Start Scaling Now <ArrowRight className="h-4 w-4 shrink-0 sm:h-5 sm:w-5" />
           </Link>
         </div>
+
+        <div className="mt-16 md:mt-24">
+          <h2 className="mb-8 text-2xl font-display font-medium text-navy md:text-3xl">Frequently Asked Questions</h2>
+          <div className="grid gap-4">
+            {faqSchema.mainEntity.map((item) => (
+              <div key={item.name} className="rounded-[1.5rem] border border-navy/10 bg-white p-6">
+                <h3 className="mb-2 text-base font-semibold text-navy">{item.name}</h3>
+                <p className="text-sm font-light leading-relaxed text-navy/70">{item.acceptedAnswer.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
+    </>
   );
 }
