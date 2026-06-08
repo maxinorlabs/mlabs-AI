@@ -1,90 +1,95 @@
 # Maxinor
 
-> India's first operator-led venture studio. We build, scale, and back startups, SMEs, and corporates through hands-on execution — not just capital.
+> India's first operator-led AI venture studio. We build, scale, and back startups, SMEs, and corporates through hands-on execution, not just capital.
 
-Maxinor (mlabs.co.in) is an operator-led venture studio based in India. Unlike traditional VCs or accelerators, Maxinor embeds experienced operators directly into portfolio companies to drive measurable outcomes. The model combines capital with execution expertise across four pillars: Venture Build, Venture Scale, Venture Investment, and Shared AI Capability.
+Maxinor (mlabs.co.in) is an operator-led AI venture studio based in India. Unlike traditional VCs or accelerators, Maxinor embeds experienced operators directly into portfolio companies to drive measurable outcomes. The model combines capital with execution expertise across four pillars: Venture Build, Venture Scale, Venture Investment, and Shared AI Capability.
 
 ## Key Pages
 
-- [Homepage](https://mlabs.co.in/): Overview of Maxinor's model, what we do, engagement types, and portfolio
-- [Venture Build](https://mlabs.co.in/build): How Maxinor creates AI-native companies from validated white spaces — covering ideation, product, GTM, and founding team assembly
-- [Venture Scale](https://mlabs.co.in/scale): Operator-embedded execution for founder-led ventures, covering Revenue, Operations, Product & Design, and AI & Data engines
-- [For Startups](https://mlabs.co.in/startups): Portfolio companies and the pitch process for early-stage founders
-- [For SMEs](https://mlabs.co.in/sme): Venture-grade execution and operator expertise for small and medium enterprises
-- [For Corporates](https://mlabs.co.in/corporate): Corporate accelerators, venture building, and strategic partnerships
-- [For Investors](https://mlabs.co.in/investors): Deal flow access, co-investment networks, and investor partnerships
-- [Team](https://mlabs.co.in/team): Leadership team with backgrounds from Google, Paytm, OYO, ITC, Accenture, and more
-- [Blog](https://mlabs.co.in/blog): Operator-tested insights on venture building, SME growth, and the Indian startup ecosystem
-- [Contact](https://mlabs.co.in/contact): Reach out for founder pitches, investor enquiries, CXO/operator roles, and partnerships
-- [Privacy Policy](https://mlabs.co.in/privacy): DPDP Act 2023 compliant data handling policy
+- [Homepage](https://www.mlabs.co.in/home): Overview of Maxinor model, what we do, engagement types, and portfolio
+- [Venture Build](https://www.mlabs.co.in/home/build): How Maxinor creates AI-native companies from validated white spaces
+- [Venture Scale](https://www.mlabs.co.in/home/scale): Operator-embedded execution for founder-led ventures
+- [Venture Investment](https://www.mlabs.co.in/home/investment): Milestone-linked capital from pre-seed to pre-Series A
+- [Global Capability Centre](https://www.mlabs.co.in/home/capability-centre): AI GCC setup, management, and scale for global enterprises
+- [For Startups](https://www.mlabs.co.in/home/startups): Portfolio companies and the pitch process
+- [For SMEs](https://www.mlabs.co.in/home/sme): Venture-grade execution for small and medium enterprises
+- [For Corporates](https://www.mlabs.co.in/home/corporate): Corporate accelerators, venture building, and strategic partnerships
+- [For Investors](https://www.mlabs.co.in/home/investors): Deal flow access and co-investment networks
+- [Team](https://www.mlabs.co.in/home/team): Leadership team backgrounds from Google, Paytm, OYO, ITC, Accenture
+- [Blog](https://www.mlabs.co.in/home/blog): Operator-tested insights on venture building, SME growth, and Indian startup ecosystem
+- [Contact](https://www.mlabs.co.in/home/contact): Founder pitches, investor enquiries, CXO/operator roles, and partnerships
 
 ## What Maxinor Does
 
-### Four Core Pillars
+**Venture Build** - Maxinor co-creates AI-native companies from scratch: idea validation, product engineering, go-to-market, and founding team assembly.
 
-**Venture Build** — Startup Creation Engine
-Maxinor identifies validated white spaces and co-creates AI-native companies from scratch, covering idea validation, product engineering, go-to-market, and founding team assembly.
+**Venture Scale** - Maxinor embeds operators into existing ventures across four engines: Revenue (GTM, marketing, pricing), Operations (supply chain, finance ops), Product and Design (strategy, UX, growth), and AI and Data (agentic AI, automation, platform builds).
 
-**Venture Scale** — Execution Led Engine
-For existing founder-led ventures, Maxinor embeds operators across four engines: Revenue (GTM, marketing, business development, pricing), Operations (supply chain, finance, marketing ops), Product & Design (strategy, UX, growth, product ops), and AI & Data (agentic AI, data architecture, automation, platform builds).
+**Venture Investment** - Capital linked to execution milestones, not time-based tranches.
 
-**Venture Investment** — Milestone-Linked Capital
-Maxinor deploys capital linked to execution milestones rather than time-based tranches, aligning incentives with actual business progress.
-
-**Shared AI Capability** — Operator Infrastructure
-Portfolio companies access shared capabilities across Tech, Product, HR, Supply Chain, Marketing, and Operations — reducing the cost and time to build foundational functions.
+**Shared AI Capability** - Portfolio companies share infrastructure across Tech, Product, HR, Supply Chain, Marketing, and Operations.
 
 ### Engagement Models
-
 - **Venture Sprint**: 30-day diagnostic and roadmap
-- **Venture Partner**: 6-month embedded execution with equity + Series A preparation
-- **Venture CXO**: 6–12 month fractional C-level leadership
+- **Venture Partner**: 6-month embedded execution with equity plus Series A preparation
+- **Venture CXO**: 6-12 month fractional C-level leadership
 
 ## Who We Work With
 
-- **Founders** at pre-seed to Series A stage looking for execution partners, not just advisors
-- **SMEs** with ₹0–100 Cr+ revenue seeking digital transformation, operational efficiency, talent-as-a-service, and risk management
-- **Corporates** building internal accelerators, venture spin-offs, or pursuing strategic startup partnerships
-- **Investors** (angels, family offices, institutions) wanting access to operator-vetted deal flow and co-investment opportunities
-- **Operators & CXOs** interested in fractional and embedded leadership roles with equity upside
-
-## Domains We Work In
-
-- **Consumer & Retail**: Media, D2C & B2C
-- **Tech & Infrastructure**: AI & Data, FinTech
-- **Specialised Sectors**: Healthcare, Defence
-
-## Portfolio Companies
-
-Maxinor backs and builds ventures including IZF (izfworld.com), Nattier (nattier.co.in), Kachs (responcibleai.com), Adaapt (adaapt.ai), and Aseed International (aseedinternational.org).
+- Founders at pre-seed to Series A stage looking for execution partners, not advisors
+- SMEs with Rs0 to Rs100 crore revenue seeking digital transformation and operational efficiency
+- Corporates building internal accelerators or venture spin-offs
+- Investors wanting operator-vetted deal flow and co-investment access
+- Operators and CXOs interested in fractional roles with equity upside
 
 ## Leadership Team
 
-- **Samir Gupta** — Revenue, Growth & Ops (ex-Paytm, Bzinga, Solv)
-- **Amar Daing** — Product, CX & GTM (ex-Google × Tata, OYO, Grofers)
-- **Parool Duggal** — People & Org Development (ex-Bijnis, EcomXpress, AuthBridge)
-- **Alok Kumar** — AI & Tech (ex-Zee, StanChart, Fidelity, Oracle)
-- **Rajesh Ramanathan** — FinTech (ex-Accenture, Wipro, Mastek)
-- **Priyabrata Padhi** — Consumer Marketing (ex-Unitech Breweries, ITC, Britannia)
+- Samir Gupta - Revenue, Growth and Ops (ex-Paytm, Bzinga, Solv)
+- Amar Daing - Product, CX and GTM (ex-Google, Tata, OYO, Grofers)
+- Parool Duggal - People and Org Development (ex-Bijnis, EcomXpress, AuthBridge)
+- Alok Kumar - AI and Tech (ex-Zee, StanChart, Fidelity, Oracle)
+- Rajesh Ramanathan - FinTech (ex-Accenture, Wipro, Mastek)
+- Priyabrata Padhi - Consumer Marketing (ex-ITC, Britannia, Unitech Breweries)
 
 ## Blog
 
-Maxinor publishes operator-tested content on venture building, startup strategy, SME growth, and the Indian startup ecosystem. Notable posts:
+### Startup Scaling and Execution
+- [Why Indian Startups Hit a Wall at Rs5 Crore ARR](https://www.mlabs.co.in/home/blog/indian-startups-arr-wall-5-crore-operators)
+- [The Maxinor Execution Ladder: 5 Levels Every Startup Must Climb](https://www.mlabs.co.in/home/blog/maxinor-execution-ladder-5-levels-startup)
+- [Unit Economics 101 for Indian Founders](https://www.mlabs.co.in/home/blog/unit-economics-101-indian-founders)
+- [Why 90% of Indian Startups Fail at Scale](https://www.mlabs.co.in/home/blog/why-indian-startups-fail-at-scale)
 
-- [Venture Studio vs Accelerator vs Incubator: An Indian Founder's Guide](https://mlabs.co.in/blog/venture-studio-vs-accelerator-vs-incubator-india)
-- [What Is a Venture Studio, and Why It Beats the Traditional VC Model](https://mlabs.co.in/blog/what-is-a-venture-studio)
-- [How Indian SMEs Can Scale Without Losing What Makes Them Great](https://mlabs.co.in/blog/how-to-scale-an-sme-in-india)
-- [SEO for Venture-Backed Companies: Building Organic Channels with Runway in Mind](https://mlabs.co.in/blog/seo-for-venture-backed-companies)
-- [What is an Operator-Led Marketing Agency?](https://mlabs.co.in/blog/what-is-an-operator-led-marketing-agency)
-- [GEO for Mid-Market B2B: The 2026 Guide](https://mlabs.co.in/blog/geo-for-mid-market-b2b-2026-guide)
-- [How to Measure SEO ROI for B2B](https://mlabs.co.in/blog/how-to-measure-seo-roi-b2b)
-- [Mid-Market SEO Playbook](https://mlabs.co.in/blog/mid-market-seo-playbook)
+### Fundraising and Investors
+- [The 12 Questions Every Indian Investor Will Ask Before Series A](https://www.mlabs.co.in/home/blog/12-questions-indian-investors-series-a)
+- [Execution Capital vs Venture Capital: Why Indian Founders Need Both](https://www.mlabs.co.in/home/blog/execution-capital-vs-venture-capital-india)
+- [What Investors Actually Look for in Indian Startups](https://www.mlabs.co.in/home/blog/what-investors-look-for-indian-startups)
+
+### Operator Model and Venture Studio
+- [The Maxinor Operator Platform: How It Works](https://www.mlabs.co.in/home/blog/maxinor-operator-platform-how-it-works)
+- [What Operators Actually Do in a Startup vs Advisors](https://www.mlabs.co.in/home/blog/what-operators-actually-do-startup-india)
+- [What Is a Venture Studio](https://www.mlabs.co.in/home/blog/what-is-a-venture-studio)
+- [Venture Studio vs Accelerator vs Incubator](https://www.mlabs.co.in/home/blog/venture-studio-vs-accelerator-vs-incubator-india)
+
+### D2C and SME
+- [How to Scale a D2C Brand in India from Rs1 Cr to Rs10 Cr ARR](https://www.mlabs.co.in/home/blog/scale-d2c-brand-india-1-crore-to-10-crore)
+- [SME to Scale: How Traditional Indian Businesses Can Compete with Startups](https://www.mlabs.co.in/home/blog/sme-to-scale-compete-with-startups-india)
+
+### AI and Technology
+- [AI-Native Company Building: What Indian Founders Need to Know in 2026](https://www.mlabs.co.in/home/blog/ai-native-company-building-india-2026)
+- [The AI Agent Stack for Indian Startup Founders 2026](https://www.mlabs.co.in/home/blog/ai-agent-stack-indian-startup-founder-2026)
+
+### FinTech
+- [FinTech Startup Scaling Playbook: India-Specific Growth Strategies 2026](https://www.mlabs.co.in/home/blog/fintech-startup-scaling-india-2026)
+
+### Hiring
+- [How to Hire Your First Sales Leader in an Indian Startup](https://www.mlabs.co.in/home/blog/hire-first-sales-leader-indian-startup)
+- [Why Fractional CMOs Outperform Full-Time Hires for Indian Startups](https://www.mlabs.co.in/home/blog/fractional-cmo-vs-full-time-india-startup)
 
 ## Contact
 
-- **Website**: https://mlabs.co.in
-- **Email**: contact@mlabs.co.in
-- **Phone**: +91 98119 96965
-- **Privacy**: privacy@mlabs.co.in
+- Website: https://www.mlabs.co.in/home
+- Email: contact@mlabs.co.in
+- Phone: +91 98119 96965
 
-To get in touch, use the [contact form](https://mlabs.co.in/contact). Accepted enquiry types: Founder pitch, Investor partnership, CXO/Operator role, Job application, General enquiry.
+Contact form: https://www.mlabs.co.in/home/contact
+Accepted enquiry types: Founder pitch, Investor partnership, CXO/Operator role, Job application, General enquiry.

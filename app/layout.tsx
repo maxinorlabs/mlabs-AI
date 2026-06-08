@@ -56,6 +56,39 @@ export const metadata: Metadata = {
   },
 };
 
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Maxinor',
+  alternateName: 'Maxinor Venture Studio',
+  url: SITE_URL,
+  logo: 'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/68e4e417db41aba4d67eb664_50861696-aac9-4ad9-988c-2bcebfeb%20(1).png',
+  description: "India's first operator-led AI venture studio. We build, scale, and back startups, SMEs, and corporates through hands-on execution, not just capital.",
+  foundingDate: '2023',
+  areaServed: 'IN',
+  email: 'contact@mlabs.co.in',
+  telephone: '+91-98119-96965',
+  sameAs: [
+    'https://www.linkedin.com/company/maxinor',
+  ],
+  contactPoint: {
+    '@type': 'ContactPoint',
+    email: 'contact@mlabs.co.in',
+    telephone: '+91-98119-96965',
+    contactType: 'customer service',
+    areaServed: 'IN',
+    availableLanguage: 'English',
+  },
+};
+
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Maxinor',
+  url: SITE_URL,
+  description: "India's first operator-led AI venture studio",
+};
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className="scroll-smooth">
@@ -93,6 +126,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             style={{ display: 'none', visibility: 'hidden' }}
           />
         </noscript>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }} />
         <Navbar />
         <main className="flex-grow">{children}</main>
         <Footer />
