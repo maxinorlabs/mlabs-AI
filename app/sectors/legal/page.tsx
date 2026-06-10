@@ -504,12 +504,6 @@ export default function LegalPage() {
               <Link href="/contact" className={primaryBtn}>
                 Start the conversation <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
-              <Link
-                href="/scale"
-                className="inline-flex items-center justify-center rounded-full border border-navy/20 px-8 py-4 text-base font-semibold tracking-wide text-navy transition-all duration-300 hover:-translate-y-1 hover:border-brand/40 hover:text-brand sm:px-10 sm:py-5"
-              >
-                How we engage
-              </Link>
             </div>
           </motion.div>
         </div>
