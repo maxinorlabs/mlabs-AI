@@ -164,69 +164,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* What We Do Section */}
-        <section className={`${sectionPadding} bg-navy border-y border-grey/20`}>
-          <div className="max-w-7xl mx-auto">
-            <div className={sectionIntro}>
-              <h2 className={`${sectionTitle} text-warm-white`}>
-                What We <span className="text-brand">Do</span>
-              </h2>
-              <p className={`${sectionBody} mx-auto max-w-3xl text-warm-white/80`}>
-                Maxinor assists founders to scale their ventures, SMEs to unlock growth, corporates to craft
-                innovation, and investors to seek returns via the &ldquo;Maxinor Operator Platform&rdquo;
-              </p>
-            </div>
-
-            {/* Four pillar cards */}
-            <div className="grid gap-0 grid-cols-1 md:grid-cols-4 rounded-2xl overflow-hidden border border-white/10">
-              {/* Venture Build — blue */}
-              <Link href="/build" className="group border border-white/10 bg-white/5 p-8 md:p-10 flex flex-col transition-all duration-500 hover:bg-white/10">
-                <h3 className="mb-1 text-xl font-display font-bold text-warm-white md:text-2xl">
-                  Venture Build
-                </h3>
-                <p className="mb-4 text-sm font-semibold text-teal">Startup Creation Engine</p>
-                <p className="text-sm font-light leading-relaxed text-warm-white/75">
-                  Creation of New AI-Native companies from &ldquo;Scratch&rdquo; across domains.
-                </p>
-              </Link>
-
-              {/* Venture Scale — white */}
-              <Link href="/scale" className="group bg-warm-white border-r border-grey/20 p-8 md:p-10 flex flex-col transition-all duration-500 hover:bg-white border-t-4 border-t-brand">
-                <h3 className="mb-1 text-xl font-display font-bold text-navy md:text-2xl">
-                  Venture Scale
-                </h3>
-                <p className="mb-4 text-sm font-semibold text-brand">Execution Led Engine</p>
-                <p className="text-sm font-light leading-relaxed text-grey">
-                  Operator capabilities that <strong className="font-semibold text-navy">deliver measurable business outcomes</strong> for existing startups, SMEs, and companies.
-                </p>
-              </Link>
-
-              {/* Venture Investment — blue */}
-              <Link href="/investment" className="group border border-white/10 bg-white/5 p-8 md:p-10 flex flex-col transition-all duration-500 hover:bg-white/10">
-                <h3 className="mb-1 text-xl font-display font-bold text-warm-white md:text-2xl">
-                  Venture Investment
-                </h3>
-                <p className="mb-4 text-sm font-semibold text-teal">Investment Engine</p>
-                <p className="text-sm font-light leading-relaxed text-warm-white/75">
-                  Milestone-linked capital deployment into vetted startups, aligned with operator execution outcomes.
-                </p>
-              </Link>
-
-              {/* AI Capability Centre — white */}
-              <Link href="/capability-centre" className="group bg-warm-white border-l border-grey/20 p-8 md:p-10 flex flex-col transition-all duration-500 hover:bg-white border-t-4 border-t-teal">
-                <h3 className="mb-1 text-xl font-display font-bold text-navy md:text-2xl">
-                  AI Capability Centre
-                </h3>
-                <p className="mb-4 text-sm font-semibold text-teal">Shared Services for the AI Capability Centre</p>
-                <p className="text-sm font-light leading-relaxed text-grey">
-                  Technology, Product, HR, Supply Chain, Marketing &amp; Operations powering{' '}
-                  <strong className="font-semibold text-navy">Build, Scale, and Invest.</strong>
-                </p>
-              </Link>
-            </div>
-          </div>
-        </section>
-
         {/* The Startups We Work With */}
         <section className="overflow-hidden border-y border-grey/10 bg-white px-6 py-20 md:py-24">
           <div className="max-w-7xl mx-auto text-center mb-12 md:mb-16">
@@ -271,52 +208,6 @@ export default function Home() {
             {/* Gradient masks for smooth fade out at edges */}
             <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-white to-transparent pointer-events-none md:w-32" />
             <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-white to-transparent pointer-events-none md:w-32" />
-          </div>
-        </section>
-
-        <WhyMaxinor />
-
-        {/* Domains We Work In */}
-        <section className={`${sectionPadding} bg-white border-y border-grey/10`}>
-          <div className="max-w-7xl mx-auto">
-            <div className={sectionIntro}>
-              <h2 className={sectionTitle}>
-                Domains We <span className="text-brand">Work In</span>
-              </h2>
-              <p className={`${sectionBody} text-navy/70`}>
-                Deep operator expertise across high-growth sectors.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 gap-x-8 gap-y-6 md:grid-cols-3 md:gap-y-0">
-              {domainGroups.map((group) => (
-                <div key={group.category}>
-                  <p className="mt-4 mb-3 text-center text-xs font-bold uppercase tracking-[0.18em] text-brand md:mt-0 md:mb-4 md:text-sm">
-                    {group.category}
-                  </p>
-                  <div className="flex flex-col gap-4">
-                    {group.domains.map((domain) => (
-                      <div
-                        key={domain.name}
-                        className="group flex min-h-[148px] cursor-default items-center gap-4 rounded-2xl border border-grey/20 bg-warm-white p-4 transition-all duration-300 hover:border-brand/50 hover:bg-white md:min-h-[156px] md:p-5"
-                      >
-                        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-grey/15 bg-grey/8 transition-all duration-300 group-hover:border-brand/40 group-hover:bg-brand/5 md:h-14 md:w-14">
-                          <domain.icon className="h-5 w-5 text-grey/60 transition-colors duration-300 group-hover:text-brand md:h-6 md:w-6" />
-                        </div>
-                        <div className="flex min-w-0 flex-1 flex-col justify-center">
-                          <h3 className="text-sm font-bold uppercase leading-tight tracking-[0.16em] text-navy transition-colors duration-300 group-hover:text-brand md:text-[15px]">
-                            {domain.name}
-                          </h3>
-                          <p className="mt-2 max-w-[15rem] text-sm font-light leading-[1.45] text-grey md:text-[15px]">
-                            {domain.description}
-                          </p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
           </div>
         </section>
 
@@ -388,6 +279,115 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        {/* What We Do Section */}
+        <section className={`${sectionPadding} bg-navy border-y border-grey/20`}>
+          <div className="max-w-7xl mx-auto">
+            <div className={sectionIntro}>
+              <h2 className={`${sectionTitle} text-warm-white`}>
+                What We <span className="text-brand">Do</span>
+              </h2>
+              <p className={`${sectionBody} mx-auto max-w-3xl text-warm-white/80`}>
+                Maxinor assists founders to scale their ventures, SMEs to unlock growth, corporates to craft
+                innovation, and investors to seek returns via the &ldquo;Maxinor Operator Platform&rdquo;
+              </p>
+            </div>
+
+            {/* Four pillar cards */}
+            <div className="grid gap-0 grid-cols-1 md:grid-cols-4 rounded-2xl overflow-hidden border border-white/10">
+              {/* Venture Build — blue */}
+              <Link href="/build" className="group border border-white/10 bg-white/5 p-8 md:p-10 flex flex-col transition-all duration-500 hover:bg-white/10">
+                <h3 className="mb-1 text-xl font-display font-bold text-warm-white md:text-2xl">
+                  Venture Build
+                </h3>
+                <p className="mb-4 text-sm font-semibold text-teal">Startup Creation Engine</p>
+                <p className="text-sm font-light leading-relaxed text-warm-white/75">
+                  Creation of New AI-Native companies from &ldquo;Scratch&rdquo; across domains.
+                </p>
+              </Link>
+
+              {/* Venture Scale — white */}
+              <Link href="/scale" className="group bg-warm-white border-r border-grey/20 p-8 md:p-10 flex flex-col transition-all duration-500 hover:bg-white border-t-4 border-t-brand">
+                <h3 className="mb-1 text-xl font-display font-bold text-navy md:text-2xl">
+                  Venture Scale
+                </h3>
+                <p className="mb-4 text-sm font-semibold text-brand">Execution Led Engine</p>
+                <p className="text-sm font-light leading-relaxed text-grey">
+                  Operator capabilities that <strong className="font-semibold text-navy">deliver measurable business outcomes</strong> for existing startups, SMEs, and companies.
+                </p>
+              </Link>
+
+              {/* Venture Investment — blue */}
+              <Link href="/investment" className="group border border-white/10 bg-white/5 p-8 md:p-10 flex flex-col transition-all duration-500 hover:bg-white/10">
+                <h3 className="mb-1 text-xl font-display font-bold text-warm-white md:text-2xl">
+                  Venture Investment
+                </h3>
+                <p className="mb-4 text-sm font-semibold text-teal">Investment Engine</p>
+                <p className="text-sm font-light leading-relaxed text-warm-white/75">
+                  Milestone-linked capital deployment into vetted startups, aligned with operator execution outcomes.
+                </p>
+              </Link>
+
+              {/* AI Capability Centre — white */}
+              <Link href="/capability-centre" className="group bg-warm-white border-l border-grey/20 p-8 md:p-10 flex flex-col transition-all duration-500 hover:bg-white border-t-4 border-t-teal">
+                <h3 className="mb-1 text-xl font-display font-bold text-navy md:text-2xl">
+                  AI Capability Centre
+                </h3>
+                <p className="mb-4 text-sm font-semibold text-teal">Shared Services for the AI Capability Centre</p>
+                <p className="text-sm font-light leading-relaxed text-grey">
+                  Technology, Product, HR, Supply Chain, Marketing &amp; Operations powering{' '}
+                  <strong className="font-semibold text-navy">Build, Scale, and Invest.</strong>
+                </p>
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* Domains We Work In */}
+        <section className={`${sectionPadding} bg-white border-y border-grey/10`}>
+          <div className="max-w-7xl mx-auto">
+            <div className={sectionIntro}>
+              <h2 className={sectionTitle}>
+                Sectors We <span className="text-brand">Work In</span>
+              </h2>
+              <p className={`${sectionBody} text-navy/70`}>
+                Deep operator expertise across high-growth sectors.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 gap-x-8 gap-y-6 md:grid-cols-3 md:gap-y-0">
+              {domainGroups.map((group) => (
+                <div key={group.category}>
+                  <p className="mt-4 mb-3 text-center text-xs font-bold uppercase tracking-[0.18em] text-brand md:mt-0 md:mb-4 md:text-sm">
+                    {group.category}
+                  </p>
+                  <div className="flex flex-col gap-4">
+                    {group.domains.map((domain) => (
+                      <div
+                        key={domain.name}
+                        className="group flex min-h-[148px] cursor-default items-center gap-4 rounded-2xl border border-grey/20 bg-warm-white p-4 transition-all duration-300 hover:border-brand/50 hover:bg-white md:min-h-[156px] md:p-5"
+                      >
+                        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-grey/15 bg-grey/8 transition-all duration-300 group-hover:border-brand/40 group-hover:bg-brand/5 md:h-14 md:w-14">
+                          <domain.icon className="h-5 w-5 text-grey/60 transition-colors duration-300 group-hover:text-brand md:h-6 md:w-6" />
+                        </div>
+                        <div className="flex min-w-0 flex-1 flex-col justify-center">
+                          <h3 className="text-sm font-bold uppercase leading-tight tracking-[0.16em] text-navy transition-colors duration-300 group-hover:text-brand md:text-[15px]">
+                            {domain.name}
+                          </h3>
+                          <p className="mt-2 max-w-[15rem] text-sm font-light leading-[1.45] text-grey md:text-[15px]">
+                            {domain.description}
+                          </p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <WhyMaxinor />
 
         {/* Our Partners */}
         <section className="border-y border-grey/30 bg-warm-white px-6 py-20 md:py-24">

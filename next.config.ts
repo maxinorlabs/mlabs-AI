@@ -9,6 +9,18 @@ const nextConfig: NextConfig = {
   basePath,
   assetPrefix: basePath || undefined,
   reactStrictMode: true,
+  async redirects() {
+    return [
+      { source: '/domains', destination: '/sectors', permanent: true },
+      { source: '/domains/bfsi', destination: '/sectors/bfsi', permanent: true },
+      { source: '/domains/media', destination: '/sectors/media', permanent: true },
+      { source: '/domains/d2c', destination: '/sectors/d2c', permanent: true },
+      { source: '/domains/healthcare', destination: '/sectors/healthcare', permanent: true },
+      { source: '/domains/education', destination: '/sectors/education', permanent: true },
+      { source: '/domains/marketing', destination: '/sectors/marketing', permanent: true },
+      { source: '/domains/legal', destination: '/sectors/legal', permanent: true },
+    ];
+  },
   eslint: {
     ignoreDuringBuilds: true,
   },

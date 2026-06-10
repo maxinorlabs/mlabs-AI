@@ -68,17 +68,16 @@ export function Navbar() {
   const navLinks: NavLink[] = [
     { name: 'Home', path: '/' },
     {
-      name: 'Domains',
-      path: '/domains',
+      name: 'Sectors',
+      path: '/sectors',
       dropdown: [
-        { name: 'All Domains', path: '/domains', header: true },
-        { name: 'Media', path: '/domains/media' },
-        { name: 'D2C & Consumer', path: '/domains/d2c' },
-        { name: 'BFSI', path: '/domains/bfsi' },
-        { name: 'Healthcare', path: '/domains/healthcare' },
-        { name: 'Education', path: '/domains/education' },
-        { name: 'Marketing', path: '/domains/marketing' },
-        { name: 'Legal', path: '/domains/legal' },
+        { name: 'All Sectors', path: '/sectors', header: true },
+        { name: 'Media', path: '/sectors/media' },
+        { name: 'D2C', path: '/sectors/d2c' },
+        { name: 'BFSI', path: '/sectors/bfsi' },
+        { name: 'Healthcare', path: '/sectors/healthcare' },
+        { name: 'Education', path: '/sectors/education' },
+        { name: 'Defence', path: '/sectors/defence' },
       ],
     },
     {

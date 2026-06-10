@@ -155,7 +155,7 @@ const engagements = [
 ];
 
 const stats = [
-  { display: '7', label: 'Domains covered' },
+  { display: '5', label: 'Sectors covered' },
   { display: '30', label: 'days to your roadmap' },
   { display: '3', label: 'Engagement models' },
   { display: '₹100+ Cr', label: 'ARR built by our operators' },

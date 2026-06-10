@@ -19,7 +19,7 @@ export default function Image() {
         }}
       >
         <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '6px', background: '#F36F21' }} />
-        <div style={{ position: 'absolute', bottom: '-60px', right: '-60px', width: '400px', height: '400px', borderRadius: '50%', background: 'rgba(243, 111, 33, 0.07)', filter: 'blur(80px)' }} />
+        <div style={{ position: 'absolute', top: '-80px', right: '-80px', width: '500px', height: '500px', borderRadius: '50%', background: 'rgba(243, 111, 33, 0.06)', filter: 'blur(100px)' }} />
 
         <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
           <div style={{ width: '48px', height: '48px', borderRadius: '50%', background: '#F36F21', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -29,21 +29,18 @@ export default function Image() {
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-          <span style={{ fontSize: '14px', fontWeight: 700, color: '#F36F21', letterSpacing: '0.2em', textTransform: 'uppercase', fontFamily: 'sans-serif' }}>Sectors</span>
+          <span style={{ fontSize: '14px', fontWeight: 700, color: '#F36F21', letterSpacing: '0.2em', textTransform: 'uppercase', fontFamily: 'sans-serif' }}>Domain · Legal</span>
           <div style={{ display: 'flex', alignItems: 'flex-start', gap: '20px' }}>
             <div style={{ width: '5px', height: '80px', background: '#F36F21', borderRadius: '4px', flexShrink: 0, marginTop: '6px' }} />
-            <span style={{ fontSize: '52px', fontWeight: 700, color: '#F7F7F5', lineHeight: 1.1, fontFamily: 'sans-serif', letterSpacing: '-0.02em' }}>
-              {"We don't just know your industry.\nWe've built inside it."}
+            <span style={{ fontSize: '46px', fontWeight: 700, color: '#F7F7F5', lineHeight: 1.1, fontFamily: 'sans-serif', letterSpacing: '-0.02em' }}>
+              {'Most founders treat legal as a cost.\nIt is actually your earliest moat.'}
             </span>
           </div>
-          <p style={{ fontSize: '22px', color: 'rgba(247,247,245,0.5)', fontFamily: 'sans-serif', fontWeight: 400, margin: 0, paddingLeft: '25px' }}>
-            Operator expertise across six high-growth sectors
-          </p>
         </div>
 
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
           <div style={{ display: 'flex', gap: '10px' }}>
-            {['Media', 'D2C', 'BFSI', 'Healthcare', 'Marketing', 'Legal'].map((tag) => (
+            {['Startup Legal', 'Compliance', 'Fundraising', 'Employment Law'].map((tag) => (
               <div key={tag} style={{ background: 'rgba(243,111,33,0.15)', border: '1px solid rgba(243,111,33,0.3)', borderRadius: '100px', padding: '7px 16px', fontSize: '14px', color: '#F36F21', fontFamily: 'sans-serif', fontWeight: 600 }}>
                 {tag}
               </div>

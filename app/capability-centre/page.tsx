@@ -129,7 +129,7 @@ const differentiators = [
 
 const stats = [
   { value: '90 Days', label: 'To First Delivery' },
-  { value: '7 Domains', label: 'Sector Coverage' },
+  { value: '5 Sectors', label: 'Sector Coverage' },
   { value: 'Operator-Led', label: 'Execution Model' },
 ];
 

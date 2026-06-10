@@ -14,7 +14,7 @@ const domains = [
     number: '01',
     name: 'Media',
     sector: 'Broadcasting & Digital Media',
-    standaloneUrl: '/domains/media',
+    standaloneUrl: '/sectors/media',
     problem:
       "You've built an audience. You're not monetising it at the rate you should be.",
     capabilities: [
@@ -42,9 +42,9 @@ const domains = [
   {
     id: 'd2c',
     number: '02',
-    name: 'D2C & Consumer',
+    name: 'D2C',
     sector: 'Consumer Brands & Retail',
-    standaloneUrl: '/domains/d2c',
+    standaloneUrl: '/sectors/d2c',
     problem:
       "You've got GMV. Your contribution margins are the real problem.",
     capabilities: [
@@ -74,7 +74,7 @@ const domains = [
     number: '03',
     name: 'BFSI',
     sector: 'Banking, Financial Services & Insurance',
-    standaloneUrl: '/domains/bfsi',
+    standaloneUrl: '/sectors/bfsi',
     problem:
       "Your FinTech product is live. Compliance and portfolio scale are the next wall.",
     capabilities: [
@@ -104,7 +104,7 @@ const domains = [
     number: '04',
     name: 'Healthcare',
     sector: 'HealthTech & Clinical Tools',
-    standaloneUrl: '/domains/healthcare',
+    standaloneUrl: '/sectors/healthcare',
     problem:
       "You have hospital clients. Every deployment is still fully custom.",
     capabilities: [
@@ -134,7 +134,7 @@ const domains = [
     number: '05',
     name: 'Education',
     sector: 'EdTech & Workforce Development',
-    standaloneUrl: '/domains/education',
+    standaloneUrl: '/sectors/education',
     problem:
       "You have learners. Employers don't recognise your outcomes yet.",
     capabilities: [
@@ -160,63 +160,33 @@ const domains = [
     ],
   },
   {
-    id: 'marketing',
+    id: 'defence',
     number: '06',
-    name: 'Marketing',
-    sector: 'Brand Strategy & Consumer Marketing',
-    standaloneUrl: '/domains/marketing',
+    name: 'Defence',
+    sector: 'Defence Tech & Dual-Use Technology',
+    standaloneUrl: '/sectors/defence',
     problem:
-      "Your brand is visible. Your conversion rate tells a different story.",
+      "You have a defence-grade product. MoD procurement and iDEX scaling are the next wall.",
     capabilities: [
-      'Brand positioning and identity strategy',
-      'Consumer marketing and channel execution',
-      'Content, community, and organic growth engine',
+      'iDEX and DRDO partnership navigation',
+      'MoD procurement and DPP compliance strategy',
+      'Dual-use technology commercialisation and export GTM',
     ],
-    operator: 'Aditi Agrawal',
-    operatorBg: 'Founder, StickyPins & Avyu India',
-    operatorSlug: 'aditi-agrawal',
+    operator: 'Maxinor Leadership Team',
+    operatorBg: 'Multi-domain operator team',
+    operatorSlug: '',
     howWeEngage: [
-      'Brand strategy and positioning',
-      'Consumer marketing and channel strategy',
-      'Content strategy and community building',
+      'Defence procurement and DPP compliance strategy',
+      'iDEX challenge and DRDO partnership navigation',
+      'Dual-use tech commercialisation and export GTM',
     ],
     problemDetail:
-      "Marketing for startups and SMEs in India is too often confused with advertising spend. The brands winning in 2026 are the ones with sharp positioning, channel discipline, and community built before campaigns. We bring practitioner-level marketing expertise from someone actively building in the consumer space.",
+      "India's defence sector is undergoing its most significant transformation since independence. The Make in India push, iDEX programme, and rising defence budget create a once-in-a-generation opportunity for technology startups. But defence procurement operates on different rules, timelines, and relationships than commercial markets. Founders who apply standard startup GTM here lose time and credibility fast.",
     clientProblems: [
-      '"We have a product but no brand narrative that resonates with our target segment."',
-      '"We\'re spending on performance marketing but have zero organic growth. Nothing is compounding."',
-      '"We\'ve tried three agencies. None understood the startup or SME context we operate in."',
-      '"We need a consumer marketing strategy but our founding team is entirely product and tech."',
-    ],
-  },
-  {
-    id: 'legal',
-    number: '07',
-    name: 'Legal',
-    sector: 'Legal, Compliance & Corporate Governance',
-    standaloneUrl: '/domains/legal',
-    problem:
-      "Your legal layer is one audit, or one co-founder dispute, away from a serious problem.",
-    capabilities: [
-      'Startup structuring and founder agreements',
-      'Regulatory compliance and licensing advisory',
-      'Contracts, IP protection, and employment law',
-    ],
-    operator: 'Manik Sood',
-    operatorBg: 'ex-Paytm, ex-Zee, ex-Healthkart | Founder, Law Grammar',
-    operatorSlug: 'manik-sood',
-    howWeEngage: [
-      'Corporate structuring and co-founder agreements',
-      'Regulatory licensing and compliance advisory',
-      'Contracts, IP, and employment law',
-    ],
-    problemDetail:
-      "Legal is the function most founders underinvest in until something breaks. By the time a compliance gap, a co-founder dispute, or a regulatory issue surfaces, the cost of fixing it is ten times what it would have cost to get it right early. We bring 20+ years of cross-industry legal expertise, and direct incorporation and legal services through Law Grammar, Manik's own law firm.",
-    clientProblems: [
-      '"We\'ve been operating for two years on agreements downloaded from the internet. We\'ve never had a legal review."',
-      '"Our co-founder agreement doesn\'t cover vesting, IP assignment, or exit. We need to fix this before our next raise."',
-      '"We\'re entering a regulated sector and have no idea what licensing we need or how long it takes to get approved."',
-      '"We\'re scaling from 5 to 50 people and have no compliant HR framework or employment contracts in place."',
+      '"We won an iDEX challenge but have no idea how to convert it into a sustained MoD procurement relationship."',
+      '"Our technology works in the field but we have no DPP-compliant commercialisation strategy."',
+      '"We\'re dual-use. The commercial market is slow and defence is complex. We need help navigating both."',
+      '"We need to build relationships with DRDO and the armed forces but have no operator who has done this before."',
     ],
   },
 ];

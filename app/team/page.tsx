@@ -212,7 +212,7 @@ export default function TeamPage() {
           </p>
         </div>
 
-        <TeamGridSection title="Leadership" members={leadership} />
+        <TeamGridSection title="Operating Partners" members={leadership} />
         <TeamGridSection title="Entrepreneurs in Residence" members={eirTeam} />
         <TeamGridSection title="Program Team" members={programTeam} />
 
