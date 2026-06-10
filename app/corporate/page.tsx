@@ -138,16 +138,16 @@ function FaqAccordion() {
   const [open, setOpen] = useState<number | null>(null);
 
   return (
-    <div className="divide-y divide-grey/15 overflow-hidden rounded-[2rem] border border-grey/15 bg-white">
+    <div className="divide-y divide-grey/10 overflow-hidden rounded-[2rem] border border-grey/15 bg-white">
       {faqs.map((item, i) => (
         <div key={item.q}>
           <button
             onClick={() => setOpen(open === i ? null : i)}
-            className="flex w-full items-center justify-between gap-4 px-8 py-6 text-left transition-colors hover:bg-warm-white/60"
+            className="flex w-full items-center justify-between gap-6 px-8 py-6 text-left transition-colors hover:bg-warm-white/40"
           >
             <span className="text-base font-semibold text-navy">{item.q}</span>
             <span className="shrink-0 text-brand">
-              {open === i ? <Minus className="h-5 w-5" /> : <Plus className="h-5 w-5" />}
+              {open === i ? <Minus className="h-4 w-4" /> : <Plus className="h-4 w-4" />}
             </span>
           </button>
           <AnimatePresence initial={false}>

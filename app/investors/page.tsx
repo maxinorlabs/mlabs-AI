@@ -139,12 +139,12 @@ function FaqAccordion() {
   const [open, setOpen] = useState<number | null>(null);
 
   return (
-    <div className="divide-y divide-grey/15 rounded-[2rem] border border-grey/15 bg-white overflow-hidden">
+    <div className="divide-y divide-grey/10 overflow-hidden rounded-[2rem] border border-grey/15 bg-white">
       {faqs.map((item, i) => (
         <div key={i}>
           <button
             onClick={() => setOpen(open === i ? null : i)}
-            className="flex w-full items-center justify-between gap-6 px-8 py-6 text-left transition-colors hover:bg-warm-white/60 md:px-10 md:py-7"
+            className="flex w-full items-center justify-between gap-6 px-8 py-6 text-left transition-colors hover:bg-warm-white/40"
             aria-expanded={open === i}
           >
             <span className="text-base font-semibold text-navy md:text-lg">{item.q}</span>
@@ -404,7 +404,7 @@ export default function InvestorsPage() {
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: i * 0.07 }}
-                  className="group flex h-20 w-40 items-center justify-center rounded-2xl border border-grey/15 bg-white p-4 grayscale transition-all duration-300 hover:border-brand/20 hover:grayscale-0 hover:shadow-md md:h-24 md:w-48"
+                  className="group flex h-20 w-40 items-center justify-center rounded-2xl border border-grey/15 bg-white p-4 transition-all duration-300 hover:border-brand/20 hover:shadow-md md:h-24 md:w-48"
                   title={company.name}
                 >
                   <div className="relative h-full w-full">
@@ -443,7 +443,7 @@ export default function InvestorsPage() {
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: i * 0.07 }}
-                  className="group flex h-20 w-40 items-center justify-center rounded-2xl border border-grey/15 bg-white p-4 grayscale transition-all duration-300 hover:border-brand/20 hover:grayscale-0 hover:shadow-md md:h-24 md:w-48"
+                  className="group flex h-20 w-40 items-center justify-center rounded-2xl border border-grey/15 bg-white p-4 transition-all duration-300 hover:border-brand/20 hover:shadow-md md:h-24 md:w-48"
                   title={partner.name}
                 >
                   <div className="relative h-full w-full">

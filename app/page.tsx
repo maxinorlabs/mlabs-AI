@@ -37,7 +37,7 @@ const engagements = [
     featured: false,
   },
   {
-    name: 'Venture Partner',
+    name: 'Partnership',
     duration: '6 months',
     model: 'Embedded · Equity + execution',
     description: 'An operator joins your team, embedded, accountable, and aligned on outcomes through equity.',
@@ -48,7 +48,7 @@ const engagements = [
     featured: true,
   },
   {
-    name: 'Venture CXO',
+    name: 'Fractional CXO',
     duration: '6-12 months',
     model: 'Fractional · C-level',
     description: 'A fractional CXO who operates as part of your leadership team: CMO, CTO, CFO, or CPO.',

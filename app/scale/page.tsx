@@ -93,13 +93,13 @@ const engagementModels = [
       'Diagnose what is blocking growth. Map your capabilities. Build a 90-day execution roadmap with operator assignment. Fixed fee. No equity.',
   },
   {
-    name: 'Venture Partner',
+    name: 'Partnership',
     duration: '6 months',
     description:
       'An operator embeds in your team. Owns a function. Accountable to milestones. Series A preparation included. Equity-linked plus execution fee.',
   },
   {
-    name: 'Venture CXO',
+    name: 'Fractional CXO',
     duration: '6 to 12 months',
     description:
       'A fractional CMO, CTO, CFO or CPO joins your leadership team. Builds the function. Hires the permanent leader. Retainer model.',
@@ -162,7 +162,7 @@ const faqs = [
   },
   {
     q: 'Do we need to give equity?',
-    a: 'The Venture Partner model involves a small equity stake aligned to execution milestones. The Discovery Sprint and Venture CXO models are fee-based with no equity.',
+    a: 'The Partner model involves a small equity stake aligned to execution milestones. The Discovery Sprint and Fractional CXO models are fee-based with no equity.',
   },
   {
     q: 'How do we know if Venture Scale is working?',

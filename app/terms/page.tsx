@@ -1,7 +1,7 @@
 const serviceDescriptions = [
   'Venture Sprint (30-day transformation programs)',
-  'Venture Partner (embedded execution services)',
-  'Venture CXO (fractional leadership services)',
+  'Partner (embedded execution services)',
+  'Fractional CXO (fractional leadership services)',
 ];
 
 const eligibilityRequirements = [

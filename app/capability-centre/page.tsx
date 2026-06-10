@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { CapabilityFAQ } from '@/components/CapabilityFAQ';
 import {
   ArrowRight,
   CheckCircle2,
@@ -334,15 +335,9 @@ export default function CapabilityCentrePage() {
 
     <section className="bg-warm-white px-6 py-16 md:py-20">
       <div className="max-w-7xl mx-auto">
-        <h2 className="mb-8 text-2xl font-display font-medium text-navy md:text-3xl">Frequently Asked Questions</h2>
-        <div className="grid gap-4 md:grid-cols-2">
-          {faqSchema.mainEntity.map((item) => (
-            <div key={item.name} className="rounded-[1.5rem] border border-navy/10 bg-white p-6">
-              <h3 className="mb-2 text-base font-semibold text-navy">{item.name}</h3>
-              <p className="text-sm font-light leading-relaxed text-grey">{item.acceptedAnswer.text}</p>
-            </div>
-          ))}
-        </div>
+        <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">Common Questions</p>
+        <h2 className="mb-10 text-3xl font-display font-medium tracking-tight text-navy md:text-4xl">Frequently asked questions.</h2>
+        <CapabilityFAQ items={faqSchema.mainEntity} />
       </div>
     </section>
     </>
