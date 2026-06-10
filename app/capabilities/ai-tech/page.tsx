@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useState } from 'react';
-import { ArrowRight, Rocket, Database, Brain, ChevronDown } from 'lucide-react';
+import { ArrowRight, Rocket, Database, Brain, Plus, Minus } from 'lucide-react';
 
 const primaryBtn =
   'inline-flex items-center justify-center rounded-full bg-brand px-8 py-4 text-base font-semibold tracking-wide text-warm-white transition-all duration-300 hover:-translate-y-1 hover:bg-brand/90 shadow-[0_0_40px_rgba(243,111,33,0.15)] hover:shadow-[0_0_60px_rgba(243,111,33,0.3)] sm:px-10 sm:py-5';
@@ -252,48 +252,39 @@ function ArchitectureExplorer() {
 }
 
 function FAQAccordion() {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [open, setOpen] = useState<number | null>(null);
 
   return (
-    <div className="space-y-3">
-      {faqs.map((faq, i) => {
-        const isOpen = openIndex === i;
-        return (
-          <div
-            key={i}
-            className="overflow-hidden rounded-[1.5rem] border border-grey/15 bg-white"
+    <div className="mt-10 divide-y divide-grey/10 rounded-[2rem] border border-grey/15 bg-white overflow-hidden">
+      {faqs.map((faq, i) => (
+        <div key={i}>
+          <button
+            onClick={() => setOpen(open === i ? null : i)}
+            className="flex w-full items-center justify-between gap-6 px-8 py-6 text-left transition-colors hover:bg-warm-white/40"
           >
-            <button
-              onClick={() => setOpenIndex(isOpen ? null : i)}
-              className="flex w-full items-center justify-between gap-4 px-7 py-5 text-left transition-colors hover:bg-warm-white/50"
-            >
-              <span className="text-sm font-semibold text-navy md:text-base">{faq.q}</span>
-              <motion.span
-                animate={{ rotate: isOpen ? 180 : 0 }}
-                transition={{ duration: 0.25 }}
-                className="shrink-0 text-brand"
+            <span className="text-base font-semibold text-navy">{faq.q}</span>
+            <span className="shrink-0 text-brand">
+              {open === i ? <Minus className="h-4 w-4" /> : <Plus className="h-4 w-4" />}
+            </span>
+          </button>
+          <AnimatePresence initial={false}>
+            {open === i && (
+              <motion.div
+                key="content"
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: 'auto', opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.25, ease: 'easeOut' }}
+                className="overflow-hidden"
               >
-                <ChevronDown className="h-5 w-5" />
-              </motion.span>
-            </button>
-            <AnimatePresence initial={false}>
-              {isOpen && (
-                <motion.div
-                  key="body"
-                  initial={{ height: 0, opacity: 0 }}
-                  animate={{ height: 'auto', opacity: 1 }}
-                  exit={{ height: 0, opacity: 0 }}
-                  transition={{ duration: 0.3, ease: 'easeOut' }}
-                >
-                  <p className="px-7 pb-6 text-sm font-light leading-relaxed text-grey">
-                    {faq.a}
-                  </p>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-        );
-      })}
+                <p className="px-8 pb-6 text-sm font-light leading-relaxed text-grey">
+                  {faq.a}
+                </p>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+      ))}
     </div>
   );
 }

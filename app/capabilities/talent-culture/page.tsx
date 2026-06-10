@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useState } from 'react';
-import { ArrowRight, Building2, Users, Heart, ChevronDown } from 'lucide-react';
+import { ArrowRight, Building2, Users, Heart, Plus, Minus } from 'lucide-react';
 
 const primaryBtn =
   'inline-flex items-center justify-center rounded-full bg-brand px-8 py-4 text-base font-semibold tracking-wide text-warm-white transition-all duration-300 hover:-translate-y-1 hover:bg-brand/90 shadow-[0_0_40px_rgba(243,111,33,0.15)] hover:shadow-[0_0_60px_rgba(243,111,33,0.3)] sm:px-10 sm:py-5';
@@ -134,7 +134,7 @@ const operators = [
     bg: 'ex-Paytm, ex-Bzinga, ex-Solv',
     depth: 'Operator and business leader who has built and scaled cross-functional teams across media, fintech, and enterprise. Samir brings a founder lens to people and org challenges.',
     slug: 'samir-gupta',
-    image: 'https://media.licdn.com/dms/image/v2/D4D03AQH4Sd0hME4cQA/profile-displayphoto-shrink_400_400/B4DZPi3yxWHcAg-/0/1734698610773?e=1753920000&v=beta&t=X6dVaIrPZPT7SdwEq-IJ1MONPxzVzrjuUFHKicVBiYo',
+    image: 'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/68e50d8f8eb88abaaf2dbbb5_1695013342712.jpeg',
     initials: 'SG',
   },
 ];
@@ -253,44 +253,41 @@ function ArchitectureExplorer() {
   );
 }
 
-function FAQItem({ q, a, index }: { q: string; a: string; index: number }) {
-  const [open, setOpen] = useState(false);
+function FAQAccordion() {
+  const [open, setOpen] = useState<number | null>(null);
+
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 16 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: index * 0.07 }}
-      className="border-b border-grey/15 last:border-b-0"
-    >
-      <button
-        onClick={() => setOpen(!open)}
-        className="flex w-full items-center justify-between gap-4 py-6 text-left"
-      >
-        <span className="text-base font-semibold text-navy">{q}</span>
-        <motion.span
-          animate={{ rotate: open ? 180 : 0 }}
-          transition={{ duration: 0.25 }}
-          className="shrink-0 text-brand"
-        >
-          <ChevronDown className="h-5 w-5" />
-        </motion.span>
-      </button>
-      <AnimatePresence initial={false}>
-        {open && (
-          <motion.div
-            key="answer"
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: 'easeInOut' }}
-            className="overflow-hidden"
+    <div className="mt-10 divide-y divide-grey/10 rounded-[2rem] border border-grey/15 bg-white overflow-hidden">
+      {faqs.map((faq, i) => (
+        <div key={i}>
+          <button
+            onClick={() => setOpen(open === i ? null : i)}
+            className="flex w-full items-center justify-between gap-6 px-8 py-6 text-left transition-colors hover:bg-warm-white/40"
           >
-            <p className="pb-6 text-sm font-light leading-relaxed text-grey">{a}</p>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.div>
+            <span className="text-base font-semibold text-navy">{faq.q}</span>
+            <span className="shrink-0 text-brand">
+              {open === i ? <Minus className="h-4 w-4" /> : <Plus className="h-4 w-4" />}
+            </span>
+          </button>
+          <AnimatePresence initial={false}>
+            {open === i && (
+              <motion.div
+                key="content"
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: 'auto', opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.25, ease: 'easeOut' }}
+                className="overflow-hidden"
+              >
+                <p className="px-8 pb-6 text-sm font-light leading-relaxed text-grey">
+                  {faq.a}
+                </p>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+      ))}
+    </div>
   );
 }
 
@@ -531,11 +528,7 @@ export default function TalentCulturePage() {
               What founders ask us most.
             </h2>
           </motion.div>
-          <div className="rounded-[2rem] border border-grey/15 bg-white px-8 py-2">
-            {faqs.map((faq, i) => (
-              <FAQItem key={faq.q} q={faq.q} a={faq.a} index={i} />
-            ))}
-          </div>
+          <FAQAccordion />
         </div>
       </section>
 

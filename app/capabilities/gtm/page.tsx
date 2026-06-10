@@ -125,7 +125,7 @@ const operators = [
     bg: 'ex-Paytm, ex-Bzinga, ex-Solv',
     depth: 'Revenue and business development operator with a track record across B2B SaaS, media, and fintech. Samir builds pipeline systems and sales playbooks that run without the founder in the room.',
     slug: 'samir-gupta',
-    image: 'https://media.licdn.com/dms/image/v2/D4D03AQH4Sd0hME4cQA/profile-displayphoto-shrink_400_400/B4DZPi3yxWHcAg-/0/1734698610773?e=1753920000&v=beta&t=X6dVaIrPZPT7SdwEq-IJ1MONPxzVzrjuUFHKicVBiYo',
+    image: 'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/68e50d8f8eb88abaaf2dbbb5_1695013342712.jpeg',
     initials: 'SG',
   },
   {
@@ -134,7 +134,7 @@ const operators = [
     bg: 'ex-United Breweries, ex-ITC, ex-Britannia',
     depth: 'Consumer goods and D2C operator with 15+ years of brand, channel, and distribution experience across FMCG and consumer companies. Priyabrata builds the brand and conversion infrastructure that turns awareness into revenue.',
     slug: 'priyabrata-padhi',
-    image: null,
+    image: 'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/69c11ffc5c1c2e2f2a9cadaa_Gemini_Generated_Image_m5qmrom5qmrom5qm.avif',
     initials: 'PP',
   },
 ];
