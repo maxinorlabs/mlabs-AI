@@ -127,41 +127,38 @@ const faqs = [
 
 // ─── FAQ Item ─────────────────────────────────────────────────────────────────
 
-function FaqItem({ q, a, index }: { q: string; a: string; index: number }) {
-  const [open, setOpen] = useState(false);
-
+function FaqAccordion() {
+  const [open, setOpen] = useState<number | null>(null);
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 16 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: index * 0.07 }}
-      className="border-b border-grey/10 last:border-b-0"
-    >
-      <button
-        onClick={() => setOpen((v) => !v)}
-        className="flex w-full items-center justify-between gap-6 px-8 py-6 text-left hover:bg-warm-white/40 transition-colors duration-200"
-      >
-        <span className="text-base font-semibold text-navy md:text-lg">{q}</span>
-        <span className="shrink-0 rounded-full border border-navy/15 p-1.5 text-navy/50 transition-colors hover:border-brand/30 hover:text-brand">
-          {open ? <Minus className="h-4 w-4" /> : <Plus className="h-4 w-4" />}
-        </span>
-      </button>
-      <AnimatePresence initial={false}>
-        {open && (
-          <motion.div
-            key="answer"
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: 'easeInOut' }}
-            className="overflow-hidden"
+    <div className="divide-y divide-grey/10 overflow-hidden rounded-[2rem] border border-grey/15 bg-white">
+      {faqs.map((faq, i) => (
+        <div key={i}>
+          <button
+            onClick={() => setOpen(open === i ? null : i)}
+            className="flex w-full items-center justify-between gap-6 px-8 py-6 text-left transition-colors hover:bg-warm-white/40"
           >
-            <p className="px-8 pb-6 text-sm font-light leading-relaxed text-navy/60 md:text-base">{a}</p>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.div>
+            <span className="text-base font-semibold text-navy">{faq.q}</span>
+            <span className="shrink-0 text-brand">
+              {open === i ? <Minus className="h-4 w-4" /> : <Plus className="h-4 w-4" />}
+            </span>
+          </button>
+          <AnimatePresence initial={false}>
+            {open === i && (
+              <motion.div
+                key="content"
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: 'auto', opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.25, ease: 'easeOut' }}
+                className="overflow-hidden"
+              >
+                <p className="px-8 pb-6 text-sm font-light leading-relaxed text-grey">{faq.a}</p>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+      ))}
+    </div>
   );
 }
 
@@ -457,11 +454,7 @@ export default function StartupsPage() {
             </h2>
           </motion.div>
 
-          <div className="divide-y divide-grey/10 overflow-hidden rounded-[2rem] border border-grey/15 bg-white">
-            {faqs.map((faq, i) => (
-              <FaqItem key={faq.q} q={faq.q} a={faq.a} index={i} />
-            ))}
-          </div>
+          <FaqAccordion />
         </div>
       </section>
 
