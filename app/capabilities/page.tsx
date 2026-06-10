@@ -137,7 +137,7 @@ const engagements = [
 ];
 
 const stats = [
-  { display: '5', label: 'Sectors covered' },
+  { display: '6', label: 'Sectors covered' },
   { display: '30', label: 'days to your roadmap' },
   { display: '3', label: 'Engagement models' },
   { display: '₹100+ Cr', label: 'ARR built by our operators' },
@@ -215,7 +215,7 @@ export default function CapabilitiesPage() {
           <div className="mb-10 text-center">
             <p className="mb-3 text-xs font-bold uppercase tracking-[0.22em] text-brand">Where Maxinor Adds Value</p>
             <h2 className="text-3xl font-display font-medium tracking-tight text-navy md:text-5xl">
-              Four operator capabilities.{' '}
+              Our operator capabilities.{' '}
               <span className="text-brand">One accountable team.</span>
             </h2>
           </div>

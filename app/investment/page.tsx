@@ -1,203 +1,580 @@
-import type { Metadata } from 'next';
+'use client';
+
+import { motion, AnimatePresence } from 'motion/react';
 import Link from 'next/link';
-import { TrendingUp, ShieldCheck, Users, ArrowRight, CheckCircle2, BadgeIndianRupee, Handshake, LineChart } from 'lucide-react';
+import Image from 'next/image';
+import { useState } from 'react';
+import { ArrowRight, Plus, Minus } from 'lucide-react';
 
-export const metadata: Metadata = {
-  title: 'Venture Investment | Startup Funding',
-  description: 'Maxinor invests in high-conviction startups at pre-seed and seed stage. Operator expertise alongside capital, not just a cheque.',
-};
+/* ── Button helpers ─────────────────────────────────────────── */
+const primaryBtn =
+  'inline-flex items-center justify-center gap-2 rounded-full bg-brand px-8 py-4 text-base font-semibold tracking-wide text-warm-white transition-all duration-300 hover:-translate-y-1 hover:bg-brand/90 shadow-[0_0_40px_rgba(243,111,33,0.15)] hover:shadow-[0_0_60px_rgba(243,111,33,0.3)] sm:px-10 sm:py-5';
 
-const pagePadding = 'bg-warm-white px-6 pt-24 pb-20 md:pt-32 md:pb-28 lg:pb-32';
-const introSpacing = 'mb-14 md:mb-24 lg:mb-28';
-const introTitle = 'mb-5 text-4xl font-display font-medium tracking-tight text-navy sm:text-5xl md:mb-6 md:text-7xl';
-const introBody = 'max-w-3xl text-base font-light leading-relaxed text-navy/70 md:text-xl';
-const chipClass =
-  'flex items-center gap-2 rounded-full border border-navy/10 bg-navy/5 px-4 py-2 text-sm font-medium text-navy md:gap-3 md:px-6 md:py-3 md:text-base';
-const cardClass =
-  'rounded-[2rem] border border-navy/10 bg-white p-6 transition-all duration-500 hover:border-teal/40 hover:bg-navy/5 sm:p-8 md:p-10 lg:p-12';
-const primaryButtonClass =
-  'inline-flex w-full max-w-[320px] items-center justify-center gap-2 rounded-full bg-brand px-8 py-4 text-base font-semibold tracking-wide whitespace-nowrap text-warm-white transition-all duration-300 hover:-translate-y-1 hover:bg-brand/90 sm:w-auto sm:px-10 sm:py-5 sm:text-lg shadow-[0_0_40px_rgba(243,111,33,0.15)] hover:shadow-[0_0_60px_rgba(243,111,33,0.3)]';
+const ghostBtn =
+  'inline-flex items-center justify-center gap-2 rounded-full border border-warm-white/30 px-8 py-4 text-base font-semibold tracking-wide text-warm-white transition-all duration-300 hover:-translate-y-1 hover:border-warm-white/60 sm:px-10 sm:py-5';
 
-const highlights = [
-  { icon: ShieldCheck, label: 'Operator Validated' },
-  { icon: LineChart, label: 'Milestone-Linked Capital' },
-  { icon: Handshake, label: 'Founder Aligned' },
-];
-
-const pillars = [
+/* ── Data ───────────────────────────────────────────────────── */
+const painPoints = [
   {
-    icon: ShieldCheck,
-    title: 'Operator-Validated Deal Flow',
-    items: [
-      'Capital deployed only after operator due diligence',
-      'Insider visibility into team, traction, and execution capacity',
-      'No cold deals. Every investment follows operator engagement',
-      'Significantly lower information asymmetry vs. traditional VC',
-    ],
+    number: '01',
+    title: 'The Information Asymmetry Problem',
+    body: 'VCs see curated decks and 30-minute pitches. They have no way to assess execution capacity, team depth, or operational reality. This leads to overvalued early rounds, misaligned expectations, and founders who raise capital before they are ready to deploy it.',
   },
   {
-    icon: BadgeIndianRupee,
-    title: 'Milestone-Linked Capital Tranches',
-    items: [
-      'Capital released in tranches tied to performance milestones',
-      'Ticket size: 25L to 3Cr at pre-seed to pre-Series A',
-      'Staged deployment reduces dilution for founders',
-      'Keeps execution accountability aligned with funding',
-    ],
+    number: '02',
+    title: 'The Milestone Mismatch',
+    body: 'Time-based capital tranches create perverse incentives. Founders spend money on schedule rather than on results. Milestones get negotiated rather than achieved. Maxinor links every tranche to real execution outcomes.',
   },
   {
-    icon: TrendingUp,
-    title: 'What We Back',
-    items: [
-      'Founders between 1Cr and 20Cr ARR with PMF evidence',
-      'D2C, Media, Healthcare, Education and AI-native sectors',
-      'Companies already engaged with Maxinor operators',
-      'Teams with a clear path to Series A within 18 months',
-    ],
-  },
-  {
-    icon: Users,
-    title: 'LP & Co-Invest Program',
-    items: [
-      'Curated co-invest access for HNIs and family offices',
-      'All LP opportunities are operator-vetted before syndication',
-      'Quarterly deal summaries and portfolio updates',
-      'Access to the Maxinor Operator Network as a strategic LP',
-    ],
+    number: '03',
+    title: 'The Advisory Vacuum',
+    body: 'Most investors show up for board meetings and introductions. When operations break, when key people leave, when growth stalls, there is no operator in the room who can actually fix the problem. Capital without execution support is just pressure without relief.',
   },
 ];
 
-const process = [
+const processSteps = [
   {
     step: '01',
     title: 'Operator Engagement',
-    description:
-      'Before capital enters the picture, a Maxinor operator embeds with the founding team to validate execution capacity.',
+    body: 'Before capital enters the picture, a Maxinor operator works with the founding team. We see the business from the inside: real unit economics, real team capacity, real execution speed.',
   },
   {
     step: '02',
-    title: 'Traction Validation',
-    description:
-      'We review cohort data, unit economics, and 90-day execution against milestones set during the operator engagement.',
+    title: 'Execution Validation',
+    body: 'We review cohort data, CAC/LTV, burn rate, and 90-day milestone performance. The investment thesis is built on operational evidence, not projected numbers.',
   },
   {
     step: '03',
     title: 'Investment Committee',
-    description:
-      'Our IC reviews operator notes, domain context, and capital efficiency before approving a milestone-linked term sheet.',
+    body: 'Our IC reviews operator notes, domain context, capital efficiency, and milestone roadmap. Approval happens within 2 weeks of IC submission.',
   },
   {
     step: '04',
-    title: 'Capital + Continued Execution',
-    description:
-      'Capital is deployed in tranches. The operator remains embedded, ensuring the investment compounds with execution.',
+    title: 'Capital and Continued Execution',
+    body: 'Capital is released in tranches tied to milestones. The operator stays embedded, ensuring the investment compounds with execution.',
   },
 ];
 
+const parameters = [
+  {
+    title: 'Investment Stage',
+    body: 'Pre-seed, Seed, and Pre-Series A. Startups between Rs 1 Cr and Rs 20 Cr ARR with clear product-market fit evidence.',
+  },
+  {
+    title: 'Ticket Size',
+    body: 'Rs 25 Lakh to Rs 3 Crore. Deployed in milestone-linked tranches. Staged deployment reduces founder dilution and maintains execution accountability.',
+  },
+  {
+    title: 'Sectors',
+    body: 'D2C, Media, Healthcare, Education, BFSI, AI-native platforms, and Defence Tech. We back sectors where our operators have domain depth.',
+  },
+  {
+    title: 'Capital Structure',
+    body: 'Equity with milestone-linked tranches. SAFE notes for pre-revenue. Convertible structures for bridge rounds. Co-invest available for HNIs and family offices.',
+  },
+];
+
+const portfolioCompanies = [
+  {
+    name: 'IZF',
+    logo: 'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/695e7c054bb39ce328e497b7_izf%20fill%20logo.png',
+    url: 'https://izfworld.com/',
+  },
+  {
+    name: 'Nattier',
+    logo: 'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/695e7d29b07f70111e63e428_Screenshot%202026-01-07%20at%209.02.56%E2%80%AFPM.png',
+    url: 'https://nattier.co.in/',
+  },
+  {
+    name: 'Kachs',
+    logo: 'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/69b2b537ff9642970327a58b_kachslogo-dJobQBobXJiEKPjL.avif',
+    url: 'https://responcibleai.com/',
+  },
+  {
+    name: 'Adaapt',
+    logo: 'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/695e7c0571637f2d25422210_Adaapt.svg',
+    url: 'https://www.adaapt.ai/',
+  },
+  {
+    name: 'Aseed',
+    logo: 'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/695e7e0dfbb6090b487952b2_Screenshot%202026-01-07%20at%209.08.21%E2%80%AFPM.png',
+    url: 'https://aseedinternational.org/',
+  },
+];
+
+const partners = [
+  {
+    name: 'Hygriv',
+    logo: 'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/695e8f57198b4be76b7685ef_Logo%20with%20Capital.png',
+    url: 'https://www.hygriv.com/',
+  },
+  {
+    name: 'Saptharushi',
+    logo: 'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/69b3cd584c566a57e84d3aae_saptharushi7_logo.jpg',
+    url: 'https://saptharushi.com/',
+  },
+];
+
+const faqs = [
+  {
+    q: 'Do I need to be a Maxinor portfolio company to raise?',
+    a: 'Yes. We only invest in companies where we have had prior operator engagement. This ensures our conviction is real and our terms are genuinely founder-aligned.',
+  },
+  {
+    q: 'How long does the investment process take?',
+    a: 'From IC submission to term sheet is typically 2 weeks. From first operator engagement to investment decision is typically 2 to 4 months depending on engagement depth.',
+  },
+  {
+    q: 'What is the typical equity stake?',
+    a: 'Between 3% and 8% depending on the stage, ticket size, and depth of operator engagement. We structure to minimise dilution while maintaining alignment.',
+  },
+  {
+    q: 'Can I raise from other investors alongside Maxinor?',
+    a: 'Yes. We encourage founders to build a cap table with strategic angels and domain experts alongside Maxinor. We often help with introductions.',
+  },
+  {
+    q: 'What happens if I miss a milestone?',
+    a: 'We work with you to diagnose why and reset. Milestones are not trip wires. They are alignment tools. A missed milestone triggers an operator-led diagnostic, not a punitive clause.',
+  },
+];
+
+/* ── FAQ Accordion ──────────────────────────────────────────── */
+function FaqAccordion() {
+  const [open, setOpen] = useState<number | null>(null);
+
+  return (
+    <div className="divide-y divide-grey/15 rounded-[2rem] border border-grey/15 bg-white overflow-hidden">
+      {faqs.map((item, i) => (
+        <div key={i}>
+          <button
+            onClick={() => setOpen(open === i ? null : i)}
+            className="flex w-full items-center justify-between gap-6 px-8 py-6 text-left transition-colors hover:bg-warm-white/60 md:px-10 md:py-7"
+            aria-expanded={open === i}
+          >
+            <span className="text-base font-semibold text-navy md:text-lg">{item.q}</span>
+            <span className="shrink-0 rounded-full border border-grey/20 p-1.5 text-navy/50 transition-colors">
+              {open === i ? <Minus className="h-4 w-4" /> : <Plus className="h-4 w-4" />}
+            </span>
+          </button>
+          <AnimatePresence initial={false}>
+            {open === i && (
+              <motion.div
+                key="body"
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: 'auto', opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.3, ease: 'easeInOut' }}
+                className="overflow-hidden"
+              >
+                <p className="px-8 pb-7 text-sm font-light leading-relaxed text-grey md:px-10 md:text-base">
+                  {item.a}
+                </p>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+/* ── Page ───────────────────────────────────────────────────── */
 export default function InvestmentPage() {
   return (
-    <div className={pagePadding}>
-      <div className="max-w-7xl mx-auto">
-        {/* Hero */}
-        <div className={introSpacing}>
-          <p className="mb-4 text-xs font-bold uppercase tracking-[0.22em] text-teal">Venture Investment</p>
-          <h1 className={introTitle}>
-            <span className="text-navy">Capital That Follows</span>{' '}
-            <span className="text-brand">Conviction</span>
-          </h1>
-          <p className={`${introBody} mb-8 md:mb-10`}>
-            Maxinor does not write cheques based on pitch decks. Every investment is preceded by operator
-            engagement, which gives us real execution data, not projected numbers. Capital is milestone-linked,
-            founder-aligned, and deployed alongside the operators who have already validated the business.
-          </p>
-          <div className="flex flex-wrap gap-3 md:gap-4">
-            {highlights.map((h) => (
-              <div key={h.label} className={chipClass}>
-                <h.icon className="h-4 w-4 text-teal md:h-5 md:w-5" />
-                <span>{h.label}</span>
-              </div>
-            ))}
-          </div>
-        </div>
+    <div className="font-sans">
 
-        {/* How We Invest — Process */}
-        <div className="mb-16 md:mb-24">
-          <p className="mb-3 text-xs font-bold uppercase tracking-[0.22em] text-brand">How We Invest</p>
-          <h2 className="mb-10 text-2xl font-display font-medium text-navy md:text-4xl">
-            Operator first. Capital follows.
-          </h2>
-          <div className="grid gap-5 sm:grid-cols-2 md:grid-cols-4">
-            {process.map((p) => (
-              <div
-                key={p.step}
-                className="rounded-[2rem] border border-navy/10 bg-white p-6 sm:p-8 transition-all duration-500 hover:border-teal/40 hover:bg-navy/5"
+      {/* ── Section 1: Hero ──────────────────────────────────── */}
+      <section className="relative overflow-hidden bg-navy px-6 pt-32 pb-24 md:pt-44 md:pb-32">
+        {/* Grid overlay */}
+        <div
+          className="pointer-events-none absolute inset-0 opacity-[0.03]"
+          style={{
+            backgroundImage:
+              'linear-gradient(rgba(255,255,255,0.8) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.8) 1px, transparent 1px)',
+            backgroundSize: '60px 60px',
+          }}
+        />
+        {/* Brand glow */}
+        <div className="pointer-events-none absolute -top-40 right-0 h-[600px] w-[600px] rounded-full bg-brand/5 blur-[120px]" />
+        <div className="pointer-events-none absolute top-1/2 left-0 h-[400px] w-[400px] -translate-y-1/2 rounded-full bg-teal/5 blur-[100px]" />
+        {/* Gradient fade to next section */}
+        <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-warm-white" />
+
+        <div className="relative z-10 max-w-7xl mx-auto">
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="mb-4 text-[11px] font-bold uppercase tracking-[0.22em] text-brand"
+          >
+            Venture Investment
+          </motion.p>
+
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            className="mb-6 max-w-4xl text-4xl font-display font-medium tracking-tight text-warm-white md:text-6xl lg:text-7xl"
+          >
+            Capital that follows conviction.{' '}
+            <span className="text-brand">Not pitch decks.</span>
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="mb-10 max-w-2xl text-base font-light leading-relaxed text-warm-white/60 md:text-lg"
+          >
+            Maxinor does not write cheques based on slides. Every investment is preceded by operator engagement.
+            We see the business from the inside before capital enters the room. That is why our conviction is real
+            and our terms are founder-aligned.
+          </motion.p>
+
+          {/* Chips */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="mb-10 flex flex-wrap gap-3"
+          >
+            {['Operator-Validated', 'Milestone-Linked', 'Pre-seed to Pre-Series A'].map((chip) => (
+              <span
+                key={chip}
+                className="rounded-full border border-warm-white/15 bg-warm-white/5 px-4 py-2 text-xs font-semibold tracking-wide text-warm-white/70 backdrop-blur-sm md:px-5 md:py-2.5 md:text-sm"
               >
-                <p className="mb-3 text-3xl font-display font-medium text-teal/40">{p.step}</p>
-                <h3 className="mb-2 text-base font-semibold text-navy">{p.title}</h3>
-                <p className="text-sm font-light leading-relaxed text-navy/60">{p.description}</p>
-              </div>
+                {chip}
+              </span>
+            ))}
+          </motion.div>
+
+          {/* CTAs */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="flex flex-wrap gap-4"
+          >
+            <Link href="/contact" className={primaryBtn}>
+              Apply for Investment <ArrowRight className="h-4 w-4 shrink-0" />
+            </Link>
+            <Link href="/scale" className={ghostBtn}>
+              Start with Venture Scale
+            </Link>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ── Section 2: The Investment Problem ────────────────── */}
+      <section className="bg-warm-white px-6 py-20 md:py-28">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="mb-14 md:mb-16"
+          >
+            <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">The Problem</p>
+            <h2 className="max-w-2xl text-3xl font-display font-medium tracking-tight text-navy md:text-4xl">
+              Traditional VC is broken for most Indian founders.
+            </h2>
+          </motion.div>
+
+          <div className="grid gap-6 md:grid-cols-3">
+            {painPoints.map((p, i) => (
+              <motion.div
+                key={p.number}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: i * 0.1 }}
+                className="relative rounded-[2rem] border border-grey/15 bg-white p-8"
+              >
+                <span className="pointer-events-none absolute right-6 top-4 select-none text-7xl font-display font-bold leading-none text-brand/5">
+                  {p.number}
+                </span>
+                <h3 className="mb-3 text-lg font-display font-semibold text-navy">{p.title}</h3>
+                <p className="text-sm font-light leading-relaxed text-grey">{p.body}</p>
+              </motion.div>
             ))}
           </div>
         </div>
+      </section>
 
-        {/* Four Pillars */}
-        <div className="grid gap-5 sm:gap-6 md:grid-cols-2 md:gap-8">
-          {pillars.map((pillar) => (
-            <div key={pillar.title} className={cardClass}>
-              <div className="mb-5 flex items-center gap-3 md:mb-6">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-teal/20 bg-teal/5">
-                  <pillar.icon className="h-5 w-5 text-teal" />
-                </div>
-                <h3 className="text-xl font-display font-medium text-navy md:text-2xl">{pillar.title}</h3>
-              </div>
-              <ul className="space-y-3">
-                {pillar.items.map((item) => (
-                  <li key={item} className="flex items-start gap-2.5 text-sm font-light text-navy/70 md:text-base">
-                    <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-teal/60" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
+      {/* ── Section 3: How We Invest ──────────────────────────── */}
+      <section className="border-t border-grey/10 bg-white px-6 py-20 md:py-28">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="mb-14 md:mb-16"
+          >
+            <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">How We Invest</p>
+            <h2 className="max-w-2xl text-3xl font-display font-medium tracking-tight text-navy md:text-4xl">
+              Operator first. Capital follows.
+            </h2>
+          </motion.div>
 
-        {/* Differentiator strip */}
-        <div className="mt-16 grid gap-4 rounded-[2rem] border border-teal/20 bg-navy p-8 sm:grid-cols-3 md:mt-24 md:p-12">
-          {[
-            { label: 'Investment Stage', value: 'Pre-seed to Pre-Series A' },
-            { label: 'Ticket Size', value: '25L to 3Cr INR' },
-            { label: 'Capital Type', value: 'Equity + Milestone Tranches' },
-          ].map((stat) => (
-            <div key={stat.label} className="text-center">
-              <p className="mb-1 text-2xl font-display font-semibold text-warm-white md:text-3xl">{stat.value}</p>
-              <p className="text-xs font-semibold uppercase tracking-widest text-teal/70">{stat.label}</p>
-            </div>
-          ))}
-        </div>
-
-        {/* CTA */}
-        <div className="mt-16 rounded-[2rem] border border-navy/10 bg-white p-8 text-center shadow-sm md:mt-24 md:p-12 lg:mt-32 lg:p-16">
-          <h2 className="mb-5 text-3xl font-display font-medium text-navy md:mb-6 md:text-5xl">
-            Ready to Raise from Operators?
-          </h2>
-          <p className="mx-auto mb-8 max-w-2xl text-base font-light leading-relaxed text-navy/70 md:mb-10 md:text-xl">
-            If you are a founder who has worked with or is considering Maxinor, the next step is an operator
-            conversation, not a pitch deck.
-          </p>
-          <div className="flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6">
-            <Link href="/contact" className={primaryButtonClass}>
-              Start a Conversation <ArrowRight className="h-4 w-4 shrink-0 sm:h-5 sm:w-5" />
-            </Link>
-            <Link
-              href="/scale"
-              className="inline-flex w-full max-w-[320px] items-center justify-center gap-2 rounded-full border border-navy/15 bg-transparent px-8 py-4 text-base font-semibold text-navy transition-all duration-300 hover:-translate-y-1 hover:border-brand hover:text-brand sm:w-auto sm:px-10 sm:py-5 sm:text-lg"
-            >
-              View Venture Scale
-            </Link>
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {processSteps.map((step, i) => (
+              <motion.div
+                key={step.step}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: i * 0.1 }}
+                className="relative rounded-[2rem] border border-grey/15 bg-warm-white p-7 transition-all duration-300 hover:border-teal/30 hover:bg-white"
+              >
+                {/* Connector line for desktop */}
+                {i < processSteps.length - 1 && (
+                  <div className="absolute -right-2.5 top-10 hidden h-px w-5 bg-teal/20 lg:block" />
+                )}
+                <p className="mb-4 text-4xl font-display font-bold text-teal/20">{step.step}</p>
+                <h3 className="mb-3 text-base font-semibold text-navy">{step.title}</h3>
+                <p className="text-sm font-light leading-relaxed text-grey">{step.body}</p>
+              </motion.div>
+            ))}
           </div>
         </div>
-      </div>
+      </section>
+
+      {/* ── Section 4: Investment Parameters ─────────────────── */}
+      <section className="bg-navy px-6 py-20 md:py-28">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="mb-14 md:mb-16"
+          >
+            <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">Investment Parameters</p>
+            <h2 className="max-w-2xl text-3xl font-display font-medium tracking-tight text-warm-white md:text-4xl">
+              What we back and how we structure it.
+            </h2>
+          </motion.div>
+
+          <div className="grid gap-5 sm:grid-cols-2">
+            {parameters.map((param, i) => (
+              <motion.div
+                key={param.title}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: i * 0.08 }}
+                className="rounded-[2rem] border border-white/10 bg-white/5 p-8 backdrop-blur-sm transition-all duration-300 hover:bg-white/8 hover:border-teal/20 md:p-10"
+              >
+                <div className="mb-3 h-0.5 w-8 bg-brand" />
+                <h3 className="mb-3 text-lg font-display font-semibold text-warm-white">{param.title}</h3>
+                <p className="text-sm font-light leading-relaxed text-warm-white/60">{param.body}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Section 5: Portfolio Companies ───────────────────── */}
+      <section className="bg-warm-white px-6 py-20 md:py-28">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="mb-14 md:mb-16"
+          >
+            <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">Portfolio</p>
+            <h2 className="max-w-2xl text-3xl font-display font-medium tracking-tight text-navy md:text-4xl">
+              Companies in our portfolio.
+            </h2>
+          </motion.div>
+
+          {/* Portfolio logo grid */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+            className="mb-16"
+          >
+            <div className="flex flex-wrap items-center justify-center gap-4 md:gap-6">
+              {portfolioCompanies.map((company, i) => (
+                <motion.a
+                  key={company.name}
+                  href={company.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  initial={{ opacity: 0, scale: 0.92 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: i * 0.07 }}
+                  className="group flex h-20 w-40 items-center justify-center rounded-2xl border border-grey/15 bg-white p-4 grayscale transition-all duration-300 hover:border-brand/20 hover:grayscale-0 hover:shadow-md md:h-24 md:w-48"
+                  title={company.name}
+                >
+                  <div className="relative h-full w-full">
+                    <Image
+                      src={company.logo}
+                      alt={company.name}
+                      fill
+                      className="object-contain"
+                      referrerPolicy="no-referrer"
+                      unoptimized
+                    />
+                  </div>
+                </motion.a>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Partners row */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.1 }}
+          >
+            <p className="mb-6 text-center text-[11px] font-bold uppercase tracking-[0.22em] text-navy/40">
+              Partners and co-investors
+            </p>
+            <div className="flex flex-wrap items-center justify-center gap-4 md:gap-6">
+              {partners.map((partner, i) => (
+                <motion.a
+                  key={partner.name}
+                  href={partner.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  initial={{ opacity: 0, scale: 0.92 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: i * 0.07 }}
+                  className="group flex h-20 w-40 items-center justify-center rounded-2xl border border-grey/15 bg-white p-4 grayscale transition-all duration-300 hover:border-brand/20 hover:grayscale-0 hover:shadow-md md:h-24 md:w-48"
+                  title={partner.name}
+                >
+                  <div className="relative h-full w-full">
+                    <Image
+                      src={partner.logo}
+                      alt={partner.name}
+                      fill
+                      className="object-contain"
+                      referrerPolicy="no-referrer"
+                      unoptimized
+                    />
+                  </div>
+                </motion.a>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ── Section 6: Co-invest and LP Program ──────────────── */}
+      <section className="border-t border-grey/10 bg-white px-6 py-20 md:py-28">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="mb-14 md:mb-16"
+          >
+            <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">LP and Co-invest</p>
+            <h2 className="max-w-2xl text-3xl font-display font-medium tracking-tight text-navy md:text-4xl">
+              Invest alongside Maxinor.
+            </h2>
+          </motion.div>
+
+          <div className="grid gap-6 md:grid-cols-2">
+            {[
+              {
+                label: 'For HNIs and Family Offices',
+                body: 'Co-invest in operator-vetted deals. All LP opportunities are reviewed by the Maxinor IC before syndication. Minimum ticket: Rs 10 Lakh per deal. Quarterly portfolio updates.',
+              },
+              {
+                label: 'For Institutional Investors',
+                body: 'Strategic LP access to the Maxinor Operator Network, priority co-invest rights, and deal flow visibility across sectors. Reach out to discuss LP terms.',
+              },
+            ].map((card, i) => (
+              <motion.div
+                key={card.label}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: i * 0.1 }}
+                className="rounded-[2rem] border border-grey/15 bg-warm-white p-8 transition-all duration-300 hover:border-teal/30 hover:bg-white md:p-10"
+              >
+                <div className="mb-3 h-0.5 w-8 bg-teal" />
+                <h3 className="mb-3 text-xl font-display font-semibold text-navy">{card.label}</h3>
+                <p className="text-sm font-light leading-relaxed text-grey md:text-base">{card.body}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Section 7: FAQ ────────────────────────────────────── */}
+      <section className="bg-warm-white px-6 py-20 md:py-28">
+        <div className="max-w-3xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="mb-12 md:mb-14"
+          >
+            <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">FAQ</p>
+            <h2 className="text-3xl font-display font-medium tracking-tight text-navy md:text-4xl">
+              Questions from founders.
+            </h2>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.1 }}
+          >
+            <FaqAccordion />
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ── Section 8: CTA ───────────────────────────────────── */}
+      <section className="relative overflow-hidden bg-navy px-6 py-20 text-center md:py-28">
+        <div className="pointer-events-none absolute -top-40 left-1/2 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-brand/5 blur-[120px]" />
+        <div
+          className="pointer-events-none absolute inset-0 opacity-[0.025]"
+          style={{
+            backgroundImage:
+              'linear-gradient(rgba(255,255,255,0.8) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.8) 1px, transparent 1px)',
+            backgroundSize: '60px 60px',
+          }}
+        />
+
+        <div className="relative z-10 max-w-3xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+          >
+            <p className="mb-4 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">Get Started</p>
+            <h2 className="mb-5 text-3xl font-display font-medium tracking-tight text-warm-white md:text-5xl">
+              Operator engagement comes before capital.
+            </h2>
+            <p className="mb-10 max-w-xl mx-auto text-base font-light leading-relaxed text-warm-white/60 md:text-lg">
+              If you are a founder considering Maxinor investment, the first step is an operator conversation.
+              Tell us about your business and we will tell you if there is a fit.
+            </p>
+            <Link href="/contact" className={primaryBtn}>
+              Start an operator conversation <ArrowRight className="h-4 w-4 shrink-0" />
+            </Link>
+          </motion.div>
+        </div>
+      </section>
+
     </div>
   );
 }

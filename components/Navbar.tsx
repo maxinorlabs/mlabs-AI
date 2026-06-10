@@ -94,15 +94,7 @@ export function Navbar() {
       name: 'Industries',
       path: '/startups',
       dropdown: [
-        {
-          name: 'Startups',
-          path: '/startups',
-          subItems: [
-            { name: 'Venture Build', path: '/build' },
-            { name: 'Venture Scale', path: '/scale' },
-            { name: 'Venture Investment', path: '/investment' },
-          ],
-        },
+        { name: 'Startups', path: '/startups' },
         { name: 'SME', path: '/sme' },
         { name: 'Corporate', path: '/corporate' },
         { name: 'Investors', path: '/investors' },

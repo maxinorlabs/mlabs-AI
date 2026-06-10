@@ -280,7 +280,7 @@ export default function DomainsPage() {
             transition={{ duration: 0.8, delay: 0.3 }}
           >
             <button onClick={() => scrollTo('overview')} className={primaryBtn}>
-              Find Your Domain <ArrowRight className="ml-2 h-4 w-4" />
+              Find Your Sector <ArrowRight className="ml-2 h-4 w-4" />
             </button>
           </motion.div>
         </div>

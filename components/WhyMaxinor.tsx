@@ -30,6 +30,42 @@ const items = [
     detail:
       'We prove value through embedded execution before deploying capital. Our model puts real skin in the game long before a term sheet enters the conversation.',
   },
+  {
+    id: '05',
+    title: 'HOW IS MAXINOR DIFFERENT FROM A VC OR ACCELERATOR?',
+    detail:
+      'VCs write cheques and advise from a distance. Accelerators run programmes and move on after demo day. Maxinor embeds operators inside your business and stays accountable to outcomes. We do not just fund startups. We build and scale them.',
+  },
+  {
+    id: '06',
+    title: 'WHAT STAGE DO YOU WORK WITH?',
+    detail:
+      'We work with founders from pre-product through to Series A. For Venture Build, you need a validated white space or early prototype. For Venture Scale, you need product-market fit and at least some revenue. We are not the right partner for pre-idea or post-Series B.',
+  },
+  {
+    id: '07',
+    title: 'DO I HAVE TO GIVE UP EQUITY?',
+    detail:
+      'It depends on the engagement model. The Discovery Sprint is a fixed fee with no equity. The Venture Partner model involves a small equity stake aligned to execution milestones. We structure every deal to ensure incentives are real, not symbolic.',
+  },
+  {
+    id: '08',
+    title: 'HOW LONG BEFORE WE SEE RESULTS?',
+    detail:
+      'Most founders see a clear diagnosis and prioritised roadmap within 30 days. Measurable business impact typically shows within 60 to 90 days of operator embedding. Series A readiness is a 6 to 9 month build depending on where you start.',
+  },
+  {
+    id: '09',
+    title: 'WHO ARE THE OPERATORS AT MAXINOR?',
+    detail:
+      'Former founders and executives who have built and scaled real businesses, not MBAs or management consultants. Our team has operated at Paytm, Google, OYO, ITC, Accenture, and more. Every operator has a functional track record in the area they lead.',
+  },
+  {
+    id: '10',
+    title: 'CAN MAXINOR HELP WITH FUNDRAISING?',
+    detail:
+      'Yes, but not as a placement agent. We prepare you for fundraising by fixing the metrics, the narrative, and the data room that investors actually scrutinise. Founders who raise through us raise because they are genuinely ready, not because they have been coached to pitch.',
+  },
 ];
 
 export default function WhyMaxinor() {
@@ -37,7 +73,7 @@ export default function WhyMaxinor() {
 
   return (
     <section className="bg-warm-white px-6 py-20 md:py-28 lg:py-32">
-      <div className="max-w-4xl mx-auto flex flex-col items-center">
+      <div className="max-w-7xl mx-auto flex flex-col items-center">
         <div className="mb-14 text-center md:mb-20">
           <h2 className="mb-5 text-3xl font-display font-medium tracking-tight text-navy md:mb-6 md:text-5xl">
             Why <span className="text-brand">Maxinor</span>
@@ -47,7 +83,7 @@ export default function WhyMaxinor() {
           </p>
         </div>
 
-        <div className="mb-12 w-full space-y-4 md:mb-16">
+        <div className="mb-12 w-full grid gap-4 md:grid-cols-2 md:items-start md:mb-16">
           {items.map((item) => (
             <div
               key={item.id}
