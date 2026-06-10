@@ -2,8 +2,9 @@
 
 import { motion, AnimatePresence } from 'motion/react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState } from 'react';
-import { ArrowRight, BookOpen, Building2, TrendingDown } from 'lucide-react';
+import { ArrowRight, Rocket, Database, Brain, ChevronDown } from 'lucide-react';
 
 const primaryBtn =
   'inline-flex items-center justify-center rounded-full bg-brand px-8 py-4 text-base font-semibold tracking-wide text-warm-white transition-all duration-300 hover:-translate-y-1 hover:bg-brand/90 shadow-[0_0_40px_rgba(243,111,33,0.15)] hover:shadow-[0_0_60px_rgba(243,111,33,0.3)] sm:px-10 sm:py-5';
@@ -13,143 +14,126 @@ const ghostBtn =
 
 const painPoints = [
   {
-    icon: TrendingDown,
+    icon: Rocket,
     number: '01',
-    title: 'The Completion Rate Problem',
-    body: 'Most EdTech companies track enrolments and revenue, not outcomes. Completion rates below 20% are the norm, not the exception. When employers and institutions start asking for outcome data, companies that never measured learning effectiveness have nothing to show.',
+    title: 'The Pilot That Never Ships',
+    body: 'Most Indian startups have done an AI pilot. Most of those pilots are still running 12 months later, producing dashboards nobody uses and models nobody trusts. The gap is almost always the same: AI built without understanding the business workflow, evaluated on the wrong metrics, and handed to a team that was never set up to use it. We build AI that ships and moves a business number.',
   },
   {
-    icon: Building2,
+    icon: Database,
     number: '02',
-    title: 'The Institutional Sales Trap',
-    body: 'Selling to schools, colleges, corporates, and government bodies is a completely different motion from consumer acquisition. Most EdTech founders who pivot from B2C to B2B institutional discover too late that they have no relationships, no procurement understanding, and no product that fits the buying context.',
+    title: 'Tech Debt That Caps Scale',
+    body: 'Early architecture decisions that seemed fine at Rs 1 Cr ARR become ceilings at Rs 10 Cr ARR. Monoliths that cannot be broken apart. Databases that cannot handle concurrent load. Third-party dependencies that own your product\'s performance. Founders who ignore this hit a wall -- not because the market dried up but because the system cannot handle the growth.',
   },
   {
-    icon: BookOpen,
+    icon: Brain,
     number: '03',
-    title: 'Credentials Without Credibility',
-    body: 'A certificate from your platform means nothing if employers do not recognise it. Building credentialing that carries weight requires employer partnerships, industry validation, and sometimes regulatory alignment. Founders who skip this step discover that learner churn accelerates once the market figures out the credential has no currency.',
+    title: 'AI Strategy Without AI Reality',
+    body: 'Every founder in 2026 has an AI strategy. Very few have an AI system producing real business outcomes. The distance between strategy and reality is almost always execution: the wrong use cases prioritised, the wrong tools chosen, and no operator who has actually built and shipped AI products making the technical calls.',
   },
 ];
 
 const architecture = [
   {
-    tier: 'Learner Layer',
-    description: 'Who you serve and how you reach them',
+    tier: 'Intelligence Layer',
+    description: 'How you build and deploy AI that produces real outcomes',
     accent: 'border-teal-500',
     labelColor: 'text-teal-600',
     groups: [
       {
-        label: 'Segments',
-        items: ['Students', 'Working Professionals', 'School Teachers', 'Corporate Employees', 'Government Trainees', 'Self-Learners'],
-      },
-      {
-        label: 'Acquisition Channels',
-        items: ['SEO & Content', 'Performance Marketing', 'Institutional Partnerships', 'Government Schemes', 'Referral & Community', 'Offline Channels'],
+        label: 'AI Systems',
+        items: ['LLM Integration', 'RAG Systems', 'Agentic Workflows', 'Fine-tuning and Evaluation', 'Computer Vision', 'NLP and Classification'],
       },
     ],
   },
   {
-    tier: 'Content & Curriculum Layer',
-    description: 'What you teach and how it is structured',
+    tier: 'Data Layer',
+    description: 'The foundation that every AI system depends on',
     accent: 'border-brand',
     labelColor: 'text-brand',
     groups: [
       {
-        label: 'Content Formats',
-        items: ['Video Modules', 'Live Sessions', 'Assessments & Quizzes', 'Project-Based Learning', 'Case Studies', 'Simulations'],
-      },
-      {
-        label: 'Curriculum Design',
-        items: ['Learning Outcome Mapping', 'Competency Frameworks', 'Skill Taxonomy', 'Industry Alignment', 'Adaptive Paths', 'Multilingual Content'],
+        label: 'Data Infrastructure',
+        items: ['Data Platform Design', 'ETL and Pipeline Architecture', 'Data Warehouse', 'Feature Engineering', 'Real-time Streaming', 'BI and Analytics'],
       },
     ],
   },
   {
-    tier: 'Technology Layer',
-    description: 'How you deliver and track learning',
+    tier: 'Infrastructure Layer',
+    description: 'How you build and run systems that scale',
     accent: 'border-indigo-400',
     labelColor: 'text-indigo-500',
     groups: [
       {
-        label: 'Platform Capabilities',
-        items: ['LMS / LXP', 'Mobile Learning', 'Offline Access', 'Live Class Infrastructure', 'AI Tutoring', 'Gamification'],
-      },
-      {
-        label: 'Data & Analytics',
-        items: ['Learning Analytics', 'Completion Tracking', 'Engagement Metrics', 'Assessment Intelligence', 'Cohort Analysis', 'Employer Dashboards'],
-      },
-    ],
-  },
-  {
-    tier: 'Credentialing Layer',
-    description: 'How you make outcomes verifiable and recognised',
-    accent: 'border-purple-400',
-    labelColor: 'text-purple-500',
-    groups: [
-      {
-        label: 'Credential Types',
-        items: ['Certificates', 'Micro-credentials', 'Badges', 'Degrees & Diplomas', 'Industry Certifications', 'Government Accreditation'],
-      },
-      {
-        label: 'Recognition',
-        items: ['Employer Partnerships', 'Industry Body Alignment', 'UGC / AICTE Approval', 'NSDC & Skill India', 'International Recognition', 'Blockchain Verification'],
-      },
-    ],
-  },
-  {
-    tier: 'Enterprise & B2B Layer',
-    description: 'How you grow beyond direct-to-consumer',
-    accent: 'border-rose-400',
-    labelColor: 'text-rose-500',
-    groups: [
-      {
-        label: 'Institutional Sales',
-        items: ['Corporate L&D', 'School & College Sales', 'Government Skilling Contracts', 'CSR Training', 'White-label Solutions', 'Franchise / Reseller'],
-      },
-      {
-        label: 'GTM Motion',
-        items: ['RFP & Tender Response', 'Procurement Navigation', 'Pilot to Scale Model', 'Success Manager Model', 'Partnership & Alliance', 'Channel Sales'],
+        label: 'Engineering Infrastructure',
+        items: ['Cloud Architecture', 'DevOps and CI/CD', 'API Design', 'Security and Compliance', 'Monitoring and Observability', 'Mobile and Full-Stack Engineering'],
       },
     ],
   },
 ];
 
-const verticals = [
+const engagements = [
   {
-    name: 'K-12 EdTech',
-    desc: 'Products for schools, students, and parents. Requires deep curriculum alignment and institutional sales capability.',
+    number: '01',
+    title: 'AI Strategy and Use-Case Prioritisation',
+    body: 'We map your business operations, identify the 2-3 AI use cases with the highest ROI, and build an execution plan that sequences by impact, not by what is technically interesting.',
   },
   {
-    name: 'Higher Education',
-    desc: 'Degree programmes, college partnerships, and campus-linked skilling that requires UGC and AICTE navigation.',
+    number: '02',
+    title: 'AI Product Build and MVP',
+    body: 'From scoping to working system. We design, build, and deploy AI products -- not proofs of concept. The output is a system running in production, not a deck.',
   },
   {
-    name: 'Corporate L&D',
-    desc: 'Enterprise learning platforms and skilling programmes sold to HR and L&D teams inside large organisations.',
+    number: '03',
+    title: 'Agentic Automation and Workflow AI',
+    body: 'Agentic systems that automate multi-step workflows, reduce manual operations, and compound over time. We design agents that are reliable, auditable, and built around your actual business processes.',
   },
   {
-    name: 'Government Skilling',
-    desc: 'NSDC, Skill India, and state government skilling mandates. High volume, compliance-heavy, long sales cycles.',
+    number: '04',
+    title: 'Tech Architecture and Debt Remediation',
+    body: 'Architecture review, bottleneck identification, and a phased remediation plan that lets you grow without bringing down the house.',
+  },
+];
+
+const faqs = [
+  {
+    q: 'We are not a tech company. Can Maxinor still help with AI?',
+    a: 'Yes. Most of our AI engagements are with non-tech founders who need AI built into their business without building an internal AI team. We bring the technical capability, you bring the domain knowledge.',
   },
   {
-    name: 'Professional Upskilling',
-    desc: 'Working professionals seeking certifications, career transitions, or domain depth. Outcome and placement-linked.',
+    q: 'How is this different from hiring an AI agency?',
+    a: 'Agencies build what you specify. Our operators diagnose what you actually need, build it, and stay accountable to business outcomes. We also bring senior engineering judgment, not just execution.',
   },
   {
-    name: 'Vernacular & Rural EdTech',
-    desc: 'Multilingual, offline-first learning platforms targeting Tier 2 and Tier 3 markets with accessible pricing models.',
+    q: 'What AI tools and models do you work with?',
+    a: 'We are model-agnostic. We use OpenAI, Anthropic, Google, and open-source models depending on the use case, cost profile, and compliance requirements. We also build custom fine-tuned models where the use case justifies it.',
+  },
+  {
+    q: 'How long to go from strategy to working system?',
+    a: 'Typically 60-90 days for a first production deployment. Complex agentic systems take longer. We set realistic timelines at the start and hold to them.',
+  },
+  {
+    q: 'What about data privacy and security in AI systems?',
+    a: 'All our AI builds include data handling, access control, and compliance architecture from the start. We do not bolt security on after the fact.',
   },
 ];
 
 const operators = [
   {
-    name: 'Maxinor Leadership Team',
-    role: 'Multi-Domain Operator Team',
-    bg: 'Cross-sector operators with execution experience across edtech, skilling, and institutional sales',
-    depth: 'The education domain at Maxinor draws on operators who have built and scaled businesses in adjacent sectors: government sales, B2B institutional, content operations, and workforce development. We bring a practitioner lens to the sector, not just an investor lens.',
-    slug: '',
-    image: null,
+    name: 'Alok Kumar',
+    role: 'Entrepreneur in Residence, AI and Tech',
+    bg: 'ex-Zee, StanChart, Fidelity, Oracle',
+    depth: 'Technology and AI operator with a career spanning enterprise software, global financial services, and large-scale media. Alok brings the judgment to know which AI use case to build first, how to architect for scale, and how to get from lab to production with real business impact.',
+    slug: 'alok-kumar',
+    image: 'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/69b29541adceb2f4cf8144ad_79c886e0-fd1f-49a4-bfed-f481d5bb1f38.jpg',
+  },
+  {
+    name: 'Amar Daing',
+    role: 'Entrepreneur in Residence, Product and GTM',
+    bg: 'ex-Google x Tata, OYO, Grofers',
+    depth: 'Product and growth operator with deep experience scaling consumer and B2B platforms across India. Amar brings rare fluency in both what to build and how to take it to market at speed.',
+    slug: 'amar-daing',
+    image: 'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/68e50d8f17573e0fcd4ec3c1_1663569415671.jpeg',
   },
 ];
 
@@ -160,6 +144,7 @@ function ArchitectureExplorer() {
 
   return (
     <div className="mt-12 overflow-hidden rounded-[2rem] border border-grey/15 bg-white shadow-sm">
+      {/* Mobile: horizontal tab strip */}
       <div className="flex overflow-x-auto border-b border-grey/10 md:hidden">
         {architecture.map((t, i) => (
           <button
@@ -176,7 +161,8 @@ function ArchitectureExplorer() {
         ))}
       </div>
 
-      <div className="flex min-h-[520px]">
+      <div className="flex min-h-[400px]">
+        {/* Desktop: left sidebar */}
         <div className="hidden w-64 shrink-0 flex-col border-r border-grey/10 bg-warm-white/50 md:flex">
           {architecture.map((t, i) => (
             <button
@@ -208,6 +194,7 @@ function ArchitectureExplorer() {
           ))}
         </div>
 
+        {/* Right: detail panel */}
         <div className="relative flex-1 overflow-hidden">
           <AnimatePresence mode="wait">
             <motion.div
@@ -218,6 +205,7 @@ function ArchitectureExplorer() {
               transition={{ duration: 0.25, ease: 'easeOut' }}
               className="h-full p-8 md:p-10"
             >
+              {/* Panel header */}
               <div className="mb-8 flex flex-wrap items-start justify-between gap-4">
                 <div>
                   <span className={`mb-2 block text-[10px] font-bold uppercase tracking-[0.2em] ${tier.labelColor}`}>
@@ -230,6 +218,7 @@ function ArchitectureExplorer() {
                 </span>
               </div>
 
+              {/* Capability groups */}
               <div className="space-y-7">
                 {tier.groups.map((group, gi) => (
                   <motion.div
@@ -262,7 +251,54 @@ function ArchitectureExplorer() {
   );
 }
 
-export default function EducationPage() {
+function FAQAccordion() {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  return (
+    <div className="space-y-3">
+      {faqs.map((faq, i) => {
+        const isOpen = openIndex === i;
+        return (
+          <div
+            key={i}
+            className="overflow-hidden rounded-[1.5rem] border border-grey/15 bg-white"
+          >
+            <button
+              onClick={() => setOpenIndex(isOpen ? null : i)}
+              className="flex w-full items-center justify-between gap-4 px-7 py-5 text-left transition-colors hover:bg-warm-white/50"
+            >
+              <span className="text-sm font-semibold text-navy md:text-base">{faq.q}</span>
+              <motion.span
+                animate={{ rotate: isOpen ? 180 : 0 }}
+                transition={{ duration: 0.25 }}
+                className="shrink-0 text-brand"
+              >
+                <ChevronDown className="h-5 w-5" />
+              </motion.span>
+            </button>
+            <AnimatePresence initial={false}>
+              {isOpen && (
+                <motion.div
+                  key="body"
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: 'auto', opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{ duration: 0.3, ease: 'easeOut' }}
+                >
+                  <p className="px-7 pb-6 text-sm font-light leading-relaxed text-grey">
+                    {faq.a}
+                  </p>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+export default function AITechPage() {
   return (
     <div className="font-sans">
 
@@ -286,7 +322,7 @@ export default function EducationPage() {
             transition={{ duration: 0.6 }}
             className="mb-4 text-[11px] font-bold uppercase tracking-[0.22em] text-brand"
           >
-            Domain · Education
+            Capability · AI and Tech
           </motion.p>
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
@@ -294,8 +330,8 @@ export default function EducationPage() {
             transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             className="mb-6 max-w-4xl text-4xl font-display font-medium tracking-tight text-warm-white md:text-6xl lg:text-7xl"
           >
-            You have learners.{' '}
-            <span className="text-brand">Employers do not recognise your outcomes yet.</span>
+            Most AI pilots never ship.{' '}
+            <span className="text-brand">Ours do.</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -303,9 +339,7 @@ export default function EducationPage() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="mb-10 max-w-2xl text-base font-light leading-relaxed text-warm-white/60 md:text-lg"
           >
-            The EdTech gold rush left a graveyard of consumer apps with great content and poor outcomes.
-            The real opportunity now is in institutional transformation, employer-linked skilling, and
-            credentialing that actually moves the needle.
+            Most Indian startups have done an AI pilot. Most of those pilots are still running 12 months later. Maxinor AI operators embed inside your team, build AI that ships, and stay accountable to business outcomes -- not dashboards.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -316,8 +350,8 @@ export default function EducationPage() {
             <Link href="/contact" className={primaryBtn}>
               Talk to the team <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
-            <Link href="/sectors" className={ghostBtn}>
-              All Sectors
+            <Link href="/capabilities" className={ghostBtn}>
+              All Capabilities
             </Link>
           </motion.div>
         </div>
@@ -333,9 +367,9 @@ export default function EducationPage() {
             transition={{ duration: 0.6 }}
             className="mb-14 md:mb-16"
           >
-            <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">Where EdTech Founders Get Stuck</p>
+            <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">Where AI and Tech Founders Get Stuck</p>
             <h2 className="max-w-2xl text-3xl font-display font-medium tracking-tight text-navy md:text-4xl">
-              Three walls every education founder hits.
+              Three patterns that keep AI stuck at pilot stage.
             </h2>
           </motion.div>
           <div className="grid gap-6 md:grid-cols-3">
@@ -362,7 +396,7 @@ export default function EducationPage() {
         </div>
       </section>
 
-      {/* Capability Stack */}
+      {/* Architecture Stack */}
       <section className="bg-white px-6 py-20 md:py-28 border-t border-grey/10">
         <div className="max-w-7xl mx-auto">
           <motion.div
@@ -373,10 +407,10 @@ export default function EducationPage() {
           >
             <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">Capability Stack</p>
             <h2 className="mb-3 max-w-2xl text-3xl font-display font-medium tracking-tight text-navy md:text-4xl">
-              The full education capability stack.
+              The full AI and tech capability stack.
             </h2>
             <p className="max-w-xl text-base font-light leading-relaxed text-grey">
-              Five layers. Every capability mapped. Select a layer to explore what sits inside it and where the leverage lives.
+              Three layers. Every capability mapped. Select a layer to explore what sits inside it and where the complexity lives.
             </p>
           </motion.div>
           <motion.div
@@ -390,7 +424,7 @@ export default function EducationPage() {
         </div>
       </section>
 
-      {/* Sub-verticals */}
+      {/* Engagement Deliverables */}
       <section className="bg-warm-white px-6 py-20 md:py-28 border-t border-grey/10">
         <div className="max-w-7xl mx-auto">
           <motion.div
@@ -400,24 +434,27 @@ export default function EducationPage() {
             transition={{ duration: 0.6 }}
             className="mb-14 md:mb-16"
           >
-            <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">Education Sub-Verticals</p>
+            <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">How We Engage</p>
             <h2 className="max-w-2xl text-3xl font-display font-medium tracking-tight text-navy md:text-4xl">
-              Who we work with in Education.
+              What we actually build with you.
             </h2>
           </motion.div>
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {verticals.map((v, i) => (
+          <div className="grid gap-5 sm:grid-cols-2">
+            {engagements.map((e, i) => (
               <motion.div
-                key={v.name}
+                key={e.number}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.07 }}
-                className="rounded-[1.5rem] border border-grey/15 bg-white p-6"
+                className="relative rounded-[1.5rem] border border-grey/15 bg-white p-7"
               >
+                <span className="pointer-events-none absolute right-6 top-4 select-none text-7xl font-display font-bold leading-none text-brand/5">
+                  {e.number}
+                </span>
                 <div className="mb-3 h-0.5 w-8 bg-brand" />
-                <h3 className="mb-2 text-base font-display font-semibold text-navy">{v.name}</h3>
-                <p className="text-sm font-light leading-relaxed text-grey">{v.desc}</p>
+                <h3 className="mb-2 text-base font-display font-semibold text-navy">{e.title}</h3>
+                <p className="text-sm font-light leading-relaxed text-grey">{e.body}</p>
               </motion.div>
             ))}
           </div>
@@ -436,10 +473,10 @@ export default function EducationPage() {
           >
             <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">The Team Behind This</p>
             <h2 className="max-w-2xl text-3xl font-display font-medium tracking-tight text-warm-white md:text-4xl">
-              Operators with execution experience across education, skilling, and institutional sales.
+              Operators who have built and shipped AI, not just advised on it.
             </h2>
           </motion.div>
-          <div className="max-w-2xl">
+          <div className="grid gap-6 md:grid-cols-2 max-w-3xl">
             {operators.map((op, i) => (
               <motion.div
                 key={op.name}
@@ -449,10 +486,32 @@ export default function EducationPage() {
                 transition={{ duration: 0.6, delay: i * 0.1 }}
                 className="rounded-[2rem] border border-white/10 bg-white/5 p-8 backdrop-blur-sm"
               >
-                <div className="mb-4">
-                  <p className="text-base font-semibold text-warm-white">{op.name}</p>
-                  <p className="text-xs font-medium text-brand/80">{op.role}</p>
-                  <p className="text-xs text-warm-white/40">{op.bg}</p>
+                <div className="mb-6 flex items-center gap-4">
+                  {op.image ? (
+                    <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-full border-2 border-brand/40">
+                      <Image
+                        src={op.image}
+                        alt={op.name}
+                        fill
+                        className="object-cover"
+                        referrerPolicy="no-referrer"
+                      />
+                    </div>
+                  ) : (
+                    <div className="w-16 h-16 rounded-full bg-brand/20 flex items-center justify-center text-brand font-semibold text-lg shrink-0">
+                      {op.name.charAt(0)}
+                    </div>
+                  )}
+                  <div>
+                    <Link
+                      href={`/team/${op.slug}`}
+                      className="text-base font-semibold text-warm-white transition-colors hover:text-brand"
+                    >
+                      {op.name}
+                    </Link>
+                    <p className="text-xs font-medium text-brand/80">{op.role}</p>
+                    <p className="text-xs text-warm-white/40">{op.bg}</p>
+                  </div>
                 </div>
                 <p className="text-sm font-light leading-relaxed text-warm-white/60">{op.depth}</p>
               </motion.div>
@@ -461,8 +520,34 @@ export default function EducationPage() {
         </div>
       </section>
 
+      {/* FAQ */}
+      <section className="bg-warm-white px-6 py-20 md:py-28 border-t border-grey/10">
+        <div className="max-w-3xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="mb-12"
+          >
+            <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">Common Questions</p>
+            <h2 className="max-w-xl text-3xl font-display font-medium tracking-tight text-navy md:text-4xl">
+              Questions founders usually ask first.
+            </h2>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+          >
+            <FAQAccordion />
+          </motion.div>
+        </div>
+      </section>
+
       {/* CTA */}
-      <section className="bg-warm-white px-6 py-20 text-center md:py-28 border-t border-grey/15">
+      <section className="bg-navy px-6 py-20 text-center md:py-28 border-t border-white/10">
         <div className="max-w-3xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -470,23 +555,20 @@ export default function EducationPage() {
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
           >
+            <div className="pointer-events-none absolute -top-40 left-1/2 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-brand/5 blur-[100px]" />
             <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">Work With Us</p>
-            <h2 className="mb-5 text-3xl font-display font-medium tracking-tight text-navy md:text-5xl">
-              Building in education?
+            <h2 className="mb-5 text-3xl font-display font-medium tracking-tight text-warm-white md:text-5xl">
+              Ready to ship AI that moves the number?
             </h2>
-            <p className="mb-8 max-w-xl mx-auto text-base font-light leading-relaxed text-grey md:text-lg">
-              Whether you are trying to fix completion rates, break into institutional sales, or build a
-              credentialing model that employers actually recognise, start here.
+            <p className="mb-8 max-w-xl mx-auto text-base font-light leading-relaxed text-warm-white/60 md:text-lg">
+              Whether you are stuck at the pilot stage, hitting a tech scaling wall, or need a senior operator to make the technical calls, start here.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link href="/contact" className={primaryBtn}>
                 Start the conversation <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
-              <Link
-                href="/scale"
-                className="inline-flex items-center justify-center rounded-full border border-navy/20 px-8 py-4 text-base font-semibold tracking-wide text-navy transition-all duration-300 hover:-translate-y-1 hover:border-brand/40 hover:text-brand sm:px-10 sm:py-5"
-              >
-                How we engage
+              <Link href="/capabilities" className={ghostBtn}>
+                All Capabilities
               </Link>
             </div>
           </motion.div>

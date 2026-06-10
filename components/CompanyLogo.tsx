@@ -226,7 +226,7 @@ const LOGOS: Record<string, React.FC> = {
   Mastek:                     LogoMastek,
   ITC:                        LogoITC,
   'Britannia Industries':     LogoBritannia,
-  'Unitech Breweries':        LogoUnitechBreweries,
+  'United Breweries':        LogoUnitechBreweries,
   'World Bank':               LogoWorldBank,
   PATH:                       LogoPATH,
   'Operation Smile':          LogoOperationSmile,

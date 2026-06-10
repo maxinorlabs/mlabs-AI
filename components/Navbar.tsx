@@ -83,7 +83,12 @@ export function Navbar() {
     {
       name: 'Capabilities',
       path: '/capabilities',
-      mega: capabilitiesServices,
+      dropdown: [
+        { name: 'All Capabilities', path: '/capabilities', header: true },
+        { name: 'GTM', path: '/capabilities/gtm' },
+        { name: 'AI and Tech', path: '/capabilities/ai-tech' },
+        { name: 'Talent, Culture & Org Design', path: '/capabilities/talent-culture' },
+      ],
     },
     {
       name: 'Industries',

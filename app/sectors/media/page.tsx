@@ -155,7 +155,7 @@ const operators = [
   {
     name: 'Priyabrata Padhi',
     role: 'Consumer Marketing Lead',
-    bg: 'ex-Unitech Breweries, ex-ITC, ex-Britannia',
+    bg: 'ex-United Breweries, ex-ITC, ex-Britannia',
     depth: 'Deep consumer marketing expertise across FMCG and media. Brand building, distribution strategy, and audience growth at scale.',
     slug: 'priyabrata-padhi',
     image: 'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/69c11ffc5c1c2e2f2a9cadaa_Gemini_Generated_Image_m5qmrom5qmrom5qm.avif',
@@ -330,7 +330,7 @@ export default function MediaPage() {
               Talk to the team <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
             <Link href="/sectors" className={ghostBtn}>
-              All domains
+              All Sectors
             </Link>
           </motion.div>
         </div>

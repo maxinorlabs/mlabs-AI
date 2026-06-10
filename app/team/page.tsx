@@ -74,7 +74,7 @@ const leadership: TeamMember[] = [
   {
     name: 'Priyabrata Padhi',
     role: 'Consumer Marketing',
-    desc: 'Entrepreneur | Ex Unitech Breweries, Ex ITC, Ex Britannia',
+    desc: 'Entrepreneur | Ex United Breweries, Ex ITC, Ex Britannia',
     image:
       'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/69c11ffc5c1c2e2f2a9cadaa_Gemini_Generated_Image_m5qmrom5qmrom5qm.avif',
     linkedin: 'https://www.linkedin.com/in/priyabratapadhi/',

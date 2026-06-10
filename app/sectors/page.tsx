@@ -53,7 +53,7 @@ const domains = [
       'Offline and omnichannel expansion playbook',
     ],
     operator: 'Priyabrata Padhi',
-    operatorBg: 'ex-Unitech Breweries, ex-ITC, ex-Britannia',
+    operatorBg: 'ex-United Breweries, ex-ITC, ex-Britannia',
     operatorSlug: 'priyabrata-padhi',
     howWeEngage: [
       'Full-funnel GTM and channel strategy',

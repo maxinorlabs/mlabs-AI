@@ -163,7 +163,7 @@ const operators = [
   {
     name: 'Priyabrata Padhi',
     role: 'Entrepreneur in Residence, D2C & Consumer',
-    bg: 'ex-Unitech Breweries, ex-ITC, ex-Britannia',
+    bg: 'ex-United Breweries, ex-ITC, ex-Britannia',
     depth: 'Consumer goods and D2C operator with 15+ years of brand, channel, and distribution experience across FMCG and consumer companies.',
     slug: 'priyabrata-padhi',
     image: null,

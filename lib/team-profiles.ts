@@ -217,7 +217,7 @@ export const teamProfiles: TeamProfile[] = [
     slug: 'priyabrata-padhi',
     name: 'Priyabrata Padhi',
     role: 'Consumer Marketing',
-    shortDesc: 'Entrepreneur | ex-Unitech Breweries, ex-ITC, ex-Britannia',
+    shortDesc: 'Entrepreneur | ex-United Breweries, ex-ITC, ex-Britannia',
     image:
       'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/69c11ffc5c1c2e2f2a9cadaa_Gemini_Generated_Image_m5qmrom5qmrom5qm.avif',
     linkedin: 'https://www.linkedin.com/in/priyabratapadhi/',
@@ -225,7 +225,7 @@ export const teamProfiles: TeamProfile[] = [
     tagline: 'Consumer brand and marketing operator shaped by India\'s most iconic FMCG companies.',
     bio: [
       "Priyabrata brings the kind of consumer marketing depth that comes only from building and managing brands inside India's largest FMCG companies. Distribution scale, brand equity, and consumer insight are built over decades, not sprints. His experience spans beverages, packaged foods, and branded consumer goods across national distribution networks.",
-      'At Britannia Industries, one of India\'s most iconic packaged foods companies, he worked on brands that are part of everyday Indian life. At ITC, one of India\'s most diversified and powerful FMCG conglomerates, he built marketing capabilities across one of the country\'s most sophisticated brand portfolios. At Unitech Breweries, he navigated the competitive and heavily regulated beverages sector.',
+      'At Britannia Industries, one of India\'s most iconic packaged foods companies, he worked on brands that are part of everyday Indian life. At ITC, one of India\'s most diversified and powerful FMCG conglomerates, he built marketing capabilities across one of the country\'s most sophisticated brand portfolios. At United Breweries, he navigated the competitive and heavily regulated beverages sector.',
       'At Maxinor, Priyabrata leads Consumer Marketing, helping D2C and consumer brand founders build the brand identity, distribution playbooks, and marketing engines that can actually scale beyond the initial traction phase.',
     ],
     expertise: [
@@ -246,7 +246,7 @@ export const teamProfiles: TeamProfile[] = [
         context: "One of India's most iconic packaged foods companies, with brands consumed by millions daily.",
       },
       {
-        company: 'Unitech Breweries',
+        company: 'United Breweries',
         context: 'Beverages sector, marketing in a competitive and regulated consumer category.',
       },
     ],

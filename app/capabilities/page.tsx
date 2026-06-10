@@ -14,50 +14,31 @@ const outlineBtn =
 const capabilities = [
   {
     number: '01',
-    category: 'Revenue & Operations',
-    title: 'Revenue & Operations',
-    description:
-      'From leaky pipeline to compounding revenue. Operator-led revenue systems, CX infrastructure, and operational discipline that turn effort into repeatable outcomes.',
-    deliverables: [
-      'Revenue operations design and growth analytics',
-      'CX systems built to reduce churn and drive retention',
-      'Pricing architecture and unit economics improvement',
-      'Offline channel expansion and omnichannel growth',
-      'Expansion playbooks and retention frameworks',
-      'Revenue forecasting and pipeline governance',
-    ],
-    operator: 'Samir Gupta & Amar Daing',
-    operatorBg: 'Revenue & Operations leads',
-    operatorLinks: [
-      { name: 'Samir Gupta', slug: 'samir-gupta' },
-      { name: 'Amar Daing', slug: 'amar-daing' },
-    ],
-  },
-  {
-    number: '02',
-    category: 'GTM & Marketing',
-    title: 'GTM & Marketing',
+    category: 'Go-To-Market',
+    title: 'GTM',
+    path: '/capabilities/gtm',
     description:
       'From idea to market. GTM strategy, sales motion design, and consumer brand execution run by operators who have built pipelines from zero.',
     deliverables: [
       'GTM strategy, channel buildout and sales pipeline execution',
       'Consumer brand positioning and D2C performance marketing',
-      'Product roadmap prioritisation and UX redesign',
       'Sales playbook design and qualification frameworks',
       'Content, community and performance-led growth',
       'Launch execution and competitive positioning',
+      'Revenue operations design and growth analytics',
     ],
     operator: 'Samir Gupta & Priyabrata Padhi',
-    operatorBg: 'GTM & Marketing leads',
+    operatorBg: 'GTM leads',
     operatorLinks: [
       { name: 'Samir Gupta', slug: 'samir-gupta' },
       { name: 'Priyabrata Padhi', slug: 'priyabrata-padhi' },
     ],
   },
   {
-    number: '03',
-    category: 'AI & Technology Build',
-    title: 'AI Services',
+    number: '02',
+    category: 'AI & Technology',
+    title: 'AI and Tech',
+    path: '/capabilities/ai-tech',
     description:
       'From AI strategy to working system. No pilots that never ship. No tech debt that kills scale.',
     deliverables: [
@@ -76,9 +57,10 @@ const capabilities = [
     ],
   },
   {
-    number: '04',
+    number: '03',
     category: 'People & Org Building',
     title: 'Talent, Culture & Organisational Design',
+    path: '/capabilities/talent-culture',
     description:
       'Scaling a company is ultimately about Talent Architecture, high-performing systems, and the growth and retention of people. Most founders realize this a year later than they should.',
     deliverables: [
@@ -284,7 +266,7 @@ export default function CapabilitiesPage() {
               Operator capabilities across the full venture lifecycle
             </p>
           </motion.div>
-          <div className="grid gap-6 md:grid-cols-2">
+          <div className="grid gap-6 md:grid-cols-3">
             {capabilities.map((cap, i) => (
               <motion.div
                 key={cap.number}
@@ -312,7 +294,7 @@ export default function CapabilitiesPage() {
                     </li>
                   ))}
                 </ul>
-                <div className="border-t border-grey/12 pt-4">
+                <div className="border-t border-grey/12 pt-4 flex items-center justify-between">
                   <p className="text-xs text-grey/60">
                     {cap.operatorLinks.map((op, idx) => (
                       <span key={op.slug}>
@@ -327,6 +309,12 @@ export default function CapabilitiesPage() {
                     ))}
                     {' '}· {cap.operatorBg}
                   </p>
+                  <Link
+                    href={cap.path}
+                    className="ml-4 shrink-0 text-xs font-semibold text-brand transition-transform group-hover:translate-x-1"
+                  >
+                    Learn more →
+                  </Link>
                 </div>
               </motion.div>
             ))}

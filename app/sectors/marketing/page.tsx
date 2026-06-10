@@ -322,7 +322,7 @@ export default function MarketingPage() {
               Talk to the team <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
             <Link href="/sectors" className={ghostBtn}>
-              All domains
+              All Sectors
             </Link>
           </motion.div>
         </div>

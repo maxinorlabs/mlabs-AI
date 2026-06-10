@@ -2,8 +2,9 @@
 
 import { motion, AnimatePresence } from 'motion/react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState } from 'react';
-import { ArrowRight, BookOpen, Building2, TrendingDown } from 'lucide-react';
+import { ArrowRight, TrendingUp, Layers, Megaphone, Plus, Minus } from 'lucide-react';
 
 const primaryBtn =
   'inline-flex items-center justify-center rounded-full bg-brand px-8 py-4 text-base font-semibold tracking-wide text-warm-white transition-all duration-300 hover:-translate-y-1 hover:bg-brand/90 shadow-[0_0_40px_rgba(243,111,33,0.15)] hover:shadow-[0_0_60px_rgba(243,111,33,0.3)] sm:px-10 sm:py-5';
@@ -13,143 +14,128 @@ const ghostBtn =
 
 const painPoints = [
   {
-    icon: TrendingDown,
+    icon: TrendingUp,
     number: '01',
-    title: 'The Completion Rate Problem',
-    body: 'Most EdTech companies track enrolments and revenue, not outcomes. Completion rates below 20% are the norm, not the exception. When employers and institutions start asking for outcome data, companies that never measured learning effectiveness have nothing to show.',
+    title: 'The Founder-Led Sales Ceiling',
+    body: 'Every startup\'s first pipeline runs on the founder. The founder knows every customer, personalises every pitch, and closes every deal. This works until you hit Rs 2-3 Cr ARR. At that point, the founder-led motion stops scaling and starts becoming the bottleneck. Most founders try to solve this by hiring a salesperson. That almost never works without a playbook, a channel strategy, and a repeatable qualification framework underneath.',
   },
   {
-    icon: Building2,
+    icon: Layers,
     number: '02',
-    title: 'The Institutional Sales Trap',
-    body: 'Selling to schools, colleges, corporates, and government bodies is a completely different motion from consumer acquisition. Most EdTech founders who pivot from B2C to B2B institutional discover too late that they have no relationships, no procurement understanding, and no product that fits the buying context.',
+    title: 'Channel Confusion at Scale',
+    body: 'Indian founders in 2026 are bombarded with channel options: performance marketing, content, community, partnerships, outbound, PLG. Most try three or four in parallel and get mediocre results from all of them. The brands and startups that grow fast are the ones who pick one or two channels and go deep -- with operator precision, not spray-and-pray.',
   },
   {
-    icon: BookOpen,
+    icon: Megaphone,
     number: '03',
-    title: 'Credentials Without Credibility',
-    body: 'A certificate from your platform means nothing if employers do not recognise it. Building credentialing that carries weight requires employer partnerships, industry validation, and sometimes regulatory alignment. Founders who skip this step discover that learner churn accelerates once the market figures out the credential has no currency.',
+    title: 'Brand Without Conversion',
+    body: 'A visible brand with a broken conversion funnel is expensive. Most consumer startups in India spend heavily on awareness and almost nothing on the conversion infrastructure -- landing pages, follow-up sequences, sales-assist content, and pricing architecture -- that turns awareness into revenue. The GTM work that compounds is conversion-first, not reach-first.',
   },
 ];
 
 const architecture = [
   {
-    tier: 'Learner Layer',
-    description: 'Who you serve and how you reach them',
+    tier: 'Revenue Layer',
+    description: 'The strategy and systems that drive pipeline',
     accent: 'border-teal-500',
     labelColor: 'text-teal-600',
     groups: [
       {
-        label: 'Segments',
-        items: ['Students', 'Working Professionals', 'School Teachers', 'Corporate Employees', 'Government Trainees', 'Self-Learners'],
-      },
-      {
-        label: 'Acquisition Channels',
-        items: ['SEO & Content', 'Performance Marketing', 'Institutional Partnerships', 'Government Schemes', 'Referral & Community', 'Offline Channels'],
+        label: 'Strategy and Design',
+        items: ['GTM Strategy', 'Pipeline Design', 'Sales Playbook', 'Pricing Architecture', 'Channel Buildout', 'Revenue Operations'],
       },
     ],
   },
   {
-    tier: 'Content & Curriculum Layer',
-    description: 'What you teach and how it is structured',
+    tier: 'Brand and Marketing Layer',
+    description: 'How you build visibility and convert it',
     accent: 'border-brand',
     labelColor: 'text-brand',
     groups: [
       {
-        label: 'Content Formats',
-        items: ['Video Modules', 'Live Sessions', 'Assessments & Quizzes', 'Project-Based Learning', 'Case Studies', 'Simulations'],
-      },
-      {
-        label: 'Curriculum Design',
-        items: ['Learning Outcome Mapping', 'Competency Frameworks', 'Skill Taxonomy', 'Industry Alignment', 'Adaptive Paths', 'Multilingual Content'],
+        label: 'Brand and Growth',
+        items: ['Consumer Positioning', 'D2C Performance Marketing', 'Content and Community', 'Launch Strategy', 'Competitive Positioning', 'Brand Identity'],
       },
     ],
   },
   {
-    tier: 'Technology Layer',
-    description: 'How you deliver and track learning',
+    tier: 'Execution Layer',
+    description: 'The operational infrastructure that makes GTM stick',
     accent: 'border-indigo-400',
     labelColor: 'text-indigo-500',
     groups: [
       {
-        label: 'Platform Capabilities',
-        items: ['LMS / LXP', 'Mobile Learning', 'Offline Access', 'Live Class Infrastructure', 'AI Tutoring', 'Gamification'],
-      },
-      {
-        label: 'Data & Analytics',
-        items: ['Learning Analytics', 'Completion Tracking', 'Engagement Metrics', 'Assessment Intelligence', 'Cohort Analysis', 'Employer Dashboards'],
-      },
-    ],
-  },
-  {
-    tier: 'Credentialing Layer',
-    description: 'How you make outcomes verifiable and recognised',
-    accent: 'border-purple-400',
-    labelColor: 'text-purple-500',
-    groups: [
-      {
-        label: 'Credential Types',
-        items: ['Certificates', 'Micro-credentials', 'Badges', 'Degrees & Diplomas', 'Industry Certifications', 'Government Accreditation'],
-      },
-      {
-        label: 'Recognition',
-        items: ['Employer Partnerships', 'Industry Body Alignment', 'UGC / AICTE Approval', 'NSDC & Skill India', 'International Recognition', 'Blockchain Verification'],
-      },
-    ],
-  },
-  {
-    tier: 'Enterprise & B2B Layer',
-    description: 'How you grow beyond direct-to-consumer',
-    accent: 'border-rose-400',
-    labelColor: 'text-rose-500',
-    groups: [
-      {
-        label: 'Institutional Sales',
-        items: ['Corporate L&D', 'School & College Sales', 'Government Skilling Contracts', 'CSR Training', 'White-label Solutions', 'Franchise / Reseller'],
-      },
-      {
-        label: 'GTM Motion',
-        items: ['RFP & Tender Response', 'Procurement Navigation', 'Pilot to Scale Model', 'Success Manager Model', 'Partnership & Alliance', 'Channel Sales'],
+        label: 'Operations and Analytics',
+        items: ['Sales Qualification Frameworks', 'CRM and Pipeline Governance', 'Retention and Expansion', 'Growth Analytics', 'Omnichannel Operations', 'Partnerships and BD'],
       },
     ],
   },
 ];
 
-const verticals = [
+const engagements = [
   {
-    name: 'K-12 EdTech',
-    desc: 'Products for schools, students, and parents. Requires deep curriculum alignment and institutional sales capability.',
+    number: '01',
+    title: 'GTM Strategy and Channel Selection',
+    body: 'We diagnose your current pipeline, identify the highest-leverage channels for your ICP, and build a sequenced GTM plan with milestones and owner accountability.',
   },
   {
-    name: 'Higher Education',
-    desc: 'Degree programmes, college partnerships, and campus-linked skilling that requires UGC and AICTE navigation.',
+    number: '02',
+    title: 'Sales Playbook and Pipeline Design',
+    body: 'A fully built sales motion: qualification criteria, objection handling, outreach sequences, and a pipeline governance framework your team can run without the founder.',
   },
   {
-    name: 'Corporate L&D',
-    desc: 'Enterprise learning platforms and skilling programmes sold to HR and L&D teams inside large organisations.',
+    number: '03',
+    title: 'Consumer Brand and D2C Execution',
+    body: 'Brand positioning, D2C performance marketing buildout, community strategy, and content engine for consumer-facing startups.',
   },
   {
-    name: 'Government Skilling',
-    desc: 'NSDC, Skill India, and state government skilling mandates. High volume, compliance-heavy, long sales cycles.',
+    number: '04',
+    title: 'Revenue Operations and Analytics',
+    body: 'Pipeline governance, revenue forecasting, churn analysis, pricing architecture, and the reporting infrastructure that keeps growth accountable.',
+  },
+];
+
+const faqs = [
+  {
+    q: 'What does GTM actually mean at Maxinor?',
+    a: 'Not a strategy document. An operator joins your team and builds the pipeline, the playbook, and the channel motion with you. By the end of the engagement, the system runs without the operator.',
   },
   {
-    name: 'Professional Upskilling',
-    desc: 'Working professionals seeking certifications, career transitions, or domain depth. Outcome and placement-linked.',
+    q: 'We already have a sales team. Can Maxinor still help?',
+    a: 'Yes. Having a sales team without a repeatable process is expensive. Most of our GTM engagements start by diagnosing why the current team is not performing and fixing the system, not the people.',
   },
   {
-    name: 'Vernacular & Rural EdTech',
-    desc: 'Multilingual, offline-first learning platforms targeting Tier 2 and Tier 3 markets with accessible pricing models.',
+    q: 'How long before we see pipeline results?',
+    a: 'Most engagements show measurable pipeline improvement within 30-60 days. The full GTM system takes 90-120 days to fully operationalise.',
+  },
+  {
+    q: 'Do you work with B2B or B2C startups?',
+    a: 'Both. Our GTM operators have built B2B enterprise pipelines and D2C consumer brands. The approach is different but the operator precision is the same.',
+  },
+  {
+    q: 'What stage does this work best?',
+    a: 'Seed to Series A. Companies with product-market fit who need to build the machine around it.',
   },
 ];
 
 const operators = [
   {
-    name: 'Maxinor Leadership Team',
-    role: 'Multi-Domain Operator Team',
-    bg: 'Cross-sector operators with execution experience across edtech, skilling, and institutional sales',
-    depth: 'The education domain at Maxinor draws on operators who have built and scaled businesses in adjacent sectors: government sales, B2B institutional, content operations, and workforce development. We bring a practitioner lens to the sector, not just an investor lens.',
-    slug: '',
+    name: 'Samir Gupta',
+    role: 'Entrepreneur in Residence, Revenue and GTM',
+    bg: 'ex-Paytm, ex-Bzinga, ex-Solv',
+    depth: 'Revenue and business development operator with a track record across B2B SaaS, media, and fintech. Samir builds pipeline systems and sales playbooks that run without the founder in the room.',
+    slug: 'samir-gupta',
+    image: 'https://media.licdn.com/dms/image/v2/D4D03AQH4Sd0hME4cQA/profile-displayphoto-shrink_400_400/B4DZPi3yxWHcAg-/0/1734698610773?e=1753920000&v=beta&t=X6dVaIrPZPT7SdwEq-IJ1MONPxzVzrjuUFHKicVBiYo',
+    initials: 'SG',
+  },
+  {
+    name: 'Priyabrata Padhi',
+    role: 'Entrepreneur in Residence, D2C and Consumer Brand',
+    bg: 'ex-United Breweries, ex-ITC, ex-Britannia',
+    depth: 'Consumer goods and D2C operator with 15+ years of brand, channel, and distribution experience across FMCG and consumer companies. Priyabrata builds the brand and conversion infrastructure that turns awareness into revenue.',
+    slug: 'priyabrata-padhi',
     image: null,
+    initials: 'PP',
   },
 ];
 
@@ -160,6 +146,7 @@ function ArchitectureExplorer() {
 
   return (
     <div className="mt-12 overflow-hidden rounded-[2rem] border border-grey/15 bg-white shadow-sm">
+      {/* Mobile: horizontal tab strip */}
       <div className="flex overflow-x-auto border-b border-grey/10 md:hidden">
         {architecture.map((t, i) => (
           <button
@@ -176,7 +163,8 @@ function ArchitectureExplorer() {
         ))}
       </div>
 
-      <div className="flex min-h-[520px]">
+      <div className="flex min-h-[420px]">
+        {/* Desktop: left sidebar */}
         <div className="hidden w-64 shrink-0 flex-col border-r border-grey/10 bg-warm-white/50 md:flex">
           {architecture.map((t, i) => (
             <button
@@ -208,6 +196,7 @@ function ArchitectureExplorer() {
           ))}
         </div>
 
+        {/* Right: detail panel */}
         <div className="relative flex-1 overflow-hidden">
           <AnimatePresence mode="wait">
             <motion.div
@@ -218,6 +207,7 @@ function ArchitectureExplorer() {
               transition={{ duration: 0.25, ease: 'easeOut' }}
               className="h-full p-8 md:p-10"
             >
+              {/* Panel header */}
               <div className="mb-8 flex flex-wrap items-start justify-between gap-4">
                 <div>
                   <span className={`mb-2 block text-[10px] font-bold uppercase tracking-[0.2em] ${tier.labelColor}`}>
@@ -230,6 +220,7 @@ function ArchitectureExplorer() {
                 </span>
               </div>
 
+              {/* Capability groups */}
               <div className="space-y-7">
                 {tier.groups.map((group, gi) => (
                   <motion.div
@@ -262,7 +253,45 @@ function ArchitectureExplorer() {
   );
 }
 
-export default function EducationPage() {
+function FAQAccordion() {
+  const [open, setOpen] = useState<number | null>(null);
+
+  return (
+    <div className="mt-10 divide-y divide-grey/10 rounded-[2rem] border border-grey/15 bg-white overflow-hidden">
+      {faqs.map((item, i) => (
+        <div key={i}>
+          <button
+            onClick={() => setOpen(open === i ? null : i)}
+            className="flex w-full items-center justify-between gap-6 px-8 py-6 text-left transition-colors hover:bg-warm-white/40"
+          >
+            <span className="text-base font-semibold text-navy">{item.q}</span>
+            <span className="shrink-0 text-brand">
+              {open === i ? <Minus className="h-4 w-4" /> : <Plus className="h-4 w-4" />}
+            </span>
+          </button>
+          <AnimatePresence initial={false}>
+            {open === i && (
+              <motion.div
+                key="content"
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: 'auto', opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.25, ease: 'easeOut' }}
+                className="overflow-hidden"
+              >
+                <p className="px-8 pb-6 text-sm font-light leading-relaxed text-grey">
+                  {item.a}
+                </p>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+export default function GTMPage() {
   return (
     <div className="font-sans">
 
@@ -286,7 +315,7 @@ export default function EducationPage() {
             transition={{ duration: 0.6 }}
             className="mb-4 text-[11px] font-bold uppercase tracking-[0.22em] text-brand"
           >
-            Domain · Education
+            Capability · Go-To-Market
           </motion.p>
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
@@ -294,8 +323,8 @@ export default function EducationPage() {
             transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             className="mb-6 max-w-4xl text-4xl font-display font-medium tracking-tight text-warm-white md:text-6xl lg:text-7xl"
           >
-            You have learners.{' '}
-            <span className="text-brand">Employers do not recognise your outcomes yet.</span>
+            The founder is not a scalable sales channel.{' '}
+            <span className="text-brand">The playbook is.</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -303,9 +332,7 @@ export default function EducationPage() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="mb-10 max-w-2xl text-base font-light leading-relaxed text-warm-white/60 md:text-lg"
           >
-            The EdTech gold rush left a graveyard of consumer apps with great content and poor outcomes.
-            The real opportunity now is in institutional transformation, employer-linked skilling, and
-            credentialing that actually moves the needle.
+            Most GTM problems are not channel problems. They are system problems. Maxinor GTM operators embed inside your team and build the pipeline architecture, sales motion, and conversion infrastructure that works without the founder closing every deal.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -316,8 +343,8 @@ export default function EducationPage() {
             <Link href="/contact" className={primaryBtn}>
               Talk to the team <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
-            <Link href="/sectors" className={ghostBtn}>
-              All Sectors
+            <Link href="/capabilities" className={ghostBtn}>
+              All Capabilities
             </Link>
           </motion.div>
         </div>
@@ -333,9 +360,9 @@ export default function EducationPage() {
             transition={{ duration: 0.6 }}
             className="mb-14 md:mb-16"
           >
-            <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">Where EdTech Founders Get Stuck</p>
+            <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">Where GTM Breaks</p>
             <h2 className="max-w-2xl text-3xl font-display font-medium tracking-tight text-navy md:text-4xl">
-              Three walls every education founder hits.
+              Three patterns that stall revenue growth.
             </h2>
           </motion.div>
           <div className="grid gap-6 md:grid-cols-3">
@@ -362,7 +389,7 @@ export default function EducationPage() {
         </div>
       </section>
 
-      {/* Capability Stack */}
+      {/* Architecture */}
       <section className="bg-white px-6 py-20 md:py-28 border-t border-grey/10">
         <div className="max-w-7xl mx-auto">
           <motion.div
@@ -373,10 +400,10 @@ export default function EducationPage() {
           >
             <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">Capability Stack</p>
             <h2 className="mb-3 max-w-2xl text-3xl font-display font-medium tracking-tight text-navy md:text-4xl">
-              The full education capability stack.
+              The full GTM capability stack.
             </h2>
             <p className="max-w-xl text-base font-light leading-relaxed text-grey">
-              Five layers. Every capability mapped. Select a layer to explore what sits inside it and where the leverage lives.
+              Three layers. Every capability mapped. Select a layer to explore what sits inside it and where the leverage lives.
             </p>
           </motion.div>
           <motion.div
@@ -390,7 +417,7 @@ export default function EducationPage() {
         </div>
       </section>
 
-      {/* Sub-verticals */}
+      {/* Engagement Deliverables */}
       <section className="bg-warm-white px-6 py-20 md:py-28 border-t border-grey/10">
         <div className="max-w-7xl mx-auto">
           <motion.div
@@ -400,24 +427,27 @@ export default function EducationPage() {
             transition={{ duration: 0.6 }}
             className="mb-14 md:mb-16"
           >
-            <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">Education Sub-Verticals</p>
+            <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">What We Build Together</p>
             <h2 className="max-w-2xl text-3xl font-display font-medium tracking-tight text-navy md:text-4xl">
-              Who we work with in Education.
+              Four engagement types. All operator-led.
             </h2>
           </motion.div>
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {verticals.map((v, i) => (
+          <div className="grid gap-6 md:grid-cols-2">
+            {engagements.map((eng, i) => (
               <motion.div
-                key={v.name}
-                initial={{ opacity: 0, y: 20 }}
+                key={eng.number}
+                initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.07 }}
-                className="rounded-[1.5rem] border border-grey/15 bg-white p-6"
+                transition={{ duration: 0.6, delay: i * 0.1 }}
+                className="relative rounded-[2rem] border border-grey/15 bg-white p-8"
               >
-                <div className="mb-3 h-0.5 w-8 bg-brand" />
-                <h3 className="mb-2 text-base font-display font-semibold text-navy">{v.name}</h3>
-                <p className="text-sm font-light leading-relaxed text-grey">{v.desc}</p>
+                <span className="pointer-events-none absolute right-6 top-4 select-none text-7xl font-display font-bold leading-none text-brand/5">
+                  {eng.number}
+                </span>
+                <p className="mb-1 text-[10px] font-bold uppercase tracking-[0.18em] text-brand/60">{eng.number}</p>
+                <h3 className="mb-3 text-lg font-display font-semibold text-navy">{eng.title}</h3>
+                <p className="text-sm font-light leading-relaxed text-grey">{eng.body}</p>
               </motion.div>
             ))}
           </div>
@@ -436,10 +466,10 @@ export default function EducationPage() {
           >
             <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">The Team Behind This</p>
             <h2 className="max-w-2xl text-3xl font-display font-medium tracking-tight text-warm-white md:text-4xl">
-              Operators with execution experience across education, skilling, and institutional sales.
+              Operators who have owned the revenue number, not just advised on it.
             </h2>
           </motion.div>
-          <div className="max-w-2xl">
+          <div className="grid gap-6 md:grid-cols-2 max-w-3xl">
             {operators.map((op, i) => (
               <motion.div
                 key={op.name}
@@ -449,10 +479,32 @@ export default function EducationPage() {
                 transition={{ duration: 0.6, delay: i * 0.1 }}
                 className="rounded-[2rem] border border-white/10 bg-white/5 p-8 backdrop-blur-sm"
               >
-                <div className="mb-4">
-                  <p className="text-base font-semibold text-warm-white">{op.name}</p>
-                  <p className="text-xs font-medium text-brand/80">{op.role}</p>
-                  <p className="text-xs text-warm-white/40">{op.bg}</p>
+                <div className="mb-6 flex items-center gap-4">
+                  {op.image ? (
+                    <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-full border-2 border-brand/40">
+                      <Image
+                        src={op.image}
+                        alt={op.name}
+                        fill
+                        className="object-cover"
+                        referrerPolicy="no-referrer"
+                      />
+                    </div>
+                  ) : (
+                    <div className="w-16 h-16 rounded-full bg-brand/20 flex items-center justify-center text-brand font-semibold text-lg shrink-0">
+                      {op.initials}
+                    </div>
+                  )}
+                  <div>
+                    <Link
+                      href={`/team/${op.slug}`}
+                      className="text-base font-semibold text-warm-white transition-colors hover:text-brand"
+                    >
+                      {op.name}
+                    </Link>
+                    <p className="text-xs font-medium text-brand/80">{op.role}</p>
+                    <p className="text-xs text-warm-white/40">{op.bg}</p>
+                  </div>
                 </div>
                 <p className="text-sm font-light leading-relaxed text-warm-white/60">{op.depth}</p>
               </motion.div>
@@ -461,9 +513,44 @@ export default function EducationPage() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="bg-warm-white px-6 py-20 text-center md:py-28 border-t border-grey/15">
+      {/* FAQ */}
+      <section className="bg-warm-white px-6 py-20 md:py-28 border-t border-grey/10">
         <div className="max-w-3xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="mb-12"
+          >
+            <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">Common Questions</p>
+            <h2 className="max-w-2xl text-3xl font-display font-medium tracking-tight text-navy md:text-4xl">
+              What founders usually ask first.
+            </h2>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+          >
+            <FAQAccordion />
+          </motion.div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="relative overflow-hidden bg-navy px-6 py-20 text-center md:py-28 border-t border-white/10">
+        <div
+          className="pointer-events-none absolute inset-0 opacity-[0.03]"
+          style={{
+            backgroundImage:
+              'linear-gradient(rgba(255,255,255,0.8) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.8) 1px, transparent 1px)',
+            backgroundSize: '60px 60px',
+          }}
+        />
+        <div className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 h-[500px] w-[500px] rounded-full bg-brand/5 blur-[100px]" />
+        <div className="relative z-10 max-w-3xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -471,22 +558,18 @@ export default function EducationPage() {
             transition={{ duration: 0.7 }}
           >
             <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">Work With Us</p>
-            <h2 className="mb-5 text-3xl font-display font-medium tracking-tight text-navy md:text-5xl">
-              Building in education?
+            <h2 className="mb-5 text-3xl font-display font-medium tracking-tight text-warm-white md:text-5xl">
+              Ready to build the GTM machine?
             </h2>
-            <p className="mb-8 max-w-xl mx-auto text-base font-light leading-relaxed text-grey md:text-lg">
-              Whether you are trying to fix completion rates, break into institutional sales, or build a
-              credentialing model that employers actually recognise, start here.
+            <p className="mb-8 max-w-xl mx-auto text-base font-light leading-relaxed text-warm-white/60 md:text-lg">
+              Whether you are breaking through the founder-led sales ceiling, picking the right channels, or building a consumer brand that converts, start here.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link href="/contact" className={primaryBtn}>
                 Start the conversation <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
-              <Link
-                href="/scale"
-                className="inline-flex items-center justify-center rounded-full border border-navy/20 px-8 py-4 text-base font-semibold tracking-wide text-navy transition-all duration-300 hover:-translate-y-1 hover:border-brand/40 hover:text-brand sm:px-10 sm:py-5"
-              >
-                How we engage
+              <Link href="/capabilities" className={ghostBtn}>
+                All Capabilities
               </Link>
             </div>
           </motion.div>

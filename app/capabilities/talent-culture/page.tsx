@@ -2,8 +2,9 @@
 
 import { motion, AnimatePresence } from 'motion/react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState } from 'react';
-import { ArrowRight, BookOpen, Building2, TrendingDown } from 'lucide-react';
+import { ArrowRight, Building2, Users, Heart, ChevronDown } from 'lucide-react';
 
 const primaryBtn =
   'inline-flex items-center justify-center rounded-full bg-brand px-8 py-4 text-base font-semibold tracking-wide text-warm-white transition-all duration-300 hover:-translate-y-1 hover:bg-brand/90 shadow-[0_0_40px_rgba(243,111,33,0.15)] hover:shadow-[0_0_60px_rgba(243,111,33,0.3)] sm:px-10 sm:py-5';
@@ -13,143 +14,128 @@ const ghostBtn =
 
 const painPoints = [
   {
-    icon: TrendingDown,
-    number: '01',
-    title: 'The Completion Rate Problem',
-    body: 'Most EdTech companies track enrolments and revenue, not outcomes. Completion rates below 20% are the norm, not the exception. When employers and institutions start asking for outcome data, companies that never measured learning effectiveness have nothing to show.',
-  },
-  {
     icon: Building2,
-    number: '02',
-    title: 'The Institutional Sales Trap',
-    body: 'Selling to schools, colleges, corporates, and government bodies is a completely different motion from consumer acquisition. Most EdTech founders who pivot from B2C to B2B institutional discover too late that they have no relationships, no procurement understanding, and no product that fits the buying context.',
+    number: '01',
+    title: 'The Org That Cannot Scale',
+    body: 'Most Indian startups are built to run at 10 people. At 30 people, the same structure starts to crack. At 50, it breaks. The founder is still making every call, every team is waiting on every other team, and nobody is clear on who owns what. This is not a people problem. It is an architecture problem. Fixing it requires org design -- not a reorganisation deck, but a new operating structure with clear ownership, accountability, and decision rights.',
   },
   {
-    icon: BookOpen,
+    icon: Users,
+    number: '02',
+    title: 'Hiring Without a System',
+    body: 'Every founder knows they need great people. Very few have a repeatable hiring system that finds them. Most early-stage startups hire reactively -- posting a JD when a role is urgent, running interviews without a scorecard, and onboarding new hires without a structured first 90 days. The result is mis-hires, slow ramp times, and talent that churns before it compounds.',
+  },
+  {
+    icon: Heart,
     number: '03',
-    title: 'Credentials Without Credibility',
-    body: 'A certificate from your platform means nothing if employers do not recognise it. Building credentialing that carries weight requires employer partnerships, industry validation, and sometimes regulatory alignment. Founders who skip this step discover that learner churn accelerates once the market figures out the credential has no currency.',
+    title: 'Culture by Accident',
+    body: 'Culture is not a values poster. It is what actually happens when a decision is made under pressure, when a hire is evaluated, when a conflict is resolved. Most startups have an accidental culture that reflects the founders\' best and worst instincts. By the time it is a problem, it has already cost talent and performance. Building intentional culture is not a luxury -- it is the foundation that lets everything else scale.',
   },
 ];
 
 const architecture = [
   {
-    tier: 'Learner Layer',
-    description: 'Who you serve and how you reach them',
+    tier: 'Talent Architecture Layer',
+    description: 'How you find, assess, and onboard great people',
     accent: 'border-teal-500',
     labelColor: 'text-teal-600',
     groups: [
       {
-        label: 'Segments',
-        items: ['Students', 'Working Professionals', 'School Teachers', 'Corporate Employees', 'Government Trainees', 'Self-Learners'],
-      },
-      {
-        label: 'Acquisition Channels',
-        items: ['SEO & Content', 'Performance Marketing', 'Institutional Partnerships', 'Government Schemes', 'Referral & Community', 'Offline Channels'],
+        label: 'Hiring Infrastructure',
+        items: ['Role Definition', 'Hiring Systems', 'Candidate Scoring', 'Structured Interviews', 'Onboarding Programmes', 'Talent Pipeline Design'],
       },
     ],
   },
   {
-    tier: 'Content & Curriculum Layer',
-    description: 'What you teach and how it is structured',
+    tier: 'Organisational Design Layer',
+    description: 'How you structure the company to run without the founder',
     accent: 'border-brand',
     labelColor: 'text-brand',
     groups: [
       {
-        label: 'Content Formats',
-        items: ['Video Modules', 'Live Sessions', 'Assessments & Quizzes', 'Project-Based Learning', 'Case Studies', 'Simulations'],
-      },
-      {
-        label: 'Curriculum Design',
-        items: ['Learning Outcome Mapping', 'Competency Frameworks', 'Skill Taxonomy', 'Industry Alignment', 'Adaptive Paths', 'Multilingual Content'],
+        label: 'Structure and Accountability',
+        items: ['Org Structure Design', 'Decision Rights Framework', 'Team Accountability', 'Management Cadence', 'Cross-Functional Coordination', 'Leadership Development'],
       },
     ],
   },
   {
-    tier: 'Technology Layer',
-    description: 'How you deliver and track learning',
+    tier: 'Culture and Performance Layer',
+    description: 'How you make the right behaviours stick and keep great people',
     accent: 'border-indigo-400',
     labelColor: 'text-indigo-500',
     groups: [
       {
-        label: 'Platform Capabilities',
-        items: ['LMS / LXP', 'Mobile Learning', 'Offline Access', 'Live Class Infrastructure', 'AI Tutoring', 'Gamification'],
-      },
-      {
-        label: 'Data & Analytics',
-        items: ['Learning Analytics', 'Completion Tracking', 'Engagement Metrics', 'Assessment Intelligence', 'Cohort Analysis', 'Employer Dashboards'],
-      },
-    ],
-  },
-  {
-    tier: 'Credentialing Layer',
-    description: 'How you make outcomes verifiable and recognised',
-    accent: 'border-purple-400',
-    labelColor: 'text-purple-500',
-    groups: [
-      {
-        label: 'Credential Types',
-        items: ['Certificates', 'Micro-credentials', 'Badges', 'Degrees & Diplomas', 'Industry Certifications', 'Government Accreditation'],
-      },
-      {
-        label: 'Recognition',
-        items: ['Employer Partnerships', 'Industry Body Alignment', 'UGC / AICTE Approval', 'NSDC & Skill India', 'International Recognition', 'Blockchain Verification'],
-      },
-    ],
-  },
-  {
-    tier: 'Enterprise & B2B Layer',
-    description: 'How you grow beyond direct-to-consumer',
-    accent: 'border-rose-400',
-    labelColor: 'text-rose-500',
-    groups: [
-      {
-        label: 'Institutional Sales',
-        items: ['Corporate L&D', 'School & College Sales', 'Government Skilling Contracts', 'CSR Training', 'White-label Solutions', 'Franchise / Reseller'],
-      },
-      {
-        label: 'GTM Motion',
-        items: ['RFP & Tender Response', 'Procurement Navigation', 'Pilot to Scale Model', 'Success Manager Model', 'Partnership & Alliance', 'Channel Sales'],
+        label: 'Culture, Compensation and Retention',
+        items: ['Culture Diagnosis', 'Values Operationalisation', 'Performance Frameworks', 'ESOP Design', 'Compensation Benchmarking', 'Retention Systems'],
       },
     ],
   },
 ];
 
-const verticals = [
+const engagements = [
   {
-    name: 'K-12 EdTech',
-    desc: 'Products for schools, students, and parents. Requires deep curriculum alignment and institutional sales capability.',
+    number: '01',
+    title: 'Org Design and Restructuring',
+    body: 'We map your current organisation, identify the structural bottlenecks, and design the operating structure your company needs at its next stage. From flat startup to a scaled organisation with clear ownership and decision rights.',
   },
   {
-    name: 'Higher Education',
-    desc: 'Degree programmes, college partnerships, and campus-linked skilling that requires UGC and AICTE navigation.',
+    number: '02',
+    title: 'Hiring System Build',
+    body: 'A complete hiring infrastructure: role scorecards, interview frameworks, sourcing playbooks, and onboarding programmes. The output is a repeatable system your team can run without the founder.',
   },
   {
-    name: 'Corporate L&D',
-    desc: 'Enterprise learning platforms and skilling programmes sold to HR and L&D teams inside large organisations.',
+    number: '03',
+    title: 'Culture Diagnosis and Design',
+    body: 'A structured assessment of what your culture actually is versus what you want it to be, followed by a practical plan to close the gap through management behaviour, rituals, and incentive alignment.',
   },
   {
-    name: 'Government Skilling',
-    desc: 'NSDC, Skill India, and state government skilling mandates. High volume, compliance-heavy, long sales cycles.',
+    number: '04',
+    title: 'ESOP, Compensation, and Retention Design',
+    body: 'Benchmarked compensation bands, ESOP structuring, and a retention framework that keeps your best people aligned to long-term outcomes.',
+  },
+];
+
+const faqs = [
+  {
+    q: 'When should a startup think about org design?',
+    a: 'Earlier than most founders do. If you are at 20+ people and the founder is still the decision bottleneck on most issues, you need org design now, not after you scale to 50.',
   },
   {
-    name: 'Professional Upskilling',
-    desc: 'Working professionals seeking certifications, career transitions, or domain depth. Outcome and placement-linked.',
+    q: 'We have high attrition. Where do we start?',
+    a: 'Almost always with an exit interview analysis and a culture diagnosis. Attrition is a symptom. The root cause is usually one of three things: management quality, compensation misalignment, or role clarity. We find which one and fix it.',
   },
   {
-    name: 'Vernacular & Rural EdTech',
-    desc: 'Multilingual, offline-first learning platforms targeting Tier 2 and Tier 3 markets with accessible pricing models.',
+    q: 'How do ESOPs work at early-stage Indian startups?',
+    a: 'We design ESOP pools, vesting schedules, and exercise frameworks aligned to Indian company law and investor requirements. The goal is always to create genuine equity alignment without creating future legal or tax problems.',
+  },
+  {
+    q: 'Can you help us hire our first senior leaders?',
+    a: 'Yes. We help founders define the role clearly, build the scorecard, run the process, and evaluate candidates. We also help with transition planning when a senior hire joins an existing team.',
+  },
+  {
+    q: 'What does "culture design" actually mean in practice?',
+    a: 'It means specifying the behaviours you want to see in your team, the rituals and cadences that reinforce those behaviours, and the management practices that make them stick. It is operational, not aspirational.',
   },
 ];
 
 const operators = [
   {
-    name: 'Maxinor Leadership Team',
-    role: 'Multi-Domain Operator Team',
-    bg: 'Cross-sector operators with execution experience across edtech, skilling, and institutional sales',
-    depth: 'The education domain at Maxinor draws on operators who have built and scaled businesses in adjacent sectors: government sales, B2B institutional, content operations, and workforce development. We bring a practitioner lens to the sector, not just an investor lens.',
-    slug: '',
+    name: 'Parool Duggal',
+    role: 'Entrepreneur in Residence, People and Org',
+    bg: 'ex-Bijnis, ex-EcomXpress, ex-AuthBridge',
+    depth: 'People and culture operator with hands-on experience building HR infrastructure, talent architecture, and high-performing teams inside high-growth startups.',
+    slug: 'parool-duggal',
     image: null,
+    initials: 'PD',
+  },
+  {
+    name: 'Samir Gupta',
+    role: 'Entrepreneur in Residence, Revenue and People',
+    bg: 'ex-Paytm, ex-Bzinga, ex-Solv',
+    depth: 'Operator and business leader who has built and scaled cross-functional teams across media, fintech, and enterprise. Samir brings a founder lens to people and org challenges.',
+    slug: 'samir-gupta',
+    image: 'https://media.licdn.com/dms/image/v2/D4D03AQH4Sd0hME4cQA/profile-displayphoto-shrink_400_400/B4DZPi3yxWHcAg-/0/1734698610773?e=1753920000&v=beta&t=X6dVaIrPZPT7SdwEq-IJ1MONPxzVzrjuUFHKicVBiYo',
+    initials: 'SG',
   },
 ];
 
@@ -160,6 +146,7 @@ function ArchitectureExplorer() {
 
   return (
     <div className="mt-12 overflow-hidden rounded-[2rem] border border-grey/15 bg-white shadow-sm">
+      {/* Mobile: horizontal tab strip */}
       <div className="flex overflow-x-auto border-b border-grey/10 md:hidden">
         {architecture.map((t, i) => (
           <button
@@ -176,13 +163,14 @@ function ArchitectureExplorer() {
         ))}
       </div>
 
-      <div className="flex min-h-[520px]">
-        <div className="hidden w-64 shrink-0 flex-col border-r border-grey/10 bg-warm-white/50 md:flex">
+      <div className="flex min-h-[440px]">
+        {/* Desktop: left sidebar */}
+        <div className="hidden w-72 shrink-0 flex-col border-r border-grey/10 bg-warm-white/50 md:flex">
           {architecture.map((t, i) => (
             <button
               key={t.tier}
               onClick={() => setActive(i)}
-              className={`group relative flex flex-col gap-1 px-6 py-5 text-left transition-all duration-200 ${
+              className={`group relative flex flex-col gap-1 px-6 py-6 text-left transition-all duration-200 ${
                 active === i
                   ? 'bg-white'
                   : 'hover:bg-white/60'
@@ -208,6 +196,7 @@ function ArchitectureExplorer() {
           ))}
         </div>
 
+        {/* Right: detail panel */}
         <div className="relative flex-1 overflow-hidden">
           <AnimatePresence mode="wait">
             <motion.div
@@ -218,6 +207,7 @@ function ArchitectureExplorer() {
               transition={{ duration: 0.25, ease: 'easeOut' }}
               className="h-full p-8 md:p-10"
             >
+              {/* Panel header */}
               <div className="mb-8 flex flex-wrap items-start justify-between gap-4">
                 <div>
                   <span className={`mb-2 block text-[10px] font-bold uppercase tracking-[0.2em] ${tier.labelColor}`}>
@@ -230,6 +220,7 @@ function ArchitectureExplorer() {
                 </span>
               </div>
 
+              {/* Capability groups */}
               <div className="space-y-7">
                 {tier.groups.map((group, gi) => (
                   <motion.div
@@ -262,7 +253,48 @@ function ArchitectureExplorer() {
   );
 }
 
-export default function EducationPage() {
+function FAQItem({ q, a, index }: { q: string; a: string; index: number }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 16 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay: index * 0.07 }}
+      className="border-b border-grey/15 last:border-b-0"
+    >
+      <button
+        onClick={() => setOpen(!open)}
+        className="flex w-full items-center justify-between gap-4 py-6 text-left"
+      >
+        <span className="text-base font-semibold text-navy">{q}</span>
+        <motion.span
+          animate={{ rotate: open ? 180 : 0 }}
+          transition={{ duration: 0.25 }}
+          className="shrink-0 text-brand"
+        >
+          <ChevronDown className="h-5 w-5" />
+        </motion.span>
+      </button>
+      <AnimatePresence initial={false}>
+        {open && (
+          <motion.div
+            key="answer"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3, ease: 'easeInOut' }}
+            className="overflow-hidden"
+          >
+            <p className="pb-6 text-sm font-light leading-relaxed text-grey">{a}</p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.div>
+  );
+}
+
+export default function TalentCulturePage() {
   return (
     <div className="font-sans">
 
@@ -286,7 +318,7 @@ export default function EducationPage() {
             transition={{ duration: 0.6 }}
             className="mb-4 text-[11px] font-bold uppercase tracking-[0.22em] text-brand"
           >
-            Domain · Education
+            Capability · Talent, Culture and Organisational Design
           </motion.p>
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
@@ -294,8 +326,8 @@ export default function EducationPage() {
             transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             className="mb-6 max-w-4xl text-4xl font-display font-medium tracking-tight text-warm-white md:text-6xl lg:text-7xl"
           >
-            You have learners.{' '}
-            <span className="text-brand">Employers do not recognise your outcomes yet.</span>
+            Talent, Culture &amp;{' '}
+            <span className="text-brand">Organisational Design</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -303,9 +335,7 @@ export default function EducationPage() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="mb-10 max-w-2xl text-base font-light leading-relaxed text-warm-white/60 md:text-lg"
           >
-            The EdTech gold rush left a graveyard of consumer apps with great content and poor outcomes.
-            The real opportunity now is in institutional transformation, employer-linked skilling, and
-            credentialing that actually moves the needle.
+            Most startups hire reactively, structure accidentally, and build culture without intention. The ones that scale are the ones that treat people, org design, and culture as deliberate systems -- not afterthoughts.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -316,8 +346,8 @@ export default function EducationPage() {
             <Link href="/contact" className={primaryBtn}>
               Talk to the team <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
-            <Link href="/sectors" className={ghostBtn}>
-              All Sectors
+            <Link href="/capabilities" className={ghostBtn}>
+              All Capabilities
             </Link>
           </motion.div>
         </div>
@@ -333,9 +363,9 @@ export default function EducationPage() {
             transition={{ duration: 0.6 }}
             className="mb-14 md:mb-16"
           >
-            <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">Where EdTech Founders Get Stuck</p>
+            <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">Where Founders Get Stuck</p>
             <h2 className="max-w-2xl text-3xl font-display font-medium tracking-tight text-navy md:text-4xl">
-              Three walls every education founder hits.
+              Three people problems that compound quietly.
             </h2>
           </motion.div>
           <div className="grid gap-6 md:grid-cols-3">
@@ -362,7 +392,7 @@ export default function EducationPage() {
         </div>
       </section>
 
-      {/* Capability Stack */}
+      {/* Architecture Stack */}
       <section className="bg-white px-6 py-20 md:py-28 border-t border-grey/10">
         <div className="max-w-7xl mx-auto">
           <motion.div
@@ -373,10 +403,10 @@ export default function EducationPage() {
           >
             <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">Capability Stack</p>
             <h2 className="mb-3 max-w-2xl text-3xl font-display font-medium tracking-tight text-navy md:text-4xl">
-              The full education capability stack.
+              The full talent and org capability stack.
             </h2>
             <p className="max-w-xl text-base font-light leading-relaxed text-grey">
-              Five layers. Every capability mapped. Select a layer to explore what sits inside it and where the leverage lives.
+              Three layers. Every capability mapped. Select a layer to explore what sits inside it and where the leverage lives.
             </p>
           </motion.div>
           <motion.div
@@ -390,7 +420,7 @@ export default function EducationPage() {
         </div>
       </section>
 
-      {/* Sub-verticals */}
+      {/* Engagement Deliverables */}
       <section className="bg-warm-white px-6 py-20 md:py-28 border-t border-grey/10">
         <div className="max-w-7xl mx-auto">
           <motion.div
@@ -400,24 +430,27 @@ export default function EducationPage() {
             transition={{ duration: 0.6 }}
             className="mb-14 md:mb-16"
           >
-            <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">Education Sub-Verticals</p>
+            <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">How We Engage</p>
             <h2 className="max-w-2xl text-3xl font-display font-medium tracking-tight text-navy md:text-4xl">
-              Who we work with in Education.
+              Four ways we work with founders.
             </h2>
           </motion.div>
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {verticals.map((v, i) => (
+          <div className="grid gap-5 sm:grid-cols-2">
+            {engagements.map((e, i) => (
               <motion.div
-                key={v.name}
+                key={e.number}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.07 }}
-                className="rounded-[1.5rem] border border-grey/15 bg-white p-6"
+                transition={{ duration: 0.5, delay: i * 0.08 }}
+                className="relative rounded-[2rem] border border-grey/15 bg-white p-8"
               >
+                <span className="pointer-events-none absolute right-6 top-4 select-none text-7xl font-display font-bold leading-none text-brand/5">
+                  {e.number}
+                </span>
                 <div className="mb-3 h-0.5 w-8 bg-brand" />
-                <h3 className="mb-2 text-base font-display font-semibold text-navy">{v.name}</h3>
-                <p className="text-sm font-light leading-relaxed text-grey">{v.desc}</p>
+                <h3 className="mb-3 text-base font-display font-semibold text-navy">{e.title}</h3>
+                <p className="text-sm font-light leading-relaxed text-grey">{e.body}</p>
               </motion.div>
             ))}
           </div>
@@ -436,10 +469,10 @@ export default function EducationPage() {
           >
             <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">The Team Behind This</p>
             <h2 className="max-w-2xl text-3xl font-display font-medium tracking-tight text-warm-white md:text-4xl">
-              Operators with execution experience across education, skilling, and institutional sales.
+              Operators who have built and scaled teams, not just advised on it.
             </h2>
           </motion.div>
-          <div className="max-w-2xl">
+          <div className="grid gap-6 md:grid-cols-2 max-w-3xl">
             {operators.map((op, i) => (
               <motion.div
                 key={op.name}
@@ -449,10 +482,32 @@ export default function EducationPage() {
                 transition={{ duration: 0.6, delay: i * 0.1 }}
                 className="rounded-[2rem] border border-white/10 bg-white/5 p-8 backdrop-blur-sm"
               >
-                <div className="mb-4">
-                  <p className="text-base font-semibold text-warm-white">{op.name}</p>
-                  <p className="text-xs font-medium text-brand/80">{op.role}</p>
-                  <p className="text-xs text-warm-white/40">{op.bg}</p>
+                <div className="mb-6 flex items-center gap-4">
+                  {op.image ? (
+                    <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-full border-2 border-brand/40">
+                      <Image
+                        src={op.image}
+                        alt={op.name}
+                        fill
+                        className="object-cover"
+                        referrerPolicy="no-referrer"
+                      />
+                    </div>
+                  ) : (
+                    <div className="w-16 h-16 rounded-full bg-brand/20 flex items-center justify-center text-brand font-semibold text-lg shrink-0">
+                      {op.initials}
+                    </div>
+                  )}
+                  <div>
+                    <Link
+                      href={`/team/${op.slug}`}
+                      className="text-base font-semibold text-warm-white transition-colors hover:text-brand"
+                    >
+                      {op.name}
+                    </Link>
+                    <p className="text-xs font-medium text-brand/80">{op.role}</p>
+                    <p className="text-xs text-warm-white/40">{op.bg}</p>
+                  </div>
                 </div>
                 <p className="text-sm font-light leading-relaxed text-warm-white/60">{op.depth}</p>
               </motion.div>
@@ -461,8 +516,31 @@ export default function EducationPage() {
         </div>
       </section>
 
+      {/* FAQ */}
+      <section className="bg-warm-white px-6 py-20 md:py-28 border-t border-grey/10">
+        <div className="max-w-3xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="mb-12"
+          >
+            <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">Common Questions</p>
+            <h2 className="max-w-xl text-3xl font-display font-medium tracking-tight text-navy md:text-4xl">
+              What founders ask us most.
+            </h2>
+          </motion.div>
+          <div className="rounded-[2rem] border border-grey/15 bg-white px-8 py-2">
+            {faqs.map((faq, i) => (
+              <FAQItem key={faq.q} q={faq.q} a={faq.a} index={i} />
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* CTA */}
-      <section className="bg-warm-white px-6 py-20 text-center md:py-28 border-t border-grey/15">
+      <section className="bg-navy px-6 py-20 text-center md:py-28 border-t border-white/10">
         <div className="max-w-3xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -471,22 +549,18 @@ export default function EducationPage() {
             transition={{ duration: 0.7 }}
           >
             <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">Work With Us</p>
-            <h2 className="mb-5 text-3xl font-display font-medium tracking-tight text-navy md:text-5xl">
-              Building in education?
+            <h2 className="mb-5 text-3xl font-display font-medium tracking-tight text-warm-white md:text-5xl">
+              Ready to build the org your company needs?
             </h2>
-            <p className="mb-8 max-w-xl mx-auto text-base font-light leading-relaxed text-grey md:text-lg">
-              Whether you are trying to fix completion rates, break into institutional sales, or build a
-              credentialing model that employers actually recognise, start here.
+            <p className="mb-8 max-w-xl mx-auto text-base font-light leading-relaxed text-warm-white/60 md:text-lg">
+              Whether you are designing org structure for the next stage, building a hiring system that works without the founder, or fixing culture before it costs you your best people -- start here.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link href="/contact" className={primaryBtn}>
                 Start the conversation <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
-              <Link
-                href="/scale"
-                className="inline-flex items-center justify-center rounded-full border border-navy/20 px-8 py-4 text-base font-semibold tracking-wide text-navy transition-all duration-300 hover:-translate-y-1 hover:border-brand/40 hover:text-brand sm:px-10 sm:py-5"
-              >
-                How we engage
+              <Link href="/capabilities" className={ghostBtn}>
+                All Capabilities
               </Link>
             </div>
           </motion.div>
