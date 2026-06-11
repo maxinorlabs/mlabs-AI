@@ -46,7 +46,7 @@ const items = [
     id: '07',
     title: 'DO I HAVE TO GIVE UP EQUITY?',
     detail:
-      'It depends on the engagement model. The Discovery Sprint is a fixed fee with no equity. The Venture Partner model involves a small equity stake aligned to execution milestones. We structure every deal to ensure incentives are real, not symbolic.',
+      'It depends on the engagement model. The Discovery Sprint is a fixed fee with no equity. The Partnership model involves a small equity stake aligned to execution milestones. The Fractional CXO is a retainer with no equity. We structure every deal to ensure incentives are real, not symbolic.',
   },
   {
     id: '08',
