@@ -3,13 +3,13 @@
 import { motion } from 'motion/react';
 import {
   ArrowRight,
-  Bot,
   Check,
   Hospital,
   Landmark,
   MonitorPlay,
   Shield,
   Store,
+  GraduationCap,
 } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -68,26 +68,30 @@ const domainGroups = [
         name: 'Media',
         description: 'Broadcasting & Digital Media',
         icon: MonitorPlay,
+        href: '/sectors/media',
       },
       {
-        name: 'D2C & B2C',
+        name: 'D2C',
         description: 'Consumer Brands & Retail',
         icon: Store,
+        href: '/sectors/d2c',
       },
     ],
   },
   {
-    category: 'TECH & INFRASTRUCTURE',
+    category: 'FINANCE & SKILLING',
     domains: [
       {
-        name: 'AI & Data',
-        description: 'AI Products & Data Platforms',
-        icon: Bot,
+        name: 'BFSI',
+        description: 'Banking, FinTech & Insurance',
+        icon: Landmark,
+        href: '/sectors/bfsi',
       },
       {
-        name: 'FinTech',
-        description: 'Financial Service & Deep Tech',
-        icon: Landmark,
+        name: 'Education',
+        description: 'EdTech & Workforce Development',
+        icon: GraduationCap,
+        href: '/sectors/education',
       },
     ],
   },
@@ -98,15 +102,17 @@ const domainGroups = [
         name: 'Healthcare',
         description: 'Health Tech & Clinical Tools',
         icon: Hospital,
+        href: '/sectors/healthcare',
       },
       {
         name: 'Defence',
-        description: 'Defence Tech & Deep Tech',
+        description: 'Defence Tech & Dual-Use',
         icon: Shield,
+        href: '/sectors/defence',
       },
     ],
   },
-] as const;
+];
 
 export default function Home() {
   return (
@@ -340,9 +346,10 @@ export default function Home() {
                   </p>
                   <div className="flex flex-col gap-4">
                     {group.domains.map((domain) => (
-                      <div
+                      <Link
                         key={domain.name}
-                        className="group flex min-h-[148px] cursor-default items-center gap-4 rounded-2xl border border-grey/20 bg-warm-white p-4 transition-all duration-300 hover:border-brand/50 hover:bg-white md:min-h-[156px] md:p-5"
+                        href={domain.href}
+                        className="group flex min-h-[148px] items-center gap-4 rounded-2xl border border-grey/20 bg-warm-white p-4 transition-all duration-300 hover:border-brand/50 hover:bg-white md:min-h-[156px] md:p-5"
                       >
                         <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-grey/15 bg-grey/8 transition-all duration-300 group-hover:border-brand/40 group-hover:bg-brand/5 md:h-14 md:w-14">
                           <domain.icon className="h-5 w-5 text-grey/60 transition-colors duration-300 group-hover:text-brand md:h-6 md:w-6" />
@@ -355,7 +362,7 @@ export default function Home() {
                             {domain.description}
                           </p>
                         </div>
-                      </div>
+                      </Link>
                     ))}
                   </div>
                 </div>
