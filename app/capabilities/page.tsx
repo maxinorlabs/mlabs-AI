@@ -104,7 +104,7 @@ const engagements = [
   {
     name: 'Venture Sprint',
     duration: '30 days',
-    model: 'Fixed scope · Fast',
+    model: 'Fixed scope & Cost',
     description: "A focused 30-day sprint to diagnose what's blocking you and build an execution roadmap.",
     bullets: ['Problem diagnosis', 'Capability mapping', '90-day execution plan', 'Operator assignment'],
     bestFor: 'Founders who need clarity before committing capital.',
@@ -114,21 +114,21 @@ const engagements = [
   },
   {
     name: 'Partnership',
-    duration: '6 months',
-    model: 'Embedded · Equity + execution',
+    duration: '1-3 years',
+    model: 'Embedded co-ownership',
     description: 'An operator joins your team: embedded, accountable, and aligned on outcomes through equity.',
-    bullets: ['Full execution ownership', 'Weekly operating cadence', 'Capital milestone tracking', 'Series A preparation'],
-    bestFor: 'Startups at ₹1–20 Cr ARR ready to scale.',
+    bullets: ['Full execution ownership', 'Weekly operating cadence', 'Series A preparation'],
+    bestFor: 'Ventures at ₹1 Cr–₹20 Cr ARR ready to scale.',
     commercial: 'Equity-linked + execution fee.',
     cta: 'Explore Partnership',
     featured: true,
   },
   {
     name: 'Fractional CXO',
-    duration: '6–12 months',
-    model: 'Fractional · C-level',
-    description: 'A fractional CXO who operates as part of your leadership team: CMO, CTO, CFO, or CPO.',
-    bullets: ['Functional gap coverage', 'Team building and systems', 'Transition planning', 'Hiring the permanent hire'],
+    duration: 'On demand',
+    model: 'Custom design',
+    description: 'A fractional CXO who operates as part of your leadership team.',
+    bullets: ['Functional gap coverage', 'Team building and systems', 'Transition planning', 'Strategy and execution'],
     bestFor: 'Companies that need executive depth without full-time cost.',
     commercial: 'Retainer.',
     cta: 'Get a Fractional CXO',
@@ -487,7 +487,7 @@ export default function CapabilitiesPage() {
               you&apos;re building and where we might fit.
             </p>
             <Link href="/contact" className={primaryBtn}>
-              Book a free 30-min call <ArrowRight className="ml-2 h-4 w-4" />
+              Start a conversation <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
             <p className="mt-5 text-sm text-grey/50">We respond to every inquiry within 24 hours.</p>
           </motion.div>

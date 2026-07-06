@@ -20,17 +20,17 @@ const painPoints = [
   {
     number: '01',
     title: 'Speed vs Stability',
-    body: 'SMEs are built on relationships, trust, and domain expertise accumulated over decades. Startups move fast and break things. The challenge is acquiring startup-level execution speed without breaking what makes the SME valuable: client trust, operational discipline, and institutional knowledge.',
+    body: 'SMEs are built on relationships, trust, and domain expertise accumulated over decades. Venture move fast and break things. The challenge is acquiring startup-level execution speed without breaking what makes the SME valuable: client trust, operational discipline, and institutional knowledge.',
   },
   {
     number: '02',
     title: 'The Digital Infrastructure Gap',
-    body: 'Most Indian SMEs run on Excel, WhatsApp, and informal relationships. This works at Rs 5 Cr revenue. It becomes a ceiling at Rs 20 Cr. Without the right data infrastructure, CRM, and operational systems, growth creates chaos rather than compounding.',
+    body: 'Most Indian SMEs run on Excel, WhatsApp, and informal relationships. This works at ₹5 Cr revenue. It becomes a ceiling at ₹20 Cr. Without the right data infrastructure, CRM, and operational systems, growth creates chaos rather than compounding.',
   },
   {
     number: '03',
     title: 'The Talent Access Problem',
-    body: 'Attracting senior talent is hard for SMEs. The perception gap is real. A 200-person SME with Rs 30 Cr revenue cannot easily hire a strong CMO or COO. Fractional operator access changes this calculus entirely.',
+    body: 'Attracting senior talent is hard for SMEs. The perception gap is real. A 200-person SME with ₹30 Cr revenue cannot easily hire a strong CMO or COO. Fractional operator access changes this calculus entirely.',
   },
 ];
 
@@ -95,17 +95,17 @@ const services = [
 
 const stages = [
   {
-    range: 'Rs 0 to Rs 10 Cr',
+    range: '₹0 Cr–₹10 Cr',
     focus: 'Operational infrastructure and first repeatable sales motion.',
     body: 'Establishing systems, hiring the first real team, and building the foundation for growth.',
   },
   {
-    range: 'Rs 10 Cr to Rs 50 Cr',
+    range: '₹10 Cr–₹50 Cr',
     focus: 'GTM, talent, and digital transformation.',
-    body: 'Breaking through the plateau, competing with better-funded startups, and building the management depth to run without the founder in every room.',
+    body: 'Breaking through the plateau, competing with better-funded Venture, and building the management depth to run without the founder in every room.',
   },
   {
-    range: 'Rs 50 Cr to Rs 100 Cr and Beyond',
+    range: '₹50 Cr–₹100 Cr and Beyond',
     focus: 'AI, operations excellence, and market expansion.',
     body: 'Preparing for institutional capital, building a board-ready company, and unlocking the next stage of scale.',
   },
@@ -139,12 +139,12 @@ const portfolioLogos = [
 
 const faqs = [
   {
-    q: 'Is Maxinor only for startups or do you work with traditional businesses too?',
-    a: 'We work with both. SMEs are actually often better positioned than startups: you have real revenue, real customers, and real operations. The challenge is adding the execution speed and digital infrastructure that startups are built around.',
+    q: 'Is Maxinor only for Venture or do you work with traditional businesses too?',
+    a: 'We work with both. SMEs are actually often better positioned than Venture: you have real revenue, real customers, and real operations. The challenge is adding the execution speed and digital infrastructure that Venture are built around.',
   },
   {
     q: 'We are profitable. Why do we need Maxinor?',
-    a: 'Profitability at Rs 10 Cr does not mean efficiency. Most profitable SMEs are leaving significant revenue on the table through underperforming channels, poor pricing architecture, and slow adoption of tools that would reduce cost and increase margin.',
+    a: 'Profitability at ₹10 Cr does not mean efficiency. Most profitable SMEs are leaving significant revenue on the table through underperforming channels, poor pricing architecture, and slow adoption of tools that would reduce cost and increase margin.',
   },
   {
     q: 'How is fractional CXO access different from hiring a consultant?',
@@ -248,7 +248,7 @@ export default function SMEPage() {
             className="mb-10 max-w-2xl text-base font-light leading-relaxed text-warm-white/60 md:text-lg"
           >
             Indian SMEs generate 30% of GDP and employ 110 million people. Most have products, customers,
-            and cash flow that most startups would die for. What they lack is execution speed, digital
+            and cash flow that most Venture would die for. What they lack is execution speed, digital
             infrastructure, and the operator depth to compete in a world moving fast.
           </motion.p>
 
@@ -259,7 +259,7 @@ export default function SMEPage() {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="mb-10 flex flex-wrap gap-3"
           >
-            {['Operator-Led', 'AI-Native', 'Rs 0 to Rs 100 Cr Revenue'].map((chip) => (
+            {['Operator-Led', 'AI-Native', '₹0 Cr–₹100 Cr Revenue'].map((chip) => (
               <span
                 key={chip}
                 className="rounded-full border border-warm-white/15 bg-warm-white/5 px-5 py-2 text-sm font-medium text-warm-white/80 backdrop-blur-sm"

@@ -28,7 +28,7 @@ const painPoints = [
     icon: Globe,
     number: '03',
     title: 'Export and Offset Complexity',
-    body: "India's defence export target of Rs 50,000 crore by 2029 is creating real opportunity. But export under the SCOMET framework, offset obligations for foreign OEMs, and the DTTI partnership pipeline require a level of regulatory and relationship navigation that no standard GTM consultant can provide. The founders who break through here have operator support inside the room.",
+    body: "India's defence export target of ₹50,000 Cr by 2029 is creating real opportunity. But export under the SCOMET framework, offset obligations for foreign OEMs, and the DTTI partnership pipeline require a level of regulatory and relationship navigation that no standard GTM consultant can provide. The founders who break through here have operator support inside the room.",
   },
 ];
 
@@ -81,6 +81,13 @@ const architecture = [
       },
     ],
   },
+];
+
+const clientProblems = [
+  '"We won an iDEX challenge but have no idea how to convert it into a sustained MoD procurement relationship."',
+  '"Our technology works in the field but we have no DPP-compliant commercialisation strategy."',
+  '"We\'re dual-use. The commercial market is slow and defence is complex. We need help navigating both."',
+  '"We need to build relationships with DRDO and the armed forces but have no operator who has done this before."',
 ];
 
 const engagementModels = [
@@ -144,7 +151,7 @@ export default function DefencePage() {
     },
     {
       q: 'What is the iDEX programme and should we apply?',
-      a: 'iDEX (Innovations for Defence Excellence) is MoD\'s flagship programme to fund and fast-track defence tech startups. DISC challenges offer funding up to Rs 1.5 crore for prototyping, and successful trials can lead directly to procurement orders. Whether to apply depends on your technology readiness level and which challenge categories are active. We help you evaluate fit before you invest time in an application.',
+      a: 'iDEX (Innovations for Defence Excellence) is MoD\'s flagship programme to fund and fast-track defence tech startups. DISC challenges offer funding up to ₹1.5 Cr for prototyping, and successful trials can lead directly to procurement orders. Whether to apply depends on your technology readiness level and which challenge categories are active. We help you evaluate fit before you invest time in an application.',
     },
     {
       q: 'We have a cybersecurity product. How is defence different from selling to commercial enterprises?',
@@ -192,8 +199,31 @@ export default function DefencePage() {
         </div>
       </section>
 
-      {/* Pain Points */}
+      {/* Founder Quotes */}
       <section className="bg-warm-white px-6 py-20 md:py-28">
+        <div className="max-w-7xl mx-auto">
+          <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">What Clients Come to Us For</p>
+          <h2 className="mb-14 max-w-2xl text-3xl font-display font-medium tracking-tight text-navy md:text-4xl md:mb-16">
+            Founder quotes we hear every week.
+          </h2>
+          <div className="grid gap-4 md:grid-cols-2">
+            {clientProblems.map((quote, i) => (
+              <div
+                key={i}
+                className="flex items-start gap-3 rounded-2xl border border-grey/15 bg-white px-5 py-4"
+              >
+                <span className="shrink-0 text-sm font-bold text-brand/50">
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+                <p className="text-sm font-light leading-relaxed text-grey">{quote}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Pain Points */}
+      <section className="bg-white px-6 py-20 md:py-28 border-t border-grey/10">
         <div className="max-w-7xl mx-auto">
           <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">The Real Problems</p>
           <h2 className="mb-14 max-w-2xl text-3xl font-display font-medium tracking-tight text-navy md:text-4xl md:mb-16">
@@ -201,7 +231,7 @@ export default function DefencePage() {
           </h2>
           <div className="grid gap-6 md:grid-cols-3">
             {painPoints.map((p) => (
-              <div key={p.number} className="rounded-[2rem] border border-grey/15 bg-white p-8 transition-all duration-300 hover:border-brand/20 hover:shadow-md">
+              <div key={p.number} className="rounded-[2rem] border border-grey/15 bg-warm-white p-8 transition-all duration-300 hover:border-brand/20 hover:shadow-md">
                 <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-xl bg-brand/10">
                   <p.icon className="h-5 w-5 text-brand" />
                 </div>

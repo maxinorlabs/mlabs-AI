@@ -58,11 +58,11 @@ const processSteps = [
 const parameters = [
   {
     title: 'Investment Stage',
-    body: 'Pre-seed, Seed, and Pre-Series A. Startups between Rs 1 Cr and Rs 20 Cr ARR with clear product-market fit evidence.',
+    body: 'Pre-seed, Seed, and Pre-Series A. Venture between ₹1 Cr–₹20 Cr ARR with clear product-market fit evidence.',
   },
   {
     title: 'Ticket Size',
-    body: 'Rs 25 Lakh to Rs 3 Crore. Deployed in milestone-linked tranches. Staged deployment reduces founder dilution and maintains execution accountability.',
+    body: '₹25 Lakh to ₹3 Cr. Deployed in milestone-linked tranches. Staged deployment reduces founder dilution and maintains execution accountability.',
   },
   {
     title: 'Sectors',
@@ -490,7 +490,7 @@ export default function InvestmentPage() {
             {[
               {
                 label: 'For HNIs and Family Offices',
-                body: 'Co-invest in operator-vetted deals. All LP opportunities are reviewed by the Maxinor IC before syndication. Minimum ticket: Rs 10 Lakh per deal. Quarterly portfolio updates.',
+                body: 'Co-invest in operator-vetted deals. All LP opportunities are reviewed by the Maxinor IC before syndication. Minimum ticket: ₹10 Lakh per deal. Quarterly portfolio updates.',
               },
               {
                 label: 'For Institutional Investors',

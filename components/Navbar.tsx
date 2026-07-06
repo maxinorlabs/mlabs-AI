@@ -12,7 +12,7 @@ import {
 } from 'lucide-react';
 
 const logoSrc =
-  'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/68e4e417db41aba4d67eb664_50861696-aac9-4ad9-988c-2bcebfeb%20(1).png';
+  'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/6a2a827cc0fcbfdb0121f0b0_true-north-v1.avif';
 
 type SubItem = { name: string; path: string };
 
@@ -85,6 +85,8 @@ export function Navbar() {
       path: '/capabilities',
       dropdown: [
         { name: 'All Capabilities', path: '/capabilities', header: true },
+        { name: 'Venture Scale', path: '/scale' },
+        { name: 'Venture Build', path: '/build' },
         { name: 'GTM', path: '/capabilities/gtm' },
         { name: 'AI and Tech', path: '/capabilities/ai-tech' },
         { name: 'Talent, Culture & Org Design', path: '/capabilities/talent-culture' },
@@ -94,7 +96,7 @@ export function Navbar() {
       name: 'Industries',
       path: '/startups',
       dropdown: [
-        { name: 'Startups', path: '/startups' },
+        { name: 'Ventures', path: '/startups' },
         { name: 'SME', path: '/sme' },
         { name: 'Corporate', path: '/corporate' },
         { name: 'Investors', path: '/investors' },

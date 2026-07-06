@@ -8,35 +8,35 @@ import { ArrowRight, ChevronDown } from 'lucide-react';
 const primaryBtn =
   'inline-flex items-center justify-center rounded-full bg-brand px-8 py-4 text-base font-semibold tracking-wide text-warm-white transition-all duration-300 hover:-translate-y-1 hover:bg-brand/90 shadow-[0_0_40px_rgba(243,111,33,0.15)] hover:shadow-[0_0_60px_rgba(243,111,33,0.3)] sm:px-10 sm:py-5';
 
-const domains = [
+const sectors = [
   {
-    id: 'media',
+    id: 'healthcare',
     number: '01',
-    name: 'Media',
-    sector: 'Broadcasting & Digital Media',
-    standaloneUrl: '/sectors/media',
+    name: 'Healthcare',
+    sector: 'HealthTech & Clinical Tools',
+    standaloneUrl: '/sectors/healthcare',
     problem:
-      "You've built an audience. You're not monetising it at the rate you should be.",
+      "Hospital deployments eating your margins? Stop building custom for every client.",
     capabilities: [
-      'B2B licensing and syndication revenue',
-      'AI-native content ops that cut cost and scale output',
-      'Audience-to-revenue conversion strategy',
+      'Productise to slash professional services costs',
+      'Unlock Tier 2 & Tier 3 hospital procurement',
+      'Fast-track clinical validation & peer recognition',
     ],
-    operator: 'Samir Gupta',
-    operatorBg: 'ex-Paytm, ex-Bzinga, ex-Solv',
-    operatorSlug: 'samir-gupta',
+    operator: 'Dr Rachit Negi',
+    operatorBg: 'ex-Operation Smile, ex-World Bank, ex-PATH',
+    operatorSlug: 'dr-rachit-negi',
     howWeEngage: [
-      'Audience monetisation and revenue model design',
-      'AI-native content operations',
-      'B2B licensing and syndication strategy',
+      'Clinical product validation and standardisation',
+      'B2B hospital sales and procurement GTM',
+      'Tier 2 and Tier 3 market expansion',
     ],
     problemDetail:
-      "Media companies are caught between fragmented audiences, rising content costs, and platforms that own distribution. Brands that will survive aren't the ones with the most content. They're the ones with the most efficient, AI-native content operations.",
+      'The healthcare digitisation opportunity in India is massive, but the graveyard of failed health-tech products is bigger. The gap is almost always the same: tech built without clinical workflow understanding, and GTM that tries to sell to hospitals without understanding procurement.',
     clientProblems: [
-      '"We have 500K+ followers but monetisation per user is a fraction of what it should be."',
-      '"Our content team is growing but content ROI is declining. We need to restructure our production model."',
-      '"We\'re profitable on owned channels but can\'t crack B2B licensing and syndication at scale."',
-      '"We\'re scaling content volume but losing on distribution. We need an AI-native content ops overhaul."',
+      '"We have 15 hospital clients but every deployment is custom. We can\'t standardise without losing deals."',
+      '"We\'re growing ARR but professional services are eating 60% of revenue. We need to productise."',
+      '"We need to expand from metros to Tier 2 cities but the procurement dynamics are completely different."',
+      '"Clinical validation worked in 2 hospitals. Getting peer-reviewed and nationally recognised is the next gate."',
     ],
   },
   {
@@ -100,33 +100,33 @@ const domains = [
     ],
   },
   {
-    id: 'healthcare',
+    id: 'media',
     number: '04',
-    name: 'Healthcare',
-    sector: 'HealthTech & Clinical Tools',
-    standaloneUrl: '/sectors/healthcare',
+    name: 'Media',
+    sector: 'Broadcasting & Digital Media',
+    standaloneUrl: '/sectors/media',
     problem:
-      "You have hospital clients. Every deployment is still fully custom.",
+      "You've built an audience. You're not monetising it at the rate you should be.",
     capabilities: [
-      'Productisation to reduce professional services cost',
-      'Tier 2 and Tier 3 hospital expansion GTM',
-      'Clinical validation and peer recognition pathway',
+      'B2B licensing and syndication revenue',
+      'AI-native content ops that cut cost and scale output',
+      'Audience-to-revenue conversion strategy',
     ],
-    operator: 'Dr Rachit Negi',
-    operatorBg: 'ex-Operation Smile, ex-World Bank, ex-PATH',
-    operatorSlug: 'dr-rachit-negi',
+    operator: 'Maxinor Team',
+    operatorBg: 'Multi-sector operator team',
+    operatorSlug: '',
     howWeEngage: [
-      'Clinical product validation and standardisation',
-      'B2B hospital sales and procurement GTM',
-      'Tier 2 and Tier 3 market expansion',
+      'Audience monetisation and revenue model design',
+      'AI-native content operations',
+      'B2B licensing and syndication strategy',
     ],
     problemDetail:
-      'The healthcare digitisation opportunity in India is massive, but the graveyard of failed health-tech products is bigger. The gap is almost always the same: tech built without clinical workflow understanding, and GTM that tries to sell to hospitals without understanding procurement.',
+      "Media companies are caught between fragmented audiences, rising content costs, and platforms that own distribution. Brands that will survive aren't the ones with the most content. They're the ones with the most efficient, AI-native content operations.",
     clientProblems: [
-      '"We have 15 hospital clients but every deployment is custom. We can\'t standardise without losing deals."',
-      '"We\'re growing ARR but professional services are eating 60% of revenue. We need to productise."',
-      '"We need to expand from metros to Tier 2 cities but the procurement dynamics are completely different."',
-      '"Clinical validation worked in 2 hospitals. Getting peer-reviewed and nationally recognised is the next gate."',
+      '"We have 500K+ followers but monetisation per user is a fraction of what it should be."',
+      '"Our content team is growing but content ROI is declining. We need to restructure our production model."',
+      '"We\'re profitable on owned channels but can\'t crack B2B licensing and syndication at scale."',
+      '"We\'re scaling content volume but losing on distribution. We need an AI-native content ops overhaul."',
     ],
   },
   {
@@ -143,7 +143,7 @@ const domains = [
       'B2B institutional sales motion and GTM',
     ],
     operator: 'Maxinor Leadership Team',
-    operatorBg: 'Multi-domain operator team',
+    operatorBg: 'Multi-sector operator team',
     operatorSlug: '',
     howWeEngage: [
       'Learning outcome and completion improvement',
@@ -173,7 +173,7 @@ const domains = [
       'Dual-use technology commercialisation and export GTM',
     ],
     operator: 'Maxinor Leadership Team',
-    operatorBg: 'Multi-domain operator team',
+    operatorBg: 'Multi-sector operator team',
     operatorSlug: '',
     howWeEngage: [
       'Defence procurement and DPP compliance strategy',
@@ -193,7 +193,7 @@ const domains = [
 
 const tabs = [
   { id: 'overview', label: 'All' },
-  ...domains.map((d) => ({ id: d.id, label: d.name })),
+  ...sectors.map((d) => ({ id: d.id, label: d.name })),
 ];
 
 export default function DomainsPage() {
@@ -203,7 +203,7 @@ export default function DomainsPage() {
 
   // IntersectionObserver: update active tab as deep-dive sections scroll into view
   useEffect(() => {
-    const sectionIds = ['overview', ...domains.map((d) => d.id)];
+    const sectionIds = ['overview', ...sectors.map((d) => d.id)];
     const observers: IntersectionObserver[] = [];
 
     sectionIds.forEach((id) => {
@@ -271,7 +271,7 @@ export default function DomainsPage() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="mb-10 max-w-xl text-base font-light leading-relaxed text-warm-white/70 md:text-lg"
           >
-            Maxinor&apos;s operator network brings hands-on domain experience in six high-growth
+            Maxinor&apos;s operator network brings hands-on sector experience in six high-growth
             sectors, from ideation through execution.
           </motion.p>
           <motion.div
@@ -310,20 +310,68 @@ export default function DomainsPage() {
         </div>
       </div>
 
-      {/* ── Domain Overview Cards ── */}
+      {/* ── Sector Overview Cards ── */}
       <section id="overview" className="bg-warm-white px-6 py-20 md:py-28">
         <div className="max-w-7xl mx-auto">
           <div className="mb-14 text-center md:mb-20">
-            <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">Our Sectors</p>
+            <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">The T-Shape Advantage</p>
             <h2 className="text-3xl font-display font-medium tracking-tight text-navy md:text-5xl">
               Deep operator expertise.{' '}
               <span className="text-brand">High-growth sectors.</span>
             </h2>
           </div>
+
+          <motion.div
+            initial={{ opacity: 0, scaleX: 0 }}
+            whileInView={{ opacity: 1, scaleX: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="mb-14 origin-left md:mb-20"
+          >
+            <div className="overflow-hidden rounded-2xl">
+              {/* Group labels */}
+              <div className="grid grid-cols-7 bg-navy/95">
+                <Link href="/build" className="col-span-3 border-r-2 border-white/20 py-2.5 text-center transition-colors hover:bg-white/5">
+                  <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-brand/80 hover:text-brand">Build</span>
+                </Link>
+                <Link href="/scale" className="col-span-3 border-r-2 border-white/20 py-2.5 text-center transition-colors hover:bg-white/5">
+                  <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-brand/80 hover:text-brand">Scale</span>
+                </Link>
+                <Link href="/investment" className="col-span-1 py-2.5 text-center transition-colors hover:bg-white/5">
+                  <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-brand/80 hover:text-brand">Invest</span>
+                </Link>
+              </div>
+              {/* Items bar */}
+              <div className="flex">
+                {[
+                  { label: 'Ideation',   shade: 'bg-brand',     divider: false },
+                  { label: 'Strategy',   shade: 'bg-brand',     divider: false },
+                  { label: 'Product',    shade: 'bg-brand',     divider: true  },
+                  { label: 'GTM',        shade: 'bg-brand/80',  divider: false },
+                  { label: 'Operations', shade: 'bg-brand/80',  divider: false },
+                  { label: 'Revenue',    shade: 'bg-brand/80',  divider: true  },
+                  { label: 'Capital',    shade: 'bg-brand/60',  divider: false },
+                ].map((item) => (
+                  <div
+                    key={item.label}
+                    className={`flex-1 px-1 py-4 text-center ${item.shade} ${item.divider ? 'border-r-2 border-white/30' : 'border-r border-white/10 last:border-r-0'}`}
+                  >
+                    <span className="text-[10px] font-bold uppercase tracking-[0.1em] text-white">
+                      {item.label}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <p className="mt-2 text-center text-xs font-light text-grey/50">
+              Operator capabilities across the full venture lifecycle
+            </p>
+          </motion.div>
+
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {domains.map((domain, i) => (
+            {sectors.map((sector, i) => (
               <motion.div
-                key={domain.id}
+                key={sector.id}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -331,13 +379,13 @@ export default function DomainsPage() {
                 className="group relative rounded-[2rem] border border-grey/20 bg-white p-8 transition-all duration-500 hover:border-brand/30 hover:shadow-lg"
               >
                 <span className="pointer-events-none absolute right-5 top-3 select-none text-7xl font-display font-bold leading-none text-brand/6">
-                  {domain.number}
+                  {sector.number}
                 </span>
-                <p className="mb-1 text-[11px] font-bold uppercase tracking-[0.2em] text-grey/50">{domain.sector}</p>
-                <h3 className="mb-3 text-xl font-display font-semibold text-navy">{domain.name}</h3>
-                <p className="mb-5 text-sm font-light leading-relaxed text-grey">{domain.problem}</p>
+                <p className="mb-1 text-[11px] font-bold uppercase tracking-[0.2em] text-grey/50">{sector.sector}</p>
+                <h3 className="mb-3 text-xl font-display font-semibold text-navy">{sector.name}</h3>
+                <p className="mb-5 text-sm font-light leading-relaxed text-grey">{sector.problem}</p>
                 <ul className="mb-6 space-y-2">
-                  {domain.capabilities.map((c) => (
+                  {sector.capabilities.map((c) => (
                     <li key={c} className="flex items-start gap-2.5 text-sm text-grey">
                       <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-brand" />
                       {c}
@@ -346,136 +394,29 @@ export default function DomainsPage() {
                 </ul>
                 <div className="mb-5 border-t border-grey/12 pt-4">
                   <p className="text-xs text-grey/55">
-                    <span className="font-semibold text-navy">{domain.operator}</span> · {domain.operatorBg}
+                    <span className="font-semibold text-navy">{sector.operator}</span> · {sector.operatorBg}
                   </p>
                 </div>
                 <div className="flex flex-wrap items-center gap-4">
-                  <button
-                    onClick={() => scrollTo(domain.id)}
-                    className="inline-flex items-center gap-1 text-sm font-semibold text-brand transition-all duration-200 hover:gap-2"
-                  >
-                    Explore <ArrowRight className="h-3.5 w-3.5" />
-                  </button>
-                  {domain.standaloneUrl && (
+                  {sector.standaloneUrl && (
                     <Link
-                      href={domain.standaloneUrl}
-                      className="inline-flex items-center gap-1 text-sm font-medium text-grey/60 transition-all duration-200 hover:text-brand hover:gap-2"
+                      href={sector.standaloneUrl}
+                      className="inline-flex items-center gap-1 text-sm font-semibold text-brand transition-all duration-200 hover:gap-2"
                     >
-                      Full Blueprint <ArrowRight className="h-3 w-3" />
+                      Explore <ArrowRight className="h-3.5 w-3.5" />
                     </Link>
                   )}
                 </div>
               </motion.div>
             ))}
           </div>
+          <p className="mx-auto mt-14 max-w-2xl text-center text-base font-light leading-relaxed text-grey md:mt-16 md:text-lg">
+            This is why Maxinor operators are not advisors who have read the playbook.
+            <br />
+            <span className="font-semibold text-navy">They&apos;ve run the plays.</span>
+          </p>
         </div>
       </section>
-
-      {/* ── Domain Deep-Dives ── */}
-      {domains.map((domain, i) => (
-        <section
-          key={domain.id}
-          id={domain.id}
-          className={`px-6 py-20 md:py-28 border-t border-grey/10 ${
-            i % 2 === 0 ? 'bg-white' : 'bg-warm-white'
-          }`}
-        >
-          <div className="max-w-7xl mx-auto">
-            <div className="grid gap-12 lg:grid-cols-2 lg:gap-20">
-
-              {/* Left: header + problem */}
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.7 }}
-              >
-                <p className="mb-2 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">{domain.sector}</p>
-                <h2 className="mb-5 text-3xl font-display font-medium tracking-tight text-navy md:text-4xl">
-                  {domain.name}
-                </h2>
-                <div className="mb-6 h-0.5 w-12 bg-brand" />
-                <h3 className="mb-4 text-xs font-bold uppercase tracking-[0.18em] text-grey/50">
-                  The Problem We Solve
-                </h3>
-                <p className="mb-6 text-base font-light leading-relaxed text-grey md:text-lg">
-                  {domain.problemDetail}
-                </p>
-
-                {/* Domain capabilities */}
-                <h3 className="mb-4 text-xs font-bold uppercase tracking-[0.18em] text-grey/50">
-                  What We Do in {domain.name}
-                </h3>
-                <div className="space-y-3">
-                  {domain.howWeEngage.map((item) => (
-                    <div
-                      key={item}
-                      className="flex items-center gap-3 rounded-xl border border-grey/15 bg-warm-white px-4 py-3"
-                    >
-                      <span className="text-brand">→</span>
-                      <span className="text-sm font-light text-grey">{item}</span>
-                    </div>
-                  ))}
-                </div>
-              </motion.div>
-
-              {/* Right: client problems + operator + CTA */}
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.7, delay: 0.1 }}
-              >
-                <h3 className="mb-5 text-xs font-bold uppercase tracking-[0.18em] text-grey/50">
-                  What Clients Come to Us For
-                </h3>
-                <ol className="mb-10 space-y-3">
-                  {domain.clientProblems.map((p, idx) => (
-                    <li
-                      key={idx}
-                      className="flex items-start gap-3 rounded-xl border border-grey/15 bg-warm-white px-4 py-3.5"
-                    >
-                      <span className="shrink-0 text-sm font-bold text-brand/50">
-                        {String(idx + 1).padStart(2, '0')}
-                      </span>
-                      <p className="text-sm font-light leading-relaxed text-grey">{p}</p>
-                    </li>
-                  ))}
-                </ol>
-
-                {/* Operator card */}
-                <div className="mb-8 rounded-2xl border border-grey/20 bg-navy/5 px-5 py-4">
-                  <p className="mb-1 text-[11px] font-bold uppercase tracking-[0.18em] text-brand/70">
-                    Lead Operator
-                  </p>
-                  {domain.operatorSlug ? (
-                    <Link href={`/team/${domain.operatorSlug}`} className="text-base font-semibold text-navy transition-colors duration-200 hover:text-brand">
-                      {domain.operator}
-                    </Link>
-                  ) : (
-                    <p className="text-base font-semibold text-navy">{domain.operator}</p>
-                  )}
-                  <p className="text-sm text-grey/60">{domain.operatorBg}</p>
-                </div>
-
-                <div className="flex flex-wrap items-center gap-4">
-                  <Link href="/contact" className={primaryBtn}>
-                    Work with us in {domain.name} <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
-                  {domain.standaloneUrl && (
-                    <Link
-                      href={domain.standaloneUrl}
-                      className="inline-flex items-center gap-2 rounded-full border border-navy/20 px-8 py-4 text-base font-semibold tracking-wide text-navy transition-all duration-300 hover:-translate-y-1 hover:border-brand/40 hover:text-brand sm:px-10 sm:py-5"
-                    >
-                      Full Domain Blueprint <ArrowRight className="h-3.5 w-3.5" />
-                    </Link>
-                  )}
-                </div>
-              </motion.div>
-            </div>
-          </div>
-        </section>
-      ))}
 
       {/* ── T-Shape Section ── */}
       <section className="bg-navy px-6 py-20 md:py-28">
@@ -542,9 +483,9 @@ export default function DomainsPage() {
 
             {/* Vertical bars */}
             <div className="mt-8 flex gap-3 w-full">
-              {domains.map((domain, i) => (
+              {sectors.map((sector, i) => (
                 <motion.div
-                  key={domain.id}
+                  key={sector.id}
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -559,14 +500,14 @@ export default function DomainsPage() {
                       className="text-[11px] font-bold uppercase tracking-[0.12em] text-warm-white/70"
                       style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}
                     >
-                      {domain.name}
+                      {sector.name}
                     </span>
                   </div>
                 </motion.div>
               ))}
             </div>
             <p className="mt-4 text-center text-xs font-light text-warm-white/40">
-              Deep domain expertise, not generic execution
+              Deep sector expertise, not generic execution
             </p>
           </div>
 
@@ -597,7 +538,7 @@ export default function DomainsPage() {
           >
             <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">Let&apos;s Talk</p>
             <h2 className="mb-5 text-3xl font-display font-medium tracking-tight text-navy md:text-5xl">
-              Not sure which domain fits your problem?
+              Not sure which sector fits your problem?
             </h2>
             <p className="mb-8 text-base font-light leading-relaxed text-grey md:text-lg">
               Tell us what you&apos;re building. We&apos;ll tell you where we fit, and if we don&apos;t, we&apos;ll say so.

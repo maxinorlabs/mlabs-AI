@@ -118,7 +118,7 @@ const architecture = [
 
 const verticals = [
   {
-    name: 'Startup Brand Building',
+    name: 'Venture Brand Building',
     desc: 'Early-stage companies that need a brand foundation, positioning, and channel strategy before scaling spend.',
   },
   {
@@ -292,7 +292,7 @@ export default function MarketingPage() {
             transition={{ duration: 0.6 }}
             className="mb-4 text-[11px] font-bold uppercase tracking-[0.22em] text-brand"
           >
-            Domain · Marketing
+            Sector · Marketing
           </motion.p>
           <motion.h1
             initial={{ opacity: 0, y: 30 }}

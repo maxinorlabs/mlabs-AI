@@ -188,7 +188,16 @@ The project mostly uses Tailwind's default text scale plus two custom hero sizes
 - `navy` is the main text color on light backgrounds.
 - White text is reserved for dark hero and CTA sections.
 
-## 9. Recommended Reusable Style Tokens
+## 9. Copy Style Rules
+
+### Currency notation
+- Use the rupee symbol, never `Rs`, `Rs.`, or `INR`, in site copy.
+- Do not add a space between `₹` and the number: `₹1 Cr`, not `₹ 1 Cr`.
+- Use `Cr` and `Lakh` for abbreviated Indian currency units in UI and marketing copy.
+- Use en-dash ranges with the unit on both sides: `₹1 Cr–₹20 Cr`, not `₹1 to 20 Cr`, `₹1–20 Cr`, or `Rs 1 Cr to Rs 20 Cr`.
+- Keep compact plus notation when needed: `₹100+ Cr`.
+
+## 10. Recommended Reusable Style Tokens
 
 These are the clearest recurring text styles in the codebase and are good candidates for standardization:
 
@@ -204,7 +213,7 @@ These are the clearest recurring text styles in the codebase and are good candid
 | Label | `text-sm font-medium text-navy` |
 | Eyebrow | `text-xs md:text-sm font-bold uppercase tracking-[0.18em] text-brand` |
 
-## 10. Source Files Reviewed
+## 11. Source Files Reviewed
 
 - `app/layout.tsx`
 - `app/globals.css`

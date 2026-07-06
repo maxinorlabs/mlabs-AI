@@ -29,7 +29,7 @@ export default function Image() {
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-          <span style={{ fontSize: '14px', fontWeight: 700, color: '#F36F21', letterSpacing: '0.2em', textTransform: 'uppercase', fontFamily: 'sans-serif' }}>Domain · D2C & Consumer</span>
+          <span style={{ fontSize: '14px', fontWeight: 700, color: '#F36F21', letterSpacing: '0.2em', textTransform: 'uppercase', fontFamily: 'sans-serif' }}>Sector · D2C & Consumer</span>
           <div style={{ display: 'flex', alignItems: 'flex-start', gap: '20px' }}>
             <div style={{ width: '5px', height: '80px', background: '#F36F21', borderRadius: '4px', flexShrink: 0, marginTop: '6px' }} />
             <span style={{ fontSize: '48px', fontWeight: 700, color: '#F7F7F5', lineHeight: 1.1, fontFamily: 'sans-serif', letterSpacing: '-0.02em' }}>

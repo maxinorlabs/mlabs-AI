@@ -68,7 +68,7 @@ export default function Image() {
 
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
           <div style={{ display: 'flex', gap: '12px' }}>
-            {['Venture Build', 'SME Growth', 'Startup Strategy'].map((tag) => (
+            {['Venture Build', 'SME Growth', 'Venture Strategy'].map((tag) => (
               <div
                 key={tag}
                 style={{

@@ -6,7 +6,7 @@ const serviceDescriptions = [
 
 const eligibilityRequirements = [
   'Business founders and entrepreneurs',
-  'Companies with annual revenue of Rs. 2 crores or more',
+  'Companies with annual revenue of ₹2 Cr or more',
   'Organizations seeking operational scaling support',
   'Users who are 18 years or older and legally capable of entering contracts',
 ];

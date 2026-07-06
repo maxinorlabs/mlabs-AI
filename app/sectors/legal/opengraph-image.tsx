@@ -29,7 +29,7 @@ export default function Image() {
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-          <span style={{ fontSize: '14px', fontWeight: 700, color: '#F36F21', letterSpacing: '0.2em', textTransform: 'uppercase', fontFamily: 'sans-serif' }}>Domain · Legal</span>
+          <span style={{ fontSize: '14px', fontWeight: 700, color: '#F36F21', letterSpacing: '0.2em', textTransform: 'uppercase', fontFamily: 'sans-serif' }}>Sector · Legal</span>
           <div style={{ display: 'flex', alignItems: 'flex-start', gap: '20px' }}>
             <div style={{ width: '5px', height: '80px', background: '#F36F21', borderRadius: '4px', flexShrink: 0, marginTop: '6px' }} />
             <span style={{ fontSize: '46px', fontWeight: 700, color: '#F7F7F5', lineHeight: 1.1, fontFamily: 'sans-serif', letterSpacing: '-0.02em' }}>
@@ -40,7 +40,7 @@ export default function Image() {
 
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
           <div style={{ display: 'flex', gap: '10px' }}>
-            {['Startup Legal', 'Compliance', 'Fundraising', 'Employment Law'].map((tag) => (
+            {['Venture Legal', 'Compliance', 'Fundraising', 'Employment Law'].map((tag) => (
               <div key={tag} style={{ background: 'rgba(243,111,33,0.15)', border: '1px solid rgba(243,111,33,0.3)', borderRadius: '100px', padding: '7px 16px', fontSize: '14px', color: '#F36F21', fontFamily: 'sans-serif', fontWeight: 600 }}>
                 {tag}
               </div>

@@ -6,20 +6,20 @@ import type { Metadata } from 'next';
 export const dynamic = 'force-static';
 
 export const metadata: Metadata = {
-  title: 'Blog | Venture Building and Startup Insights',
+  title: 'Blog | Venture Building and Venture Insights',
   description: 'Operator-tested insights on venture building, SME growth, and the Indian startup ecosystem. Written by founders and operators who have been in the trenches.',
   keywords: ['venture studio', 'startup insights', 'SME growth India', 'venture building', 'Indian startup ecosystem'],
   alternates: { canonical: buildSiteUrl('/blog') },
   openGraph: {
     type: 'website',
     url: buildSiteUrl('/blog'),
-    title: 'Blog | Venture Building and Startup Insights | Maxinor',
+    title: 'Blog | Venture Building and Venture Insights | Maxinor',
     description: 'Operator-tested insights on venture building, SME growth, and the Indian startup ecosystem.',
     siteName: 'Maxinor',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Blog | Venture Building and Startup Insights | Maxinor',
+    title: 'Blog | Venture Building and Venture Insights | Maxinor',
     description: 'Operator-tested insights on venture building, SME growth, and the Indian startup ecosystem.',
   },
 };

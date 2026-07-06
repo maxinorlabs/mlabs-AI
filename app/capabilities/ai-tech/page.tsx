@@ -23,7 +23,7 @@ const painPoints = [
     icon: Database,
     number: '02',
     title: 'Tech Debt That Caps Scale',
-    body: 'Early architecture decisions that seemed fine at Rs 1 Cr ARR become ceilings at Rs 10 Cr ARR. Monoliths that cannot be broken apart. Databases that cannot handle concurrent load. Third-party dependencies that own your product\'s performance. Founders who ignore this hit a wall -- not because the market dried up but because the system cannot handle the growth.',
+    body: 'Early architecture decisions that seemed fine at ₹1 Cr ARR become ceilings at ₹10 Cr ARR. Monoliths that cannot be broken apart. Databases that cannot handle concurrent load. Third-party dependencies that own your product\'s performance. Founders who ignore this hit a wall -- not because the market dried up but because the system cannot handle the growth.',
   },
   {
     icon: Brain,

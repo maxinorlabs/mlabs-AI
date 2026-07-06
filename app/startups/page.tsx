@@ -20,7 +20,7 @@ const scenarios = [
   {
     number: '01',
     title: 'You have product-market fit but growth has stalled',
-    body: 'You have customers. Revenue is real. But the path from Rs 1 Cr to Rs 10 Cr looks unclear. The founder-led sales motion is maxing out and you need an operator to build the machine.',
+    body: 'You have customers. Revenue is real. But the path from ₹1 Cr–₹10 Cr looks unclear. The founder-led sales motion is maxing out and you need an operator to build the machine.',
   },
   {
     number: '02',
@@ -62,13 +62,13 @@ const engagementModels = [
   },
   {
     name: 'Partnership',
-    duration: '6 months',
+    duration: '1-3 years',
     description:
       'An operator embeds in your team. They own a function, run daily operations, and are accountable to milestones. Series A preparation is built into the engagement. Equity-linked plus execution fee.',
   },
   {
     name: 'Fractional CXO',
-    duration: '6-12 months',
+    duration: 'On demand',
     description:
       'A fractional CMO, CTO, CFO, or CPO joins your leadership team. Builds the function. Hires the permanent leader. Retainer model. The right model when you need executive depth without full-time cost.',
   },
@@ -105,7 +105,7 @@ const portfolioLogos = [
 const faqs = [
   {
     q: 'What stage do you work with?',
-    a: 'From pre-product through to pre-Series A. For Venture Build we start from idea or early prototype. For Venture Scale we need product-market fit and some revenue, typically Rs 1 Cr to Rs 20 Cr ARR.',
+    a: 'From pre-product through to pre-Series A. For Venture Build we start from idea or early prototype. For Venture Scale we need product-market fit and some revenue, typically ₹1 Cr–₹20 Cr ARR.',
   },
   {
     q: 'How is this different from joining an accelerator?',
@@ -164,7 +164,7 @@ function FaqAccordion() {
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
-export default function StartupsPage() {
+export default function VenturePage() {
   return (
     <div className="font-sans">
 
@@ -193,7 +193,7 @@ export default function StartupsPage() {
             transition={{ duration: 0.6 }}
             className="mb-4 text-[11px] font-bold uppercase tracking-[0.22em] text-brand"
           >
-            For Startups
+            For Venture
           </motion.p>
 
           {/* Headline */}
@@ -399,7 +399,7 @@ export default function StartupsPage() {
               Portfolio
             </p>
             <h2 className="text-3xl font-display font-medium tracking-tight text-navy md:text-4xl lg:text-5xl">
-              Startups we have built and scaled.
+              Venture we have built and scaled.
             </h2>
           </motion.div>
 

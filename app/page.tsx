@@ -18,17 +18,19 @@ import WhyMaxinor from '../components/WhyMaxinor';
 const sectionPadding = 'px-6 py-20 md:py-28 lg:py-32';
 const sectionIntro = 'mb-14 text-center md:mb-20';
 const sectionTitle = 'text-3xl md:text-5xl font-display font-medium tracking-tight mb-5 md:mb-6';
-const sectionBody = 'text-base md:text-xl font-light leading-relaxed';
+const sectionSubtitle = 'mx-auto max-w-xl text-base font-light md:text-lg';
 const primaryButtonClass =
   'inline-flex w-full max-w-[320px] sm:w-auto items-center justify-center rounded-full bg-brand px-8 py-4 text-base font-semibold tracking-wide text-warm-white transition-all duration-300 hover:-translate-y-1 hover:bg-brand/90 sm:px-12 sm:py-5 sm:text-lg shadow-[0_0_40px_rgba(243,111,33,0.15)] hover:shadow-[0_0_60px_rgba(243,111,33,0.3)]';
+const heroScaleButtonClass =
+  'inline-flex w-full max-w-[320px] sm:w-auto items-center justify-center rounded-full bg-navy px-8 py-4 text-base font-semibold tracking-wide text-warm-white transition-all duration-300 hover:-translate-y-1 hover:bg-navy/90 sm:px-12 sm:py-5 sm:text-lg shadow-[0_0_40px_rgba(11,31,59,0.15)] hover:shadow-[0_0_60px_rgba(11,31,59,0.3)]';
 const secondaryButtonClass =
   'inline-flex w-full max-w-[320px] sm:w-auto items-center justify-center rounded-full border border-grey/40 bg-white/80 px-8 py-4 text-base font-semibold text-navy transition-all duration-300 hover:-translate-y-1 hover:bg-brand hover:text-warm-white sm:px-12 sm:py-5 sm:text-lg';
 
 const engagements = [
   {
-    name: 'Discovery Sprint',
+    name: 'Discovery',
     duration: '30 days',
-    model: 'Fixed scope · Fast',
+    model: 'Fixed scope & Cost',
     description: "A focused 30-day sprint to diagnose what's blocking you and build an execution roadmap.",
     bullets: ['Problem diagnosis', 'Capability mapping', '90-day execution plan', 'Operator assignment'],
     bestFor: 'Founders who need clarity before committing capital.',
@@ -38,21 +40,21 @@ const engagements = [
   },
   {
     name: 'Partnership',
-    duration: '6 months',
-    model: 'Embedded · Equity + execution',
+    duration: '1-3 years',
+    model: 'Embedded co-ownership',
     description: 'An operator joins your team, embedded, accountable, and aligned on outcomes through equity.',
-    bullets: ['Full execution ownership', 'Weekly operating cadence', 'Capital milestone tracking', 'Series A preparation'],
-    bestFor: 'Startups at ₹1 to 20 Cr ARR ready to scale.',
+    bullets: ['Full execution ownership', 'Weekly operating cadence', 'Series A preparation'],
+    bestFor: 'Ventures at ₹1 Cr–₹20 Cr ARR ready to scale.',
     commercial: 'Equity-linked + execution fee.',
     cta: 'Explore Partnership',
     featured: true,
   },
   {
-    name: 'Fractional CXO',
-    duration: '6-12 months',
-    model: 'Fractional · C-level',
-    description: 'A fractional CXO who operates as part of your leadership team: CMO, CTO, CFO, or CPO.',
-    bullets: ['Functional gap coverage', 'Team building and systems', 'Transition planning', 'Hiring the permanent hire'],
+    name: 'Fractional',
+    duration: 'On demand',
+    model: 'Custom design',
+    description: 'A fractional CXO who operates as part of your leadership team.',
+    bullets: ['Functional gap coverage', 'Team building and systems', 'Transition planning', 'Strategy and execution'],
     bestFor: 'Companies that need executive depth without full-time cost.',
     commercial: 'Retainer.',
     cta: 'Get a Fractional CXO',
@@ -60,10 +62,10 @@ const engagements = [
   },
 ];
 
-const domainGroups = [
+const sectorGroups = [
   {
     category: 'CONSUMER & RETAIL',
-    domains: [
+    sectors: [
       {
         name: 'Media',
         description: 'Broadcasting & Digital Media',
@@ -80,10 +82,10 @@ const domainGroups = [
   },
   {
     category: 'FINANCE & SKILLING',
-    domains: [
+    sectors: [
       {
         name: 'BFSI',
-        description: 'Banking, FinTech & Insurance',
+        description: 'Banking, Financial Services & Insurance',
         icon: Landmark,
         href: '/sectors/bfsi',
       },
@@ -97,7 +99,7 @@ const domainGroups = [
   },
   {
     category: 'SPECIALIZED SECTORS',
-    domains: [
+    sectors: [
       {
         name: 'Healthcare',
         description: 'Health Tech & Clinical Tools',
@@ -151,7 +153,7 @@ export default function Home() {
               transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
               className="mx-auto mb-10 max-w-2xl text-lg font-semibold leading-relaxed text-warm-white sm:text-xl md:mb-12 md:text-2xl lg:text-3xl"
             >
-              Operator&apos;s backing Entrepreneurs
+              Operators backing Entrepreneurs
             </motion.p>
 
             <motion.div
@@ -160,7 +162,7 @@ export default function Home() {
               transition={{ duration: 1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
               className="flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6"
             >
-              <Link href="/scale" className={primaryButtonClass}>
+              <Link href="/scale" className={heroScaleButtonClass}>
                 Venture Scale
               </Link>
               <Link href="/build" className={secondaryButtonClass}>
@@ -170,13 +172,13 @@ export default function Home() {
           </div>
         </section>
 
-        {/* The Startups We Work With */}
+        {/* The Ventures We Work With */}
         <section className="overflow-hidden border-y border-grey/10 bg-white px-6 py-20 md:py-24">
           <div className="max-w-7xl mx-auto text-center mb-12 md:mb-16">
             <h2 className={`${sectionTitle} mb-4`}>
-              The Startups We <span className="text-brand">Work With</span>
+              The Ventures We <span className="text-brand">Work With</span>
             </h2>
-            <p className="text-base text-grey md:text-lg">
+            <p className={`${sectionSubtitle} text-grey`}>
               Partnering with visionary founders to build category-defining companies.
             </p>
           </div>
@@ -187,7 +189,12 @@ export default function Home() {
                   {[
                     { url: "https://izfworld.com/", logo: "https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/695e7c054bb39ce328e497b7_izf%20fill%20logo.png" },
                     { url: "https://nattier.co.in/", logo: "https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/695e7d29b07f70111e63e428_Screenshot%202026-01-07%20at%209.02.56%E2%80%AFPM.png" },
-                    { url: "https://responcibleai.com/", logo: "https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/69b2b537ff9642970327a58b_kachslogo-dJobQBobXJiEKPjL.avif" },
+                    {
+                      url: "https://trailytics.ai/",
+                      logo: "https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/6a4b4e2d2954d64364b79295_trailytics_logo.avif",
+                      logoClass: "p-0",
+                      cardClass: "w-48 md:w-56",
+                    },
                     { url: "https://www.adaapt.ai/", logo: "https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/695e7c0571637f2d25422210_Adaapt.svg" },
                     { url: "", logo: "https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/69b2b70ff7ee3292c3baa5a9_Gemini_Generated_Image_2c1xpu2c1xpu2c1x.png" },
                     { url: "https://aseedinternational.org/", logo: "https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/695e7e0dfbb6090b487952b2_Screenshot%202026-01-07%20at%209.08.21%E2%80%AFPM.png" }
@@ -197,13 +204,13 @@ export default function Home() {
                       href={item.url || "#"}
                       target={item.url ? "_blank" : undefined}
                       rel={item.url ? "noopener noreferrer" : undefined}
-                      className="relative flex h-20 w-40 shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-grey/30 bg-white p-3 transition-all duration-500 hover:border-brand/50 hover:bg-white/90 md:h-24 md:w-48 md:p-4"
+                      className={`relative flex h-20 w-40 shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-grey/30 bg-white p-3 transition-all duration-500 hover:border-brand/50 hover:bg-white/90 md:h-24 md:w-48 md:p-4 ${item.cardClass ?? ''}`}
                     >
                       <Image 
                         src={item.logo} 
-                        alt={`Startup Partner ${idx + 1}`} 
+                        alt={`Venture Partner ${idx + 1}`} 
                         fill 
-                        className="object-contain p-3 opacity-70 transition-opacity duration-300 hover:opacity-100 md:p-4"
+                        className={`object-contain opacity-70 transition-opacity duration-300 hover:opacity-100 ${item.logoClass ?? 'p-3 md:p-4'}`}
                         referrerPolicy="no-referrer"
                       />
                     </Link>
@@ -223,10 +230,10 @@ export default function Home() {
             <div className="mb-14 text-center md:mb-20">
               <p className="mb-3 text-xs font-bold uppercase tracking-[0.22em] text-brand">Pick Your Entry Point</p>
               <h2 className="mb-4 text-3xl font-display font-medium tracking-tight text-navy md:text-5xl">
-                We Scale, Not Just <span className="text-brand">Back Startups!</span>
+                We Scale, Not Just <span className="text-brand">Back Ventures!</span>
               </h2>
-              <p className="mx-auto max-w-xl text-base font-light text-grey md:text-lg">
-                Maxinor accelerates startup growth with embedded operators and milestone-based funding, shortening the path to scale and Series A.
+              <p className={`${sectionSubtitle} text-grey`}>
+                Maxinor accelerates venture growth with embedded operators and milestone-based funding, shortening the path to scale.
               </p>
             </div>
             <div className="grid gap-6 md:grid-cols-3">
@@ -244,35 +251,32 @@ export default function Home() {
                   }`}
                 >
                   {eng.featured && (
-                    <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-brand px-5 py-1 text-[11px] font-bold uppercase tracking-widest text-white shadow-lg">
+                    <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-brand px-5 py-1.5 text-xs font-bold uppercase tracking-widest text-white shadow-lg">
                       Most Popular
                     </div>
                   )}
-                  <p className="mb-2 text-[11px] font-bold uppercase tracking-[0.2em] text-brand">{eng.duration}</p>
-                  <h3 className="mb-1 text-2xl font-display font-semibold text-navy">{eng.name}</h3>
+                  <p className="mb-2 text-xs font-bold uppercase tracking-[0.2em] text-brand">{eng.duration}</p>
+                  <h3 className="mb-1 text-[28px] font-display font-semibold leading-tight text-navy">{eng.name}</h3>
                   <p className="mb-4 text-sm text-grey/60">{eng.model}</p>
-                  <p className="mb-6 text-sm font-light leading-relaxed text-grey">{eng.description}</p>
+                  <p className="mb-6 text-[15px] font-normal leading-relaxed text-grey md:text-base">{eng.description}</p>
                   <ul className="mb-6 flex-1 space-y-2.5">
                     {eng.bullets.map((b) => (
-                      <li key={b} className="flex items-start gap-2.5 text-sm text-grey">
+                      <li key={b} className="flex items-start gap-3 text-[15px] text-grey md:text-base">
                         <span className="mt-0.5 text-brand">
-                          <Check className="h-3.5 w-3.5" />
+                          <Check className="h-4 w-4" />
                         </span>
                         {b}
                       </li>
                     ))}
                   </ul>
                   <div className="mb-6 rounded-2xl bg-warm-white px-4 py-3.5 space-y-1">
-                    <p className="text-xs text-grey/70">
+                    <p className="text-[13px] leading-relaxed text-grey/70 md:text-sm">
                       <span className="font-semibold text-navy">Best for:</span> {eng.bestFor}
-                    </p>
-                    <p className="text-xs text-grey/70">
-                      <span className="font-semibold text-navy">Model:</span> {eng.commercial}
                     </p>
                   </div>
                   <Link
                     href="/contact"
-                    className={`inline-flex w-full items-center justify-center rounded-full py-3.5 text-sm font-semibold tracking-wide transition-all duration-300 ${
+                    className={`inline-flex w-full items-center justify-center rounded-full py-3.5 text-[15px] font-semibold tracking-wide transition-all duration-300 md:text-base ${
                       eng.featured
                         ? 'bg-brand text-white hover:bg-brand/90 shadow-[0_0_30px_rgba(243,111,33,0.2)]'
                         : 'border border-grey/25 text-navy hover:border-brand hover:text-brand'
@@ -286,14 +290,15 @@ export default function Home() {
           </div>
         </section>
 
-        {/* What We Do Section */}
+        {/* What We Do Section — hidden, set to true to re-enable */}
+        {false && (
         <section className={`${sectionPadding} bg-navy border-y border-grey/20`}>
           <div className="max-w-7xl mx-auto">
             <div className={sectionIntro}>
               <h2 className={`${sectionTitle} text-warm-white`}>
                 What We <span className="text-brand">Do</span>
               </h2>
-              <p className={`${sectionBody} mx-auto max-w-3xl text-warm-white/80`}>
+              <p className={`${sectionSubtitle} text-warm-white/80`}>
                 Maxinor assists founders to scale their ventures, SMEs to unlock growth, corporates to craft
                 innovation, and investors to seek returns via the &ldquo;Maxinor Operator Platform&rdquo;
               </p>
@@ -306,9 +311,9 @@ export default function Home() {
                 <h3 className="mb-1 text-xl font-display font-bold text-warm-white md:text-2xl">
                   Venture Build
                 </h3>
-                <p className="mb-4 text-sm font-semibold text-teal">Startup Creation Engine</p>
+                <p className="mb-4 text-sm font-semibold text-teal">Venture Creation Engine</p>
                 <p className="text-sm font-light leading-relaxed text-warm-white/75">
-                  Creation of New AI-Native companies from &ldquo;Scratch&rdquo; across domains.
+                  Creation of New AI-Native companies from &ldquo;Scratch&rdquo; across sectors.
                 </p>
               </Link>
 
@@ -319,47 +324,48 @@ export default function Home() {
                 </h3>
                 <p className="mb-4 text-sm font-semibold text-brand">Execution Led Engine</p>
                 <p className="text-sm font-light leading-relaxed text-grey">
-                  Operator capabilities that <strong className="font-semibold text-navy">deliver measurable business outcomes</strong> for existing startups, SMEs, and companies.
+                  Operator capabilities that <strong className="font-semibold text-navy">deliver measurable business outcomes</strong> for existing Ventures, SMEs, and companies.
                 </p>
               </Link>
             </div>
           </div>
         </section>
+        )}
 
-        {/* Domains We Work In */}
+        {/* Sectors We Work In */}
         <section className={`${sectionPadding} bg-white border-y border-grey/10`}>
           <div className="max-w-7xl mx-auto">
             <div className={sectionIntro}>
               <h2 className={sectionTitle}>
                 Sectors We <span className="text-brand">Work In</span>
               </h2>
-              <p className={`${sectionBody} text-navy/70`}>
+              <p className={`${sectionSubtitle} text-grey`}>
                 Deep operator expertise across high-growth sectors.
               </p>
             </div>
 
             <div className="grid grid-cols-1 gap-x-8 gap-y-6 md:grid-cols-3 md:gap-y-0">
-              {domainGroups.map((group) => (
+              {sectorGroups.map((group) => (
                 <div key={group.category}>
-                  <p className="mt-4 mb-3 text-center text-xs font-bold uppercase tracking-[0.18em] text-brand md:mt-0 md:mb-4 md:text-sm">
+                  <p className="mt-4 mb-3 text-center text-sm font-bold uppercase tracking-[0.18em] text-brand md:mt-0 md:mb-5 md:text-base">
                     {group.category}
                   </p>
-                  <div className="flex flex-col gap-4">
-                    {group.domains.map((domain) => (
+                  <div className="flex flex-col gap-5">
+                    {group.sectors.map((sector) => (
                       <Link
-                        key={domain.name}
-                        href={domain.href}
-                        className="group flex min-h-[148px] items-center gap-4 rounded-2xl border border-grey/20 bg-warm-white p-4 transition-all duration-300 hover:border-brand/50 hover:bg-white md:min-h-[156px] md:p-5"
+                        key={sector.name}
+                        href={sector.href}
+                        className="group flex min-h-[168px] items-center gap-5 rounded-2xl border border-grey/20 bg-warm-white p-5 transition-all duration-300 hover:border-brand/50 hover:bg-white md:min-h-[180px] md:p-6"
                       >
-                        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-grey/15 bg-grey/8 transition-all duration-300 group-hover:border-brand/40 group-hover:bg-brand/5 md:h-14 md:w-14">
-                          <domain.icon className="h-5 w-5 text-grey/60 transition-colors duration-300 group-hover:text-brand md:h-6 md:w-6" />
+                        <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl border border-grey/15 bg-grey/8 transition-all duration-300 group-hover:border-brand/40 group-hover:bg-brand/5 md:h-16 md:w-16">
+                          <sector.icon className="h-6 w-6 text-grey/60 transition-colors duration-300 group-hover:text-brand md:h-7 md:w-7" />
                         </div>
                         <div className="flex min-w-0 flex-1 flex-col justify-center">
-                          <h3 className="text-sm font-bold uppercase leading-tight tracking-[0.16em] text-navy transition-colors duration-300 group-hover:text-brand md:text-[15px]">
-                            {domain.name}
+                          <h3 className="text-base font-bold uppercase leading-tight tracking-[0.16em] text-navy transition-colors duration-300 group-hover:text-brand md:text-lg">
+                            {sector.name}
                           </h3>
-                          <p className="mt-2 max-w-[15rem] text-sm font-light leading-[1.45] text-grey md:text-[15px]">
-                            {domain.description}
+                          <p className="mt-2 max-w-[17rem] text-base font-light leading-[1.45] text-grey md:text-lg">
+                            {sector.description}
                           </p>
                         </div>
                       </Link>
@@ -380,7 +386,7 @@ export default function Home() {
               <h2 className={`${sectionTitle} mb-4`}>
                 Our <span className="text-brand">Partners</span>
               </h2>
-              <p className="text-base text-grey md:text-lg">
+              <p className={`${sectionSubtitle} text-grey`}>
                 Collaborating with industry leaders to unlock scale and build enduring ventures.
               </p>
             </div>
@@ -415,7 +421,7 @@ export default function Home() {
             <h2 className="mb-6 text-4xl font-display font-medium tracking-tight md:mb-8 md:text-6xl">
               Ready to <span className="text-brand">Scale</span> Your Vision?
             </h2>
-            <p className="mb-10 text-base font-light leading-relaxed text-warm-white/80 md:mb-12 md:text-xl">
+            <p className={`${sectionSubtitle} mb-10 text-warm-white/80 md:mb-12`}>
               Join India&apos;s first operator-led AI venture studio. Whether you&apos;re a founder looking to scale or an investor seeking high-growth opportunities, let&apos;s build the future together.
             </p>
             <div className="flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6">

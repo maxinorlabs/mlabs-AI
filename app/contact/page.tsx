@@ -242,7 +242,7 @@ export default function ContactPage() {
 
                 <div className="space-y-2">
                   <label htmlFor="contact-company" className="text-sm font-medium text-navy">
-                    My Company / Startup
+                    My Company / Venture
                   </label>
                   <input
                     id="contact-company"

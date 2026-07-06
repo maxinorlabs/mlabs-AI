@@ -198,7 +198,7 @@ const domains = [
     problem:
       "Your legal layer is one audit, or one co-founder dispute, away from a serious problem.",
     capabilities: [
-      'Startup structuring and founder agreements',
+      'Venture structuring and founder agreements',
       'Regulatory compliance and licensing advisory',
       'Contracts, IP protection, and employment law',
     ],

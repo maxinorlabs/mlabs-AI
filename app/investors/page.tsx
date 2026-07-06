@@ -62,7 +62,7 @@ const investmentFormats = [
   },
   {
     title: 'Syndicate and Co-Investment',
-    body: 'Direct co-invest alongside Maxinor in specific high-conviction deals. Minimum ticket: Rs 10 Lakh per deal. All co-invest opportunities are operator-validated and IC-approved before reaching the syndicate.',
+    body: 'Direct co-invest alongside Maxinor in specific high-conviction deals. Minimum ticket: ₹10 Lakh per deal. All co-invest opportunities are operator-validated and IC-approved before reaching the syndicate.',
   },
   {
     title: 'Strategic LP Partnership',

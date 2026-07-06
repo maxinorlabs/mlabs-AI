@@ -33,6 +33,19 @@ const painPoints = [
   },
 ];
 
+const clientProblems = [
+  '"We\'ve crossed ₹100 Cr in disbursals but our risk model isn\'t calibrated for the portfolio size we\'re at."',
+  '"Enterprise deals are coming in but our onboarding and compliance stack can\'t handle the volume."',
+  '"We\'re operating in 3 states. Expanding nationally means 12 different regulatory contexts we\'re not ready for."',
+  '"Our NPA rates are acceptable now but we know they\'ll blow up if we scale the book without a better model."',
+];
+
+const howWeEngage = [
+  'Risk model design and portfolio calibration',
+  'Regulatory compliance and multi-state expansion',
+  'AI-led financial operations and underwriting',
+];
+
 const architecture = [
   {
     tier: 'Product & Customer Layer',
@@ -146,7 +159,7 @@ const verticals = [
 const operators = [
   {
     name: 'Rajesh Ramanathan',
-    role: 'BFSI Domain Lead',
+    role: 'BFSI Sector Lead',
     bg: 'ex-Accenture, ex-Wipro, ex-Mastek',
     depth: '20+ years across banking transformation, insurance tech, and BFSI consulting at global scale.',
     slug: 'rajesh-ramanathan',
@@ -300,7 +313,7 @@ export default function BFSIPage() {
             transition={{ duration: 0.6 }}
             className="mb-4 text-[11px] font-bold uppercase tracking-[0.22em] text-brand"
           >
-            Domain · BFSI
+            Sector · BFSI
           </motion.p>
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
@@ -308,7 +321,7 @@ export default function BFSIPage() {
             transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             className="mb-6 max-w-4xl text-4xl font-display font-medium tracking-tight text-warm-white md:text-6xl lg:text-7xl"
           >
-            Banking is the most complex domain to build in.{' '}
+            Banking is the most complex sector to build in.{' '}
             <span className="text-brand">We know it from the inside.</span>
           </motion.h1>
           <motion.p
@@ -317,7 +330,7 @@ export default function BFSIPage() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="mb-10 max-w-2xl text-base font-light leading-relaxed text-warm-white/60 md:text-lg"
           >
-            FinTech founders who move fast in BFSI without domain depth hit the same walls: regulatory non-compliance,
+            FinTech founders who move fast in BFSI without sector depth hit the same walls: regulatory non-compliance,
             failed bank partnerships, and integration nightmares that kill timelines. We have been inside these systems.
             We know where the walls are.
           </motion.p>
@@ -337,8 +350,43 @@ export default function BFSIPage() {
         </div>
       </section>
 
-      {/* Pain Points */}
+      {/* Founder Quotes */}
       <section className="bg-warm-white px-6 py-20 md:py-28">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="mb-14 md:mb-16"
+          >
+            <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">What Clients Come to Us For</p>
+            <h2 className="max-w-2xl text-3xl font-display font-medium tracking-tight text-navy md:text-4xl">
+              Founder quotes we hear every week.
+            </h2>
+          </motion.div>
+          <div className="grid gap-4 md:grid-cols-2">
+            {clientProblems.map((quote, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.08 }}
+                className="flex items-start gap-3 rounded-2xl border border-grey/15 bg-white px-5 py-4"
+              >
+                <span className="shrink-0 text-sm font-bold text-brand/50">
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+                <p className="text-sm font-light leading-relaxed text-grey">{quote}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Pain Points */}
+      <section className="bg-white px-6 py-20 md:py-28 border-t border-grey/10">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -360,7 +408,7 @@ export default function BFSIPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: i * 0.1 }}
-                className="relative rounded-[2rem] border border-grey/15 bg-white p-8"
+                className="relative rounded-[2rem] border border-grey/15 bg-warm-white p-8"
               >
                 <span className="pointer-events-none absolute right-6 top-4 select-none text-7xl font-display font-bold leading-none text-brand/5">
                   {p.number}
@@ -371,6 +419,35 @@ export default function BFSIPage() {
                 <h3 className="mb-3 text-lg font-display font-semibold text-navy">{p.title}</h3>
                 <p className="text-sm font-light leading-relaxed text-grey">{p.body}</p>
               </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* How We Engage */}
+      <section className="bg-warm-white px-6 py-20 md:py-28 border-t border-grey/10">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="mb-14 md:mb-16"
+          >
+            <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">How We Engage</p>
+            <h2 className="max-w-2xl text-3xl font-display font-medium tracking-tight text-navy md:text-4xl">
+              What we do in BFSI.
+            </h2>
+          </motion.div>
+          <div className="grid gap-3 md:grid-cols-3">
+            {howWeEngage.map((item) => (
+              <div
+                key={item}
+                className="flex items-center gap-3 rounded-xl border border-grey/15 bg-white px-4 py-3.5"
+              >
+                <span className="text-brand">→</span>
+                <span className="text-sm font-light text-grey">{item}</span>
+              </div>
             ))}
           </div>
         </div>

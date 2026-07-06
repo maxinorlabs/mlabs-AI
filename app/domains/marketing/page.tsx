@@ -118,7 +118,7 @@ const architecture = [
 
 const verticals = [
   {
-    name: 'Startup Brand Building',
+    name: 'Venture Brand Building',
     desc: 'Early-stage companies that need a brand foundation, positioning, and channel strategy before scaling spend.',
   },
   {

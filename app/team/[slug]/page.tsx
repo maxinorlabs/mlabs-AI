@@ -19,10 +19,19 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   };
 }
 
+function getTemplatedFirstName(name: string) {
+  const titlePrefixes = new Set(['dr', 'dr.', 'prof', 'prof.', 'mr', 'mr.', 'mrs', 'mrs.', 'ms', 'ms.']);
+  const parts = name.trim().split(/\s+/);
+  const firstNonTitle = parts.find((part) => !titlePrefixes.has(part.toLowerCase()));
+  return firstNonTitle ?? name;
+}
+
 export default async function TeamMemberPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const profile = getProfileBySlug(slug);
   if (!profile) notFound();
+
+  const templatedFirstName = getTemplatedFirstName(profile.name);
 
   const others = teamProfiles.filter(
     (p) => p.slug !== slug && p.section === profile.section
@@ -142,7 +151,7 @@ export default async function TeamMemberPage({ params }: { params: Promise<{ slu
               <div className="rounded-2xl border border-grey/20 bg-white p-6">
                 <p className="mb-1 text-[11px] font-bold uppercase tracking-[0.18em] text-brand/70">Connect</p>
                 <p className="mb-4 text-sm font-light text-grey">
-                  Reach out to {profile.name.split(' ')[0]} directly on LinkedIn.
+                  Reach out to {templatedFirstName} directly on LinkedIn.
                 </p>
                 <Link
                   href={profile.linkedin}
@@ -192,7 +201,7 @@ export default async function TeamMemberPage({ params }: { params: Promise<{ slu
         <div className="max-w-2xl mx-auto">
           <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">Work Together</p>
           <h2 className="mb-5 text-2xl font-display font-medium tracking-tight text-warm-white md:text-4xl">
-            Want {profile.name.split(' ')[0]} on your team?
+            Want {templatedFirstName} on your team?
           </h2>
           <p className="mb-8 text-base font-light text-warm-white/60">
             Maxinor operators embed inside your business to execute, not just advise.

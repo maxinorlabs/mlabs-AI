@@ -10,7 +10,7 @@ const items = [
     id: '01',
     title: 'THE SCALE GAP',
     detail:
-      '90% of Indian startups fail within 5 years. The problem is usually not the idea itself, but the lack of consistent execution, operator depth, and scale discipline.',
+      '90% of Indian startups fail within 5 years. The problem is often not the idea itself or only capital, BUT the lack of consistent execution, operator depth, and scale discipline.',
   },
   {
     id: '02',
@@ -32,33 +32,33 @@ const items = [
   },
   {
     id: '05',
-    title: 'HOW IS MAXINOR DIFFERENT FROM A VC OR ACCELERATOR?',
+    title: 'WHAT IS A VENTURE STUDIO AS PER US?',
     detail:
-      'VCs write cheques and advise from a distance. Accelerators run programmes and move on after demo day. Maxinor embeds operators inside your business and stays accountable to outcomes. We do not just fund startups. We build and scale them.',
+      'VCs write cheques. Accelerators move on after demo day. Incubators are not designed for scale. Maxinor runs the entire spectrum with you & stays accountable to outcomes.',
   },
   {
     id: '06',
     title: 'WHAT STAGE DO YOU WORK WITH?',
     detail:
-      'We work with founders from pre-product through to Series A. For Venture Build, you need a validated white space or early prototype. For Venture Scale, you need product-market fit and at least some revenue. We are not the right partner for pre-idea or post-Series B.',
+      'We work with founders from idea through to scale. For Venture Build, you need a validated white space or early prototype. For Venture Scale, you need product-market fit, revenue & positive cash flow.',
   },
   {
     id: '07',
     title: 'DO I HAVE TO GIVE UP EQUITY?',
     detail:
-      'It depends on the engagement model. The Discovery Sprint is a fixed fee with no equity. The Partnership model involves a small equity stake aligned to execution milestones. The Fractional CXO is a retainer with no equity. We structure every deal to ensure incentives are real, not symbolic.',
+      'It depends on the engagement model. The Discovery Sprint is a fixed fee with no equity. The Partnership model is custom designed and would range from equity, retainer, revenue share or hybrid. The Fractional model is a retainer with no equity. We structure every deal to ensure incentives are real, not symbolic.',
   },
   {
     id: '08',
     title: 'HOW LONG BEFORE WE SEE RESULTS?',
     detail:
-      'Most founders see a clear diagnosis and prioritised roadmap within 30 days. Measurable business impact typically shows within 60 to 90 days of operator embedding. Series A readiness is a 6 to 9 month build depending on where you start.',
+      'Most ventures see a clear diagnosis roadmap within 30 days. Measurable impact typically shows within 90 days of operator embedding.',
   },
   {
     id: '09',
     title: 'WHO ARE THE OPERATORS AT MAXINOR?',
     detail:
-      'Former founders and executives who have built and scaled real businesses, not MBAs or management consultants. Our team has operated at Paytm, Google, OYO, ITC, Accenture, and more. Every operator has a functional track record in the area they lead.',
+      'Former founders and executives (with min 15+ years experience) who have built and scaled real businesses. Our team has operated at Paytm, Google, Zee, ITC, Accenture, World Bank, HealthKart, EcomXpress and more. Every operator has a functional track record in the area they lead.',
   },
   {
     id: '10',

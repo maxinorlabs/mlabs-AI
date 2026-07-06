@@ -33,6 +33,19 @@ const painPoints = [
   },
 ];
 
+const clientProblems = [
+  '"We\'re at ₹30 Cr GMV but contribution margin is negative. Scaling revenue is making us bleed more."',
+  '"We\'re spending ₹2 Cr/month on performance marketing and CAC keeps climbing with no ceiling."',
+  '"Our D2C channel is maxed out. We need an offline retail playbook but have no distribution relationships."',
+  '"We\'ve hit product-market fit but repeat purchase is our ceiling. Retention is broken at scale."',
+];
+
+const howWeEngage = [
+  'Full-funnel GTM and channel strategy',
+  'Offline distribution and retail expansion',
+  'AI-native D2C operating system',
+];
+
 const architecture = [
   {
     tier: 'Customer Layer',
@@ -292,7 +305,7 @@ export default function D2CPage() {
             transition={{ duration: 0.6 }}
             className="mb-4 text-[11px] font-bold uppercase tracking-[0.22em] text-brand"
           >
-            Domain · D2C & Consumer
+            Sector · D2C & Consumer
           </motion.p>
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
@@ -329,8 +342,43 @@ export default function D2CPage() {
         </div>
       </section>
 
-      {/* Pain Points */}
+      {/* Founder Quotes */}
       <section className="bg-warm-white px-6 py-20 md:py-28">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="mb-14 md:mb-16"
+          >
+            <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">What Clients Come to Us For</p>
+            <h2 className="max-w-2xl text-3xl font-display font-medium tracking-tight text-navy md:text-4xl">
+              Founder quotes we hear every week.
+            </h2>
+          </motion.div>
+          <div className="grid gap-4 md:grid-cols-2">
+            {clientProblems.map((quote, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.08 }}
+                className="flex items-start gap-3 rounded-2xl border border-grey/15 bg-white px-5 py-4"
+              >
+                <span className="shrink-0 text-sm font-bold text-brand/50">
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+                <p className="text-sm font-light leading-relaxed text-grey">{quote}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Pain Points */}
+      <section className="bg-white px-6 py-20 md:py-28 border-t border-grey/10">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -352,7 +400,7 @@ export default function D2CPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: i * 0.1 }}
-                className="relative rounded-[2rem] border border-grey/15 bg-white p-8"
+                className="relative rounded-[2rem] border border-grey/15 bg-warm-white p-8"
               >
                 <span className="pointer-events-none absolute right-6 top-4 select-none text-7xl font-display font-bold leading-none text-brand/5">
                   {p.number}
@@ -368,7 +416,36 @@ export default function D2CPage() {
         </div>
       </section>
 
-      {/* Domain Architecture */}
+      {/* How We Engage */}
+      <section className="bg-warm-white px-6 py-20 md:py-28 border-t border-grey/10">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="mb-14 md:mb-16"
+          >
+            <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">How We Engage</p>
+            <h2 className="max-w-2xl text-3xl font-display font-medium tracking-tight text-navy md:text-4xl">
+              What we do in D2C and Consumer.
+            </h2>
+          </motion.div>
+          <div className="grid gap-3 md:grid-cols-3">
+            {howWeEngage.map((item) => (
+              <div
+                key={item}
+                className="flex items-center gap-3 rounded-xl border border-grey/15 bg-white px-4 py-3.5"
+              >
+                <span className="text-brand">→</span>
+                <span className="text-sm font-light text-grey">{item}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Sector Architecture */}
       <section className="bg-white px-6 py-20 md:py-28 border-t border-grey/10">
         <div className="max-w-7xl mx-auto">
           <motion.div

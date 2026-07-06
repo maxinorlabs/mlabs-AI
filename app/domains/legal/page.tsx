@@ -118,7 +118,7 @@ const architecture = [
 
 const verticals = [
   {
-    name: 'Startup Legal Setup',
+    name: 'Venture Legal Setup',
     desc: 'First-time founders incorporating, structuring co-founder agreements, and building the legal foundation before their first raise.',
   },
   {

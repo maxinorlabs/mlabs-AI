@@ -17,7 +17,7 @@ const painPoints = [
     icon: TrendingUp,
     number: '01',
     title: 'The Founder-Led Sales Ceiling',
-    body: 'Every startup\'s first pipeline runs on the founder. The founder knows every customer, personalises every pitch, and closes every deal. This works until you hit Rs 2-3 Cr ARR. At that point, the founder-led motion stops scaling and starts becoming the bottleneck. Most founders try to solve this by hiring a salesperson. That almost never works without a playbook, a channel strategy, and a repeatable qualification framework underneath.',
+    body: 'Every startup\'s first pipeline runs on the founder. The founder knows every customer, personalises every pitch, and closes every deal. This works until you hit ₹2 Cr–₹3 Cr ARR. At that point, the founder-led motion stops scaling and starts becoming the bottleneck. Most founders try to solve this by hiring a salesperson. That almost never works without a playbook, a channel strategy, and a repeatable qualification framework underneath.',
   },
   {
     icon: Layers,

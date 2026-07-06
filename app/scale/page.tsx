@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { useState } from 'react';
 import { ArrowRight, Plus, Minus } from 'lucide-react';
 
-// ─── Shared button styles ────────────────────────────────────────────────────
+// Section
 
 const primaryBtn =
   'inline-flex items-center justify-center gap-2 rounded-full bg-brand px-8 py-4 text-base font-semibold tracking-wide text-warm-white transition-all duration-300 hover:-translate-y-1 hover:bg-brand/90 shadow-[0_0_40px_rgba(243,111,33,0.15)] hover:shadow-[0_0_60px_rgba(243,111,33,0.3)] sm:px-10 sm:py-5';
@@ -14,7 +14,7 @@ const primaryBtn =
 const ghostBtn =
   'inline-flex items-center justify-center gap-2 rounded-full border border-warm-white/30 px-8 py-4 text-base font-semibold tracking-wide text-warm-white transition-all duration-300 hover:-translate-y-1 hover:border-warm-white/60 sm:px-10 sm:py-5';
 
-// ─── Data ────────────────────────────────────────────────────────────────────
+// Section
 
 const painPoints = [
   {
@@ -30,7 +30,7 @@ const painPoints = [
   {
     number: '03',
     title: 'The Series A Gap',
-    body: 'Investors are interested but the data room is not ready, the unit economics are not clean, and the operating model does not look like a company that can absorb Rs 5 Cr and deploy it efficiently. The gap between traction and Series A readiness is almost always an execution gap, not a product gap.',
+    body: 'Investors are interested but the data room is not ready, the unit economics are not clean, and the operating model does not look like a company that can absorb ₹5 Cr and deploy it efficiently. The gap between traction and Series A readiness is almost always an execution gap, not a product gap.',
   },
 ];
 
@@ -94,7 +94,7 @@ const engagementModels = [
   },
   {
     name: 'Partnership',
-    duration: '6 months',
+    duration: '1-3 years',
     description:
       'An operator embeds in your team. Owns a function. Accountable to milestones. Series A preparation included. Equity-linked plus execution fee.',
   },
@@ -150,7 +150,7 @@ const partnerLogos = [
 const faqs = [
   {
     q: 'What stage does Venture Scale work best?',
-    a: 'Seed to pre-Series A. Typically startups between Rs 1 Cr and Rs 20 Cr ARR who have product-market fit but have hit the ceiling of founder-led execution.',
+    a: 'Seed to pre-Series A. Typically startups between ₹1 Cr–₹20 Cr ARR who have product-market fit but have hit the ceiling of founder-led execution.',
   },
   {
     q: 'How is this different from hiring a COO or VP?',
@@ -170,7 +170,7 @@ const faqs = [
   },
 ];
 
-// ─── Engine accent helpers ───────────────────────────────────────────────────
+// Section
 
 function engineAccentClasses(accent: string) {
   const map: Record<string, { dot: string; bar: string; badge: string }> = {
@@ -182,7 +182,7 @@ function engineAccentClasses(accent: string) {
   return map[accent] ?? map['brand'];
 }
 
-// ─── FAQ Item ────────────────────────────────────────────────────────────────
+// Section
 
 function FaqItem({ q, a, index }: { q: string; a: string; index: number }) {
   const [open, setOpen] = useState(false);
@@ -222,7 +222,7 @@ function FaqItem({ q, a, index }: { q: string; a: string; index: number }) {
   );
 }
 
-// ─── Page ────────────────────────────────────────────────────────────────────
+// Section
 
 export default function ScalePage() {
   return (
@@ -286,7 +286,7 @@ export default function ScalePage() {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="mb-10 flex flex-wrap gap-3"
           >
-            {['Embedded Operators', 'Rs 1 Cr to Rs 20 Cr ARR', 'Series A Preparation'].map((chip) => (
+            {['Embedded Operators', '₹1 Cr–₹20 Cr ARR', 'Series A Preparation'].map((chip) => (
               <span
                 key={chip}
                 className="rounded-full border border-warm-white/15 bg-warm-white/5 px-5 py-2 text-sm font-medium text-warm-white/80 backdrop-blur-sm"

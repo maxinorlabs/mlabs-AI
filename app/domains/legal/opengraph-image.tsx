@@ -40,7 +40,7 @@ export default function Image() {
 
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
           <div style={{ display: 'flex', gap: '10px' }}>
-            {['Startup Legal', 'Compliance', 'Fundraising', 'Employment Law'].map((tag) => (
+            {['Venture Legal', 'Compliance', 'Fundraising', 'Employment Law'].map((tag) => (
               <div key={tag} style={{ background: 'rgba(243,111,33,0.15)', border: '1px solid rgba(243,111,33,0.3)', borderRadius: '100px', padding: '7px 16px', fontSize: '14px', color: '#F36F21', fontFamily: 'sans-serif', fontWeight: 600 }}>
                 {tag}
               </div>

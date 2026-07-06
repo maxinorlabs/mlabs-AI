@@ -41,7 +41,7 @@ const faqSchema = {
     {
       '@type': 'Question',
       name: 'Who should consider an AI GCC in India?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Global enterprises looking to reduce costs and access deep AI and engineering talent, growth-stage startups building tech or operations capability without full entity overhead, and Indian SMEs wanting to scale business functions through a structured GCC model.' },
+      acceptedAnswer: { '@type': 'Answer', text: 'Global enterprises looking to reduce costs and access deep AI and engineering talent, growth-stage Ventures building tech or operations capability without full entity overhead, and Indian SMEs wanting to scale business functions through a structured GCC model.' },
     },
   ],
 };
@@ -213,7 +213,7 @@ export default function CapabilityCentrePage() {
                 href: '/corporate',
               },
               {
-                label: 'For Growth-Stage Startups',
+                label: 'For Growth-Stage Ventures',
                 detail: 'Build your engineering, AI, or ops capability in India with operator oversight, without the overhead of setting up a full entity from scratch.',
                 href: '/startups',
               },

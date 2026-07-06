@@ -32,6 +32,19 @@ const painPoints = [
   },
 ];
 
+const clientProblems = [
+  '"We have 50K+ learners but completion rates are below 15% and employers don\'t recognise our certification."',
+  '"We\'ve signed 10 institutional clients but every deployment is bespoke. Customisation is eating our margins."',
+  '"Our B2C revenue is plateauing. We need a B2B institutional sales motion but have no relationships or playbook."',
+  '"We\'re growing enrolments but not outcomes. Employers are starting to question the ROI of our programmes."',
+];
+
+const howWeEngage = [
+  'Learning outcome and completion improvement',
+  'Employer linkage and credential recognition',
+  'B2B institutional sales and government GTM',
+];
+
 const architecture = [
   {
     tier: 'Learner Layer',
@@ -134,7 +147,7 @@ const verticals = [
   },
   {
     name: 'Professional Upskilling',
-    desc: 'Working professionals seeking certifications, career transitions, or domain depth. Outcome and placement-linked.',
+    desc: 'Working professionals seeking certifications, career transitions, or sector depth. Outcome and placement-linked.',
   },
   {
     name: 'Vernacular & Rural EdTech',
@@ -145,9 +158,9 @@ const verticals = [
 const operators = [
   {
     name: 'Maxinor Leadership Team',
-    role: 'Multi-Domain Operator Team',
+    role: 'Multi-Sector Operator Team',
     bg: 'Cross-sector operators with execution experience across edtech, skilling, and institutional sales',
-    depth: 'The education domain at Maxinor draws on operators who have built and scaled businesses in adjacent sectors: government sales, B2B institutional, content operations, and workforce development. We bring a practitioner lens to the sector, not just an investor lens.',
+    depth: 'The education sector at Maxinor draws on operators who have built and scaled businesses in adjacent sectors: government sales, B2B institutional, content operations, and workforce development. We bring a practitioner lens to the sector, not just an investor lens.',
     slug: '',
     image: null,
   },
@@ -286,7 +299,7 @@ export default function EducationPage() {
             transition={{ duration: 0.6 }}
             className="mb-4 text-[11px] font-bold uppercase tracking-[0.22em] text-brand"
           >
-            Domain · Education
+            Sector · Education
           </motion.p>
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
@@ -323,8 +336,43 @@ export default function EducationPage() {
         </div>
       </section>
 
-      {/* Pain Points */}
+      {/* Founder Quotes */}
       <section className="bg-warm-white px-6 py-20 md:py-28">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="mb-14 md:mb-16"
+          >
+            <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">What Clients Come to Us For</p>
+            <h2 className="max-w-2xl text-3xl font-display font-medium tracking-tight text-navy md:text-4xl">
+              Founder quotes we hear every week.
+            </h2>
+          </motion.div>
+          <div className="grid gap-4 md:grid-cols-2">
+            {clientProblems.map((quote, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.08 }}
+                className="flex items-start gap-3 rounded-2xl border border-grey/15 bg-white px-5 py-4"
+              >
+                <span className="shrink-0 text-sm font-bold text-brand/50">
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+                <p className="text-sm font-light leading-relaxed text-grey">{quote}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Pain Points */}
+      <section className="bg-white px-6 py-20 md:py-28 border-t border-grey/10">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -346,7 +394,7 @@ export default function EducationPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: i * 0.1 }}
-                className="relative rounded-[2rem] border border-grey/15 bg-white p-8"
+                className="relative rounded-[2rem] border border-grey/15 bg-warm-white p-8"
               >
                 <span className="pointer-events-none absolute right-6 top-4 select-none text-7xl font-display font-bold leading-none text-brand/5">
                   {p.number}
@@ -357,6 +405,35 @@ export default function EducationPage() {
                 <h3 className="mb-3 text-lg font-display font-semibold text-navy">{p.title}</h3>
                 <p className="text-sm font-light leading-relaxed text-grey">{p.body}</p>
               </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* How We Engage */}
+      <section className="bg-warm-white px-6 py-20 md:py-28 border-t border-grey/10">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="mb-14 md:mb-16"
+          >
+            <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">How We Engage</p>
+            <h2 className="max-w-2xl text-3xl font-display font-medium tracking-tight text-navy md:text-4xl">
+              What we do in Education.
+            </h2>
+          </motion.div>
+          <div className="grid gap-3 md:grid-cols-3">
+            {howWeEngage.map((item) => (
+              <div
+                key={item}
+                className="flex items-center gap-3 rounded-xl border border-grey/15 bg-white px-4 py-3.5"
+              >
+                <span className="text-brand">→</span>
+                <span className="text-sm font-light text-grey">{item}</span>
+              </div>
             ))}
           </div>
         </div>

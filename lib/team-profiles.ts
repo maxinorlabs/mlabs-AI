@@ -337,7 +337,7 @@ export const teamProfiles: TeamProfile[] = [
       'Go-to-market',
       'AI execution',
       'Growth loops',
-      'Startup operations',
+      'Venture operations',
     ],
     career: [
       {
@@ -363,10 +363,10 @@ export const teamProfiles: TeamProfile[] = [
     ],
     expertise: [
       'Corporate law',
-      'Startup incorporation',
+      'Venture incorporation',
       'Fintech regulation',
       'M&A transactions',
-      'Startup legal frameworks',
+      'Venture legal frameworks',
       'Real estate law',
       'Media and entertainment law',
     ],

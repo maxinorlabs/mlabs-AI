@@ -118,7 +118,7 @@ const architecture = [
 
 const verticals = [
   {
-    name: 'Startup Legal Setup',
+    name: 'Venture Legal Setup',
     desc: 'First-time founders incorporating, structuring co-founder agreements, and building the legal foundation before their first raise.',
   },
   {
@@ -293,7 +293,7 @@ export default function LegalPage() {
             transition={{ duration: 0.6 }}
             className="mb-4 text-[11px] font-bold uppercase tracking-[0.22em] text-brand"
           >
-            Domain · Legal
+            Sector · Legal
           </motion.p>
           <motion.h1
             initial={{ opacity: 0, y: 30 }}

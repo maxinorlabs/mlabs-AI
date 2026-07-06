@@ -118,7 +118,7 @@ const architecture = [
 
 const verticals = [
   {
-    name: 'Pre-Series A Startups',
+    name: 'Pre-Series A Venture',
     desc: 'Founding team audit, hiring roadmap, and org design for companies preparing for institutional funding.',
   },
   {
@@ -139,7 +139,7 @@ const verticals = [
   },
   {
     name: 'Corporate Ventures',
-    desc: 'Org design for new business units, talent strategy for internal startups, and culture integration post-acquisition.',
+    desc: 'Org design for new business units, talent strategy for internal Venture, and culture integration post-acquisition.',
   },
 ];
 
@@ -148,7 +148,7 @@ const operators = [
     name: 'Parool Duggal',
     role: 'Entrepreneur in Residence, People & Org',
     bg: 'ex-Bijnis, ex-EcomXpress, ex-AuthBridge',
-    depth: 'People and culture operator with hands-on experience building HR infrastructure, talent architecture, and high-performing teams inside high-growth startups.',
+    depth: 'People and culture operator with hands-on experience building HR infrastructure, talent architecture, and high-performing teams inside high-growth Venture.',
     slug: 'parool-duggal',
     image: null,
   },
