@@ -43,9 +43,9 @@ const engagements = [
     duration: '1-3 years',
     model: 'Embedded co-ownership',
     description: 'An operator joins your team, embedded, accountable, and aligned on outcomes through equity.',
-    bullets: ['Full execution ownership', 'Weekly operating cadence', 'Series A preparation'],
-    bestFor: 'Ventures at ₹1 Cr–₹20 Cr ARR ready to scale.',
-    commercial: 'Equity-linked + execution fee.',
+    bullets: ['Full execution ownership', 'Operating cadence', 'Operator bench across partnership requirement', 'P&L accountability that builds capability you own'],
+    bestFor: 'Ventures generating consistent revenue, ready to invest in embedded execution, not just advice.',
+    commercial: 'Engagement structured as equity, retainer, revenue share, or hybrid, based on your stage.',
     cta: 'Explore Partnership',
     featured: true,
   },
@@ -269,6 +269,9 @@ export default function Home() {
                       </li>
                     ))}
                   </ul>
+                  <p className="mb-4 text-[13px] leading-relaxed text-grey/70 md:text-sm">
+                    {eng.commercial}
+                  </p>
                   <div className="mb-6 rounded-2xl bg-warm-white px-4 py-3.5 space-y-1">
                     <p className="text-[13px] leading-relaxed text-grey/70 md:text-sm">
                       <span className="font-semibold text-navy">Best for:</span> {eng.bestFor}
