@@ -418,7 +418,8 @@ export default function DomainsPage() {
         </div>
       </section>
 
-      {/* ── T-Shape Section ── */}
+      {/* ── T-Shape Section — hidden, set to true to re-enable ── */}
+      {false && (
       <section className="bg-navy px-6 py-20 md:py-28">
         <div className="max-w-7xl mx-auto">
           <div className="mb-14 text-center">
@@ -525,7 +526,7 @@ export default function DomainsPage() {
           </motion.div>
         </div>
       </section>
-
+      )}
 
 {/* ── CTA ── */}
       <section className="bg-warm-white px-6 py-20 text-center md:py-28 border-t border-grey/15">
