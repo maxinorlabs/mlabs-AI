@@ -73,9 +73,9 @@ export function Navbar() {
       dropdown: [
         { name: 'All Sectors', path: '/sectors', header: true },
         { name: 'Healthcare', path: '/sectors/healthcare' },
-        { name: 'Media', path: '/sectors/media' },
         { name: 'D2C', path: '/sectors/d2c' },
         { name: 'BFSI', path: '/sectors/bfsi' },
+        { name: 'Media', path: '/sectors/media' },
         { name: 'Education', path: '/sectors/education' },
         { name: 'Defence', path: '/sectors/defence' },
       ],
