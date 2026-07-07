@@ -14,6 +14,7 @@ import {
 import Link from 'next/link';
 import Image from 'next/image';
 import WhyMaxinor from '../components/WhyMaxinor';
+import { TShapeWidget } from '../components/TShapeWidget';
 
 const sectionPadding = 'px-6 py-20 md:py-28 lg:py-32';
 const sectionIntro = 'mb-14 text-center md:mb-20';
@@ -223,6 +224,9 @@ export default function Home() {
             <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-white to-transparent pointer-events-none md:w-32" />
           </div>
         </section>
+
+        {/* T-Shape Advantage */}
+        <TShapeWidget variant="home" fullBleed />
 
         {/* Pick Your Entry Point */}
         <section className="bg-[#EDE7DC] px-6 py-20 md:py-28">

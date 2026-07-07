@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useRef, useEffect, useState } from 'react';
 import { ArrowRight, Check } from 'lucide-react';
+import { TShapeWidget } from '@/components/TShapeWidget';
 
 const primaryBtn =
   'inline-flex items-center justify-center rounded-full bg-brand px-8 py-4 text-base font-semibold tracking-wide text-warm-white transition-all duration-300 hover:-translate-y-1 hover:bg-brand/90 shadow-[0_0_40px_rgba(243,111,33,0.15)] hover:shadow-[0_0_60px_rgba(243,111,33,0.3)] sm:px-10 sm:py-5';
@@ -265,60 +266,9 @@ export default function CapabilitiesPage() {
       {/* ── 6 Capability Blocks ── */}
       <section id="capabilities" className="bg-warm-white px-6 py-20 md:py-28 border-t border-grey/10">
         <div className="max-w-7xl mx-auto">
-          <div className="mb-10 text-center">
-            <p className="mb-3 text-xs font-bold uppercase tracking-[0.22em] text-brand">Where Maxinor Adds Value</p>
-            <h2 className="text-3xl font-display font-medium tracking-tight text-navy md:text-5xl">
-              Our operator capabilities.{' '}
-              <span className="text-brand">One accountable team.</span>
-            </h2>
+          <div className="mb-14 md:mb-20">
+            <TShapeWidget variant="capabilities" />
           </div>
-
-          <motion.div
-            initial={{ opacity: 0, scaleX: 0 }}
-            whileInView={{ opacity: 1, scaleX: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="mb-14 origin-left md:mb-20"
-          >
-            <div className="overflow-hidden rounded-2xl">
-              {/* Group labels */}
-              <div className="grid grid-cols-7 bg-navy/95">
-                <Link href="/build" className="col-span-3 border-r-2 border-white/20 py-2.5 text-center transition-colors hover:bg-white/5">
-                  <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-brand/80 hover:text-brand">Build</span>
-                </Link>
-                <Link href="/scale" className="col-span-3 border-r-2 border-white/20 py-2.5 text-center transition-colors hover:bg-white/5">
-                  <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-brand/80 hover:text-brand">Scale</span>
-                </Link>
-                <Link href="/investment" className="col-span-1 py-2.5 text-center transition-colors hover:bg-white/5">
-                  <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-brand/80 hover:text-brand">Invest</span>
-                </Link>
-              </div>
-              {/* Items bar */}
-              <div className="flex">
-                {[
-                  { label: 'Ideation',   shade: 'bg-brand',     divider: false },
-                  { label: 'Strategy',   shade: 'bg-brand',     divider: false },
-                  { label: 'Product',    shade: 'bg-brand',     divider: true  },
-                  { label: 'GTM',        shade: 'bg-brand/80',  divider: false },
-                  { label: 'Operations', shade: 'bg-brand/80',  divider: false },
-                  { label: 'Revenue',    shade: 'bg-brand/80',  divider: true  },
-                  { label: 'Capital',    shade: 'bg-brand/60',  divider: false },
-                ].map((item) => (
-                  <div
-                    key={item.label}
-                    className={`flex-1 px-1 py-4 text-center ${item.shade} ${item.divider ? 'border-r-2 border-white/30' : 'border-r border-white/10 last:border-r-0'}`}
-                  >
-                    <span className="text-[10px] font-bold uppercase tracking-[0.1em] text-white">
-                      {item.label}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <p className="mt-2 text-center text-xs font-light text-grey/50">
-              Operator capabilities across the full venture lifecycle
-            </p>
-          </motion.div>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {capabilities.map((cap, i) => (
               <motion.div
