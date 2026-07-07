@@ -66,7 +66,7 @@ const architecture = [
     groups: [
       {
         label: 'Commercial',
-        items: ['ESOP Legal Structuring', 'Term Sheet Review', 'M&A Advisory', 'Contract Negotiation', 'IP Protection'],
+        items: ['Term Sheet Review', 'M&A Advisory', 'Contract Negotiation', 'IP Protection'],
       },
     ],
   },
@@ -106,7 +106,7 @@ const faqs = [
   },
   {
     q: 'Can you help with sector-specific regulatory matters?',
-    a: "Yes. Manik's experience spans heavily regulated businesses across fintech and consumer health. For sector-specific regulatory complexity -- BFSI licensing, healthcare compliance, multi-state expansion -- we draw on both his direct experience and the relevant domain knowledge in our network.",
+    a: "Yes. Manik's experience spans heavily across sectors including fintech, consumer health, ecommerce, real estate, white collar crime, trust/wills & estate matters, litigation support, liaisoning and representation before regulators, FSSAI compliances, Media & Entertainment. For sector-specific regulatory complexity -- we draw on both his direct experience and the relevant domain knowledge in our network.",
   },
   {
     q: 'What about data protection under the DPDP Act?',

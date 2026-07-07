@@ -118,12 +118,15 @@ const capabilities = [
       "Founder agreements to regulatory navigation. Legal execution from an operator who has been inside India's high-growth businesses — delivered through Maxinor, not referred away.",
     deliverables: [
       'Founder agreements, vesting, and co-founder structuring',
-      'ESOP legal structuring and compliance',
       'Regulatory licensing and sector compliance advisory',
       'IP protection and employment law',
       'M&A advisory, term sheet review, contract negotiation',
+      'Day-to-day legal requirement support (secondment support included)',
+      'Complete contract support (structuring, drafting, reviewing, negotiating and concluding contracts)',
+      'Legal advisory to sectoral compliances support',
+      'Ownership title due-diligence and real estate transactional support',
     ],
-    operatorBg: 'Legal lead',
+    operatorBg: 'Leadership capability across companies and sectors',
     operatorLinks: [
       { name: 'Manik Sood', slug: 'manik-sood' },
     ],

@@ -336,6 +336,25 @@ export default function EducationPage() {
         </div>
       </section>
 
+      {/* Coming Soon */}
+      <section className="bg-warm-white px-6 py-24 text-center md:py-32">
+        <div className="mx-auto max-w-2xl">
+          <p className="mb-4 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">Full Blueprint</p>
+          <h2 className="mb-5 text-3xl font-display font-medium tracking-tight text-navy md:text-5xl">
+            Coming soon.
+          </h2>
+          <p className="mb-8 text-base font-light leading-relaxed text-grey md:text-lg">
+            We&apos;re building out the full Education sector page. In the meantime, talk to the team directly.
+          </p>
+          <Link href="/contact" className={primaryBtn}>
+            Talk to the team <ArrowRight className="ml-2 h-4 w-4" />
+          </Link>
+        </div>
+      </section>
+
+      {/* ── Rest of page hidden until blueprint is ready — set to true to re-enable ── */}
+      {false && (
+      <>
       {/* Founder Quotes */}
       <section className="bg-warm-white px-6 py-20 md:py-28">
         <div className="max-w-7xl mx-auto">
@@ -563,6 +582,8 @@ export default function EducationPage() {
           </motion.div>
         </div>
       </section>
+      </>
+      )}
 
     </div>
   );

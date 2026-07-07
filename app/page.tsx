@@ -34,7 +34,7 @@ const engagements = [
     description: "A focused 30-day sprint to diagnose what's blocking you and build an execution roadmap.",
     bullets: ['Problem diagnosis', 'Capability mapping', '90-day execution plan', 'Operator assignment'],
     bestFor: 'Founders who need clarity before committing capital.',
-    commercial: 'Fixed fee.',
+    commercial: '',
     cta: 'Start a Sprint',
     featured: false,
   },
@@ -42,10 +42,10 @@ const engagements = [
     name: 'Partnership',
     duration: '1-3 years',
     model: 'Embedded co-ownership',
-    description: 'An operator joins your team, embedded, accountable, and aligned on outcomes through equity.',
-    bullets: ['Full execution ownership', 'Operating cadence', 'Operator bench across partnership requirement', 'P&L accountability that builds capability you own'],
-    bestFor: 'Ventures generating consistent revenue, ready to invest in embedded execution, not just advice.',
-    commercial: 'Engagement structured as equity, retainer, revenue share, or hybrid, based on your stage.',
+    description: 'An operator joins your team, embedded, accountable, and aligned on outcomes.',
+    bullets: ['Execution + P&L ownership', 'Co-aligned Business Goals', 'Operator Bench access', 'Build & Scale capability you own'],
+    bestFor: 'Ventures ready to invest in embedded execution, not just advice.',
+    commercial: '',
     cta: 'Explore Partnership',
     featured: true,
   },
@@ -56,7 +56,7 @@ const engagements = [
     description: 'A fractional CXO who operates as part of your leadership team.',
     bullets: ['Functional gap coverage', 'Team building and systems', 'Transition planning', 'Strategy and execution'],
     bestFor: 'Companies that need executive depth without full-time cost.',
-    commercial: 'Retainer.',
+    commercial: '',
     cta: 'Get a Fractional CXO',
     featured: false,
   },
@@ -269,9 +269,11 @@ export default function Home() {
                       </li>
                     ))}
                   </ul>
-                  <p className="mb-4 text-[13px] leading-relaxed text-grey/70 md:text-sm">
-                    {eng.commercial}
-                  </p>
+                  {eng.commercial && (
+                    <p className="mb-4 text-[13px] leading-relaxed text-grey/70 md:text-sm">
+                      {eng.commercial}
+                    </p>
+                  )}
                   <div className="mb-6 rounded-2xl bg-warm-white px-4 py-3.5 space-y-1">
                     <p className="text-[13px] leading-relaxed text-grey/70 md:text-sm">
                       <span className="font-semibold text-navy">Best for:</span> {eng.bestFor}

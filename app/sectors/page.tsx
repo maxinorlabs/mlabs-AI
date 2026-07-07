@@ -286,30 +286,6 @@ export default function DomainsPage() {
         </div>
       </section>
 
-      {/* ── Sticky Tab Bar ── */}
-      <div
-        ref={tabBarRef}
-        className="sticky top-[79px] z-40 border-b border-grey/20 bg-warm-white/95 backdrop-blur-xl"
-      >
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex gap-1 overflow-x-auto py-3 scrollbar-hide">
-            {tabs.map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => scrollTo(tab.id)}
-                className={`shrink-0 rounded-full px-4 py-2 text-sm font-medium transition-all duration-200 ${
-                  activeTab === tab.id
-                    ? 'bg-brand text-white shadow-[0_0_20px_rgba(243,111,33,0.2)]'
-                    : 'border border-grey/25 text-grey hover:border-brand/40 hover:text-navy'
-                }`}
-              >
-                {tab.label}
-              </button>
-            ))}
-          </div>
-        </div>
-      </div>
-
       {/* ── Sector Overview Cards ── */}
       <section id="overview" className="bg-warm-white px-6 py-20 md:py-28">
         <div className="max-w-7xl mx-auto">
@@ -398,13 +374,19 @@ export default function DomainsPage() {
                   </p>
                 </div>
                 <div className="flex flex-wrap items-center gap-4">
-                  {sector.standaloneUrl && (
-                    <Link
-                      href={sector.standaloneUrl}
-                      className="inline-flex items-center gap-1 text-sm font-semibold text-brand transition-all duration-200 hover:gap-2"
-                    >
-                      Explore <ArrowRight className="h-3.5 w-3.5" />
-                    </Link>
+                  {['media', 'education', 'defence'].includes(sector.id) ? (
+                    <span className="inline-flex items-center gap-1 text-sm font-semibold text-grey/40">
+                      Coming Soon
+                    </span>
+                  ) : (
+                    sector.standaloneUrl && (
+                      <Link
+                        href={sector.standaloneUrl}
+                        className="inline-flex items-center gap-1 text-sm font-semibold text-brand transition-all duration-200 hover:gap-2"
+                      >
+                        Explore <ArrowRight className="h-3.5 w-3.5" />
+                      </Link>
+                    )
                   )}
                 </div>
               </motion.div>
