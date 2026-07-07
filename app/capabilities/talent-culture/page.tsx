@@ -17,19 +17,19 @@ const painPoints = [
     icon: Building2,
     number: '01',
     title: 'The Org That Cannot Scale',
-    body: 'Most Indian startups are built to run at 10 people. At 30 people, the same structure starts to crack. At 50, it breaks. The founder is still making every call, every team is waiting on every other team, and nobody is clear on who owns what. This is not a people problem. It is an architecture problem. Fixing it requires org design -- not a reorganisation deck, but a new operating structure with clear ownership, accountability, and decision rights.',
+    body: "The founder is still making every call, every team waits on every other team, and nobody's clear on who owns what. This is an architecture problem -- fixing it means a new operating structure, not a reorg deck.",
   },
   {
     icon: Users,
     number: '02',
     title: 'Hiring Without a System',
-    body: 'Every founder knows they need great people. Very few have a repeatable hiring system that finds them. Most early-stage startups hire reactively -- posting a JD when a role is urgent, running interviews without a scorecard, and onboarding new hires without a structured first 90 days. The result is mis-hires, slow ramp times, and talent that churns before it compounds.',
+    body: 'Every founder knows they need great people. Few have a repeatable system to find them. Reactive hiring produces mis-hires, slow ramp times, and talent that churns before it compounds.',
   },
   {
     icon: Heart,
     number: '03',
     title: 'Culture by Accident',
-    body: 'Culture is not a values poster. It is what actually happens when a decision is made under pressure, when a hire is evaluated, when a conflict is resolved. Most startups have an accidental culture that reflects the founders\' best and worst instincts. By the time it is a problem, it has already cost talent and performance. Building intentional culture is not a luxury -- it is the foundation that lets everything else scale.',
+    body: 'Culture is what happens when a decision is made under pressure, not a values poster. Most companies build it by accident and pay for it later in talent and performance.',
   },
 ];
 
@@ -41,8 +41,8 @@ const architecture = [
     labelColor: 'text-teal-600',
     groups: [
       {
-        label: 'Hiring Infrastructure',
-        items: ['Role Definition', 'Hiring Systems', 'Candidate Scoring', 'Structured Interviews', 'Onboarding Programmes', 'Talent Pipeline Design'],
+        label: 'Hiring',
+        items: ['Role Definition', 'Hiring Systems', 'Structured Interviews', 'Onboarding Programmes', 'Leadership Hiring'],
       },
     ],
   },
@@ -53,20 +53,20 @@ const architecture = [
     labelColor: 'text-brand',
     groups: [
       {
-        label: 'Structure and Accountability',
-        items: ['Org Structure Design', 'Decision Rights Framework', 'Team Accountability', 'Management Cadence', 'Cross-Functional Coordination', 'Leadership Development'],
+        label: 'Structure',
+        items: ['Org Design', 'Decision Rights Framework', 'Team Accountability', 'Management Cadence', 'Cross-Functional Coordination'],
       },
     ],
   },
   {
     tier: 'Culture and Performance Layer',
-    description: 'How you make the right behaviours stick and keep great people',
+    description: 'How you make the right behaviours stick',
     accent: 'border-indigo-400',
     labelColor: 'text-indigo-500',
     groups: [
       {
-        label: 'Culture, Compensation and Retention',
-        items: ['Culture Diagnosis', 'Values Operationalisation', 'Performance Frameworks', 'ESOP Design', 'Compensation Benchmarking', 'Retention Systems'],
+        label: 'Culture',
+        items: ['Culture Diagnosis', 'Performance Frameworks', 'ESOP Design Intent', 'Compensation Benchmarking', 'CXO Transition Planning'],
       },
     ],
   },
@@ -76,66 +76,53 @@ const engagements = [
   {
     number: '01',
     title: 'Org Design and Restructuring',
-    body: 'We map your current organisation, identify the structural bottlenecks, and design the operating structure your company needs at its next stage. From flat startup to a scaled organisation with clear ownership and decision rights.',
+    body: 'We map your organisation, identify structural bottlenecks, and design the operating structure your company needs at its next stage.',
   },
   {
     number: '02',
     title: 'Hiring System Build',
-    body: 'A complete hiring infrastructure: role scorecards, interview frameworks, sourcing playbooks, and onboarding programmes. The output is a repeatable system your team can run without the founder.',
+    body: 'Role scorecards, interview frameworks, sourcing playbooks, and onboarding programmes -- a repeatable system your team can run without the founder.',
   },
   {
     number: '03',
     title: 'Culture Diagnosis and Design',
-    body: 'A structured assessment of what your culture actually is versus what you want it to be, followed by a practical plan to close the gap through management behaviour, rituals, and incentive alignment.',
+    body: 'A structured assessment of what your culture actually is versus what you want it to be, with a practical plan to close the gap through management behaviour and incentive alignment.',
   },
   {
     number: '04',
-    title: 'ESOP, Compensation, and Retention Design',
-    body: 'Benchmarked compensation bands, ESOP structuring, and a retention framework that keeps your best people aligned to long-term outcomes.',
+    title: 'ESOP and Compensation Design',
+    body: 'Compensation benchmarking and ESOP design intent -- the retention strategy and pool rationale. Legal structuring runs through our Legal capability.',
   },
 ];
 
 const faqs = [
   {
-    q: 'When should a startup think about org design?',
-    a: 'Earlier than most founders do. If you are at 20+ people and the founder is still the decision bottleneck on most issues, you need org design now, not after you scale to 50.',
+    q: 'When should we think about org design?',
+    a: "Earlier than most founders do. If the founder is still the decision bottleneck above 20 people, start now -- not after you've scaled further.",
   },
   {
     q: 'We have high attrition. Where do we start?',
-    a: 'Almost always with an exit interview analysis and a culture diagnosis. Attrition is a symptom. The root cause is usually one of three things: management quality, compensation misalignment, or role clarity. We find which one and fix it.',
+    a: 'Almost always with an exit interview analysis and culture diagnosis. Attrition is a symptom -- management quality, compensation misalignment, or role clarity is usually the cause.',
   },
   {
-    q: 'How do ESOPs work at early-stage Indian startups?',
-    a: 'We design ESOP pools, vesting schedules, and exercise frameworks aligned to Indian company law and investor requirements. The goal is always to create genuine equity alignment without creating future legal or tax problems.',
+    q: 'How does ESOP design work here vs. your Legal capability?',
+    a: 'We design the intent -- pool rationale, vesting structure, and compensation benchmarking. Legal structuring, company-law compliance, and tax treatment run through our Legal capability with Manik Sood.',
   },
   {
     q: 'Can you help us hire our first senior leaders?',
-    a: 'Yes. We help founders define the role clearly, build the scorecard, run the process, and evaluate candidates. We also help with transition planning when a senior hire joins an existing team.',
-  },
-  {
-    q: 'What does "culture design" actually mean in practice?',
-    a: 'It means specifying the behaviours you want to see in your team, the rituals and cadences that reinforce those behaviours, and the management practices that make them stick. It is operational, not aspirational.',
+    a: 'Yes -- role definition, scorecard, process, and evaluation. Plus transition planning when they join an existing team.',
   },
 ];
 
 const operators = [
   {
     name: 'Parool Duggal',
-    role: 'Entrepreneur in Residence, People and Org',
+    role: 'Partner, People & Org',
     bg: 'ex-Bijnis, ex-EcomXpress, ex-AuthBridge',
-    depth: 'People and culture operator with hands-on experience building HR infrastructure, talent architecture, and high-performing teams inside high-growth startups.',
+    depth: 'People and culture operator with hands-on experience building HR infrastructure, hiring systems, and high-performing teams inside high-growth startups. Has led TA and HR ops at companies backed by Westbridge and Sequoia.',
     slug: 'parool-duggal',
     image: null,
     initials: 'PD',
-  },
-  {
-    name: 'Samir Gupta',
-    role: 'Entrepreneur in Residence, Revenue and People',
-    bg: 'ex-Paytm, ex-Bzinga, ex-Solv',
-    depth: 'Operator and business leader who has built and scaled cross-functional teams across media, fintech, and enterprise. Samir brings a founder lens to people and org challenges.',
-    slug: 'samir-gupta',
-    image: 'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/68e50d8f8eb88abaaf2dbbb5_1695013342712.jpeg',
-    initials: 'SG',
   },
 ];
 
@@ -323,8 +310,8 @@ export default function TalentCulturePage() {
             transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             className="mb-6 max-w-4xl text-4xl font-display font-medium tracking-tight text-warm-white md:text-6xl lg:text-7xl"
           >
-            Talent, Culture &amp;{' '}
-            <span className="text-brand">Organisational Design</span>
+            The org that got you here{' '}
+            <span className="text-brand">is the org that is slowing you down.</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -332,7 +319,7 @@ export default function TalentCulturePage() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="mb-10 max-w-2xl text-base font-light leading-relaxed text-warm-white/60 md:text-lg"
           >
-            Most startups hire reactively, structure accidentally, and build culture without intention. The ones that scale are the ones that treat people, org design, and culture as deliberate systems -- not afterthoughts.
+            Every org structure is designed for the version of the business it was built in. What works at 15 people breaks at 50. Maxinor People & Org operators embed inside your leadership team and build the structure the next stage actually needs.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -403,7 +390,7 @@ export default function TalentCulturePage() {
               The full talent and org capability stack.
             </h2>
             <p className="max-w-xl text-base font-light leading-relaxed text-grey">
-              Three layers. Every capability mapped. Select a layer to explore what sits inside it and where the leverage lives.
+              Three layers. Every capability mapped. Select a layer to explore what sits inside it.
             </p>
           </motion.div>
           <motion.div
@@ -466,7 +453,7 @@ export default function TalentCulturePage() {
           >
             <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">The Team Behind This</p>
             <h2 className="max-w-2xl text-3xl font-display font-medium tracking-tight text-warm-white md:text-4xl">
-              Operators who have built and scaled teams, not just advised on it.
+              An operator who has built and scaled teams, not just advised on it.
             </h2>
           </motion.div>
           <div className="grid gap-6 md:grid-cols-2 max-w-3xl">
@@ -546,7 +533,10 @@ export default function TalentCulturePage() {
               Ready to build the org your company needs?
             </h2>
             <p className="mb-8 max-w-xl mx-auto text-base font-light leading-relaxed text-warm-white/60 md:text-lg">
-              Whether you are designing org structure for the next stage, building a hiring system that works without the founder, or fixing culture before it costs you your best people -- start here.
+              Whether you&apos;re designing org structure for the next stage, building a hiring system, or fixing culture before it costs you your best people -- start here.
+            </p>
+            <p className="mb-8 max-w-xl mx-auto text-sm font-light leading-relaxed text-warm-white/50">
+              Every engagement ends with the system running without us. We build it, we embed until it works, and we hand it over to your team -- fully documented, fully owned by you.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link href="/contact" className={primaryBtn}>

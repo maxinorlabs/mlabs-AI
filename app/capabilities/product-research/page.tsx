@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useState } from 'react';
-import { ArrowRight, Rocket, Database, Brain, Plus, Minus } from 'lucide-react';
+import { ArrowRight, Search, GitCommit, PenTool, Plus, Minus } from 'lucide-react';
 
 const primaryBtn =
   'inline-flex items-center justify-center rounded-full bg-brand px-8 py-4 text-base font-semibold tracking-wide text-warm-white transition-all duration-300 hover:-translate-y-1 hover:bg-brand/90 shadow-[0_0_40px_rgba(243,111,33,0.15)] hover:shadow-[0_0_60px_rgba(243,111,33,0.3)] sm:px-10 sm:py-5';
@@ -14,59 +14,71 @@ const ghostBtn =
 
 const painPoints = [
   {
-    icon: Rocket,
+    icon: Search,
     number: '01',
-    title: 'The Pilot That Never Ships',
-    body: 'Most businesses have done an AI pilot. Most are still running 12 months later, producing dashboards nobody uses. The gap is always the same: AI built without understanding the workflow, evaluated on the wrong metrics.',
+    title: 'Building Without Signal',
+    body: 'Most founders know what their best customers say. Very few know what their churned customers decided. Features get built for the loudest voice in the room, not the behaviour pattern that moves retention.',
   },
   {
-    icon: Database,
+    icon: GitCommit,
     number: '02',
-    title: 'Tech Debt That Caps Scale',
-    body: "Architecture decisions that seemed fine at one revenue level become ceilings at the next. Monoliths that can't be broken apart. Founders who ignore this hit a wall -- not because the market dried up, but because the system can't handle the growth.",
+    title: 'The Gap Between Decision and Delivery',
+    body: 'A roadmap decision is not a shipped product. Most teams lose fidelity between what was decided and what actually ships -- design gets rushed, scope creeps, and the product that launches is a compromise nobody signed off on.',
   },
   {
-    icon: Brain,
+    icon: PenTool,
     number: '03',
-    title: "Scale Breaks Yesterday's System",
-    body: 'A system built for ₹10 Cr of volume doesn\'t handle ₹80 Cr automatically. The fix requires an operator who has seen this pattern before and knows which architectural calls to make at which scale point.',
+    title: 'Untested Market Assumptions',
+    body: 'Most product strategies rest on assumptions that were never tested. By the time they prove wrong, the product is two years into the wrong direction -- and the market position has gone to competitors who moved on better information.',
   },
 ];
 
 const architecture = [
   {
-    tier: 'Intelligence Layer',
-    description: 'How you build and deploy AI that produces real outcomes',
+    tier: 'Research Layer',
+    description: 'The signal every product decision depends on',
     accent: 'border-teal-500',
     labelColor: 'text-teal-600',
     groups: [
       {
-        label: 'AI Systems',
-        items: ['LLM Integration', 'RAG', 'Agentic Workflows', 'Fine-tuning and Evaluation', 'Computer Vision', 'NLP'],
+        label: 'Discovery',
+        items: ['User Research', 'Customer Interviews', 'Jobs-to-be-Done', 'Usability Testing', 'Market Research', 'TAM Sizing', 'Competitive Intelligence'],
       },
     ],
   },
   {
-    tier: 'Data Layer',
-    description: 'The foundation every AI system depends on',
+    tier: 'Strategy Layer',
+    description: 'The decisions that shape what gets built and in what order',
     accent: 'border-brand',
     labelColor: 'text-brand',
     groups: [
       {
-        label: 'Data Infrastructure',
-        items: ['Data Platform Design', 'ETL Pipelines', 'Data Warehouse', 'Feature Engineering', 'BI and Analytics'],
+        label: 'Product Strategy',
+        items: ['AI Use-Case Scoping and Prioritisation', 'Roadmap Design', 'Prioritisation Frameworks', 'Opportunity Sizing', 'North Star Metric'],
       },
     ],
   },
   {
-    tier: 'Infrastructure Layer',
-    description: 'How you build and run systems that scale',
+    tier: 'Design and Build Layer',
+    description: 'Turning a validated decision into a real, usable product',
     accent: 'border-indigo-400',
     labelColor: 'text-indigo-500',
     groups: [
       {
-        label: 'Engineering',
-        items: ['Cloud Architecture', 'DevOps/CI-CD', 'API Design', 'Security and Compliance', 'Full-Stack Engineering'],
+        label: 'Design and Development',
+        items: ['UX Design', 'UI Design and Design Systems', 'Prototyping', 'Accessibility (WCAG 2.2 AA)', 'Product Development and Release Management'],
+      },
+    ],
+  },
+  {
+    tier: 'Product Operations Layer',
+    description: 'The infrastructure that makes product work ship and stick',
+    accent: 'border-rose-400',
+    labelColor: 'text-rose-500',
+    groups: [
+      {
+        label: 'Product Ops',
+        items: ['Sprint Design', 'Backlog Governance', 'Stakeholder Alignment', 'Product Analytics'],
       },
     ],
   },
@@ -75,59 +87,62 @@ const architecture = [
 const engagements = [
   {
     number: '01',
-    title: 'AI Product Build and MVP',
-    body: 'From architecture to working system. We design, build, and deploy AI products -- not proofs of concept. The output is a system running in production.',
+    title: 'Product Strategy and Roadmap',
+    body: 'We audit your current product direction, identify misalignment with user behaviour or market reality, and build a prioritised roadmap with clear ownership.',
   },
   {
     number: '02',
-    title: 'Agentic Automation',
-    body: 'Agentic systems that automate multi-step workflows and compound over time -- reliable, auditable, built around your real business processes.',
+    title: 'AI Use-Case Scoping and Prioritisation',
+    body: 'We map your business operations, identify the 2-3 AI use cases with the highest ROI, and sequence execution by business impact -- before a single line of code is written.',
   },
   {
     number: '03',
-    title: 'Tech Architecture and Debt Remediation',
-    body: 'Architecture review, bottleneck identification, and a phased remediation plan that lets you grow without bringing down the house.',
+    title: 'User and Market Research',
+    body: 'Customer interviews, usability testing, and jobs-to-be-done analysis, paired with market sizing and competitive intelligence -- the evidence base for every decision that follows.',
   },
   {
     number: '04',
-    title: 'Data Platform and AI Infrastructure',
-    body: 'Building the data foundation that every AI system depends on -- pipelines, warehouses, feature engineering, and the observability layer that keeps it running.',
+    title: 'Product Design and Development',
+    body: 'UX/UI design, design systems, and prototyping -- carried through to a shipped, working product. The same team that designs it is accountable for what actually ships.',
+  },
+  {
+    number: '05',
+    title: 'Product Operations Build',
+    body: 'The operating cadence that keeps a product team focused: sprint structure, backlog governance, and stakeholder alignment.',
   },
 ];
 
 const faqs = [
   {
-    q: 'Where does AI use-case selection happen -- here or in Product & Research?',
-    a: "Product & Research scopes which use cases to build based on business outcomes. AI & Tech builds and ships the system once that decision is made. If you're not sure which AI problems are worth solving first, start with Product & Research.",
+    q: 'Do you only advise on product, or do you actually build and design it?',
+    a: 'We do both. Research and strategy set the direction; our Design and Build layer takes it through UX/UI design and into a shipped product. The same operator is accountable end to end -- not a handoff between strategy and execution.',
   },
   {
-    q: 'We are not a tech company. Can Maxinor still help?',
-    a: 'Yes. Most AI engagements are with non-tech founders who need AI built into their business without building an internal team. We bring the technical capability. You bring the domain knowledge.',
+    q: 'We already have a product team. How does this work?',
+    a: 'Our operator works alongside your team. Most engagements start by diagnosing where the current process breaks -- research, design, or execution -- and rebuilding from there.',
   },
   {
-    q: 'How is this different from an AI agency?',
-    a: 'Agencies build what you specify. Our operator diagnoses what you actually need, builds it, and stays accountable to business outcomes -- not deliverables.',
+    q: 'How does AI use-case scoping differ from the AI & Tech capability?',
+    a: 'Product & Research scopes what to build and why, including the design work to make it usable. AI & Tech builds and ships the underlying AI system. The two work in sequence.',
   },
   {
-    q: 'What AI tools and models do you work with?',
-    a: 'Model-agnostic. OpenAI, Anthropic, Google, and open-source, depending on use case, cost, and compliance requirements. We also build fine-tuned models where the use case justifies it.',
+    q: 'What if we need heavy visual design or a full design system?',
+    a: 'We deliver this directly for most engagements. For design-system-heavy or brand-identity-intensive work beyond our standing bandwidth, we bring in vetted design partners from our network -- accountability stays with Maxinor.',
   },
   {
-    q: 'How long from architecture to working system?',
-    a: 'Typically 60-90 days for a first production deployment. Complex agentic systems take longer. We set realistic timelines at the start and hold to them.',
+    q: 'Is this only for tech companies?',
+    a: "No. Product thinking applies to any business with a customer experience to design. We've applied this to consumer brands, service businesses, and SaaS equally.",
   },
 ];
 
-const operators = [
-  {
-    name: 'Alok Kumar',
-    role: 'Partner, AI and Tech',
-    bg: 'ex-Zee, ex-StanChart, ex-Fidelity, ex-Oracle',
-    depth: 'Technology and AI operator spanning enterprise software, global financial services, and large-scale media. Alok brings the judgment to know which AI system to build, how to architect for scale, and how to get from lab to production with real business impact.',
-    slug: 'alok-kumar',
-    image: 'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/69b29541adceb2f4cf8144ad_79c886e0-fd1f-49a4-bfed-f481d5bb1f38.jpg',
-  },
-];
+const operator = {
+  name: 'Amar Daing',
+  role: 'Partner, Product & Research',
+  bg: 'ex-Google x Tata Trusts, ex-OYO, ex-Grofers',
+  depth: 'Product and growth operator with experience building and scaling consumer and B2B platforms across India. At OYO, operated at the intersection of product and growth. At Google x Tata Trusts, designed product for the next billion users. At Grofers and Dineout, owned CX end-to-end. For design-system-heavy or visual-design-intensive engagements, Amar draws on Maxinor\'s design network to extend delivery bandwidth.',
+  slug: 'amar-daing',
+  image: 'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/68e50d8f17573e0fcd4ec3c1_1663569415671.jpeg',
+};
 
 function ArchitectureExplorer() {
   const [active, setActive] = useState(0);
@@ -153,7 +168,7 @@ function ArchitectureExplorer() {
         ))}
       </div>
 
-      <div className="flex min-h-[400px]">
+      <div className="flex min-h-[420px]">
         {/* Desktop: left sidebar */}
         <div className="hidden w-64 shrink-0 flex-col border-r border-grey/10 bg-warm-white/50 md:flex">
           {architecture.map((t, i) => (
@@ -281,7 +296,7 @@ function FAQAccordion() {
   );
 }
 
-export default function AITechPage() {
+export default function ProductResearchPage() {
   return (
     <div className="font-sans">
 
@@ -305,7 +320,7 @@ export default function AITechPage() {
             transition={{ duration: 0.6 }}
             className="mb-4 text-[11px] font-bold uppercase tracking-[0.22em] text-brand"
           >
-            Capability · AI and Tech
+            Capability · Product & Research
           </motion.p>
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
@@ -313,8 +328,8 @@ export default function AITechPage() {
             transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             className="mb-6 max-w-4xl text-4xl font-display font-medium tracking-tight text-warm-white md:text-6xl lg:text-7xl"
           >
-            Most AI pilots never ship.{' '}
-            <span className="text-brand">Ours do.</span>
+            Most products fail{' '}
+            <span className="text-brand">between the decision and the build.</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -322,7 +337,7 @@ export default function AITechPage() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="mb-10 max-w-2xl text-base font-light leading-relaxed text-warm-white/60 md:text-lg"
           >
-            Every business in 2026 has an AI strategy. Very few have an AI system producing a real outcome. Maxinor AI operators embed inside your team, build AI that ships, and stay accountable to business outcomes -- not dashboards.
+            Knowing what to build is half the job. Designing it well and shipping it without losing the original intent is the other half -- and it&apos;s where most teams lose momentum. Maxinor Product & Research operators embed inside your team across the full arc: research, strategy, design, and the build itself.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -350,9 +365,9 @@ export default function AITechPage() {
             transition={{ duration: 0.6 }}
             className="mb-14 md:mb-16"
           >
-            <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">Where AI and Tech Founders Get Stuck</p>
+            <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">Where Product Stalls</p>
             <h2 className="max-w-2xl text-3xl font-display font-medium tracking-tight text-navy md:text-4xl">
-              Three patterns that keep AI stuck at pilot stage.
+              Three patterns that stall product growth.
             </h2>
           </motion.div>
           <div className="grid gap-6 md:grid-cols-3">
@@ -379,7 +394,7 @@ export default function AITechPage() {
         </div>
       </section>
 
-      {/* Architecture Stack */}
+      {/* Architecture */}
       <section className="bg-white px-6 py-20 md:py-28 border-t border-grey/10">
         <div className="max-w-7xl mx-auto">
           <motion.div
@@ -390,10 +405,10 @@ export default function AITechPage() {
           >
             <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">Capability Stack</p>
             <h2 className="mb-3 max-w-2xl text-3xl font-display font-medium tracking-tight text-navy md:text-4xl">
-              The full AI and tech capability stack.
+              The full product and research capability stack.
             </h2>
             <p className="max-w-xl text-base font-light leading-relaxed text-grey">
-              Three layers. Every capability mapped. Select a layer to explore what sits inside it.
+              Four layers. Every capability mapped. Select a layer to explore what sits inside it.
             </p>
           </motion.div>
           <motion.div
@@ -419,7 +434,7 @@ export default function AITechPage() {
           >
             <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">How We Engage</p>
             <h2 className="max-w-2xl text-3xl font-display font-medium tracking-tight text-navy md:text-4xl">
-              What we actually build with you.
+              Five engagement types. All operator-led.
             </h2>
           </motion.div>
           <div className="grid gap-5 sm:grid-cols-2">
@@ -444,7 +459,7 @@ export default function AITechPage() {
         </div>
       </section>
 
-      {/* Operators */}
+      {/* Operator */}
       <section className="bg-navy px-6 py-20 md:py-28 border-t border-grey/10">
         <div className="max-w-7xl mx-auto">
           <motion.div
@@ -456,50 +471,39 @@ export default function AITechPage() {
           >
             <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">The Team Behind This</p>
             <h2 className="max-w-2xl text-3xl font-display font-medium tracking-tight text-warm-white md:text-4xl">
-              An operator who has built and shipped AI, not just advised on it.
+              An operator who has built, designed, and shipped products -- not just managed them.
             </h2>
           </motion.div>
-          <div className="grid gap-6 md:grid-cols-2 max-w-3xl">
-            {operators.map((op, i) => (
-              <motion.div
-                key={op.name}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: i * 0.1 }}
-                className="rounded-[2rem] border border-white/10 bg-white/5 p-8 backdrop-blur-sm"
-              >
-                <div className="mb-6 flex items-center gap-4">
-                  {op.image ? (
-                    <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-full border-2 border-brand/40">
-                      <Image
-                        src={op.image}
-                        alt={op.name}
-                        fill
-                        className="object-cover"
-                        referrerPolicy="no-referrer"
-                      />
-                    </div>
-                  ) : (
-                    <div className="w-16 h-16 rounded-full bg-brand/20 flex items-center justify-center text-brand font-semibold text-lg shrink-0">
-                      {op.name.charAt(0)}
-                    </div>
-                  )}
-                  <div>
-                    <Link
-                      href={`/team/${op.slug}`}
-                      className="text-base font-semibold text-warm-white transition-colors hover:text-brand"
-                    >
-                      {op.name}
-                    </Link>
-                    <p className="text-xs font-medium text-brand/80">{op.role}</p>
-                    <p className="text-xs text-warm-white/40">{op.bg}</p>
-                  </div>
-                </div>
-                <p className="text-sm font-light leading-relaxed text-warm-white/60">{op.depth}</p>
-              </motion.div>
-            ))}
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="max-w-3xl rounded-[2rem] border border-white/10 bg-white/5 p-8 backdrop-blur-sm"
+          >
+            <div className="mb-6 flex items-center gap-4">
+              <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-full border-2 border-brand/40">
+                <Image
+                  src={operator.image}
+                  alt={operator.name}
+                  fill
+                  className="object-cover"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+              <div>
+                <Link
+                  href={`/team/${operator.slug}`}
+                  className="text-base font-semibold text-warm-white transition-colors hover:text-brand"
+                >
+                  {operator.name}
+                </Link>
+                <p className="text-xs font-medium text-brand/80">{operator.role}</p>
+                <p className="text-xs text-warm-white/40">{operator.bg}</p>
+              </div>
+            </div>
+            <p className="text-sm font-light leading-relaxed text-warm-white/60">{operator.depth}</p>
+          </motion.div>
         </div>
       </section>
 
@@ -514,8 +518,8 @@ export default function AITechPage() {
             className="mb-12"
           >
             <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">Common Questions</p>
-            <h2 className="max-w-xl text-3xl font-display font-medium tracking-tight text-navy md:text-4xl">
-              Questions founders usually ask first.
+            <h2 className="max-w-2xl text-3xl font-display font-medium tracking-tight text-navy md:text-4xl">
+              What founders usually ask first.
             </h2>
           </motion.div>
           <motion.div
@@ -530,21 +534,29 @@ export default function AITechPage() {
       </section>
 
       {/* CTA */}
-      <section className="bg-navy px-6 py-20 text-center md:py-28 border-t border-white/10">
-        <div className="max-w-3xl mx-auto">
+      <section className="relative overflow-hidden bg-navy px-6 py-20 text-center md:py-28 border-t border-white/10">
+        <div
+          className="pointer-events-none absolute inset-0 opacity-[0.03]"
+          style={{
+            backgroundImage:
+              'linear-gradient(rgba(255,255,255,0.8) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.8) 1px, transparent 1px)',
+            backgroundSize: '60px 60px',
+          }}
+        />
+        <div className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 h-[500px] w-[500px] rounded-full bg-brand/5 blur-[100px]" />
+        <div className="relative z-10 max-w-3xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
           >
-            <div className="pointer-events-none absolute -top-40 left-1/2 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-brand/5 blur-[100px]" />
             <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">Work With Us</p>
             <h2 className="mb-5 text-3xl font-display font-medium tracking-tight text-warm-white md:text-5xl">
-              Ready to ship AI that moves the number?
+              Ready to go from signal to shipped product?
             </h2>
             <p className="mb-8 max-w-xl mx-auto text-base font-light leading-relaxed text-warm-white/60 md:text-lg">
-              Whether you&apos;re stuck at pilot stage, hitting a tech scaling wall, or need a senior operator to make the architectural calls -- start here.
+              Whether you&apos;re scoping a new product direction, need it designed and built, or identifying which AI use cases to build first -- start here.
             </p>
             <p className="mb-8 max-w-xl mx-auto text-sm font-light leading-relaxed text-warm-white/50">
               Every engagement ends with the system running without us. We build it, we embed until it works, and we hand it over to your team -- fully documented, fully owned by you.

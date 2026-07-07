@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useState } from 'react';
-import { ArrowRight, Rocket, Database, Brain, Plus, Minus } from 'lucide-react';
+import { ArrowRight, FileText, ShieldAlert, Handshake, Plus, Minus } from 'lucide-react';
 
 const primaryBtn =
   'inline-flex items-center justify-center rounded-full bg-brand px-8 py-4 text-base font-semibold tracking-wide text-warm-white transition-all duration-300 hover:-translate-y-1 hover:bg-brand/90 shadow-[0_0_40px_rgba(243,111,33,0.15)] hover:shadow-[0_0_60px_rgba(243,111,33,0.3)] sm:px-10 sm:py-5';
@@ -14,59 +14,59 @@ const ghostBtn =
 
 const painPoints = [
   {
-    icon: Rocket,
+    icon: FileText,
     number: '01',
-    title: 'The Pilot That Never Ships',
-    body: 'Most businesses have done an AI pilot. Most are still running 12 months later, producing dashboards nobody uses. The gap is always the same: AI built without understanding the workflow, evaluated on the wrong metrics.',
+    title: 'Agreements Built for Trust, Not Scale',
+    body: "Co-founder agreements written for day-one trust, not the company that exists at ₹50 Cr. Vesting that didn't anticipate an exit, IP never formally assigned. When the relationship changes, the documentation usually isn't good enough.",
   },
   {
-    icon: Database,
+    icon: ShieldAlert,
     number: '02',
-    title: 'Tech Debt That Caps Scale',
-    body: "Architecture decisions that seemed fine at one revenue level become ceilings at the next. Monoliths that can't be broken apart. Founders who ignore this hit a wall -- not because the market dried up, but because the system can't handle the growth.",
+    title: 'Regulatory Exposure That Grows With the Business',
+    body: 'A lending business at ₹2 Cr a month and one at ₹50 Cr are in different regulatory conversations. Most founders build at speed and address compliance structure later -- later is expensive.',
   },
   {
-    icon: Brain,
+    icon: Handshake,
     number: '03',
-    title: "Scale Breaks Yesterday's System",
-    body: 'A system built for ₹10 Cr of volume doesn\'t handle ₹80 Cr automatically. The fix requires an operator who has seen this pattern before and knows which architectural calls to make at which scale point.',
+    title: 'Term Sheets Read in Isolation',
+    body: "Most founders read their first term sheet without venture-specific counsel. The language that seems standard often isn't. By the time it matters -- at a liquidity event -- the structure is fixed.",
   },
 ];
 
 const architecture = [
   {
-    tier: 'Intelligence Layer',
-    description: 'How you build and deploy AI that produces real outcomes',
+    tier: 'Founder and Company Structuring',
+    description: 'The legal foundation the company is built on',
     accent: 'border-teal-500',
     labelColor: 'text-teal-600',
     groups: [
       {
-        label: 'AI Systems',
-        items: ['LLM Integration', 'RAG', 'Agentic Workflows', 'Fine-tuning and Evaluation', 'Computer Vision', 'NLP'],
+        label: 'Entity',
+        items: ['Founder Agreements', 'Vesting Schedules', 'IP Assignment', 'Shareholder Agreements', 'Articles of Association'],
       },
     ],
   },
   {
-    tier: 'Data Layer',
-    description: 'The foundation every AI system depends on',
+    tier: 'Regulatory and Compliance',
+    description: 'Staying on the right side of the rules that govern your sector',
     accent: 'border-brand',
     labelColor: 'text-brand',
     groups: [
       {
-        label: 'Data Infrastructure',
-        items: ['Data Platform Design', 'ETL Pipelines', 'Data Warehouse', 'Feature Engineering', 'BI and Analytics'],
+        label: 'Compliance',
+        items: ['Regulatory Licensing Advisory', 'Sector Compliance (BFSI, Healthcare and others)', 'Employment Law', 'Data Protection and Privacy'],
       },
     ],
   },
   {
-    tier: 'Infrastructure Layer',
-    description: 'How you build and run systems that scale',
+    tier: 'Transactions and Commercial',
+    description: 'The legal work at growth inflection points',
     accent: 'border-indigo-400',
     labelColor: 'text-indigo-500',
     groups: [
       {
-        label: 'Engineering',
-        items: ['Cloud Architecture', 'DevOps/CI-CD', 'API Design', 'Security and Compliance', 'Full-Stack Engineering'],
+        label: 'Commercial',
+        items: ['ESOP Legal Structuring', 'Term Sheet Review', 'M&A Advisory', 'Contract Negotiation', 'IP Protection'],
       },
     ],
   },
@@ -75,59 +75,53 @@ const architecture = [
 const engagements = [
   {
     number: '01',
-    title: 'AI Product Build and MVP',
-    body: 'From architecture to working system. We design, build, and deploy AI products -- not proofs of concept. The output is a system running in production.',
+    title: 'Founder and Equity Structuring',
+    body: 'Founder agreements, vesting, IP ownership, and shareholder structure -- reviewed, designed, or fixed. The legal foundation everything else depends on.',
   },
   {
     number: '02',
-    title: 'Agentic Automation',
-    body: 'Agentic systems that automate multi-step workflows and compound over time -- reliable, auditable, built around your real business processes.',
+    title: 'Regulatory Navigation',
+    body: 'Sector-specific compliance advisory, licensing guidance, and regulatory architecture for businesses operating in or scaling into regulated sectors.',
   },
   {
     number: '03',
-    title: 'Tech Architecture and Debt Remediation',
-    body: 'Architecture review, bottleneck identification, and a phased remediation plan that lets you grow without bringing down the house.',
+    title: 'ESOP Legal Structuring',
+    body: 'Company-law compliant ESOP pool design, vesting mechanics, and tax framework -- working alongside our Talent capability, which handles the compensation design intent.',
   },
   {
     number: '04',
-    title: 'Data Platform and AI Infrastructure',
-    body: 'Building the data foundation that every AI system depends on -- pipelines, warehouses, feature engineering, and the observability layer that keeps it running.',
+    title: 'Commercial and Transaction Legal',
+    body: 'Term sheet review, M&A advisory, and contract negotiation -- particularly relevant at funding rounds, partnerships, and acquisition discussions.',
   },
 ];
 
 const faqs = [
   {
-    q: 'Where does AI use-case selection happen -- here or in Product & Research?',
-    a: "Product & Research scopes which use cases to build based on business outcomes. AI & Tech builds and ships the system once that decision is made. If you're not sure which AI problems are worth solving first, start with Product & Research.",
+    q: 'How is this different from hiring a lawyer or CA?',
+    a: 'A CA handles compliance and accounting. A standard lawyer handles what you bring to them. Manik has been inside high-growth businesses -- he knows which legal problems are coming before they arrive and structures work around business outcomes.',
   },
   {
-    q: 'We are not a tech company. Can Maxinor still help?',
-    a: 'Yes. Most AI engagements are with non-tech founders who need AI built into their business without building an internal team. We bring the technical capability. You bring the domain knowledge.',
+    q: 'How does Law Grammar fit in?',
+    a: 'Manik is a Maxinor Partner who also runs Law Grammar. Some engagements are supported through it for execution. All work is engaged and billed through Maxinor -- not a referral.',
   },
   {
-    q: 'How is this different from an AI agency?',
-    a: 'Agencies build what you specify. Our operator diagnoses what you actually need, builds it, and stays accountable to business outcomes -- not deliverables.',
+    q: 'Can you help with sector-specific regulatory matters?',
+    a: "Yes. Manik's experience spans heavily regulated businesses across fintech and consumer health. For sector-specific regulatory complexity -- BFSI licensing, healthcare compliance, multi-state expansion -- we draw on both his direct experience and the relevant domain knowledge in our network.",
   },
   {
-    q: 'What AI tools and models do you work with?',
-    a: 'Model-agnostic. OpenAI, Anthropic, Google, and open-source, depending on use case, cost, and compliance requirements. We also build fine-tuned models where the use case justifies it.',
-  },
-  {
-    q: 'How long from architecture to working system?',
-    a: 'Typically 60-90 days for a first production deployment. Complex agentic systems take longer. We set realistic timelines at the start and hold to them.',
+    q: 'What about data protection under the DPDP Act?',
+    a: 'Yes -- privacy policy design, consent architecture, and data handling compliance are part of our regulatory capability.',
   },
 ];
 
-const operators = [
-  {
-    name: 'Alok Kumar',
-    role: 'Partner, AI and Tech',
-    bg: 'ex-Zee, ex-StanChart, ex-Fidelity, ex-Oracle',
-    depth: 'Technology and AI operator spanning enterprise software, global financial services, and large-scale media. Alok brings the judgment to know which AI system to build, how to architect for scale, and how to get from lab to production with real business impact.',
-    slug: 'alok-kumar',
-    image: 'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/69b29541adceb2f4cf8144ad_79c886e0-fd1f-49a4-bfed-f481d5bb1f38.jpg',
-  },
-];
+const operator = {
+  name: 'Manik Sood',
+  role: 'Partner, Legal',
+  bg: 'ex-Paytm, ex-Zee Entertainment, ex-Healthkart. Founder, Law Grammar.',
+  depth: "Corporate lawyer with deep experience inside some of India's most complex high-growth businesses -- navigating commercial, regulatory, and transactional legal complexity at scale. Delivers legal work directly as a Maxinor Partner; some engagements are supported through Law Grammar for execution. All work is engaged and billed through Maxinor.",
+  slug: 'manik-sood',
+  image: 'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/6a142ce51a9da04ec8dc7a9a_manik.avif',
+};
 
 function ArchitectureExplorer() {
   const [active, setActive] = useState(0);
@@ -148,7 +142,7 @@ function ArchitectureExplorer() {
                 : 'text-grey/50 hover:text-navy'
             }`}
           >
-            {t.tier.replace(' Layer', '')}
+            {t.tier}
           </button>
         ))}
       </div>
@@ -281,7 +275,7 @@ function FAQAccordion() {
   );
 }
 
-export default function AITechPage() {
+export default function LegalPage() {
   return (
     <div className="font-sans">
 
@@ -305,7 +299,7 @@ export default function AITechPage() {
             transition={{ duration: 0.6 }}
             className="mb-4 text-[11px] font-bold uppercase tracking-[0.22em] text-brand"
           >
-            Capability · AI and Tech
+            Capability · Legal
           </motion.p>
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
@@ -313,8 +307,8 @@ export default function AITechPage() {
             transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             className="mb-6 max-w-4xl text-4xl font-display font-medium tracking-tight text-warm-white md:text-6xl lg:text-7xl"
           >
-            Most AI pilots never ship.{' '}
-            <span className="text-brand">Ours do.</span>
+            Legal debt compounds{' '}
+            <span className="text-brand">silently until it is expensive.</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -322,7 +316,7 @@ export default function AITechPage() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="mb-10 max-w-2xl text-base font-light leading-relaxed text-warm-white/60 md:text-lg"
           >
-            Every business in 2026 has an AI strategy. Very few have an AI system producing a real outcome. Maxinor AI operators embed inside your team, build AI that ships, and stay accountable to business outcomes -- not dashboards.
+            Most legal problems aren&apos;t sudden crises -- they&apos;re structures set up early that were never designed for the scale that followed. Maxinor&apos;s Legal operator has been inside the rooms where these problems compound, and knows how to prevent them.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -350,9 +344,9 @@ export default function AITechPage() {
             transition={{ duration: 0.6 }}
             className="mb-14 md:mb-16"
           >
-            <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">Where AI and Tech Founders Get Stuck</p>
+            <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">Where Legal Costs You</p>
             <h2 className="max-w-2xl text-3xl font-display font-medium tracking-tight text-navy md:text-4xl">
-              Three patterns that keep AI stuck at pilot stage.
+              Three legal patterns that cost founders at the worst moment.
             </h2>
           </motion.div>
           <div className="grid gap-6 md:grid-cols-3">
@@ -379,7 +373,7 @@ export default function AITechPage() {
         </div>
       </section>
 
-      {/* Architecture Stack */}
+      {/* Architecture */}
       <section className="bg-white px-6 py-20 md:py-28 border-t border-grey/10">
         <div className="max-w-7xl mx-auto">
           <motion.div
@@ -390,10 +384,10 @@ export default function AITechPage() {
           >
             <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">Capability Stack</p>
             <h2 className="mb-3 max-w-2xl text-3xl font-display font-medium tracking-tight text-navy md:text-4xl">
-              The full AI and tech capability stack.
+              The full legal capability stack.
             </h2>
             <p className="max-w-xl text-base font-light leading-relaxed text-grey">
-              Three layers. Every capability mapped. Select a layer to explore what sits inside it.
+              Three layers. Every legal function a high-growth business needs covered.
             </p>
           </motion.div>
           <motion.div
@@ -419,7 +413,7 @@ export default function AITechPage() {
           >
             <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">How We Engage</p>
             <h2 className="max-w-2xl text-3xl font-display font-medium tracking-tight text-navy md:text-4xl">
-              What we actually build with you.
+              How legal work gets done at Maxinor.
             </h2>
           </motion.div>
           <div className="grid gap-5 sm:grid-cols-2">
@@ -444,7 +438,7 @@ export default function AITechPage() {
         </div>
       </section>
 
-      {/* Operators */}
+      {/* Operator */}
       <section className="bg-navy px-6 py-20 md:py-28 border-t border-grey/10">
         <div className="max-w-7xl mx-auto">
           <motion.div
@@ -456,50 +450,39 @@ export default function AITechPage() {
           >
             <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">The Team Behind This</p>
             <h2 className="max-w-2xl text-3xl font-display font-medium tracking-tight text-warm-white md:text-4xl">
-              An operator who has built and shipped AI, not just advised on it.
+              A legal operator with a practitioner track record inside high-growth Indian businesses.
             </h2>
           </motion.div>
-          <div className="grid gap-6 md:grid-cols-2 max-w-3xl">
-            {operators.map((op, i) => (
-              <motion.div
-                key={op.name}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: i * 0.1 }}
-                className="rounded-[2rem] border border-white/10 bg-white/5 p-8 backdrop-blur-sm"
-              >
-                <div className="mb-6 flex items-center gap-4">
-                  {op.image ? (
-                    <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-full border-2 border-brand/40">
-                      <Image
-                        src={op.image}
-                        alt={op.name}
-                        fill
-                        className="object-cover"
-                        referrerPolicy="no-referrer"
-                      />
-                    </div>
-                  ) : (
-                    <div className="w-16 h-16 rounded-full bg-brand/20 flex items-center justify-center text-brand font-semibold text-lg shrink-0">
-                      {op.name.charAt(0)}
-                    </div>
-                  )}
-                  <div>
-                    <Link
-                      href={`/team/${op.slug}`}
-                      className="text-base font-semibold text-warm-white transition-colors hover:text-brand"
-                    >
-                      {op.name}
-                    </Link>
-                    <p className="text-xs font-medium text-brand/80">{op.role}</p>
-                    <p className="text-xs text-warm-white/40">{op.bg}</p>
-                  </div>
-                </div>
-                <p className="text-sm font-light leading-relaxed text-warm-white/60">{op.depth}</p>
-              </motion.div>
-            ))}
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="max-w-3xl rounded-[2rem] border border-white/10 bg-white/5 p-8 backdrop-blur-sm"
+          >
+            <div className="mb-6 flex items-center gap-4">
+              <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-full border-2 border-brand/40">
+                <Image
+                  src={operator.image}
+                  alt={operator.name}
+                  fill
+                  className="object-cover"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+              <div>
+                <Link
+                  href={`/team/${operator.slug}`}
+                  className="text-base font-semibold text-warm-white transition-colors hover:text-brand"
+                >
+                  {operator.name}
+                </Link>
+                <p className="text-xs font-medium text-brand/80">{operator.role}</p>
+                <p className="text-xs text-warm-white/40">{operator.bg}</p>
+              </div>
+            </div>
+            <p className="text-sm font-light leading-relaxed text-warm-white/60">{operator.depth}</p>
+          </motion.div>
         </div>
       </section>
 
@@ -514,8 +497,8 @@ export default function AITechPage() {
             className="mb-12"
           >
             <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">Common Questions</p>
-            <h2 className="max-w-xl text-3xl font-display font-medium tracking-tight text-navy md:text-4xl">
-              Questions founders usually ask first.
+            <h2 className="max-w-2xl text-3xl font-display font-medium tracking-tight text-navy md:text-4xl">
+              What founders usually ask first.
             </h2>
           </motion.div>
           <motion.div
@@ -530,21 +513,29 @@ export default function AITechPage() {
       </section>
 
       {/* CTA */}
-      <section className="bg-navy px-6 py-20 text-center md:py-28 border-t border-white/10">
-        <div className="max-w-3xl mx-auto">
+      <section className="relative overflow-hidden bg-navy px-6 py-20 text-center md:py-28 border-t border-white/10">
+        <div
+          className="pointer-events-none absolute inset-0 opacity-[0.03]"
+          style={{
+            backgroundImage:
+              'linear-gradient(rgba(255,255,255,0.8) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.8) 1px, transparent 1px)',
+            backgroundSize: '60px 60px',
+          }}
+        />
+        <div className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 h-[500px] w-[500px] rounded-full bg-brand/5 blur-[100px]" />
+        <div className="relative z-10 max-w-3xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
           >
-            <div className="pointer-events-none absolute -top-40 left-1/2 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-brand/5 blur-[100px]" />
             <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">Work With Us</p>
             <h2 className="mb-5 text-3xl font-display font-medium tracking-tight text-warm-white md:text-5xl">
-              Ready to ship AI that moves the number?
+              Ready to fix the legal foundation before it becomes expensive?
             </h2>
             <p className="mb-8 max-w-xl mx-auto text-base font-light leading-relaxed text-warm-white/60 md:text-lg">
-              Whether you&apos;re stuck at pilot stage, hitting a tech scaling wall, or need a senior operator to make the architectural calls -- start here.
+              Whether you&apos;re structuring a co-founder agreement, navigating a funding round, or building regulatory architecture for a new sector -- start here.
             </p>
             <p className="mb-8 max-w-xl mx-auto text-sm font-light leading-relaxed text-warm-white/50">
               Every engagement ends with the system running without us. We build it, we embed until it works, and we hand it over to your team -- fully documented, fully owned by you.

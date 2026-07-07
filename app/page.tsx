@@ -64,19 +64,36 @@ const engagements = [
 
 const sectorGroups = [
   {
-    category: 'CONSUMER & RETAIL',
+    category: 'SPECIALIZED SECTORS',
     sectors: [
       {
-        name: 'Media',
-        description: 'Broadcasting & Digital Media',
-        icon: MonitorPlay,
-        href: '/sectors/media',
+        name: 'Healthcare',
+        description: 'Health Tech & Clinical Tools',
+        icon: Hospital,
+        href: '/sectors/healthcare',
       },
+      {
+        name: 'Defence',
+        description: 'Defence Tech & Dual-Use',
+        icon: Shield,
+        href: '/sectors/defence',
+      },
+    ],
+  },
+  {
+    category: 'CONSUMER & RETAIL',
+    sectors: [
       {
         name: 'D2C',
         description: 'Consumer Brands & Retail',
         icon: Store,
         href: '/sectors/d2c',
+      },
+      {
+        name: 'Media',
+        description: 'Broadcasting & Digital Media',
+        icon: MonitorPlay,
+        href: '/sectors/media',
       },
     ],
   },
@@ -94,23 +111,6 @@ const sectorGroups = [
         description: 'EdTech & Workforce Development',
         icon: GraduationCap,
         href: '/sectors/education',
-      },
-    ],
-  },
-  {
-    category: 'SPECIALIZED SECTORS',
-    sectors: [
-      {
-        name: 'Healthcare',
-        description: 'Health Tech & Clinical Tools',
-        icon: Hospital,
-        href: '/sectors/healthcare',
-      },
-      {
-        name: 'Defence',
-        description: 'Defence Tech & Dual-Use',
-        icon: Shield,
-        href: '/sectors/defence',
       },
     ],
   },
@@ -430,9 +430,6 @@ export default function Home() {
             <div className="flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6">
               <Link href="/contact" className={primaryButtonClass}>
                 Get in Touch <ArrowRight className="w-4 h-4 ml-2" />
-              </Link>
-              <Link href="/startups" className={secondaryButtonClass}>
-                View Our Portfolio
               </Link>
             </div>
           </div>

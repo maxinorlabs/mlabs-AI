@@ -106,6 +106,14 @@ const eirTeam: TeamMember[] = [
       'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/6a142ce6dd742f13761925d7_WhatsApp%20Image%202026-05-25%20at%203.23.59%20PM.avif',
     linkedin: 'https://www.linkedin.com/in/aditiagrawal2609',
   },
+  {
+    name: 'Puneet Kolthe',
+    role: 'Entrepreneur in Residence, CX & Service Operations',
+    desc: '25+ years | Building, transforming, scaling CX & Service Operations | ex-Arata, ex-Karbonn, ex-Panasonic',
+    image:
+      'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/6a4c962caa5cc5d2afe7763a_Image%20Puneet%20Kolthe.avif',
+    linkedin: 'https://www.linkedin.com/in/puneet-kolthe-6b28297',
+  },
 ];
 
 const programTeam: TeamMember[] = [
@@ -117,15 +125,16 @@ const programTeam: TeamMember[] = [
       'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/69b295fc064e36e1c0266a56_WhatsApp%20Image%202026-03-12%20at%203.59.29%20PM.jpeg',
     linkedin: 'https://www.linkedin.com/in/saniya-f-369a98213/',
   },
-  {
-    name: 'Aman Sharma',
-    role: 'Product Growth, GTM & AI',
-    desc: 'Operator across product growth, go-to-market, and AI execution',
-    image:
-      'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/69c123c327dd93f3976c61ef_Gemini_Generated_Image_mjcmjxmjcmjxmjcm.avif',
-    imagePosition: 'top',
-    linkedin: 'https://www.linkedin.com/in/aman-sharma-77243b2a0/',
-  },
+  // Hidden — keep entry for later re-enable, do not delete.
+  // {
+  //   name: 'Aman Sharma',
+  //   role: 'Product Growth, GTM & AI',
+  //   desc: 'Operator across product growth, go-to-market, and AI execution',
+  //   image:
+  //     'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/69c123c327dd93f3976c61ef_Gemini_Generated_Image_mjcmjxmjcmjxmjcm.avif',
+  //   imagePosition: 'top',
+  //   linkedin: 'https://www.linkedin.com/in/aman-sharma-77243b2a0/',
+  // },
   {
     name: 'Pushkar Apte',
     role: 'Manager, Venture Operations',

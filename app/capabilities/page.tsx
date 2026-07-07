@@ -14,24 +14,21 @@ const outlineBtn =
 const capabilities = [
   {
     number: '01',
-    category: 'Go-To-Market',
-    title: 'GTM',
-    path: '/capabilities/gtm',
+    category: 'Growth & Revenue',
+    title: 'Growth & Revenue',
+    path: '/capabilities/growth-revenue',
     description:
-      'From idea to market. GTM strategy, sales motion design, and consumer brand execution run by operators who have built pipelines from zero.',
+      'From pipeline to market leadership. GTM strategy, brand execution, and revenue operations run by operators who have owned the revenue number.',
     deliverables: [
       'GTM strategy, channel buildout and sales pipeline execution',
       'Consumer brand positioning and D2C performance marketing',
       'Sales playbook design and qualification frameworks',
-      'Content, community and performance-led growth',
-      'Launch execution and competitive positioning',
-      'Revenue operations design and growth analytics',
+      'Revenue operations — CRM governance, forecasting, retention',
+      'Pricing architecture and unit economics',
     ],
-    operator: 'Samir Gupta & Priyabrata Padhi',
-    operatorBg: 'GTM leads',
+    operatorBg: 'Growth & Revenue',
     operatorLinks: [
-      { name: 'Samir Gupta', slug: 'samir-gupta' },
-      { name: 'Priyabrata Padhi', slug: 'priyabrata-padhi' },
+      { name: 'Maxinor Team', slug: null },
     ],
   },
   {
@@ -40,42 +37,95 @@ const capabilities = [
     title: 'AI and Tech',
     path: '/capabilities/ai-tech',
     description:
-      'From AI strategy to working system. No pilots that never ship. No tech debt that kills scale.',
+      'From architecture to working system. No pilots that never ship. No tech debt that kills scale.',
     deliverables: [
-      'AI strategy and use-case prioritisation',
-      'AI product scoping, architecture, and MVP build',
+      'AI product architecture and MVP build',
       'Agentic automation and workflow AI',
       'Model fine-tuning, evaluation and deployment',
-      'Data platform and AI-readiness buildout',
+      'Data platform and AI infrastructure buildout',
       'Tech architecture review and debt remediation',
+      'DevOps, cloud, and full-stack engineering',
     ],
-    operator: 'Alok Kumar & Amar Daing',
-    operatorBg: 'AI & Technology leads',
+    operatorBg: 'AI & Technology lead',
     operatorLinks: [
       { name: 'Alok Kumar', slug: 'alok-kumar' },
-      { name: 'Amar Daing', slug: 'amar-daing' },
     ],
   },
   {
     number: '03',
+    category: 'Product & Research',
+    title: 'Product & Research',
+    path: '/capabilities/product-research',
+    description:
+      'From signal to shipped product. Strategy, research, design, and product development run by an operator who has built and shipped products at scale — not just advised on them.',
+    deliverables: [
+      'Product strategy and roadmap design',
+      'AI use-case scoping and prioritisation',
+      'User research — customer interviews, usability testing, jobs-to-be-done',
+      'UX/UI design and design systems',
+      'Product development — from prototype to shipped release',
+    ],
+    operatorBg: 'Product & Research lead',
+    operatorLinks: [
+      { name: 'Amar Daing', slug: 'amar-daing' },
+    ],
+  },
+  {
+    number: '04',
     category: 'People & Org Building',
     title: 'Talent, Culture & Organisational Design',
     path: '/capabilities/talent-culture',
     description:
-      'Scaling a company is ultimately about Talent Architecture, high-performing systems, and the growth and retention of people. Most founders realize this a year later than they should.',
+      'Scaling a company is ultimately about talent architecture and the growth and retention of people. Most founders realise this a year later than they should.',
     deliverables: [
       'Founding team gap analysis and role definition',
-      'Org design for Series A and beyond',
+      'Org design for next-stage scale',
       'Hiring systems, culture design, and leadership onboarding',
       'Performance frameworks for operator-led teams',
-      'ESOPs, compensation benchmarking and retention design',
+      'ESOP design intent and compensation benchmarking',
       'Interim leadership and CXO transition planning',
     ],
-    operator: 'Parool Duggal & Samir Gupta',
-    operatorBg: 'People, Org & Culture leads',
+    operatorBg: 'People, Org & Culture lead',
     operatorLinks: [
       { name: 'Parool Duggal', slug: 'parool-duggal' },
-      { name: 'Samir Gupta', slug: 'samir-gupta' },
+    ],
+  },
+  {
+    number: '05',
+    category: 'Operations',
+    title: 'Operations',
+    path: '/capabilities/operations',
+    description:
+      'From supply chain to business process. Operations execution from operators who have run the full stack — physical, financial, and digital — inside real businesses at scale.',
+    deliverables: [
+      'End-to-end supply chain design and management',
+      'Vendor sourcing, warehousing, logistics and fulfilment',
+      'Offline distributor and channel operations',
+      'Revenue operations and business process design',
+      'Financial operations — modelling, reporting, fundraising process',
+    ],
+    operatorBg: 'Operations',
+    operatorLinks: [
+      { name: 'Maxinor Team', slug: null },
+    ],
+  },
+  {
+    number: '06',
+    category: 'Legal',
+    title: 'Legal',
+    path: '/capabilities/legal',
+    description:
+      "Founder agreements to regulatory navigation. Legal execution from an operator who has been inside India's high-growth businesses — delivered through Maxinor, not referred away.",
+    deliverables: [
+      'Founder agreements, vesting, and co-founder structuring',
+      'ESOP legal structuring and compliance',
+      'Regulatory licensing and sector compliance advisory',
+      'IP protection and employment law',
+      'M&A advisory, term sheet review, contract negotiation',
+    ],
+    operatorBg: 'Legal lead',
+    operatorLinks: [
+      { name: 'Manik Sood', slug: 'manik-sood' },
     ],
   },
 ];
@@ -266,7 +316,7 @@ export default function CapabilitiesPage() {
               Operator capabilities across the full venture lifecycle
             </p>
           </motion.div>
-          <div className="grid gap-6 md:grid-cols-3">
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {capabilities.map((cap, i) => (
               <motion.div
                 key={cap.number}
@@ -274,7 +324,7 @@ export default function CapabilitiesPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: i * 0.08 }}
-                className="group relative rounded-[2rem] border border-grey/20 bg-white p-8 transition-all duration-500 hover:border-brand/30 hover:shadow-lg"
+                className="group relative flex flex-col rounded-[2rem] border border-grey/20 bg-white p-8 transition-all duration-500 hover:border-brand/30 hover:shadow-lg"
               >
                 <span className="pointer-events-none absolute right-5 top-3 select-none text-7xl font-display font-bold leading-none text-brand/6">
                   {cap.number}
@@ -284,7 +334,7 @@ export default function CapabilitiesPage() {
                   {cap.title}
                 </h3>
                 <p className="mb-5 text-sm font-light leading-relaxed text-grey">{cap.description}</p>
-                <ul className="mb-6 space-y-2.5">
+                <ul className="mb-6 flex-1 space-y-2.5">
                   {cap.deliverables.map((d) => (
                     <li key={d} className="flex items-start gap-2.5 text-sm text-grey">
                       <span className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-brand/10 text-brand">
@@ -297,13 +347,17 @@ export default function CapabilitiesPage() {
                 <div className="border-t border-grey/12 pt-4 flex items-center justify-between">
                   <p className="text-xs text-grey/60">
                     {cap.operatorLinks.map((op, idx) => (
-                      <span key={op.slug}>
-                        <Link
-                          href={`/team/${op.slug}`}
-                          className="font-semibold text-navy transition-colors hover:text-brand"
-                        >
-                          {op.name}
-                        </Link>
+                      <span key={op.name}>
+                        {op.slug ? (
+                          <Link
+                            href={`/team/${op.slug}`}
+                            className="font-semibold text-navy transition-colors hover:text-brand"
+                          >
+                            {op.name}
+                          </Link>
+                        ) : (
+                          <span className="font-semibold text-navy">{op.name}</span>
+                        )}
                         {idx < cap.operatorLinks.length - 2 ? ', ' : idx === cap.operatorLinks.length - 2 ? ' & ' : ''}
                       </span>
                     ))}

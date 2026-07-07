@@ -2,9 +2,8 @@
 
 import { motion, AnimatePresence } from 'motion/react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { useState } from 'react';
-import { ArrowRight, Rocket, Database, Brain, Plus, Minus } from 'lucide-react';
+import { ArrowRight, Truck, FileStack, Store, Plus, Minus } from 'lucide-react';
 
 const primaryBtn =
   'inline-flex items-center justify-center rounded-full bg-brand px-8 py-4 text-base font-semibold tracking-wide text-warm-white transition-all duration-300 hover:-translate-y-1 hover:bg-brand/90 shadow-[0_0_40px_rgba(243,111,33,0.15)] hover:shadow-[0_0_60px_rgba(243,111,33,0.3)] sm:px-10 sm:py-5';
@@ -14,59 +13,71 @@ const ghostBtn =
 
 const painPoints = [
   {
-    icon: Rocket,
+    icon: Truck,
     number: '01',
-    title: 'The Pilot That Never Ships',
-    body: 'Most businesses have done an AI pilot. Most are still running 12 months later, producing dashboards nobody uses. The gap is always the same: AI built without understanding the workflow, evaluated on the wrong metrics.',
+    title: "The Supply Chain Built for Yesterday's Volume",
+    body: 'Most supply chains are built reactively -- one vendor at a time, one arrangement at a time. The same patchwork that enabled early growth starts capping it: stockouts, vendor concentration, working capital trapped in the wrong places.',
   },
   {
-    icon: Database,
+    icon: FileStack,
     number: '02',
-    title: 'Tech Debt That Caps Scale',
-    body: "Architecture decisions that seemed fine at one revenue level become ceilings at the next. Monoliths that can't be broken apart. Founders who ignore this hit a wall -- not because the market dried up, but because the system can't handle the growth.",
+    title: "Processes That Live in People's Heads",
+    body: "The knowledge that makes a ₹5 Cr business run lives in the founder and a handful of key people. At ₹80 Cr, that's a crisis waiting for a trigger -- a departure, a system failure, or a due diligence process that exposes how little is documented.",
   },
   {
-    icon: Brain,
+    icon: Store,
     number: '03',
-    title: "Scale Breaks Yesterday's System",
-    body: 'A system built for ₹10 Cr of volume doesn\'t handle ₹80 Cr automatically. The fix requires an operator who has seen this pattern before and knows which architectural calls to make at which scale point.',
+    title: 'Offline Complexity Online Tools Cannot Solve',
+    body: 'Distributors and offline channels often carry 40-70% of revenue for a serious consumer brand. Managing national distribution at scale -- margins, conflicts, sell-through -- needs operator skills that no digital tool replaces.',
   },
 ];
 
 const architecture = [
   {
-    tier: 'Intelligence Layer',
-    description: 'How you build and deploy AI that produces real outcomes',
+    tier: 'Supply Chain Layer',
+    description: 'How you build and run the physical operations of the business',
     accent: 'border-teal-500',
     labelColor: 'text-teal-600',
     groups: [
       {
-        label: 'AI Systems',
-        items: ['LLM Integration', 'RAG', 'Agentic Workflows', 'Fine-tuning and Evaluation', 'Computer Vision', 'NLP'],
+        label: 'Supply Chain',
+        items: ['End-to-End Design', 'Vendor and Sourcing Management', 'Warehousing and Logistics', 'Manufacturing Coordination', 'Working Capital and Inventory Financing'],
       },
     ],
   },
   {
-    tier: 'Data Layer',
-    description: 'The foundation every AI system depends on',
+    tier: 'Commercial Operations Layer',
+    description: 'The business processes that make revenue scale',
     accent: 'border-brand',
     labelColor: 'text-brand',
     groups: [
       {
-        label: 'Data Infrastructure',
-        items: ['Data Platform Design', 'ETL Pipelines', 'Data Warehouse', 'Feature Engineering', 'BI and Analytics'],
+        label: 'Business Ops',
+        items: ['Revenue Operations', 'Pipeline Governance', 'CRM Design', 'Business Process Standardisation', 'Shared Services Design'],
       },
     ],
   },
   {
-    tier: 'Infrastructure Layer',
-    description: 'How you build and run systems that scale',
+    tier: 'Channel Operations Layer',
+    description: 'How you manage distribution at scale -- online and offline',
     accent: 'border-indigo-400',
     labelColor: 'text-indigo-500',
     groups: [
       {
-        label: 'Engineering',
-        items: ['Cloud Architecture', 'DevOps/CI-CD', 'API Design', 'Security and Compliance', 'Full-Stack Engineering'],
+        label: 'Channel',
+        items: ['Offline Distributor Operations', 'National Channel Management', 'Margin Architecture', 'Omnichannel Coordination'],
+      },
+    ],
+  },
+  {
+    tier: 'Financial and Tech Operations Layer',
+    description: 'The operational infrastructure underneath the business',
+    accent: 'border-rose-400',
+    labelColor: 'text-rose-500',
+    groups: [
+      {
+        label: 'Finance/Tech Ops',
+        items: ['Financial Reporting', 'Financial Modelling', 'Fundraising Process Management', 'AI System Operations', 'DevOps and Data Ops'],
       },
     ],
   },
@@ -75,57 +86,42 @@ const architecture = [
 const engagements = [
   {
     number: '01',
-    title: 'AI Product Build and MVP',
-    body: 'From architecture to working system. We design, build, and deploy AI products -- not proofs of concept. The output is a system running in production.',
+    title: 'Supply Chain Design and Management',
+    body: 'End-to-end supply chain audit, vendor rationalisation, and operational redesign for businesses where physical operations are a growth lever or a constraint.',
   },
   {
     number: '02',
-    title: 'Agentic Automation',
-    body: 'Agentic systems that automate multi-step workflows and compound over time -- reliable, auditable, built around your real business processes.',
+    title: 'Business Process and Revenue Operations',
+    body: 'Mapping and redesigning the core operational processes of the business -- pipeline governance, CRM design, financial reporting, and process standardisation.',
   },
   {
     number: '03',
-    title: 'Tech Architecture and Debt Remediation',
-    body: 'Architecture review, bottleneck identification, and a phased remediation plan that lets you grow without bringing down the house.',
+    title: 'Channel and Distributor Operations',
+    body: 'Building or restructuring the offline channel -- distributor network design, margin architecture, conflict resolution protocols, and the operational rhythm that makes national distribution run consistently.',
   },
   {
     number: '04',
-    title: 'Data Platform and AI Infrastructure',
-    body: 'Building the data foundation that every AI system depends on -- pipelines, warehouses, feature engineering, and the observability layer that keeps it running.',
+    title: 'COO-on-Demand',
+    body: 'A Maxinor operator joins as the operational lead for a defined period -- owning supply chain, vendor management, manufacturing coordination, and cross-functional operations with full P&L accountability.',
   },
 ];
 
 const faqs = [
   {
-    q: 'Where does AI use-case selection happen -- here or in Product & Research?',
-    a: "Product & Research scopes which use cases to build based on business outcomes. AI & Tech builds and ships the system once that decision is made. If you're not sure which AI problems are worth solving first, start with Product & Research.",
+    q: 'Is this only relevant for companies with physical products?',
+    a: 'No. Revenue operations, business process design, and financial operations apply to any business. Supply chain, manufacturing, and channel operations are specific to businesses with physical products or offline distribution.',
   },
   {
-    q: 'We are not a tech company. Can Maxinor still help?',
-    a: 'Yes. Most AI engagements are with non-tech founders who need AI built into their business without building an internal team. We bring the technical capability. You bring the domain knowledge.',
+    q: 'Can Maxinor run operations on an ongoing basis?',
+    a: 'Yes. The Venture CXO model is built for businesses that need a senior operations operator embedded for 6-12 months -- functioning as COO with full accountability for outcomes, not advisory input.',
   },
   {
-    q: 'How is this different from an AI agency?',
-    a: 'Agencies build what you specify. Our operator diagnoses what you actually need, builds it, and stays accountable to business outcomes -- not deliverables.',
+    q: 'What does COO-on-Demand actually mean?',
+    a: 'A Maxinor operator joins as the operational lead of your business for a defined period, owning supply chain, vendor relationships, and cross-functional operations. Accountable to the operational P&L -- not a consultant on the side.',
   },
   {
-    q: 'What AI tools and models do you work with?',
-    a: 'Model-agnostic. OpenAI, Anthropic, Google, and open-source, depending on use case, cost, and compliance requirements. We also build fine-tuned models where the use case justifies it.',
-  },
-  {
-    q: 'How long from architecture to working system?',
-    a: 'Typically 60-90 days for a first production deployment. Complex agentic systems take longer. We set realistic timelines at the start and hold to them.',
-  },
-];
-
-const operators = [
-  {
-    name: 'Alok Kumar',
-    role: 'Partner, AI and Tech',
-    bg: 'ex-Zee, ex-StanChart, ex-Fidelity, ex-Oracle',
-    depth: 'Technology and AI operator spanning enterprise software, global financial services, and large-scale media. Alok brings the judgment to know which AI system to build, how to architect for scale, and how to get from lab to production with real business impact.',
-    slug: 'alok-kumar',
-    image: 'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/69b29541adceb2f4cf8144ad_79c886e0-fd1f-49a4-bfed-f481d5bb1f38.jpg',
+    q: 'Do you handle manufacturing operations?',
+    a: 'Yes. Our operators have managed end-to-end manufacturing coordination -- vendor selection, production planning, quality control, and supply chain integration. This is hands-on operational work, not project management.',
   },
 ];
 
@@ -153,7 +149,7 @@ function ArchitectureExplorer() {
         ))}
       </div>
 
-      <div className="flex min-h-[400px]">
+      <div className="flex min-h-[420px]">
         {/* Desktop: left sidebar */}
         <div className="hidden w-64 shrink-0 flex-col border-r border-grey/10 bg-warm-white/50 md:flex">
           {architecture.map((t, i) => (
@@ -281,7 +277,7 @@ function FAQAccordion() {
   );
 }
 
-export default function AITechPage() {
+export default function OperationsPage() {
   return (
     <div className="font-sans">
 
@@ -305,7 +301,7 @@ export default function AITechPage() {
             transition={{ duration: 0.6 }}
             className="mb-4 text-[11px] font-bold uppercase tracking-[0.22em] text-brand"
           >
-            Capability · AI and Tech
+            Capability · Operations
           </motion.p>
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
@@ -313,8 +309,8 @@ export default function AITechPage() {
             transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             className="mb-6 max-w-4xl text-4xl font-display font-medium tracking-tight text-warm-white md:text-6xl lg:text-7xl"
           >
-            Most AI pilots never ship.{' '}
-            <span className="text-brand">Ours do.</span>
+            Scale breaks what was built{' '}
+            <span className="text-brand">for an earlier version of the business.</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -322,7 +318,7 @@ export default function AITechPage() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="mb-10 max-w-2xl text-base font-light leading-relaxed text-warm-white/60 md:text-lg"
           >
-            Every business in 2026 has an AI strategy. Very few have an AI system producing a real outcome. Maxinor AI operators embed inside your team, build AI that ships, and stay accountable to business outcomes -- not dashboards.
+            The supply chain that worked at ₹10 Cr buckles at ₹50 Cr. The processes that ran on founder memory become liabilities when the team doubles. Maxinor Operations operators have run these systems inside real businesses -- not designed them from the outside.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -350,9 +346,9 @@ export default function AITechPage() {
             transition={{ duration: 0.6 }}
             className="mb-14 md:mb-16"
           >
-            <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">Where AI and Tech Founders Get Stuck</p>
+            <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">Where Operations Break</p>
             <h2 className="max-w-2xl text-3xl font-display font-medium tracking-tight text-navy md:text-4xl">
-              Three patterns that keep AI stuck at pilot stage.
+              Three operational patterns that compound quietly.
             </h2>
           </motion.div>
           <div className="grid gap-6 md:grid-cols-3">
@@ -379,7 +375,7 @@ export default function AITechPage() {
         </div>
       </section>
 
-      {/* Architecture Stack */}
+      {/* Architecture */}
       <section className="bg-white px-6 py-20 md:py-28 border-t border-grey/10">
         <div className="max-w-7xl mx-auto">
           <motion.div
@@ -390,10 +386,10 @@ export default function AITechPage() {
           >
             <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">Capability Stack</p>
             <h2 className="mb-3 max-w-2xl text-3xl font-display font-medium tracking-tight text-navy md:text-4xl">
-              The full AI and tech capability stack.
+              The full operations capability stack.
             </h2>
             <p className="max-w-xl text-base font-light leading-relaxed text-grey">
-              Three layers. Every capability mapped. Select a layer to explore what sits inside it.
+              Four layers. Every operational function a scaling business needs.
             </p>
           </motion.div>
           <motion.div
@@ -419,25 +415,25 @@ export default function AITechPage() {
           >
             <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">How We Engage</p>
             <h2 className="max-w-2xl text-3xl font-display font-medium tracking-tight text-navy md:text-4xl">
-              What we actually build with you.
+              Four engagement types. All operator-led.
             </h2>
           </motion.div>
-          <div className="grid gap-5 sm:grid-cols-2">
-            {engagements.map((e, i) => (
+          <div className="grid gap-6 md:grid-cols-2">
+            {engagements.map((eng, i) => (
               <motion.div
-                key={e.number}
-                initial={{ opacity: 0, y: 20 }}
+                key={eng.number}
+                initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.07 }}
-                className="relative rounded-[1.5rem] border border-grey/15 bg-white p-7"
+                transition={{ duration: 0.6, delay: i * 0.1 }}
+                className="relative rounded-[2rem] border border-grey/15 bg-white p-8"
               >
                 <span className="pointer-events-none absolute right-6 top-4 select-none text-7xl font-display font-bold leading-none text-brand/5">
-                  {e.number}
+                  {eng.number}
                 </span>
-                <div className="mb-3 h-0.5 w-8 bg-brand" />
-                <h3 className="mb-2 text-base font-display font-semibold text-navy">{e.title}</h3>
-                <p className="text-sm font-light leading-relaxed text-grey">{e.body}</p>
+                <p className="mb-1 text-[10px] font-bold uppercase tracking-[0.18em] text-brand/60">{eng.number}</p>
+                <h3 className="mb-3 text-lg font-display font-semibold text-navy">{eng.title}</h3>
+                <p className="text-sm font-light leading-relaxed text-grey">{eng.body}</p>
               </motion.div>
             ))}
           </div>
@@ -456,50 +452,21 @@ export default function AITechPage() {
           >
             <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">The Team Behind This</p>
             <h2 className="max-w-2xl text-3xl font-display font-medium tracking-tight text-warm-white md:text-4xl">
-              An operator who has built and shipped AI, not just advised on it.
+              Operators who have run operations inside real businesses, not designed them from the outside.
             </h2>
           </motion.div>
-          <div className="grid gap-6 md:grid-cols-2 max-w-3xl">
-            {operators.map((op, i) => (
-              <motion.div
-                key={op.name}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: i * 0.1 }}
-                className="rounded-[2rem] border border-white/10 bg-white/5 p-8 backdrop-blur-sm"
-              >
-                <div className="mb-6 flex items-center gap-4">
-                  {op.image ? (
-                    <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-full border-2 border-brand/40">
-                      <Image
-                        src={op.image}
-                        alt={op.name}
-                        fill
-                        className="object-cover"
-                        referrerPolicy="no-referrer"
-                      />
-                    </div>
-                  ) : (
-                    <div className="w-16 h-16 rounded-full bg-brand/20 flex items-center justify-center text-brand font-semibold text-lg shrink-0">
-                      {op.name.charAt(0)}
-                    </div>
-                  )}
-                  <div>
-                    <Link
-                      href={`/team/${op.slug}`}
-                      className="text-base font-semibold text-warm-white transition-colors hover:text-brand"
-                    >
-                      {op.name}
-                    </Link>
-                    <p className="text-xs font-medium text-brand/80">{op.role}</p>
-                    <p className="text-xs text-warm-white/40">{op.bg}</p>
-                  </div>
-                </div>
-                <p className="text-sm font-light leading-relaxed text-warm-white/60">{op.depth}</p>
-              </motion.div>
-            ))}
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="max-w-3xl rounded-[2rem] border border-white/10 bg-white/5 p-8 backdrop-blur-sm"
+          >
+            <p className="mb-4 text-base font-semibold text-warm-white">Maxinor Team</p>
+            <p className="text-sm font-light leading-relaxed text-warm-white/60">
+              Our Operations engagements are delivered by operators with direct P&L responsibility for physical, commercial, and channel operations inside real businesses. This includes end-to-end supply chain management, offline distribution at national scale, manufacturing coordination, and business process design -- matched to the specific operational challenge, not a generalist team.
+            </p>
+          </motion.div>
         </div>
       </section>
 
@@ -514,8 +481,8 @@ export default function AITechPage() {
             className="mb-12"
           >
             <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">Common Questions</p>
-            <h2 className="max-w-xl text-3xl font-display font-medium tracking-tight text-navy md:text-4xl">
-              Questions founders usually ask first.
+            <h2 className="max-w-2xl text-3xl font-display font-medium tracking-tight text-navy md:text-4xl">
+              What founders usually ask first.
             </h2>
           </motion.div>
           <motion.div
@@ -530,21 +497,29 @@ export default function AITechPage() {
       </section>
 
       {/* CTA */}
-      <section className="bg-navy px-6 py-20 text-center md:py-28 border-t border-white/10">
-        <div className="max-w-3xl mx-auto">
+      <section className="relative overflow-hidden bg-navy px-6 py-20 text-center md:py-28 border-t border-white/10">
+        <div
+          className="pointer-events-none absolute inset-0 opacity-[0.03]"
+          style={{
+            backgroundImage:
+              'linear-gradient(rgba(255,255,255,0.8) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.8) 1px, transparent 1px)',
+            backgroundSize: '60px 60px',
+          }}
+        />
+        <div className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 h-[500px] w-[500px] rounded-full bg-brand/5 blur-[100px]" />
+        <div className="relative z-10 max-w-3xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
           >
-            <div className="pointer-events-none absolute -top-40 left-1/2 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-brand/5 blur-[100px]" />
             <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">Work With Us</p>
             <h2 className="mb-5 text-3xl font-display font-medium tracking-tight text-warm-white md:text-5xl">
-              Ready to ship AI that moves the number?
+              Ready to build operations that scale?
             </h2>
             <p className="mb-8 max-w-xl mx-auto text-base font-light leading-relaxed text-warm-white/60 md:text-lg">
-              Whether you&apos;re stuck at pilot stage, hitting a tech scaling wall, or need a senior operator to make the architectural calls -- start here.
+              Whether you&apos;re restructuring a supply chain, rebuilding business processes, or running offline distribution at national scale -- start here.
             </p>
             <p className="mb-8 max-w-xl mx-auto text-sm font-light leading-relaxed text-warm-white/50">
               Every engagement ends with the system running without us. We build it, we embed until it works, and we hand it over to your team -- fully documented, fully owned by you.
