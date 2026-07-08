@@ -99,6 +99,11 @@ const partners = [
     logo: 'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/69b3cd584c566a57e84d3aae_saptharushi7_logo.jpg',
   },
   {
+    name: 'iAccel GBI',
+    url: 'https://iaccelgbi.com/',
+    logo: 'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/6a4e70f6eb738b4cf11a6c00_logo-removebg.avif',
+  },
+  {
     name: 'IZF',
     url: 'https://izfworld.com/',
     logo: 'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/695e7c054bb39ce328e497b7_izf%20fill%20logo.png',

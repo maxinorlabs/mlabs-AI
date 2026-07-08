@@ -81,18 +81,36 @@ export function Navbar() {
       ],
     },
     {
-      name: 'Capabilities',
+      name: 'Engines',
       path: '/capabilities',
       dropdown: [
         { name: 'All Capabilities', path: '/capabilities', header: true },
-        { name: 'Venture Scale', path: '/scale' },
-        { name: 'Venture Build', path: '/build' },
-        { name: 'Growth & Revenue', path: '/capabilities/growth-revenue' },
-        { name: 'AI and Tech', path: '/capabilities/ai-tech' },
-        { name: 'Product & Research', path: '/capabilities/product-research' },
-        { name: 'Talent, Culture & Org Design', path: '/capabilities/talent-culture' },
-        { name: 'Operations', path: '/capabilities/operations' },
-        { name: 'Legal', path: '/capabilities/legal' },
+        {
+          name: 'Build',
+          path: '/capabilities#build',
+          subItems: [
+            { name: 'AI & Tech', path: '/capabilities/ai-tech' },
+            { name: 'Product', path: '/capabilities/product-research' },
+            { name: 'Brand & Marketing', path: '/capabilities/brand-marketing' },
+          ],
+        },
+        {
+          name: 'Scale',
+          path: '/capabilities#scale',
+          subItems: [
+            { name: 'Growth (GTM, Sales & Partnerships)', path: '/capabilities/growth-revenue' },
+            { name: 'Operations', path: '/capabilities/operations' },
+            { name: 'Finance & Accounting', path: '/capabilities/finance-accounting' },
+          ],
+        },
+        {
+          name: 'Invest',
+          path: '/capabilities#invest',
+          subItems: [
+            { name: 'Venture Capital', path: '/capabilities/venture-capital' },
+            { name: 'M&A', path: '/capabilities/mergers-acquisitions' },
+          ],
+        },
       ],
     },
     {
@@ -107,13 +125,7 @@ export function Navbar() {
       ],
     },
     { name: 'Team', path: '/team' },
-    {
-      name: 'Insights',
-      path: '/blog',
-      dropdown: [
-        { name: 'Blog', path: '/blog' },
-      ],
-    },
+    { name: 'Blog', path: '/blog' },
     { name: 'Contact Us', path: '/contact' },
   ];
 

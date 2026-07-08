@@ -30,42 +30,6 @@ const items = [
     detail:
       'We prove value through embedded execution before deploying capital. Our model puts real skin in the game long before a term sheet enters the conversation.',
   },
-  {
-    id: '05',
-    title: 'WHAT IS A VENTURE STUDIO AS PER US?',
-    detail:
-      'VCs write cheques. Accelerators move on after demo day. Incubators are not designed for scale. Maxinor runs the entire spectrum with you & stays accountable to outcomes.',
-  },
-  {
-    id: '06',
-    title: 'WHAT STAGE DO YOU WORK WITH?',
-    detail:
-      'We work with founders from idea through to scale. For Venture Build, you need a validated white space or early prototype. For Venture Scale, you need product-market fit, revenue & positive cash flow.',
-  },
-  {
-    id: '07',
-    title: 'DO I HAVE TO GIVE UP EQUITY?',
-    detail:
-      'It depends on the engagement model. The Discovery Sprint is a fixed fee with no equity. The Partnership model is custom designed and would range from equity, retainer, revenue share or hybrid. The Fractional model is a retainer with no equity. We structure every deal to ensure incentives are real, not symbolic.',
-  },
-  {
-    id: '08',
-    title: 'HOW LONG BEFORE WE SEE RESULTS?',
-    detail:
-      'Most ventures see a clear diagnosis roadmap within 30 days. Measurable impact typically shows within 90 days of operator embedding.',
-  },
-  {
-    id: '09',
-    title: 'WHO ARE THE OPERATORS AT MAXINOR?',
-    detail:
-      'Former founders and executives (with min 15+ years experience) who have built and scaled real businesses. Our team has operated at Paytm, Google, Zee, ITC, Accenture, World Bank, HealthKart, EcomXpress and more. Every operator has a functional track record in the area they lead.',
-  },
-  {
-    id: '10',
-    title: 'CAN MAXINOR HELP WITH FUNDRAISING?',
-    detail:
-      'Yes, but not as a placement agent. We prepare you for fundraising by fixing the metrics, the narrative, and the data room that investors actually scrutinise. Founders who raise through us raise because they are genuinely ready, not because they have been coached to pitch.',
-  },
 ];
 
 export default function WhyMaxinor() {

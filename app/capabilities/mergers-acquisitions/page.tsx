@@ -2,8 +2,9 @@
 
 import { motion, AnimatePresence } from 'motion/react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState } from 'react';
-import { ArrowRight, TrendingUp, Layers, LineChart, Plus, Minus } from 'lucide-react';
+import { ArrowRight, Scale, Search, GitMerge, Plus, Minus } from 'lucide-react';
 
 const primaryBtn =
   'inline-flex items-center justify-center rounded-full bg-brand px-8 py-4 text-base font-semibold tracking-wide text-warm-white transition-all duration-300 hover:-translate-y-1 hover:bg-brand/90 shadow-[0_0_40px_rgba(243,111,33,0.15)] hover:shadow-[0_0_60px_rgba(243,111,33,0.3)] sm:px-10 sm:py-5';
@@ -13,59 +14,59 @@ const ghostBtn =
 
 const painPoints = [
   {
-    icon: TrendingUp,
+    icon: Scale,
     number: '01',
-    title: 'The System That Does Not Scale',
-    body: 'Every revenue motion starts with the founder closing every deal. This works until it becomes the ceiling. Adding headcount alone rarely fixes it without a pipeline system and playbook underneath.',
+    title: 'Valuation Detached From Reality',
+    body: 'Most first-time sellers anchor on a number they read somewhere, not a valuation grounded in comparable transactions and defensible financial projections. That gap kills deals in the negotiation room.',
   },
   {
-    icon: Layers,
+    icon: Search,
     number: '02',
-    title: 'Channel Confusion at Scale',
-    body: 'Founders are bombarded with channel options and try several at once for mediocre results across all of them. The businesses that grow fast pick one or two and go deep with operator precision.',
+    title: 'Due Diligence Surprises',
+    body: 'Deals fall apart in diligence when founders have not done the internal audit first -- undisclosed liabilities, weak contracts, or cap table issues that surface at the worst possible moment.',
   },
   {
-    icon: LineChart,
+    icon: GitMerge,
     number: '03',
-    title: 'Revenue Ops Built Too Late',
-    body: "A pipeline run on spreadsheets works at ₹5 Cr. At ₹30 Cr it's a liability -- forecasting breaks, visibility disappears. The infrastructure needs building before scale arrives, not after.",
+    title: 'Integration Treated as an Afterthought',
+    body: 'The deal closing is the easy part. Most M&A value is lost in the first 100 days of integration when nobody owned the plan for combining teams, systems, and customers.',
   },
 ];
 
 const architecture = [
   {
-    tier: 'Pipeline & GTM Layer',
-    description: 'The strategy and systems that drive pipeline',
+    tier: 'Deal Origination Layer',
+    description: 'Finding and evaluating the right counterparties',
     accent: 'border-teal-500',
     labelColor: 'text-teal-600',
     groups: [
       {
-        label: 'Strategy',
-        items: ['GTM Strategy', 'Pipeline Design', 'Sales Playbook', 'Pricing Architecture', 'Channel Buildout', 'Competitive Positioning'],
+        label: 'Origination',
+        items: ['Buy-Side Target Identification', 'Sell-Side Positioning', 'Strategic Fit Assessment', 'Initial Valuation'],
       },
     ],
   },
   {
-    tier: 'Sales & Partnerships Layer',
-    description: 'How you close deals and build strategic relationships',
+    tier: 'Transaction Layer',
+    description: 'Structuring and negotiating the deal',
     accent: 'border-brand',
     labelColor: 'text-brand',
     groups: [
       {
-        label: 'Sales & BD',
-        items: ['Sales Motion Design', 'Objection Handling', 'Channel Partnerships', 'Strategic Alliances', 'Partner Enablement'],
+        label: 'Transaction',
+        items: ['Valuation and Deal Structuring', 'Term Sheet Negotiation', 'Due Diligence Coordination', 'Definitive Agreement Support'],
       },
     ],
   },
   {
-    tier: 'Revenue Operations Layer',
-    description: 'The infrastructure that makes revenue compound',
+    tier: 'Integration Layer',
+    description: 'Making the combined entity actually work',
     accent: 'border-indigo-400',
     labelColor: 'text-indigo-500',
     groups: [
       {
-        label: 'Ops',
-        items: ['CRM and Pipeline Governance', 'Forecasting', 'Qualification Frameworks', 'Retention and Expansion', 'Growth Analytics'],
+        label: 'Integration',
+        items: ['Post-Merger Integration Planning', 'Team and Culture Integration', 'Systems Consolidation', 'Synergy Realisation Tracking'],
       },
     ],
   },
@@ -74,44 +75,53 @@ const architecture = [
 const engagements = [
   {
     number: '01',
-    title: 'GTM Strategy and Channel Selection',
-    body: 'We diagnose your pipeline, identify the highest-leverage channels for your ICP, and build a sequenced GTM plan with milestones and owner accountability.',
+    title: 'Buy-Side Advisory',
+    body: 'Target identification, strategic fit assessment, and valuation support for founders and corporates looking to acquire.',
   },
   {
     number: '02',
-    title: 'Sales Playbook and Pipeline Design',
-    body: 'A fully built sales motion -- qualification, objection handling, outreach sequences, and pipeline governance your team can run without the founder.',
+    title: 'Sell-Side Advisory',
+    body: 'Positioning your business for the strongest possible outcome -- valuation defence, buyer identification, and negotiation support through to close.',
   },
   {
     number: '03',
-    title: 'Partnerships and Business Development',
-    body: 'Strategic alliance and channel partnership strategy -- identifying, structuring, and enabling partnerships that create a second growth engine alongside direct sales.',
+    title: 'Due Diligence Coordination',
+    body: 'Managing the diligence process end to end -- financial, legal, and operational -- so nothing surfaces late that could have been caught early.',
   },
   {
     number: '04',
-    title: 'Revenue Operations and Analytics',
-    body: 'Pipeline governance, forecasting, churn analysis, pricing architecture, and the reporting infrastructure that keeps growth accountable.',
+    title: 'Post-Merger Integration',
+    body: 'A structured 100-day integration plan covering team, systems, and customers -- because the deal closing is the start of the value creation, not the end.',
   },
 ];
 
 const faqs = [
   {
-    q: 'What does GTM actually mean at Maxinor?',
-    a: 'Not a strategy document. An operator joins your team and builds the pipeline and playbook with you. By the end, the system runs without the operator.',
+    q: 'Do you work on both sides of a transaction?',
+    a: 'Yes -- buy-side and sell-side, though never on the same deal at the same time. We structure engagements to avoid any conflict of interest.',
   },
   {
-    q: 'We already have a sales team. Can Maxinor still help?',
-    a: "Yes. A sales team without a repeatable process is expensive. We diagnose why the team isn't performing and fix the system, not the people.",
+    q: 'What size of transactions do you support?',
+    a: 'Primarily early to growth-stage transactions where founders need operator-level M&A support without the overhead of a bulge-bracket advisory retainer.',
   },
   {
-    q: 'How long before we see pipeline results?',
-    a: 'Most engagements show measurable improvement within 30-60 days. The full revenue operations system takes 90-120 days to fully operationalise.',
+    q: 'How does this connect to the Legal capability?',
+    a: 'M&A handles the deal strategy, valuation, and negotiation. Legal handles the definitive agreements, term sheet review, and contract execution. Every M&A engagement draws on both.',
   },
   {
-    q: 'What about offline and physical retail?',
-    a: 'Yes. Our operators have built offline distributor networks and omnichannel operations for consumer brands. Online and offline are one revenue system, not two.',
+    q: 'Can you help with post-merger integration if you did not run the deal?',
+    a: "Yes. Integration planning is often the most underinvested part of M&A, and we take on standalone integration engagements even when we weren't the deal advisor.",
   },
 ];
+
+const operator = {
+  name: 'Manik Sood',
+  role: 'Partner, M&A',
+  bg: 'ex-Paytm, ex-Zee Entertainment, ex-Healthkart. Founder, Law Grammar.',
+  depth: "Corporate lawyer with deep experience inside some of India's most complex high-growth businesses -- navigating commercial, regulatory, and transactional legal complexity at scale, including M&A structuring, term sheet negotiation, and post-merger legal integration.",
+  slug: 'manik-sood',
+  image: 'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/6a142ce51a9da04ec8dc7a9a_manik.avif',
+};
 
 function ArchitectureExplorer() {
   const [active, setActive] = useState(0);
@@ -120,16 +130,13 @@ function ArchitectureExplorer() {
 
   return (
     <div className="mt-12 overflow-hidden rounded-[2rem] border border-grey/15 bg-white shadow-sm">
-      {/* Mobile: horizontal tab strip */}
       <div className="flex overflow-x-auto border-b border-grey/10 md:hidden">
         {architecture.map((t, i) => (
           <button
             key={t.tier}
             onClick={() => setActive(i)}
             className={`shrink-0 px-5 py-3.5 text-xs font-semibold transition-colors ${
-              active === i
-                ? 'border-b-2 border-brand text-brand'
-                : 'text-grey/50 hover:text-navy'
+              active === i ? 'border-b-2 border-brand text-brand' : 'text-grey/50 hover:text-navy'
             }`}
           >
             {t.tier.replace(' Layer', '')}
@@ -137,21 +144,18 @@ function ArchitectureExplorer() {
         ))}
       </div>
 
-      <div className="flex min-h-[400px]">
-        {/* Desktop: left sidebar */}
+      <div className="flex min-h-[380px]">
         <div className="hidden w-64 shrink-0 flex-col border-r border-grey/10 bg-warm-white/50 md:flex">
           {architecture.map((t, i) => (
             <button
               key={t.tier}
               onClick={() => setActive(i)}
               className={`group relative flex flex-col gap-1 px-6 py-5 text-left transition-all duration-200 ${
-                active === i
-                  ? 'bg-white'
-                  : 'hover:bg-white/60'
+                active === i ? 'bg-white' : 'hover:bg-white/60'
               }`}
             >
               {active === i && (
-                <span className={`absolute left-0 top-0 h-full w-0.5 ${t.accent.replace('border-', 'bg-')}`} />
+                <span className={`absolute left-0 top-0 h-full w-0.5 ${tier.accent.replace('border-', 'bg-')}`} />
               )}
               <span className={`text-[10px] font-bold uppercase tracking-[0.18em] transition-colors ${
                 active === i ? t.labelColor : 'text-grey/40 group-hover:text-grey/60'
@@ -170,7 +174,6 @@ function ArchitectureExplorer() {
           ))}
         </div>
 
-        {/* Right: detail panel */}
         <div className="relative flex-1 overflow-hidden">
           <AnimatePresence mode="wait">
             <motion.div
@@ -181,7 +184,6 @@ function ArchitectureExplorer() {
               transition={{ duration: 0.25, ease: 'easeOut' }}
               className="h-full p-8 md:p-10"
             >
-              {/* Panel header */}
               <div className="mb-8 flex flex-wrap items-start justify-between gap-4">
                 <div>
                   <span className={`mb-2 block text-[10px] font-bold uppercase tracking-[0.2em] ${tier.labelColor}`}>
@@ -194,7 +196,6 @@ function ArchitectureExplorer() {
                 </span>
               </div>
 
-              {/* Capability groups */}
               <div className="space-y-7">
                 {tier.groups.map((group, gi) => (
                   <motion.div
@@ -253,9 +254,7 @@ function FAQAccordion() {
                 transition={{ duration: 0.25, ease: 'easeOut' }}
                 className="overflow-hidden"
               >
-                <p className="px-8 pb-6 text-sm font-light leading-relaxed text-grey">
-                  {faq.a}
-                </p>
+                <p className="px-8 pb-6 text-sm font-light leading-relaxed text-grey">{faq.a}</p>
               </motion.div>
             )}
           </AnimatePresence>
@@ -265,7 +264,7 @@ function FAQAccordion() {
   );
 }
 
-export default function GrowthRevenuePage() {
+export default function MergersAcquisitionsPage() {
   return (
     <div className="font-sans">
 
@@ -289,7 +288,7 @@ export default function GrowthRevenuePage() {
             transition={{ duration: 0.6 }}
             className="mb-4 text-[11px] font-bold uppercase tracking-[0.22em] text-brand"
           >
-            Capability · Growth (GTM, Sales & Partnerships)
+            Capability · M&A
           </motion.p>
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
@@ -297,8 +296,8 @@ export default function GrowthRevenuePage() {
             transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             className="mb-6 max-w-4xl text-4xl font-display font-medium tracking-tight text-warm-white md:text-6xl lg:text-7xl"
           >
-            Most revenue problems are not channel problems.{' '}
-            <span className="text-brand">They are system problems.</span>
+            The deal closing is the easy part.{' '}
+            <span className="text-brand">Integration is where value is won or lost.</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -306,7 +305,7 @@ export default function GrowthRevenuePage() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="mb-10 max-w-2xl text-base font-light leading-relaxed text-warm-white/60 md:text-lg"
           >
-            The pipeline works until it doesn&apos;t. The question is always why. Maxinor Growth operators embed inside your team and build the GTM strategy, sales motion, and partnerships that scale without the founder in every room.
+            Most founders go through an M&A process once or twice in their careers. Maxinor M&A operators have sat on both sides of the table -- bringing the valuation discipline, negotiation experience, and integration planning that most first-time sellers and buyers do not have in-house.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -334,9 +333,9 @@ export default function GrowthRevenuePage() {
             transition={{ duration: 0.6 }}
             className="mb-14 md:mb-16"
           >
-            <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">Where GTM Breaks</p>
+            <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">Where Deals Break Down</p>
             <h2 className="max-w-2xl text-3xl font-display font-medium tracking-tight text-navy md:text-4xl">
-              Three patterns that stall revenue growth.
+              Three patterns that kill transactions or waste the value in them.
             </h2>
           </motion.div>
           <div className="grid gap-6 md:grid-cols-3">
@@ -374,7 +373,7 @@ export default function GrowthRevenuePage() {
           >
             <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">Capability Stack</p>
             <h2 className="mb-3 max-w-2xl text-3xl font-display font-medium tracking-tight text-navy md:text-4xl">
-              The full growth and revenue capability stack.
+              The full M&A capability stack.
             </h2>
             <p className="max-w-xl text-base font-light leading-relaxed text-grey">
               Three layers. Every capability mapped. Select a layer to explore what sits inside it.
@@ -401,34 +400,34 @@ export default function GrowthRevenuePage() {
             transition={{ duration: 0.6 }}
             className="mb-14 md:mb-16"
           >
-            <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">What We Build Together</p>
+            <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">How We Engage</p>
             <h2 className="max-w-2xl text-3xl font-display font-medium tracking-tight text-navy md:text-4xl">
               Four engagement types. All operator-led.
             </h2>
           </motion.div>
-          <div className="grid gap-6 md:grid-cols-2">
-            {engagements.map((eng, i) => (
+          <div className="grid gap-5 sm:grid-cols-2">
+            {engagements.map((e, i) => (
               <motion.div
-                key={eng.number}
-                initial={{ opacity: 0, y: 24 }}
+                key={e.number}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: i * 0.1 }}
-                className="relative rounded-[2rem] border border-grey/15 bg-white p-8"
+                transition={{ duration: 0.5, delay: i * 0.07 }}
+                className="relative rounded-[1.5rem] border border-grey/15 bg-white p-7"
               >
                 <span className="pointer-events-none absolute right-6 top-4 select-none text-7xl font-display font-bold leading-none text-brand/5">
-                  {eng.number}
+                  {e.number}
                 </span>
-                <p className="mb-1 text-[10px] font-bold uppercase tracking-[0.18em] text-brand/60">{eng.number}</p>
-                <h3 className="mb-3 text-lg font-display font-semibold text-navy">{eng.title}</h3>
-                <p className="text-sm font-light leading-relaxed text-grey">{eng.body}</p>
+                <div className="mb-3 h-0.5 w-8 bg-brand" />
+                <h3 className="mb-2 text-base font-display font-semibold text-navy">{e.title}</h3>
+                <p className="text-sm font-light leading-relaxed text-grey">{e.body}</p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Operators */}
+      {/* Operator */}
       <section className="bg-navy px-6 py-20 md:py-28 border-t border-grey/10">
         <div className="max-w-7xl mx-auto">
           <motion.div
@@ -440,7 +439,7 @@ export default function GrowthRevenuePage() {
           >
             <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">The Team Behind This</p>
             <h2 className="max-w-2xl text-3xl font-display font-medium tracking-tight text-warm-white md:text-4xl">
-              Operators who have owned the revenue number, not just advised on it.
+              An operator who has structured deals from both sides of the table.
             </h2>
           </motion.div>
           <motion.div
@@ -450,10 +449,28 @@ export default function GrowthRevenuePage() {
             transition={{ duration: 0.6 }}
             className="max-w-3xl rounded-[2rem] border border-white/10 bg-white/5 p-8 backdrop-blur-sm"
           >
-            <p className="mb-4 text-base font-semibold text-warm-white">Maxinor Team</p>
-            <p className="text-sm font-light leading-relaxed text-warm-white/60">
-              Our Growth engagements are delivered by a team of operators with P&L backgrounds across GTM, sales, partnerships, and revenue operations. Each engagement is staffed based on the specific growth challenge -- strategy, sales, partnerships, or revenue ops -- so the right operator is in the room, not the nearest available one.
-            </p>
+            <div className="mb-6 flex items-center gap-4">
+              <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-full border-2 border-brand/40">
+                <Image
+                  src={operator.image}
+                  alt={operator.name}
+                  fill
+                  className="object-cover"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+              <div>
+                <Link
+                  href={`/team/${operator.slug}`}
+                  className="text-base font-semibold text-warm-white transition-colors hover:text-brand"
+                >
+                  {operator.name}
+                </Link>
+                <p className="text-xs font-medium text-brand/80">{operator.role}</p>
+                <p className="text-xs text-warm-white/40">{operator.bg}</p>
+              </div>
+            </div>
+            <p className="text-sm font-light leading-relaxed text-warm-white/60">{operator.depth}</p>
           </motion.div>
         </div>
       </section>
@@ -504,10 +521,10 @@ export default function GrowthRevenuePage() {
           >
             <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">Work With Us</p>
             <h2 className="mb-5 text-3xl font-display font-medium tracking-tight text-warm-white md:text-5xl">
-              Ready to build the revenue system?
+              Ready to navigate a transaction the right way?
             </h2>
             <p className="mb-8 max-w-xl mx-auto text-base font-light leading-relaxed text-warm-white/60 md:text-lg">
-              Whether you&apos;re breaking through a growth ceiling, picking the right channels, or building revenue operations your business has outgrown -- start here.
+              Whether you&apos;re evaluating an acquisition, preparing to sell, or planning integration after a deal has closed -- start here.
             </p>
             <p className="mb-8 max-w-xl mx-auto text-sm font-light leading-relaxed text-warm-white/50">
               Every engagement ends with the system running without us. We build it, we embed until it works, and we hand it over to your team -- fully documented, fully owned by you.

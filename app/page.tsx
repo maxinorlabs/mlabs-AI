@@ -173,7 +173,8 @@ export default function Home() {
           </div>
         </section>
 
-        {/* The Ventures We Work With */}
+        {/* The Ventures We Work With — hidden, set to true to re-enable */}
+        {false && (
         <section className="overflow-hidden border-y border-grey/10 bg-white px-6 py-20 md:py-24">
           <div className="max-w-7xl mx-auto text-center mb-12 md:mb-16">
             <h2 className={`${sectionTitle} mb-4`}>
@@ -224,6 +225,7 @@ export default function Home() {
             <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-white to-transparent pointer-events-none md:w-32" />
           </div>
         </section>
+        )}
 
         {/* T-Shape Advantage */}
         <TShapeWidget variant="home" fullBleed />
@@ -341,7 +343,8 @@ export default function Home() {
         </section>
         )}
 
-        {/* Sectors We Work In */}
+        {/* Sectors We Work In — hidden, set to true to re-enable */}
+        {false && (
         <section className={`${sectionPadding} bg-white border-y border-grey/10`}>
           <div className="max-w-7xl mx-auto">
             <div className={sectionIntro}>
@@ -385,8 +388,10 @@ export default function Home() {
             </div>
           </div>
         </section>
+        )}
 
-        <WhyMaxinor />
+        {/* Why Maxinor — hidden, set to true to re-enable */}
+        {false && <WhyMaxinor />}
 
         {/* Our Partners */}
         <section className="border-y border-grey/30 bg-warm-white px-6 py-20 md:py-24">
@@ -403,6 +408,7 @@ export default function Home() {
               {[
                 { name: "Hygriv", image: "https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/695e8f57198b4be76b7685ef_Logo%20with%20Capital.png", url: "https://www.hygriv.com/" },
                 { name: "Saptharushi", image: "https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/69b3cd584c566a57e84d3aae_saptharushi7_logo.jpg", url: "https://saptharushi.com/" },
+                { name: "iAccel GBI", image: "https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/6a4e70f6eb738b4cf11a6c00_logo-removebg.avif", url: "https://iaccelgbi.com/" },
               ].map((partner, idx) => (
                 <Link 
                   key={idx} 

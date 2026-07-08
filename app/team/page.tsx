@@ -157,6 +157,11 @@ const partners = [
     image: 'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/69b3cd584c566a57e84d3aae_saptharushi7_logo.jpg',
     url: 'https://saptharushi.com/',
   },
+  {
+    name: 'iAccel GBI',
+    image: 'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/6a4e70f6eb738b4cf11a6c00_logo-removebg.avif',
+    url: 'https://iaccelgbi.com/',
+  },
 ];
 
 function TeamGridSection({ title, members }: { title: string; members: TeamMember[] }) {

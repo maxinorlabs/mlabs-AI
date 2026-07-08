@@ -60,6 +60,9 @@ export function Footer() {
             <Link href="/team" className="hover:text-brand transition-colors">
               Team
             </Link>
+            <Link href="/faq" className="hover:text-brand transition-colors">
+              FAQ
+            </Link>
             <Link href="/privacy" className="hover:text-brand transition-colors">
               Privacy
             </Link>

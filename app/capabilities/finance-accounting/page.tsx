@@ -3,7 +3,7 @@
 import { motion, AnimatePresence } from 'motion/react';
 import Link from 'next/link';
 import { useState } from 'react';
-import { ArrowRight, TrendingUp, Layers, LineChart, Plus, Minus } from 'lucide-react';
+import { ArrowRight, Calculator, FileSpreadsheet, ShieldCheck, Plus, Minus } from 'lucide-react';
 
 const primaryBtn =
   'inline-flex items-center justify-center rounded-full bg-brand px-8 py-4 text-base font-semibold tracking-wide text-warm-white transition-all duration-300 hover:-translate-y-1 hover:bg-brand/90 shadow-[0_0_40px_rgba(243,111,33,0.15)] hover:shadow-[0_0_60px_rgba(243,111,33,0.3)] sm:px-10 sm:py-5';
@@ -13,59 +13,59 @@ const ghostBtn =
 
 const painPoints = [
   {
-    icon: TrendingUp,
+    icon: FileSpreadsheet,
     number: '01',
-    title: 'The System That Does Not Scale',
-    body: 'Every revenue motion starts with the founder closing every deal. This works until it becomes the ceiling. Adding headcount alone rarely fixes it without a pipeline system and playbook underneath.',
+    title: 'Books That Cannot Survive Diligence',
+    body: 'Most early-stage finance runs on a spreadsheet and a part-time bookkeeper. It works until a term sheet shows up and diligence exposes reconciliation gaps, inconsistent categorisation, and numbers that do not tie out.',
   },
   {
-    icon: Layers,
+    icon: Calculator,
     number: '02',
-    title: 'Channel Confusion at Scale',
-    body: 'Founders are bombarded with channel options and try several at once for mediocre results across all of them. The businesses that grow fast pick one or two and go deep with operator precision.',
+    title: 'No Real-Time Visibility Into the Business',
+    body: 'Founders find out they are burning too fast at the board meeting, not the week it happened. Without a real MIS, cash flow planning becomes reactive, and reactive cash management is how good businesses run out of runway.',
   },
   {
-    icon: LineChart,
+    icon: ShieldCheck,
     number: '03',
-    title: 'Revenue Ops Built Too Late',
-    body: "A pipeline run on spreadsheets works at ₹5 Cr. At ₹30 Cr it's a liability -- forecasting breaks, visibility disappears. The infrastructure needs building before scale arrives, not after.",
+    title: 'Compliance Treated as an Afterthought',
+    body: 'GST filings, TDS, ROC compliance, and statutory audit requirements pile up quietly until a penalty or a blocked fundraise forces founders to deal with them all at once, under pressure, at the worst possible time.',
   },
 ];
 
 const architecture = [
   {
-    tier: 'Pipeline & GTM Layer',
-    description: 'The strategy and systems that drive pipeline',
+    tier: 'Financial Infrastructure Layer',
+    description: 'The systems that produce reliable numbers',
     accent: 'border-teal-500',
     labelColor: 'text-teal-600',
     groups: [
       {
-        label: 'Strategy',
-        items: ['GTM Strategy', 'Pipeline Design', 'Sales Playbook', 'Pricing Architecture', 'Channel Buildout', 'Competitive Positioning'],
+        label: 'Infrastructure',
+        items: ['Accounting Systems', 'Bookkeeping Processes', 'Chart of Accounts Design', 'Reconciliation Cadence', 'ERP Integration'],
       },
     ],
   },
   {
-    tier: 'Sales & Partnerships Layer',
-    description: 'How you close deals and build strategic relationships',
+    tier: 'Reporting & Planning Layer',
+    description: 'How the business sees itself',
     accent: 'border-brand',
     labelColor: 'text-brand',
     groups: [
       {
-        label: 'Sales & BD',
-        items: ['Sales Motion Design', 'Objection Handling', 'Channel Partnerships', 'Strategic Alliances', 'Partner Enablement'],
+        label: 'Reporting',
+        items: ['MIS and Board Reporting', 'Financial Modelling', 'Cash Flow Planning', 'Budgeting and Forecasting', 'Unit Economics Tracking'],
       },
     ],
   },
   {
-    tier: 'Revenue Operations Layer',
-    description: 'The infrastructure that makes revenue compound',
+    tier: 'Compliance & Fundraising Layer',
+    description: 'Staying audit-ready and investor-ready',
     accent: 'border-indigo-400',
     labelColor: 'text-indigo-500',
     groups: [
       {
-        label: 'Ops',
-        items: ['CRM and Pipeline Governance', 'Forecasting', 'Qualification Frameworks', 'Retention and Expansion', 'Growth Analytics'],
+        label: 'Compliance',
+        items: ['Statutory Compliance', 'Audit Readiness', 'Fundraising Data Room', 'Investor Reporting', 'Working Capital Management'],
       },
     ],
   },
@@ -74,42 +74,42 @@ const architecture = [
 const engagements = [
   {
     number: '01',
-    title: 'GTM Strategy and Channel Selection',
-    body: 'We diagnose your pipeline, identify the highest-leverage channels for your ICP, and build a sequenced GTM plan with milestones and owner accountability.',
+    title: 'Financial Systems and Bookkeeping Build',
+    body: 'We design the chart of accounts, set up the accounting system, and build the reconciliation cadence that makes your books diligence-ready from day one.',
   },
   {
     number: '02',
-    title: 'Sales Playbook and Pipeline Design',
-    body: 'A fully built sales motion -- qualification, objection handling, outreach sequences, and pipeline governance your team can run without the founder.',
+    title: 'MIS and Financial Modelling',
+    body: 'A real-time financial reporting system and a modelling framework that tells you where the business stands before the board meeting, not during it.',
   },
   {
     number: '03',
-    title: 'Partnerships and Business Development',
-    body: 'Strategic alliance and channel partnership strategy -- identifying, structuring, and enabling partnerships that create a second growth engine alongside direct sales.',
+    title: 'Fundraising Finance Support',
+    body: 'Data room preparation, financial narrative, and investor reporting that holds up to scrutiny -- built by operators who have closed rounds, not just filed taxes.',
   },
   {
     number: '04',
-    title: 'Revenue Operations and Analytics',
-    body: 'Pipeline governance, forecasting, churn analysis, pricing architecture, and the reporting infrastructure that keeps growth accountable.',
+    title: 'Compliance and Audit Readiness',
+    body: 'Statutory compliance calendars, audit preparation, and the governance discipline that keeps compliance from becoming a fire drill.',
   },
 ];
 
 const faqs = [
   {
-    q: 'What does GTM actually mean at Maxinor?',
-    a: 'Not a strategy document. An operator joins your team and builds the pipeline and playbook with you. By the end, the system runs without the operator.',
+    q: 'We already have a CA. Why do we need this?',
+    a: 'A CA files your returns. This capability builds the financial infrastructure and reporting system your business runs on -- the two are complementary, not competing.',
   },
   {
-    q: 'We already have a sales team. Can Maxinor still help?',
-    a: "Yes. A sales team without a repeatable process is expensive. We diagnose why the team isn't performing and fix the system, not the people.",
+    q: 'Can you help us get diligence-ready before a fundraise?',
+    a: 'Yes. Most engagements start with a financial diligence audit -- identifying gaps in your books, reporting, and compliance before an investor finds them for you.',
   },
   {
-    q: 'How long before we see pipeline results?',
-    a: 'Most engagements show measurable improvement within 30-60 days. The full revenue operations system takes 90-120 days to fully operationalise.',
+    q: 'Do you handle statutory filings directly?',
+    a: 'We build and manage the compliance calendar and work alongside your CA or a vetted partner for the actual filings, keeping accountability with Maxinor.',
   },
   {
-    q: 'What about offline and physical retail?',
-    a: 'Yes. Our operators have built offline distributor networks and omnichannel operations for consumer brands. Online and offline are one revenue system, not two.',
+    q: 'How does this connect to the Legal capability?',
+    a: 'Finance & Accounting handles the numbers -- modelling, reporting, compliance. Legal handles the contracts and structuring. Fundraising engagements typically draw on both.',
   },
 ];
 
@@ -120,16 +120,13 @@ function ArchitectureExplorer() {
 
   return (
     <div className="mt-12 overflow-hidden rounded-[2rem] border border-grey/15 bg-white shadow-sm">
-      {/* Mobile: horizontal tab strip */}
       <div className="flex overflow-x-auto border-b border-grey/10 md:hidden">
         {architecture.map((t, i) => (
           <button
             key={t.tier}
             onClick={() => setActive(i)}
             className={`shrink-0 px-5 py-3.5 text-xs font-semibold transition-colors ${
-              active === i
-                ? 'border-b-2 border-brand text-brand'
-                : 'text-grey/50 hover:text-navy'
+              active === i ? 'border-b-2 border-brand text-brand' : 'text-grey/50 hover:text-navy'
             }`}
           >
             {t.tier.replace(' Layer', '')}
@@ -137,21 +134,18 @@ function ArchitectureExplorer() {
         ))}
       </div>
 
-      <div className="flex min-h-[400px]">
-        {/* Desktop: left sidebar */}
+      <div className="flex min-h-[380px]">
         <div className="hidden w-64 shrink-0 flex-col border-r border-grey/10 bg-warm-white/50 md:flex">
           {architecture.map((t, i) => (
             <button
               key={t.tier}
               onClick={() => setActive(i)}
               className={`group relative flex flex-col gap-1 px-6 py-5 text-left transition-all duration-200 ${
-                active === i
-                  ? 'bg-white'
-                  : 'hover:bg-white/60'
+                active === i ? 'bg-white' : 'hover:bg-white/60'
               }`}
             >
               {active === i && (
-                <span className={`absolute left-0 top-0 h-full w-0.5 ${t.accent.replace('border-', 'bg-')}`} />
+                <span className={`absolute left-0 top-0 h-full w-0.5 ${tier.accent.replace('border-', 'bg-')}`} />
               )}
               <span className={`text-[10px] font-bold uppercase tracking-[0.18em] transition-colors ${
                 active === i ? t.labelColor : 'text-grey/40 group-hover:text-grey/60'
@@ -170,7 +164,6 @@ function ArchitectureExplorer() {
           ))}
         </div>
 
-        {/* Right: detail panel */}
         <div className="relative flex-1 overflow-hidden">
           <AnimatePresence mode="wait">
             <motion.div
@@ -181,7 +174,6 @@ function ArchitectureExplorer() {
               transition={{ duration: 0.25, ease: 'easeOut' }}
               className="h-full p-8 md:p-10"
             >
-              {/* Panel header */}
               <div className="mb-8 flex flex-wrap items-start justify-between gap-4">
                 <div>
                   <span className={`mb-2 block text-[10px] font-bold uppercase tracking-[0.2em] ${tier.labelColor}`}>
@@ -194,7 +186,6 @@ function ArchitectureExplorer() {
                 </span>
               </div>
 
-              {/* Capability groups */}
               <div className="space-y-7">
                 {tier.groups.map((group, gi) => (
                   <motion.div
@@ -253,9 +244,7 @@ function FAQAccordion() {
                 transition={{ duration: 0.25, ease: 'easeOut' }}
                 className="overflow-hidden"
               >
-                <p className="px-8 pb-6 text-sm font-light leading-relaxed text-grey">
-                  {faq.a}
-                </p>
+                <p className="px-8 pb-6 text-sm font-light leading-relaxed text-grey">{faq.a}</p>
               </motion.div>
             )}
           </AnimatePresence>
@@ -265,7 +254,7 @@ function FAQAccordion() {
   );
 }
 
-export default function GrowthRevenuePage() {
+export default function FinanceAccountingPage() {
   return (
     <div className="font-sans">
 
@@ -289,7 +278,7 @@ export default function GrowthRevenuePage() {
             transition={{ duration: 0.6 }}
             className="mb-4 text-[11px] font-bold uppercase tracking-[0.22em] text-brand"
           >
-            Capability · Growth (GTM, Sales & Partnerships)
+            Capability · Finance & Accounting
           </motion.p>
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
@@ -297,8 +286,8 @@ export default function GrowthRevenuePage() {
             transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             className="mb-6 max-w-4xl text-4xl font-display font-medium tracking-tight text-warm-white md:text-6xl lg:text-7xl"
           >
-            Most revenue problems are not channel problems.{' '}
-            <span className="text-brand">They are system problems.</span>
+            Bad books do not show up{' '}
+            <span className="text-brand">until the term sheet does.</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -306,7 +295,7 @@ export default function GrowthRevenuePage() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="mb-10 max-w-2xl text-base font-light leading-relaxed text-warm-white/60 md:text-lg"
           >
-            The pipeline works until it doesn&apos;t. The question is always why. Maxinor Growth operators embed inside your team and build the GTM strategy, sales motion, and partnerships that scale without the founder in every room.
+            Most founders discover their financial infrastructure is not investor-ready during diligence, when it is too late to fix cheaply. Maxinor Finance & Accounting operators build the systems, reporting, and compliance discipline before you need them.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -334,9 +323,9 @@ export default function GrowthRevenuePage() {
             transition={{ duration: 0.6 }}
             className="mb-14 md:mb-16"
           >
-            <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">Where GTM Breaks</p>
+            <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">Where Finance Breaks</p>
             <h2 className="max-w-2xl text-3xl font-display font-medium tracking-tight text-navy md:text-4xl">
-              Three patterns that stall revenue growth.
+              Three patterns that cost founders at the worst moment.
             </h2>
           </motion.div>
           <div className="grid gap-6 md:grid-cols-3">
@@ -374,7 +363,7 @@ export default function GrowthRevenuePage() {
           >
             <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">Capability Stack</p>
             <h2 className="mb-3 max-w-2xl text-3xl font-display font-medium tracking-tight text-navy md:text-4xl">
-              The full growth and revenue capability stack.
+              The full finance and accounting capability stack.
             </h2>
             <p className="max-w-xl text-base font-light leading-relaxed text-grey">
               Three layers. Every capability mapped. Select a layer to explore what sits inside it.
@@ -401,27 +390,27 @@ export default function GrowthRevenuePage() {
             transition={{ duration: 0.6 }}
             className="mb-14 md:mb-16"
           >
-            <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">What We Build Together</p>
+            <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">How We Engage</p>
             <h2 className="max-w-2xl text-3xl font-display font-medium tracking-tight text-navy md:text-4xl">
               Four engagement types. All operator-led.
             </h2>
           </motion.div>
-          <div className="grid gap-6 md:grid-cols-2">
-            {engagements.map((eng, i) => (
+          <div className="grid gap-5 sm:grid-cols-2">
+            {engagements.map((e, i) => (
               <motion.div
-                key={eng.number}
-                initial={{ opacity: 0, y: 24 }}
+                key={e.number}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: i * 0.1 }}
-                className="relative rounded-[2rem] border border-grey/15 bg-white p-8"
+                transition={{ duration: 0.5, delay: i * 0.07 }}
+                className="relative rounded-[1.5rem] border border-grey/15 bg-white p-7"
               >
                 <span className="pointer-events-none absolute right-6 top-4 select-none text-7xl font-display font-bold leading-none text-brand/5">
-                  {eng.number}
+                  {e.number}
                 </span>
-                <p className="mb-1 text-[10px] font-bold uppercase tracking-[0.18em] text-brand/60">{eng.number}</p>
-                <h3 className="mb-3 text-lg font-display font-semibold text-navy">{eng.title}</h3>
-                <p className="text-sm font-light leading-relaxed text-grey">{eng.body}</p>
+                <div className="mb-3 h-0.5 w-8 bg-brand" />
+                <h3 className="mb-2 text-base font-display font-semibold text-navy">{e.title}</h3>
+                <p className="text-sm font-light leading-relaxed text-grey">{e.body}</p>
               </motion.div>
             ))}
           </div>
@@ -440,7 +429,7 @@ export default function GrowthRevenuePage() {
           >
             <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">The Team Behind This</p>
             <h2 className="max-w-2xl text-3xl font-display font-medium tracking-tight text-warm-white md:text-4xl">
-              Operators who have owned the revenue number, not just advised on it.
+              Operators who have closed books and closed rounds, not just filed returns.
             </h2>
           </motion.div>
           <motion.div
@@ -452,7 +441,7 @@ export default function GrowthRevenuePage() {
           >
             <p className="mb-4 text-base font-semibold text-warm-white">Maxinor Team</p>
             <p className="text-sm font-light leading-relaxed text-warm-white/60">
-              Our Growth engagements are delivered by a team of operators with P&L backgrounds across GTM, sales, partnerships, and revenue operations. Each engagement is staffed based on the specific growth challenge -- strategy, sales, partnerships, or revenue ops -- so the right operator is in the room, not the nearest available one.
+              Our Finance & Accounting engagements are delivered by operators with direct experience building financial infrastructure, closing funding rounds, and managing compliance inside real businesses -- matched to the specific financial challenge, not a generalist accounting team.
             </p>
           </motion.div>
         </div>
@@ -504,10 +493,10 @@ export default function GrowthRevenuePage() {
           >
             <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">Work With Us</p>
             <h2 className="mb-5 text-3xl font-display font-medium tracking-tight text-warm-white md:text-5xl">
-              Ready to build the revenue system?
+              Ready to build finance infrastructure that holds up?
             </h2>
             <p className="mb-8 max-w-xl mx-auto text-base font-light leading-relaxed text-warm-white/60 md:text-lg">
-              Whether you&apos;re breaking through a growth ceiling, picking the right channels, or building revenue operations your business has outgrown -- start here.
+              Whether you&apos;re preparing for diligence, fixing your reporting, or building compliance discipline from scratch -- start here.
             </p>
             <p className="mb-8 max-w-xl mx-auto text-sm font-light leading-relaxed text-warm-white/50">
               Every engagement ends with the system running without us. We build it, we embed until it works, and we hand it over to your team -- fully documented, fully owned by you.

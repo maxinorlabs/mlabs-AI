@@ -13,29 +13,12 @@ const outlineBtn =
   'inline-flex items-center justify-center rounded-full border border-grey/40 bg-white/80 px-8 py-4 text-base font-semibold text-navy transition-all duration-300 hover:-translate-y-1 hover:bg-brand hover:text-warm-white sm:px-10 sm:py-5';
 
 const capabilities = [
+  // ── Build ──
   {
     number: '01',
-    category: 'Growth & Revenue',
-    title: 'Growth & Revenue',
-    path: '/capabilities/growth-revenue',
-    description:
-      'From pipeline to market leadership. GTM strategy, brand execution, and revenue operations run by operators who have owned the revenue number.',
-    deliverables: [
-      'GTM strategy, channel buildout and sales pipeline execution',
-      'Consumer brand positioning and D2C performance marketing',
-      'Sales playbook design and qualification frameworks',
-      'Revenue operations — CRM governance, forecasting, retention',
-      'Pricing architecture and unit economics',
-    ],
-    operatorBg: 'Growth & Revenue',
-    operatorLinks: [
-      { name: 'Maxinor Team', slug: null },
-    ],
-  },
-  {
-    number: '02',
+    group: 'build',
     category: 'AI & Technology',
-    title: 'AI and Tech',
+    title: 'AI & Tech',
     path: '/capabilities/ai-tech',
     description:
       'From architecture to working system. No pilots that never ship. No tech debt that kills scale.',
@@ -53,9 +36,10 @@ const capabilities = [
     ],
   },
   {
-    number: '03',
-    category: 'Product & Research',
-    title: 'Product & Research',
+    number: '02',
+    group: 'build',
+    category: 'Product',
+    title: 'Product',
     path: '/capabilities/product-research',
     description:
       'From signal to shipped product. Strategy, research, design, and product development run by an operator who has built and shipped products at scale — not just advised on them.',
@@ -72,27 +56,49 @@ const capabilities = [
     ],
   },
   {
-    number: '04',
-    category: 'People & Org Building',
-    title: 'Talent, Culture & Organisational Design',
-    path: '/capabilities/talent-culture',
+    number: '03',
+    group: 'build',
+    category: 'Brand & Marketing',
+    title: 'Brand & Marketing',
+    path: '/capabilities/brand-marketing',
     description:
-      'Scaling a company is ultimately about talent architecture and the growth and retention of people. Most founders realise this a year later than they should.',
+      'From positioning to performance. Brand identity, consumer marketing, and D2C growth run by operators who have built category-defining consumer brands.',
     deliverables: [
-      'Founding team gap analysis and role definition',
-      'Org design for next-stage scale',
-      'Hiring systems, culture design, and leadership onboarding',
-      'Performance frameworks for operator-led teams',
-      'ESOP design intent and compensation benchmarking',
-      'Interim leadership and CXO transition planning',
+      'Brand positioning and identity development',
+      'Consumer marketing strategy and content engine',
+      'D2C performance marketing and CAC optimisation',
+      'Launch execution and competitive positioning',
+      'Community and content-led growth',
     ],
-    operatorBg: 'People, Org & Culture lead',
+    operatorBg: 'Consumer Marketing lead',
     operatorLinks: [
-      { name: 'Parool Duggal', slug: 'parool-duggal' },
+      { name: 'Priyabrata Padhi', slug: 'priyabrata-padhi' },
+    ],
+  },
+  // ── Scale ──
+  {
+    number: '04',
+    group: 'scale',
+    category: 'Growth',
+    title: 'Growth (GTM, Sales & Partnerships)',
+    path: '/capabilities/growth-revenue',
+    description:
+      'From pipeline to market leadership. GTM strategy, sales execution, and partnership development run by operators who have owned the revenue number.',
+    deliverables: [
+      'GTM strategy and channel buildout',
+      'Sales playbook design and pipeline execution',
+      'Partnership and business development strategy',
+      'Revenue operations — CRM governance, forecasting, retention',
+      'Pricing architecture and unit economics',
+    ],
+    operatorBg: 'Growth & Revenue',
+    operatorLinks: [
+      { name: 'Maxinor Team', slug: null },
     ],
   },
   {
     number: '05',
+    group: 'scale',
     category: 'Operations',
     title: 'Operations',
     path: '/capabilities/operations',
@@ -112,6 +118,90 @@ const capabilities = [
   },
   {
     number: '06',
+    group: 'scale',
+    category: 'Finance & Accounting',
+    title: 'Finance & Accounting',
+    path: '/capabilities/finance-accounting',
+    description:
+      'From bookkeeping to board-ready reporting. Financial infrastructure, modelling, and compliance run by operators who have closed books and closed rounds.',
+    deliverables: [
+      'Financial modelling and MIS reporting',
+      'Accounting systems and bookkeeping infrastructure',
+      'Fundraising process and data room management',
+      'Statutory compliance and audit readiness',
+      'Cash flow planning and working capital management',
+    ],
+    operatorBg: 'Finance & Accounting',
+    operatorLinks: [
+      { name: 'Maxinor Team', slug: null },
+    ],
+  },
+  // ── Invest ──
+  {
+    number: '07',
+    group: 'invest',
+    category: 'Venture Capital',
+    title: 'Venture Capital',
+    path: '/capabilities/venture-capital',
+    description:
+      'From cheque to compounding outcome. Operator-validated capital deployment, milestone-linked structuring, and continued execution support after the term sheet.',
+    deliverables: [
+      'Operator-validated deal sourcing and diligence',
+      'Milestone-linked capital structuring',
+      'Post-investment operator support',
+      'Portfolio governance and reporting',
+      'Co-investment and syndicate access',
+    ],
+    operatorBg: 'Venture Capital',
+    operatorLinks: [
+      { name: 'Maxinor Team', slug: null },
+    ],
+  },
+  {
+    number: '08',
+    group: 'invest',
+    category: 'M&A',
+    title: 'M&A',
+    path: '/capabilities/mergers-acquisitions',
+    description:
+      'From term sheet to close. M&A advisory, valuation, and integration run by operators who have sat on both sides of the table.',
+    deliverables: [
+      'Buy-side and sell-side M&A advisory',
+      'Valuation and deal structuring',
+      'Term sheet review and negotiation',
+      'Due diligence coordination',
+      'Post-merger integration planning',
+    ],
+    operatorBg: 'M&A',
+    operatorLinks: [
+      { name: 'Manik Sood', slug: 'manik-sood' },
+    ],
+  },
+  // ── Other (not in Engines nav) ──
+  {
+    number: '09',
+    group: 'other',
+    category: 'People & Org Building',
+    title: 'Talent, Culture & Organisational Design',
+    path: '/capabilities/talent-culture',
+    description:
+      'Scaling a company is ultimately about talent architecture and the growth and retention of people. Most founders realise this a year later than they should.',
+    deliverables: [
+      'Founding team gap analysis and role definition',
+      'Org design for next-stage scale',
+      'Hiring systems, culture design, and leadership onboarding',
+      'Performance frameworks for operator-led teams',
+      'ESOP design intent and compensation benchmarking',
+      'Interim leadership and CXO transition planning',
+    ],
+    operatorBg: 'People, Org & Culture lead',
+    operatorLinks: [
+      { name: 'Parool Duggal', slug: 'parool-duggal' },
+    ],
+  },
+  {
+    number: '10',
+    group: 'other',
     category: 'Legal',
     title: 'Legal',
     path: '/capabilities/legal',
@@ -131,6 +221,24 @@ const capabilities = [
     operatorLinks: [
       { name: 'Manik Sood', slug: 'manik-sood' },
     ],
+  },
+];
+
+const capabilityGroups = [
+  {
+    id: 'build',
+    name: 'Build',
+    description: 'Capabilities that design, develop and transform products, technologies and businesses.',
+  },
+  {
+    id: 'scale',
+    name: 'Scale',
+    description: 'Capabilities that accelerate commercial growth, operational excellence and organizational performance.',
+  },
+  {
+    id: 'invest',
+    name: 'Invest',
+    description: 'Capabilities that deploy capital, expertise and strategic partnerships to create long-term value.',
   },
 ];
 
@@ -263,69 +371,147 @@ export default function CapabilitiesPage() {
         </div>
       </section>
 
-      {/* ── 6 Capability Blocks ── */}
+      {/* ── Capability Blocks — grouped by Build / Scale / Invest ── */}
       <section id="capabilities" className="bg-warm-white px-6 py-20 md:py-28 border-t border-grey/10">
         <div className="max-w-7xl mx-auto">
           <div className="mb-14 md:mb-20">
             <TShapeWidget variant="capabilities" />
           </div>
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {capabilities.map((cap, i) => (
-              <motion.div
-                key={cap.number}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: i * 0.08 }}
-                className="group relative flex flex-col rounded-[2rem] border border-grey/20 bg-white p-8 transition-all duration-500 hover:border-brand/30 hover:shadow-lg"
-              >
-                <span className="pointer-events-none absolute right-5 top-3 select-none text-7xl font-display font-bold leading-none text-brand/6">
-                  {cap.number}
-                </span>
-                <p className="mb-2 text-[11px] font-bold uppercase tracking-[0.2em] text-brand">{cap.category}</p>
-                <h3 className="mb-3 text-lg font-display font-semibold text-navy leading-snug md:text-xl">
-                  {cap.title}
-                </h3>
-                <p className="mb-5 text-sm font-light leading-relaxed text-grey">{cap.description}</p>
-                <ul className="mb-6 flex-1 space-y-2.5">
-                  {cap.deliverables.map((d) => (
-                    <li key={d} className="flex items-start gap-2.5 text-sm text-grey">
-                      <span className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-brand/10 text-brand">
-                        <Check className="h-2.5 w-2.5" />
-                      </span>
-                      {d}
-                    </li>
-                  ))}
-                </ul>
-                <div className="border-t border-grey/12 pt-4 flex items-center justify-between">
-                  <p className="text-xs text-grey/60">
-                    {cap.operatorLinks.map((op, idx) => (
-                      <span key={op.name}>
-                        {op.slug ? (
-                          <Link
-                            href={`/team/${op.slug}`}
-                            className="font-semibold text-navy transition-colors hover:text-brand"
-                          >
-                            {op.name}
-                          </Link>
-                        ) : (
-                          <span className="font-semibold text-navy">{op.name}</span>
-                        )}
-                        {idx < cap.operatorLinks.length - 2 ? ', ' : idx === cap.operatorLinks.length - 2 ? ' & ' : ''}
-                      </span>
-                    ))}
-                    {' '}· {cap.operatorBg}
-                  </p>
-                  <Link
-                    href={cap.path}
-                    className="ml-4 shrink-0 text-xs font-semibold text-brand transition-transform group-hover:translate-x-1"
+
+          {capabilityGroups.map((group, gi) => (
+            <div key={group.id} id={group.id} className={gi > 0 ? 'mt-16 md:mt-20' : ''}>
+              <div className="mb-8 md:mb-10">
+                <p className="mb-2 text-[11px] font-bold uppercase tracking-[0.2em] text-brand">{group.name}</p>
+                <p className="max-w-2xl text-sm font-light leading-relaxed text-grey md:text-base">{group.description}</p>
+              </div>
+              <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                {capabilities.filter((cap) => cap.group === group.id).map((cap, i) => (
+                  <motion.div
+                    key={cap.number}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: i * 0.08 }}
+                    className="group relative flex flex-col rounded-[2rem] border border-grey/20 bg-white p-8 transition-all duration-500 hover:border-brand/30 hover:shadow-lg"
                   >
-                    Learn more →
-                  </Link>
-                </div>
-              </motion.div>
-            ))}
+                    <span className="pointer-events-none absolute right-5 top-3 select-none text-7xl font-display font-bold leading-none text-brand/6">
+                      {cap.number}
+                    </span>
+                    <p className="mb-2 text-[11px] font-bold uppercase tracking-[0.2em] text-brand">{cap.category}</p>
+                    <h3 className="mb-3 text-lg font-display font-semibold text-navy leading-snug md:text-xl">
+                      {cap.title}
+                    </h3>
+                    <p className="mb-5 text-sm font-light leading-relaxed text-grey">{cap.description}</p>
+                    <ul className="mb-6 flex-1 space-y-2.5">
+                      {cap.deliverables.map((d) => (
+                        <li key={d} className="flex items-start gap-2.5 text-sm text-grey">
+                          <span className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-brand/10 text-brand">
+                            <Check className="h-2.5 w-2.5" />
+                          </span>
+                          {d}
+                        </li>
+                      ))}
+                    </ul>
+                    <div className="border-t border-grey/12 pt-4 flex items-center justify-between">
+                      <p className="text-xs text-grey/60">
+                        {cap.operatorLinks.map((op, idx) => (
+                          <span key={op.name}>
+                            {op.slug ? (
+                              <Link
+                                href={`/team/${op.slug}`}
+                                className="font-semibold text-navy transition-colors hover:text-brand"
+                              >
+                                {op.name}
+                              </Link>
+                            ) : (
+                              <span className="font-semibold text-navy">{op.name}</span>
+                            )}
+                            {idx < cap.operatorLinks.length - 2 ? ', ' : idx === cap.operatorLinks.length - 2 ? ' & ' : ''}
+                          </span>
+                        ))}
+                        {' '}· {cap.operatorBg}
+                      </p>
+                      <Link
+                        href={cap.path}
+                        className="ml-4 shrink-0 text-xs font-semibold text-brand transition-transform group-hover:translate-x-1"
+                      >
+                        Learn more →
+                      </Link>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          ))}
+
+          {/* Other capabilities — hidden, set to true to re-enable */}
+          {false && (
+          <div className="mt-16 md:mt-20">
+            <div className="mb-8 md:mb-10">
+              <p className="mb-2 text-[11px] font-bold uppercase tracking-[0.2em] text-brand">Other Capabilities</p>
+              <p className="max-w-2xl text-sm font-light leading-relaxed text-grey md:text-base">
+                Additional capabilities available on request.
+              </p>
+            </div>
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {capabilities.filter((cap) => cap.group === 'other').map((cap, i) => (
+                <motion.div
+                  key={cap.number}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: i * 0.08 }}
+                  className="group relative flex flex-col rounded-[2rem] border border-grey/20 bg-white p-8 transition-all duration-500 hover:border-brand/30 hover:shadow-lg"
+                >
+                  <span className="pointer-events-none absolute right-5 top-3 select-none text-7xl font-display font-bold leading-none text-brand/6">
+                    {cap.number}
+                  </span>
+                  <p className="mb-2 text-[11px] font-bold uppercase tracking-[0.2em] text-brand">{cap.category}</p>
+                  <h3 className="mb-3 text-lg font-display font-semibold text-navy leading-snug md:text-xl">
+                    {cap.title}
+                  </h3>
+                  <p className="mb-5 text-sm font-light leading-relaxed text-grey">{cap.description}</p>
+                  <ul className="mb-6 flex-1 space-y-2.5">
+                    {cap.deliverables.map((d) => (
+                      <li key={d} className="flex items-start gap-2.5 text-sm text-grey">
+                        <span className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-brand/10 text-brand">
+                          <Check className="h-2.5 w-2.5" />
+                        </span>
+                        {d}
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="border-t border-grey/12 pt-4 flex items-center justify-between">
+                    <p className="text-xs text-grey/60">
+                      {cap.operatorLinks.map((op, idx) => (
+                        <span key={op.name}>
+                          {op.slug ? (
+                            <Link
+                              href={`/team/${op.slug}`}
+                              className="font-semibold text-navy transition-colors hover:text-brand"
+                            >
+                              {op.name}
+                            </Link>
+                          ) : (
+                            <span className="font-semibold text-navy">{op.name}</span>
+                          )}
+                          {idx < cap.operatorLinks.length - 2 ? ', ' : idx === cap.operatorLinks.length - 2 ? ' & ' : ''}
+                        </span>
+                      ))}
+                      {' '}· {cap.operatorBg}
+                    </p>
+                    <Link
+                      href={cap.path}
+                      className="ml-4 shrink-0 text-xs font-semibold text-brand transition-transform group-hover:translate-x-1"
+                    >
+                      Learn more →
+                    </Link>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
           </div>
+          )}
         </div>
       </section>
 

@@ -2,8 +2,9 @@
 
 import { motion, AnimatePresence } from 'motion/react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState } from 'react';
-import { ArrowRight, TrendingUp, Layers, LineChart, Plus, Minus } from 'lucide-react';
+import { ArrowRight, Megaphone, Palette, TrendingUp, Plus, Minus } from 'lucide-react';
 
 const primaryBtn =
   'inline-flex items-center justify-center rounded-full bg-brand px-8 py-4 text-base font-semibold tracking-wide text-warm-white transition-all duration-300 hover:-translate-y-1 hover:bg-brand/90 shadow-[0_0_40px_rgba(243,111,33,0.15)] hover:shadow-[0_0_60px_rgba(243,111,33,0.3)] sm:px-10 sm:py-5';
@@ -13,59 +14,59 @@ const ghostBtn =
 
 const painPoints = [
   {
-    icon: TrendingUp,
+    icon: Palette,
     number: '01',
-    title: 'The System That Does Not Scale',
-    body: 'Every revenue motion starts with the founder closing every deal. This works until it becomes the ceiling. Adding headcount alone rarely fixes it without a pipeline system and playbook underneath.',
+    title: 'Brand Without a Point of View',
+    body: 'Most brands look like their competitors because they were built by copying the category, not by defining a position. A brand with no distinct point of view competes on price. A brand with a real position compounds.',
   },
   {
-    icon: Layers,
+    icon: Megaphone,
     number: '02',
-    title: 'Channel Confusion at Scale',
-    body: 'Founders are bombarded with channel options and try several at once for mediocre results across all of them. The businesses that grow fast pick one or two and go deep with operator precision.',
+    title: 'Performance Marketing Without a Brand Behind It',
+    body: 'Performance marketing without brand equity is a treadmill -- CAC keeps climbing because every rupee has to work alone. A brand that customers already trust converts cheaper and retains longer.',
   },
   {
-    icon: LineChart,
+    icon: TrendingUp,
     number: '03',
-    title: 'Revenue Ops Built Too Late',
-    body: "A pipeline run on spreadsheets works at ₹5 Cr. At ₹30 Cr it's a liability -- forecasting breaks, visibility disappears. The infrastructure needs building before scale arrives, not after.",
+    title: 'Content Volume Without a Content Strategy',
+    body: 'Posting more content is not a strategy. Most consumer brands are producing content nobody remembers because there is no positioning, no narrative, and no system behind what gets made.',
   },
 ];
 
 const architecture = [
   {
-    tier: 'Pipeline & GTM Layer',
-    description: 'The strategy and systems that drive pipeline',
+    tier: 'Brand Layer',
+    description: 'The identity and position the business is built on',
     accent: 'border-teal-500',
     labelColor: 'text-teal-600',
     groups: [
       {
-        label: 'Strategy',
-        items: ['GTM Strategy', 'Pipeline Design', 'Sales Playbook', 'Pricing Architecture', 'Channel Buildout', 'Competitive Positioning'],
+        label: 'Identity',
+        items: ['Brand Positioning', 'Visual Identity', 'Brand Architecture', 'Tone of Voice', 'Naming'],
       },
     ],
   },
   {
-    tier: 'Sales & Partnerships Layer',
-    description: 'How you close deals and build strategic relationships',
+    tier: 'Marketing Layer',
+    description: 'How the brand reaches and converts customers',
     accent: 'border-brand',
     labelColor: 'text-brand',
     groups: [
       {
-        label: 'Sales & BD',
-        items: ['Sales Motion Design', 'Objection Handling', 'Channel Partnerships', 'Strategic Alliances', 'Partner Enablement'],
+        label: 'Consumer Marketing',
+        items: ['D2C Performance Marketing', 'Content & Community', 'Influencer & Creator Strategy', 'Launch Strategy', 'Competitive Positioning'],
       },
     ],
   },
   {
-    tier: 'Revenue Operations Layer',
-    description: 'The infrastructure that makes revenue compound',
+    tier: 'Growth Layer',
+    description: 'How marketing compounds into repeatable growth',
     accent: 'border-indigo-400',
     labelColor: 'text-indigo-500',
     groups: [
       {
-        label: 'Ops',
-        items: ['CRM and Pipeline Governance', 'Forecasting', 'Qualification Frameworks', 'Retention and Expansion', 'Growth Analytics'],
+        label: 'Performance',
+        items: ['CAC Optimisation', 'Channel Mix Strategy', 'Creative Testing', 'Attribution & Analytics', 'Retention Marketing'],
       },
     ],
   },
@@ -74,44 +75,53 @@ const architecture = [
 const engagements = [
   {
     number: '01',
-    title: 'GTM Strategy and Channel Selection',
-    body: 'We diagnose your pipeline, identify the highest-leverage channels for your ICP, and build a sequenced GTM plan with milestones and owner accountability.',
+    title: 'Brand Positioning and Identity',
+    body: 'We define the position, build the visual identity, and set the narrative -- the foundation every marketing decision after this depends on.',
   },
   {
     number: '02',
-    title: 'Sales Playbook and Pipeline Design',
-    body: 'A fully built sales motion -- qualification, objection handling, outreach sequences, and pipeline governance your team can run without the founder.',
+    title: 'D2C Performance Marketing',
+    body: 'Full-funnel performance marketing buildout -- channel strategy, creative testing, and CAC optimisation run with operator precision, not spray-and-pray.',
   },
   {
     number: '03',
-    title: 'Partnerships and Business Development',
-    body: 'Strategic alliance and channel partnership strategy -- identifying, structuring, and enabling partnerships that create a second growth engine alongside direct sales.',
+    title: 'Content and Community Strategy',
+    body: 'An editorial system and community strategy built around the brand position -- not random content produced to fill a calendar.',
   },
   {
     number: '04',
-    title: 'Revenue Operations and Analytics',
-    body: 'Pipeline governance, forecasting, churn analysis, pricing architecture, and the reporting infrastructure that keeps growth accountable.',
+    title: 'Launch and Competitive Positioning',
+    body: 'Go-to-market and competitive positioning for new products, categories, or markets -- sequenced for maximum first-mover advantage.',
   },
 ];
 
 const faqs = [
   {
-    q: 'What does GTM actually mean at Maxinor?',
-    a: 'Not a strategy document. An operator joins your team and builds the pipeline and playbook with you. By the end, the system runs without the operator.',
+    q: 'Do you only work with consumer and D2C brands?',
+    a: 'Primarily, yes -- our operator depth is strongest in consumer, D2C, and media brand-building. We also support B2B brands on positioning and identity work.',
   },
   {
-    q: 'We already have a sales team. Can Maxinor still help?',
-    a: "Yes. A sales team without a repeatable process is expensive. We diagnose why the team isn't performing and fix the system, not the people.",
+    q: 'How is this different from hiring a branding agency?',
+    a: 'Agencies deliver a brand book and leave. Our operator stays embedded, connects the brand work to performance marketing and growth, and is accountable to business outcomes, not just deliverables.',
   },
   {
-    q: 'How long before we see pipeline results?',
-    a: 'Most engagements show measurable improvement within 30-60 days. The full revenue operations system takes 90-120 days to fully operationalise.',
+    q: 'We already have a brand. Can you still help?',
+    a: 'Yes. Most engagements start with a brand audit -- what is working, what is generic, and where the position needs sharpening -- before any new campaign work begins.',
   },
   {
-    q: 'What about offline and physical retail?',
-    a: 'Yes. Our operators have built offline distributor networks and omnichannel operations for consumer brands. Online and offline are one revenue system, not two.',
+    q: 'How does this connect to the Growth capability?',
+    a: 'Brand & Marketing builds the identity and creative engine. Growth (GTM, Sales & Partnerships) builds the pipeline and channel infrastructure. The two work together on any consumer-facing engagement.',
   },
 ];
+
+const operator = {
+  name: 'Priyabrata Padhi',
+  role: 'Partner, Brand & Marketing',
+  bg: 'ex-Heineken India, ex-ITC, ex-Britannia',
+  depth: 'Consumer goods and D2C operator with 15+ years of brand, channel, and distribution experience across FMCG and consumer companies. Priyabrata builds the brand and conversion infrastructure that turns awareness into revenue.',
+  slug: 'priyabrata-padhi',
+  image: 'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/69c11ffc5c1c2e2f2a9cadaa_Gemini_Generated_Image_m5qmrom5qmrom5qm.avif',
+};
 
 function ArchitectureExplorer() {
   const [active, setActive] = useState(0);
@@ -120,16 +130,13 @@ function ArchitectureExplorer() {
 
   return (
     <div className="mt-12 overflow-hidden rounded-[2rem] border border-grey/15 bg-white shadow-sm">
-      {/* Mobile: horizontal tab strip */}
       <div className="flex overflow-x-auto border-b border-grey/10 md:hidden">
         {architecture.map((t, i) => (
           <button
             key={t.tier}
             onClick={() => setActive(i)}
             className={`shrink-0 px-5 py-3.5 text-xs font-semibold transition-colors ${
-              active === i
-                ? 'border-b-2 border-brand text-brand'
-                : 'text-grey/50 hover:text-navy'
+              active === i ? 'border-b-2 border-brand text-brand' : 'text-grey/50 hover:text-navy'
             }`}
           >
             {t.tier.replace(' Layer', '')}
@@ -137,21 +144,18 @@ function ArchitectureExplorer() {
         ))}
       </div>
 
-      <div className="flex min-h-[400px]">
-        {/* Desktop: left sidebar */}
+      <div className="flex min-h-[380px]">
         <div className="hidden w-64 shrink-0 flex-col border-r border-grey/10 bg-warm-white/50 md:flex">
           {architecture.map((t, i) => (
             <button
               key={t.tier}
               onClick={() => setActive(i)}
               className={`group relative flex flex-col gap-1 px-6 py-5 text-left transition-all duration-200 ${
-                active === i
-                  ? 'bg-white'
-                  : 'hover:bg-white/60'
+                active === i ? 'bg-white' : 'hover:bg-white/60'
               }`}
             >
               {active === i && (
-                <span className={`absolute left-0 top-0 h-full w-0.5 ${t.accent.replace('border-', 'bg-')}`} />
+                <span className={`absolute left-0 top-0 h-full w-0.5 ${tier.accent.replace('border-', 'bg-')}`} />
               )}
               <span className={`text-[10px] font-bold uppercase tracking-[0.18em] transition-colors ${
                 active === i ? t.labelColor : 'text-grey/40 group-hover:text-grey/60'
@@ -170,7 +174,6 @@ function ArchitectureExplorer() {
           ))}
         </div>
 
-        {/* Right: detail panel */}
         <div className="relative flex-1 overflow-hidden">
           <AnimatePresence mode="wait">
             <motion.div
@@ -181,7 +184,6 @@ function ArchitectureExplorer() {
               transition={{ duration: 0.25, ease: 'easeOut' }}
               className="h-full p-8 md:p-10"
             >
-              {/* Panel header */}
               <div className="mb-8 flex flex-wrap items-start justify-between gap-4">
                 <div>
                   <span className={`mb-2 block text-[10px] font-bold uppercase tracking-[0.2em] ${tier.labelColor}`}>
@@ -194,7 +196,6 @@ function ArchitectureExplorer() {
                 </span>
               </div>
 
-              {/* Capability groups */}
               <div className="space-y-7">
                 {tier.groups.map((group, gi) => (
                   <motion.div
@@ -253,9 +254,7 @@ function FAQAccordion() {
                 transition={{ duration: 0.25, ease: 'easeOut' }}
                 className="overflow-hidden"
               >
-                <p className="px-8 pb-6 text-sm font-light leading-relaxed text-grey">
-                  {faq.a}
-                </p>
+                <p className="px-8 pb-6 text-sm font-light leading-relaxed text-grey">{faq.a}</p>
               </motion.div>
             )}
           </AnimatePresence>
@@ -265,7 +264,7 @@ function FAQAccordion() {
   );
 }
 
-export default function GrowthRevenuePage() {
+export default function BrandMarketingPage() {
   return (
     <div className="font-sans">
 
@@ -289,7 +288,7 @@ export default function GrowthRevenuePage() {
             transition={{ duration: 0.6 }}
             className="mb-4 text-[11px] font-bold uppercase tracking-[0.22em] text-brand"
           >
-            Capability · Growth (GTM, Sales & Partnerships)
+            Capability · Brand & Marketing
           </motion.p>
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
@@ -297,8 +296,8 @@ export default function GrowthRevenuePage() {
             transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             className="mb-6 max-w-4xl text-4xl font-display font-medium tracking-tight text-warm-white md:text-6xl lg:text-7xl"
           >
-            Most revenue problems are not channel problems.{' '}
-            <span className="text-brand">They are system problems.</span>
+            A generic brand is a discount.{' '}
+            <span className="text-brand">A real position is a moat.</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -306,7 +305,7 @@ export default function GrowthRevenuePage() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="mb-10 max-w-2xl text-base font-light leading-relaxed text-warm-white/60 md:text-lg"
           >
-            The pipeline works until it doesn&apos;t. The question is always why. Maxinor Growth operators embed inside your team and build the GTM strategy, sales motion, and partnerships that scale without the founder in every room.
+            Most consumer brands look, sound, and market like their competitors. Maxinor Brand & Marketing operators build the position, the identity, and the performance engine that make a brand impossible to copy.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -334,9 +333,9 @@ export default function GrowthRevenuePage() {
             transition={{ duration: 0.6 }}
             className="mb-14 md:mb-16"
           >
-            <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">Where GTM Breaks</p>
+            <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">Where Brands Get Stuck</p>
             <h2 className="max-w-2xl text-3xl font-display font-medium tracking-tight text-navy md:text-4xl">
-              Three patterns that stall revenue growth.
+              Three patterns that keep brands generic.
             </h2>
           </motion.div>
           <div className="grid gap-6 md:grid-cols-3">
@@ -374,7 +373,7 @@ export default function GrowthRevenuePage() {
           >
             <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">Capability Stack</p>
             <h2 className="mb-3 max-w-2xl text-3xl font-display font-medium tracking-tight text-navy md:text-4xl">
-              The full growth and revenue capability stack.
+              The full brand and marketing capability stack.
             </h2>
             <p className="max-w-xl text-base font-light leading-relaxed text-grey">
               Three layers. Every capability mapped. Select a layer to explore what sits inside it.
@@ -401,34 +400,34 @@ export default function GrowthRevenuePage() {
             transition={{ duration: 0.6 }}
             className="mb-14 md:mb-16"
           >
-            <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">What We Build Together</p>
+            <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">How We Engage</p>
             <h2 className="max-w-2xl text-3xl font-display font-medium tracking-tight text-navy md:text-4xl">
               Four engagement types. All operator-led.
             </h2>
           </motion.div>
-          <div className="grid gap-6 md:grid-cols-2">
-            {engagements.map((eng, i) => (
+          <div className="grid gap-5 sm:grid-cols-2">
+            {engagements.map((e, i) => (
               <motion.div
-                key={eng.number}
-                initial={{ opacity: 0, y: 24 }}
+                key={e.number}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: i * 0.1 }}
-                className="relative rounded-[2rem] border border-grey/15 bg-white p-8"
+                transition={{ duration: 0.5, delay: i * 0.07 }}
+                className="relative rounded-[1.5rem] border border-grey/15 bg-white p-7"
               >
                 <span className="pointer-events-none absolute right-6 top-4 select-none text-7xl font-display font-bold leading-none text-brand/5">
-                  {eng.number}
+                  {e.number}
                 </span>
-                <p className="mb-1 text-[10px] font-bold uppercase tracking-[0.18em] text-brand/60">{eng.number}</p>
-                <h3 className="mb-3 text-lg font-display font-semibold text-navy">{eng.title}</h3>
-                <p className="text-sm font-light leading-relaxed text-grey">{eng.body}</p>
+                <div className="mb-3 h-0.5 w-8 bg-brand" />
+                <h3 className="mb-2 text-base font-display font-semibold text-navy">{e.title}</h3>
+                <p className="text-sm font-light leading-relaxed text-grey">{e.body}</p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Operators */}
+      {/* Operator */}
       <section className="bg-navy px-6 py-20 md:py-28 border-t border-grey/10">
         <div className="max-w-7xl mx-auto">
           <motion.div
@@ -440,7 +439,7 @@ export default function GrowthRevenuePage() {
           >
             <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">The Team Behind This</p>
             <h2 className="max-w-2xl text-3xl font-display font-medium tracking-tight text-warm-white md:text-4xl">
-              Operators who have owned the revenue number, not just advised on it.
+              An operator who has built category-defining consumer brands, not just advised on them.
             </h2>
           </motion.div>
           <motion.div
@@ -450,10 +449,28 @@ export default function GrowthRevenuePage() {
             transition={{ duration: 0.6 }}
             className="max-w-3xl rounded-[2rem] border border-white/10 bg-white/5 p-8 backdrop-blur-sm"
           >
-            <p className="mb-4 text-base font-semibold text-warm-white">Maxinor Team</p>
-            <p className="text-sm font-light leading-relaxed text-warm-white/60">
-              Our Growth engagements are delivered by a team of operators with P&L backgrounds across GTM, sales, partnerships, and revenue operations. Each engagement is staffed based on the specific growth challenge -- strategy, sales, partnerships, or revenue ops -- so the right operator is in the room, not the nearest available one.
-            </p>
+            <div className="mb-6 flex items-center gap-4">
+              <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-full border-2 border-brand/40">
+                <Image
+                  src={operator.image}
+                  alt={operator.name}
+                  fill
+                  className="object-cover"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+              <div>
+                <Link
+                  href={`/team/${operator.slug}`}
+                  className="text-base font-semibold text-warm-white transition-colors hover:text-brand"
+                >
+                  {operator.name}
+                </Link>
+                <p className="text-xs font-medium text-brand/80">{operator.role}</p>
+                <p className="text-xs text-warm-white/40">{operator.bg}</p>
+              </div>
+            </div>
+            <p className="text-sm font-light leading-relaxed text-warm-white/60">{operator.depth}</p>
           </motion.div>
         </div>
       </section>
@@ -504,10 +521,10 @@ export default function GrowthRevenuePage() {
           >
             <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">Work With Us</p>
             <h2 className="mb-5 text-3xl font-display font-medium tracking-tight text-warm-white md:text-5xl">
-              Ready to build the revenue system?
+              Ready to build a brand that compounds?
             </h2>
             <p className="mb-8 max-w-xl mx-auto text-base font-light leading-relaxed text-warm-white/60 md:text-lg">
-              Whether you&apos;re breaking through a growth ceiling, picking the right channels, or building revenue operations your business has outgrown -- start here.
+              Whether you&apos;re defining your position for the first time, fixing a CAC problem, or building the content engine that carries the brand -- start here.
             </p>
             <p className="mb-8 max-w-xl mx-auto text-sm font-light leading-relaxed text-warm-white/50">
               Every engagement ends with the system running without us. We build it, we embed until it works, and we hand it over to your team -- fully documented, fully owned by you.
