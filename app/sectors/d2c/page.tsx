@@ -44,6 +44,8 @@ const howWeEngage = [
   'Full-funnel GTM and channel strategy',
   'Offline distribution and retail expansion',
   'AI-native D2C operating system',
+  'Discovery sprints: brand positioning, visual identity, ecom pivots',
+  'International market expansion and launch strategy',
 ];
 
 const architecture = [
@@ -132,15 +134,15 @@ const architecture = [
 const verticals = [
   {
     name: 'Food & Beverage',
-    desc: 'Health foods, packaged snacks, beverages, and functional nutrition brands scaling from DTC to modern trade.',
+    desc: 'Health foods, snacking, beverages, and functional nutrition brands scaling from DTC to modern trade.',
   },
   {
     name: 'Personal Care & Beauty',
-    desc: 'Skincare, haircare, and wellness brands navigating the shift from D2C launch to omnichannel scale.',
+    desc: 'Skincare, haircare, cosmetics and wellness brands navigating the shift from D2C launch to omnichannel scale.',
   },
   {
     name: 'Fashion & Apparel',
-    desc: 'Clothing and accessories brands managing inventory complexity, sizing, and the returns problem at scale.',
+    desc: 'Apparel and accessories brands managing inventory complexity, sizing, and the returns problem at scale.',
   },
   {
     name: 'Home & Living',
@@ -148,7 +150,7 @@ const verticals = [
   },
   {
     name: 'Health & Supplements',
-    desc: 'Nutraceuticals, supplements, and health product brands operating in a regulated, trust-sensitive category.',
+    desc: 'Nutraceuticals, supplements, devices operating in a regulated, trust-sensitive category.',
   },
   {
     name: 'Pet Care',
@@ -160,7 +162,7 @@ const operators = [
   {
     name: 'Priyabrata Padhi',
     role: 'D2C & Consumer Lead',
-    bg: 'ex-United Breweries, ex-ITC, ex-Britannia',
+    bg: 'ex-Heineken India, ex-ITC, ex-Britannia',
     depth: 'Deep operator experience across FMCG and D2C, with a track record of building brand equity, distribution networks, and scalable unit economics at some of India\'s most recognised consumer companies.',
     slug: 'priyabrata-padhi',
     image: 'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/69c11ffc5c1c2e2f2a9cadaa_Gemini_Generated_Image_m5qmrom5qmrom5qm.avif',
@@ -313,8 +315,8 @@ export default function D2CPage() {
             transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             className="mb-6 max-w-4xl text-4xl font-display font-medium tracking-tight text-warm-white md:text-6xl lg:text-7xl"
           >
-            You have the GMV.{' '}
-            <span className="text-brand">The margin story is where it gets complicated.</span>
+            You have the PMF.{' '}
+            <span className="text-brand">The omnichannel growth levers is where the unit economics gets complicated.</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
