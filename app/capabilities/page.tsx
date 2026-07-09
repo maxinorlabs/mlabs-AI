@@ -229,16 +229,22 @@ const capabilityGroups = [
     id: 'build',
     name: 'Build',
     description: 'Capabilities that design, develop and transform products, technologies and businesses.',
+    href: '/build',
+    cta: 'See Venture Build',
   },
   {
     id: 'scale',
     name: 'Scale',
     description: 'Capabilities that accelerate commercial growth, operational excellence and organizational performance.',
+    href: '/scale',
+    cta: 'See Venture Scale',
   },
   {
     id: 'invest',
     name: 'Invest',
     description: 'Capabilities that deploy capital, expertise and strategic partnerships to create long-term value.',
+    href: '/invest',
+    cta: 'See Venture Invest',
   },
 ];
 
@@ -323,6 +329,22 @@ function StatItem({ display, label, delay }: { display: string; label: string; d
 }
 
 export default function CapabilitiesPage() {
+  useEffect(() => {
+    const scrollToHash = () => {
+      const hash = window.location.hash;
+      if (!hash) return;
+      const el = document.getElementById(hash.slice(1));
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    };
+    // Run after paint so the section is present and laid out.
+    const id = requestAnimationFrame(() => setTimeout(scrollToHash, 50));
+    window.addEventListener('hashchange', scrollToHash);
+    return () => {
+      cancelAnimationFrame(id);
+      window.removeEventListener('hashchange', scrollToHash);
+    };
+  }, []);
+
   return (
     <div className="font-sans">
 
@@ -379,10 +401,18 @@ export default function CapabilitiesPage() {
           </div>
 
           {capabilityGroups.map((group, gi) => (
-            <div key={group.id} id={group.id} className={gi > 0 ? 'mt-16 md:mt-20' : ''}>
-              <div className="mb-8 md:mb-10">
-                <p className="mb-2 text-[11px] font-bold uppercase tracking-[0.2em] text-brand">{group.name}</p>
-                <p className="max-w-2xl text-sm font-light leading-relaxed text-grey md:text-base">{group.description}</p>
+            <div key={group.id} id={group.id} className={`scroll-mt-28 ${gi > 0 ? 'mt-16 md:mt-20' : ''}`}>
+              <div className="mb-8 flex flex-wrap items-end justify-between gap-4 md:mb-10">
+                <div>
+                  <p className="mb-2 text-[11px] font-bold uppercase tracking-[0.2em] text-brand">{group.name}</p>
+                  <p className="max-w-2xl text-sm font-light leading-relaxed text-grey md:text-base">{group.description}</p>
+                </div>
+                <Link
+                  href={group.href}
+                  className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-grey/25 px-5 py-2.5 text-sm font-semibold text-navy transition-all duration-200 hover:border-brand/40 hover:text-brand"
+                >
+                  {group.cta} <ArrowRight className="h-3.5 w-3.5" />
+                </Link>
               </div>
               <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {capabilities.filter((cap) => cap.group === group.id).map((cap, i) => (

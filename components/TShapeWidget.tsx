@@ -97,13 +97,14 @@ export function TShapeWidget({ variant = 'home', fullBleed = false }: { variant?
           <div className="hidden sm:block">
             <div className="grid grid-cols-8">
               {GROUPS.map((g) => (
-                <div
+                <Link
                   key={g.id}
+                  href={`/capabilities#${g.id}`}
                   style={{ gridColumn: `span ${g.span} / span ${g.span}` }}
-                  className="border-r border-white/10 bg-navy py-3 text-center text-xs font-bold uppercase tracking-[0.14em] text-warm-white last:border-r-0"
+                  className="border-r border-white/10 bg-navy py-3 text-center text-xs font-bold uppercase tracking-[0.14em] text-warm-white transition-colors last:border-r-0 hover:bg-white/10 hover:text-brand"
                 >
                   {g.name}
-                </div>
+                </Link>
               ))}
             </div>
             <div className="grid grid-cols-8">
@@ -126,9 +127,12 @@ export function TShapeWidget({ variant = 'home', fullBleed = false }: { variant?
           <div className="flex flex-col gap-1.5 sm:hidden">
             {GROUPS.map((g) => (
               <div key={g.id} className="overflow-hidden rounded-xl">
-                <div className="bg-navy py-2 text-center text-[10px] font-bold uppercase tracking-[0.14em] text-warm-white">
+                <Link
+                  href={`/capabilities#${g.id}`}
+                  className="block bg-navy py-2 text-center text-[10px] font-bold uppercase tracking-[0.14em] text-warm-white transition-colors hover:text-brand"
+                >
                   {g.name}
-                </div>
+                </Link>
                 <div className={`grid gap-0.5 ${g.span === 2 ? 'grid-cols-2' : 'grid-cols-3'}`}>
                   {CAPABILITIES.filter((c) => c.group === g.id).map((cap) => {
                     const style = GROUP_STYLE[cap.group];
@@ -153,19 +157,19 @@ export function TShapeWidget({ variant = 'home', fullBleed = false }: { variant?
           <div className={`h-8 w-0.5 bg-gradient-to-b ${dark ? 'from-white/25 to-white/5' : 'from-navy/20 to-navy/5'}`} />
         </div>
 
-        {/* Sectors row — horizontal on desktop, stacked on mobile */}
+        {/* Sectors — stacked one on top of the other */}
         <motion.div
           initial={{ y: 16 }}
           whileInView={{ y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className={`flex flex-col gap-2 transition-opacity duration-500 sm:flex-row sm:flex-wrap sm:justify-center sm:gap-2.5 ${dimVertical ? 'opacity-30' : 'opacity-100'}`}
+          className={`mx-auto flex max-w-sm flex-col gap-2 transition-opacity duration-500 ${dimVertical ? 'opacity-30' : 'opacity-100'}`}
         >
           {SECTORS.map((sector) => (
             <Link
               key={sector.name}
               href={sector.href}
-              className={`rounded-xl border px-5 py-3 text-center text-sm font-medium transition-all duration-300 hover:-translate-y-0.5 sm:flex-1 sm:min-w-[100px] ${
+              className={`rounded-xl border px-5 py-3 text-center text-sm font-medium transition-all duration-300 hover:-translate-y-0.5 ${
                 variant === 'sectors'
                   ? 'border-brand/40 bg-brand/10 font-semibold text-navy shadow-[0_0_24px_rgba(243,111,33,0.12)]'
                   : dark

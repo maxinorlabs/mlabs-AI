@@ -94,7 +94,7 @@ export function Navbar() {
       name: 'Engines',
       path: '/capabilities',
       dropdown: [
-        { name: 'All Capabilities', path: '/capabilities', header: true },
+        { name: 'All Engines', path: '/capabilities', header: true },
         {
           name: 'Build',
           path: '/capabilities#build',

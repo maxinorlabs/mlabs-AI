@@ -12,7 +12,6 @@ import {
   Lightbulb,
   Code2,
   Megaphone,
-  UserCheck,
   Plus,
   Minus,
 } from 'lucide-react';
@@ -48,47 +47,39 @@ const painPoints = [
 
 const engines = [
   {
-    icon: Lightbulb,
-    title: 'Ideation and Validation',
+    icon: Code2,
+    title: 'AI & Tech',
+    href: '/capabilities/ai-tech',
     items: [
-      'Market sizing and opportunity validation',
-      'Customer discovery and ICP definition',
-      'Business model design',
-      'MVP scoping and prioritisation',
-      'Go-no-go framework and pivot criteria',
+      'AI product architecture and MVP build',
+      'Agentic automation and workflow AI',
+      'Data platform and AI infrastructure buildout',
+      'Tech architecture built for scale from day one',
+      'DevOps, cloud, and full-stack engineering',
     ],
   },
   {
-    icon: Code2,
-    title: 'Product and Engineering',
+    icon: Lightbulb,
+    title: 'Product & Design',
+    href: '/capabilities/product-research',
     items: [
-      'UI/UX design and prototyping',
-      'Full-stack development and architecture',
-      'AI integration and data infrastructure',
-      'Product management and sprint cadence',
-      'Quality assurance and performance',
+      'Market sizing and opportunity validation',
+      'Customer discovery and ICP definition',
+      'UX/UI design and design systems',
+      'MVP scoping and prioritisation',
+      'Product development from prototype to shipped release',
     ],
   },
   {
     icon: Megaphone,
-    title: 'Go-To-Market',
+    title: 'Brand & Marketing',
+    href: '/capabilities/brand-marketing',
     items: [
-      'Brand identity and positioning',
+      'Brand positioning and identity development',
       'First customer acquisition playbook',
-      'Sales motion and outreach sequences',
-      'Channel selection and testing',
-      'Launch strategy and PR',
-    ],
-  },
-  {
-    icon: UserCheck,
-    title: 'Founding Team Assembly',
-    items: [
-      'Co-founder matching and evaluation',
-      'Key executive identification and hiring',
-      'Advisory board setup',
-      'Culture definition and values',
-      'ESOP structure and equity design',
+      'D2C performance marketing and CAC optimisation',
+      'Launch strategy and competitive positioning',
+      'Community and content-led growth',
     ],
   },
 ];
@@ -350,10 +341,10 @@ export default function BuildPage() {
           >
             <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">What We Cover</p>
             <h2 className="max-w-2xl text-3xl font-display font-medium tracking-tight text-navy md:text-4xl">
-              Four engines. One integrated build.
+              Three engines. One integrated build.
             </h2>
           </motion.div>
-          <div className="grid gap-6 md:grid-cols-2">
+          <div className="grid gap-6 md:grid-cols-3">
             {engines.map((engine, i) => (
               <motion.div
                 key={engine.title}
@@ -361,13 +352,13 @@ export default function BuildPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: i * 0.08 }}
-                className="rounded-[2rem] border border-grey/15 bg-warm-white p-8"
+                className="flex flex-col rounded-[2rem] border border-grey/15 bg-warm-white p-8"
               >
                 <div className="mb-5 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-brand/10">
                   <engine.icon className="h-5 w-5 text-brand" />
                 </div>
                 <h3 className="mb-5 text-xl font-display font-semibold text-navy">{engine.title}</h3>
-                <ul className="space-y-3">
+                <ul className="mb-6 flex-1 space-y-3">
                   {engine.items.map((item) => (
                     <li key={item} className="flex items-start gap-2.5 text-sm font-light leading-relaxed text-grey">
                       <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-brand" />
@@ -375,6 +366,12 @@ export default function BuildPage() {
                     </li>
                   ))}
                 </ul>
+                <Link
+                  href={engine.href}
+                  className="inline-flex items-center gap-1 text-sm font-semibold text-brand transition-all duration-200 hover:gap-2"
+                >
+                  Learn more <ArrowRight className="h-3.5 w-3.5" />
+                </Link>
               </motion.div>
             ))}
           </div>
