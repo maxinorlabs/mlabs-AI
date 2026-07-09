@@ -404,18 +404,18 @@ export default function Home() {
                 Collaborating with industry leaders to unlock scale and build enduring ventures.
               </p>
             </div>
-            <div className="mx-auto flex max-w-4xl flex-wrap justify-center gap-6 md:gap-8">
+            <div className="mx-auto grid max-w-4xl grid-cols-3 gap-3 sm:gap-6 md:gap-8">
               {[
                 { name: "Hygriv", image: "https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/695e8f57198b4be76b7685ef_Logo%20with%20Capital.png", url: "https://www.hygriv.com/" },
                 { name: "Saptharushi", image: "https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/69b3cd584c566a57e84d3aae_saptharushi7_logo.jpg", url: "https://saptharushi.com/" },
                 { name: "iAccel GBI", image: "https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/6a4e70f6eb738b4cf11a6c00_logo-removebg.avif", url: "https://iaccelgbi.com/" },
               ].map((partner, idx) => (
-                <Link 
-                  key={idx} 
+                <Link
+                  key={idx}
                   href={partner.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group relative flex h-28 w-full items-center justify-center rounded-[2rem] border border-grey/30 bg-white p-5 transition-all duration-500 hover:border-brand/30 hover:bg-white sm:w-[300px] md:h-32 md:p-6"
+                  className="group relative flex h-20 w-full items-center justify-center rounded-[1.5rem] border border-grey/30 bg-white p-3 transition-all duration-500 hover:border-brand/30 hover:bg-white sm:h-28 sm:rounded-[2rem] sm:p-5 md:h-32 md:p-6"
                 >
                   <Image 
                     src={partner.image} 

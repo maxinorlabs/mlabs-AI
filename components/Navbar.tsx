@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 import {
   Menu, X, ChevronDown, ChevronRight,
@@ -61,6 +61,16 @@ export function Navbar() {
   const [hoveredSub, setHoveredSub] = useState<string | null>(null);
   const [mobileOpenDropdown, setMobileOpenDropdown] = useState<string | null>(null);
   const [mobileOpenSub, setMobileOpenSub] = useState<string | null>(null);
+  const subCloseTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const openSub = (name: string) => {
+    if (subCloseTimer.current) clearTimeout(subCloseTimer.current);
+    setHoveredSub(name);
+  };
+  const scheduleCloseSub = () => {
+    if (subCloseTimer.current) clearTimeout(subCloseTimer.current);
+    subCloseTimer.current = setTimeout(() => setHoveredSub(null), 250);
+  };
 
   const isActive = (path: string) =>
     pathname === path ? 'text-brand' : 'text-grey hover:text-navy';
@@ -227,7 +237,11 @@ export function Navbar() {
                 key={link.path}
                 className="relative"
                 onMouseEnter={() => { setOpenDropdown(link.name); setHoveredSub(null); }}
-                onMouseLeave={() => { setOpenDropdown(null); setHoveredSub(null); }}
+                onMouseLeave={() => {
+                  if (subCloseTimer.current) clearTimeout(subCloseTimer.current);
+                  setOpenDropdown(null);
+                  setHoveredSub(null);
+                }}
               >
                 <Link
                   href={link.path}
@@ -250,45 +264,24 @@ export function Navbar() {
                       className="absolute top-full left-0 bg-navy text-warm-white border border-grey/30 rounded-2xl shadow-2xl py-3 mt-2"
                       style={{ minWidth: '13rem' }}
                     >
-                      {link.dropdown.map((sub, si) => (
-                        <div key={sub.path}>
+                      {link.dropdown!.map((sub, si) => (
+                        <div
+                          key={sub.path}
+                          className="relative"
+                          onMouseEnter={() => sub.subItems && openSub(sub.name)}
+                          onMouseLeave={() => sub.subItems && scheduleCloseSub()}
+                        >
                           {sub.header && si > 0 && <div className="mx-6 my-2 border-t border-white/10" />}
                           {sub.divider && <div className="mx-6 my-2 border-t border-white/10" />}
 
                           {sub.subItems ? (
-                            <div
-                              onMouseEnter={() => setHoveredSub(sub.name)}
-                              onMouseLeave={() => setHoveredSub(null)}
+                            <Link
+                              href={sub.path}
+                              className="flex items-center justify-between px-6 py-2.5 text-warm-white/80 transition-colors hover:text-brand"
                             >
-                              <Link
-                                href={sub.path}
-                                className="flex items-center justify-between px-6 py-2.5 text-warm-white/80 transition-colors hover:text-brand"
-                              >
-                                {sub.name}
-                                <ChevronRight className="h-3.5 w-3.5 opacity-40" />
-                              </Link>
-                              <AnimatePresence>
-                                {hoveredSub === sub.name && (
-                                  <motion.div
-                                    initial={{ opacity: 0, height: 0 }}
-                                    animate={{ opacity: 1, height: 'auto' }}
-                                    exit={{ opacity: 0, height: 0 }}
-                                    transition={{ duration: 0.15 }}
-                                    className="overflow-hidden"
-                                  >
-                                    {sub.subItems.map((si2) => (
-                                      <Link
-                                        key={si2.path}
-                                        href={si2.path}
-                                        className="block pl-10 pr-6 py-2 text-sm text-warm-white/55 transition-colors hover:text-brand"
-                                      >
-                                        {si2.name}
-                                      </Link>
-                                    ))}
-                                  </motion.div>
-                                )}
-                              </AnimatePresence>
-                            </div>
+                              {sub.name}
+                              <ChevronRight className="h-3.5 w-3.5 opacity-40" />
+                            </Link>
                           ) : (
                             <Link
                               href={sub.path}
@@ -303,6 +296,34 @@ export function Navbar() {
                           )}
 
                           {sub.header && <div className="mx-6 mt-1 mb-2 border-t border-white/10" />}
+
+                          {/* Side flyout for this group only — positioned beside the row, does not push other rows */}
+                          {sub.subItems && (
+                            <AnimatePresence>
+                              {hoveredSub === sub.name && (
+                                <motion.div
+                                  initial={{ opacity: 0, x: -6 }}
+                                  animate={{ opacity: 1, x: 0 }}
+                                  exit={{ opacity: 0 }}
+                                  transition={{ duration: 0.15 }}
+                                  onMouseEnter={() => openSub(sub.name)}
+                                  onMouseLeave={() => scheduleCloseSub()}
+                                  className="absolute left-full top-0 ml-1 bg-navy text-warm-white border border-grey/30 rounded-2xl shadow-2xl py-3"
+                                  style={{ minWidth: '15rem' }}
+                                >
+                                  {sub.subItems.map((si2) => (
+                                    <Link
+                                      key={si2.path}
+                                      href={si2.path}
+                                      className="block px-6 py-2.5 text-sm text-warm-white/80 transition-colors hover:text-brand"
+                                    >
+                                      {si2.name}
+                                    </Link>
+                                  ))}
+                                </motion.div>
+                              )}
+                            </AnimatePresence>
+                          )}
                         </div>
                       ))}
                     </motion.div>

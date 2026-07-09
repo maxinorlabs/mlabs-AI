@@ -87,8 +87,8 @@ export function TShapeWidget({ variant = 'home', fullBleed = false }: { variant?
 
         {/* Capability block — group headers + cells */}
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ y: 16 }}
+          whileInView={{ y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
           className={`overflow-hidden rounded-2xl transition-opacity duration-500 ${dimHorizontal ? 'opacity-30' : 'opacity-100'}`}
@@ -155,8 +155,8 @@ export function TShapeWidget({ variant = 'home', fullBleed = false }: { variant?
 
         {/* Sectors row — horizontal on desktop, stacked on mobile */}
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ y: 16 }}
+          whileInView={{ y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.1 }}
           className={`flex flex-col gap-2 transition-opacity duration-500 sm:flex-row sm:flex-wrap sm:justify-center sm:gap-2.5 ${dimVertical ? 'opacity-30' : 'opacity-100'}`}

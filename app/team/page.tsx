@@ -28,7 +28,7 @@ const introBody = 'max-w-2xl text-base font-light leading-relaxed text-navy/70 m
 const sectionSpacing = 'mb-16 md:mb-24 lg:mb-28';
 const sectionHeading = 'mb-8 flex items-center gap-3 text-2xl font-display font-medium tracking-tight text-navy md:mb-12 md:text-3xl';
 const partnerCardClass =
-  'group relative flex h-28 w-full items-center justify-center rounded-[2rem] border border-navy/10 bg-white p-5 transition-all duration-500 hover:border-brand/30 hover:bg-white sm:w-[300px] md:h-32 md:p-6';
+  'group relative flex h-20 w-full items-center justify-center rounded-[1.5rem] border border-navy/10 bg-white p-3 transition-all duration-500 hover:border-brand/30 hover:bg-white sm:h-28 sm:rounded-[2rem] sm:p-5 md:h-32 md:p-6';
 
 const leadership: TeamMember[] = [
   {
@@ -235,7 +235,7 @@ export default function TeamPage() {
             <span className="h-1 w-8 bg-brand" />
             Our Partners
           </h2>
-          <div className="mx-auto flex max-w-4xl flex-wrap justify-center gap-6 md:gap-8">
+          <div className="mx-auto grid max-w-4xl grid-cols-3 gap-3 sm:gap-6 md:gap-8">
             {partners.map((partner) => (
               <Link
                 key={partner.name}
