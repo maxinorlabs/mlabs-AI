@@ -55,22 +55,22 @@ const whatYouGet = [
 
 const engagementModels = [
   {
-    name: 'Discovery Sprint',
-    duration: '30 days',
+    name: 'Discovery',
+    duration: '30 DAYS',
     description:
-      'A focused diagnosis. We map your constraints, identify the 2-3 highest-leverage opportunities, and build a 90-day operator-led execution plan. Fixed fee. No equity. The right start if you need clarity before committing.',
+      'Fixed scope. Fixed cost. A root cause diagnosis, capability gap mapping, and a 90-day execution roadmap. The right start if you need clarity before committing.',
   },
   {
-    name: 'Partnership',
-    duration: '1-3 years',
+    name: 'Operator',
+    duration: 'EMBEDDED OR FRACTIONAL',
     description:
-      'An operator embeds in your team. They own a function, run daily operations, and are accountable to milestones. Series A preparation is built into the engagement. Equity-linked plus execution fee.',
+      'Co-aligned functional execution, integrated P&L ownership, and full operator bench access to build and scale a capability you own. The right model for ventures ready for full or fractional operator execution, not just advice.',
   },
   {
-    name: 'Fractional CXO',
-    duration: 'On demand',
+    name: 'AI Capability Centre',
+    duration: 'ON REQUIREMENT',
     description:
-      'A fractional CMO, CTO, CFO, or CPO joins your leadership team. Builds the function. Hires the permanent leader. Retainer model. The right model when you need executive depth without full-time cost.',
+      'AI capabilities, without building it yourself. We design, staff, and run it end-to-end, spanning AI product and engineering, agentic automation and workflow design, data infrastructure and AI operations, and systems and intelligence.',
   },
 ];
 
@@ -113,7 +113,7 @@ const faqs = [
   },
   {
     q: 'Do I have to give up equity?',
-    a: 'The Discovery Sprint is a fixed fee with no equity. The Partnership model involves a small equity stake aligned to execution milestones. We structure to minimise dilution while creating real alignment.',
+    a: 'Discovery is a fixed fee with no equity. The Operator model involves a small equity stake aligned to execution milestones. We structure to minimise dilution while creating real alignment.',
   },
   {
     q: 'How do I know if an engagement is working?',
