@@ -1,8 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "PowerShell(Stop-Process -Id 14180 -Force -ErrorAction SilentlyContinue)",
-      "WebSearch"
-    ]
-  }
-}
