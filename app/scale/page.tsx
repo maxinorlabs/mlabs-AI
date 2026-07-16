@@ -622,6 +622,5 @@ export default function ScalePage() {
       </section>
 
     </div>
-    </>
   );
 }
