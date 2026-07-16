@@ -385,7 +385,8 @@ export default function VenturePage() {
         </div>
       </section>
 
-      {/* ── Section 5: Portfolio Companies ───────────────────────────────────── */}
+      {/* Section 5: Portfolio Companies, hidden, set to true to re-enable */}
+      {false && (
       <section className="bg-warm-white px-6 py-20 md:py-28">
         <div className="mx-auto max-w-7xl">
           <motion.div
@@ -435,6 +436,7 @@ export default function VenturePage() {
           </motion.div>
         </div>
       </section>
+      )}
 
       {/* ── Section 6: FAQ ────────────────────────────────────────────────────── */}
       <section className="border-t border-grey/10 bg-warm-white px-6 py-20 md:py-28">

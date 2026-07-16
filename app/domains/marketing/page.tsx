@@ -146,7 +146,7 @@ const verticals = [
 const operators = [
   {
     name: 'Aditi Agrawal',
-    role: 'Entrepreneur in Residence, Marketing',
+    role: 'Entrepreneur in Residence - Advertising',
     bg: 'Founder, StickyPins & Avyu India',
     depth: 'Brand strategist and founder with deep experience building consumer brands from zero, with a track record across D2C, community marketing, and founder-led growth.',
     slug: 'aditi-agrawal',

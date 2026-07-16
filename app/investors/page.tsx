@@ -374,59 +374,9 @@ export default function InvestorsPage() {
         </div>
       </section>
 
-      {/* ── Section 5: Portfolio Companies (warm-white) ───────────────────── */}
+      {/* ── Section 5: Partners and co-investors (warm-white) ───────────────────── */}
       <section className="bg-warm-white px-6 py-20 md:py-28">
         <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="mb-14 md:mb-16"
-          >
-            <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">Portfolio</p>
-            <h2 className="max-w-2xl text-3xl font-display font-medium tracking-tight text-navy md:text-4xl">
-              Companies in the Maxinor portfolio.
-            </h2>
-          </motion.div>
-
-          {/* Portfolio logo grid */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-            className="mb-16"
-          >
-            <div className="flex flex-wrap items-center justify-center gap-4 md:gap-6">
-              {portfolioCompanies.map((company, i) => (
-                <motion.a
-                  key={company.name}
-                  href={company.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  initial={{ opacity: 0, scale: 0.92 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.07 }}
-                  className="group flex h-20 w-40 items-center justify-center rounded-2xl border border-grey/15 bg-white p-4 transition-all duration-300 hover:border-brand/20 hover:shadow-md md:h-24 md:w-48"
-                  title={company.name}
-                >
-                  <div className="relative h-full w-full">
-                    <Image
-                      src={company.logo}
-                      alt={company.name}
-                      fill
-                      className="object-contain"
-                      referrerPolicy="no-referrer"
-                      unoptimized
-                    />
-                  </div>
-                </motion.a>
-              ))}
-            </div>
-          </motion.div>
-
           {/* Partners row */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}

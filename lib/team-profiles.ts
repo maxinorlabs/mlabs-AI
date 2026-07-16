@@ -400,7 +400,7 @@ export const teamProfiles: TeamProfile[] = [
   {
     slug: 'aditi-agrawal',
     name: 'Aditi Agrawal',
-    role: 'Entrepreneur in Residence',
+    role: 'Entrepreneur in Residence - Advertising',
     shortDesc: 'Founder, StickyPins & Avyu India | MBA, KJ Somaiya | IIM Bangalore',
     image:
       'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/6a142ce6dd742f13761925d7_WhatsApp%20Image%202026-05-25%20at%203.23.59%20PM.avif',

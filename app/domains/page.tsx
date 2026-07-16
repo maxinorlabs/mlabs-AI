@@ -142,7 +142,7 @@ const domains = [
       'Employer linkage and certification credentialing',
       'B2B institutional sales motion and GTM',
     ],
-    operator: 'Maxinor Leadership Team',
+    operator: 'Maxinor Team',
     operatorBg: 'Multi-domain operator team',
     operatorSlug: '',
     howWeEngage: [

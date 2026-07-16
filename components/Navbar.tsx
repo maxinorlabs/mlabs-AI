@@ -100,7 +100,7 @@ export function Navbar() {
           path: '/capabilities#build',
           subItems: [
             { name: 'AI & Tech', path: '/capabilities/ai-tech' },
-            { name: 'Product', path: '/capabilities/product-research' },
+            { name: 'Product & Design', path: '/capabilities/product-research' },
             { name: 'Brand & Marketing', path: '/capabilities/brand-marketing' },
           ],
         },

@@ -494,6 +494,9 @@ export default function SMEPage() {
             ))}
           </motion.div>
 
+          {/* Portfolio Companies, hidden, set to true to re-enable */}
+          {false && (
+          <>
           {/* Portfolio label */}
           <motion.p
             initial={{ opacity: 0 }}
@@ -537,6 +540,8 @@ export default function SMEPage() {
               </motion.a>
             ))}
           </motion.div>
+          </>
+          )}
         </div>
       </section>
 

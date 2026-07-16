@@ -150,7 +150,7 @@ const sectors = [
       'Employer linkage and certification credentialing',
       'B2B institutional sales motion and GTM',
     ],
-    operator: 'Maxinor Leadership Team',
+    operator: 'Maxinor Team',
     operatorBg: 'Multi-sector operator team',
     operatorSlug: '',
     howWeEngage: [
@@ -180,7 +180,7 @@ const sectors = [
       'MoD procurement and DPP compliance strategy',
       'Dual-use technology commercialisation and export GTM',
     ],
-    operator: 'Maxinor Leadership Team',
+    operator: 'Maxinor Team',
     operatorBg: 'Multi-sector operator team',
     operatorSlug: '',
     howWeEngage: [

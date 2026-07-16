@@ -157,7 +157,7 @@ const verticals = [
 
 const operators = [
   {
-    name: 'Maxinor Leadership Team',
+    name: 'Maxinor Team',
     role: 'Multi-Sector Operator Team',
     bg: 'Cross-sector operators with execution experience across edtech, skilling, and institutional sales',
     depth: 'The education sector at Maxinor draws on operators who have built and scaled businesses in adjacent sectors: government sales, B2B institutional, content operations, and workforce development. We bring a practitioner lens to the sector, not just an investor lens.',

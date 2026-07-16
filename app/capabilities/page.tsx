@@ -38,19 +38,21 @@ const capabilities = [
   {
     number: '02',
     group: 'build',
-    category: 'Product',
-    title: 'Product',
+    category: 'Product & Design',
+    title: 'Product & Design',
     path: '/capabilities/product-research',
     description:
-      'From signal to shipped product. Strategy, research, design, and product development run by an operator who has built and shipped products at scale — not just advised on them.',
+      'From signal to shipped product. Strategy, research, design, and product development run by an operator who has built and shipped products at scale, not just advised on them.',
     deliverables: [
       'Product strategy and roadmap design',
       'AI use-case scoping and prioritisation',
-      'User research — customer interviews, usability testing, jobs-to-be-done',
+      'User research: customer interviews, usability testing, jobs-to-be-done',
+      'Market research: TAM sizing, competitive landscape',
       'UX/UI design and design systems',
-      'Product development — from prototype to shipped release',
+      'Product development: from prototype to shipped release',
+      'Product operations: sprint cadence, backlog governance',
     ],
-    operatorBg: 'Product & Research lead',
+    operatorBg: 'Product & Design lead',
     operatorLinks: [
       { name: 'Amar Daing', slug: 'amar-daing' },
     ],

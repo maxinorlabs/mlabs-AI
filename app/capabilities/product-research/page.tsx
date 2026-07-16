@@ -23,13 +23,13 @@ const painPoints = [
     icon: GitCommit,
     number: '02',
     title: 'The Gap Between Decision and Delivery',
-    body: 'A roadmap decision is not a shipped product. Most teams lose fidelity between what was decided and what actually ships -- design gets rushed, scope creeps, and the product that launches is a compromise nobody signed off on.',
+    body: 'A roadmap decision is not a shipped product. Most teams lose fidelity between what was decided and what actually ships. Design gets rushed, scope creeps, and the product that launches is a compromise nobody signed off on.',
   },
   {
     icon: PenTool,
     number: '03',
     title: 'Untested Market Assumptions',
-    body: 'Most product strategies rest on assumptions that were never tested. By the time they prove wrong, the product is two years into the wrong direction -- and the market position has gone to competitors who moved on better information.',
+    body: 'Most product strategies rest on assumptions that were never tested. By the time they prove wrong, the product is two years into the wrong direction, and the market position has gone to competitors who moved on better information.',
   },
 ];
 
@@ -48,13 +48,13 @@ const architecture = [
   },
   {
     tier: 'Strategy Layer',
-    description: 'The decisions that shape what gets built and in what order',
+    description: 'The decisions that shape what gets built and how it functions',
     accent: 'border-brand',
     labelColor: 'text-brand',
     groups: [
       {
-        label: 'Product Strategy',
-        items: ['AI Use-Case Scoping and Prioritisation', 'Roadmap Design', 'Prioritisation Frameworks', 'Opportunity Sizing', 'North Star Metric'],
+        label: 'Product & Design Strategy',
+        items: ['UX Strategy', 'Roadmap Design', 'Prioritisation Frameworks', 'Opportunity Sizing', 'North Star Metric'],
       },
     ],
   },
@@ -88,22 +88,22 @@ const engagements = [
   {
     number: '01',
     title: 'Product Strategy and Roadmap',
-    body: 'We audit your current product direction, identify misalignment with user behaviour or market reality, and build a prioritised roadmap with clear ownership.',
+    body: 'We audit your current product direction, identify misalignment with user behaviour or market reality, and build a prioritised product and design roadmap with clear ownership.',
   },
   {
     number: '02',
-    title: 'AI Use-Case Scoping and Prioritisation',
-    body: 'We map your business operations, identify the 2-3 AI use cases with the highest ROI, and sequence execution by business impact -- before a single line of code is written.',
+    title: 'UX Strategy and Design',
+    body: 'We map your user journeys, identify the most impactful UX/UI improvements, and design intuitive interfaces before a single line of code is written.',
   },
   {
     number: '03',
     title: 'User and Market Research',
-    body: 'Customer interviews, usability testing, and jobs-to-be-done analysis, paired with market sizing and competitive intelligence -- the evidence base for every decision that follows.',
+    body: 'Customer interviews, usability testing, and jobs-to-be-done analysis, paired with market sizing and competitive intelligence, the evidence base for every decision that follows.',
   },
   {
     number: '04',
     title: 'Product Design and Development',
-    body: 'UX/UI design, design systems, and prototyping -- carried through to a shipped, working product. The same team that designs it is accountable for what actually ships.',
+    body: 'Comprehensive UX/UI design, scalable design systems, and high-fidelity prototyping, carried through to a shipped, working product. The same team that designs it is accountable for what actually ships.',
   },
   {
     number: '05',
@@ -115,19 +115,19 @@ const engagements = [
 const faqs = [
   {
     q: 'Do you only advise on product, or do you actually build and design it?',
-    a: 'We do both. Research and strategy set the direction; our Design and Build layer takes it through UX/UI design and into a shipped product. The same operator is accountable end to end -- not a handoff between strategy and execution.',
+    a: 'We do both. Discovery and strategy set the direction; our Design and Build layer takes it through UX/UI design and into a shipped product. The same operator is accountable end to end, not a handoff between strategy and execution.',
   },
   {
     q: 'We already have a product team. How does this work?',
-    a: 'Our operator works alongside your team. Most engagements start by diagnosing where the current process breaks -- research, design, or execution -- and rebuilding from there.',
+    a: 'Our operator works alongside your team. Most engagements start by diagnosing where the current process breaks: discovery, design, or execution, and rebuilding from there.',
   },
   {
-    q: 'How does AI use-case scoping differ from the AI & Tech capability?',
-    a: 'Product & Research scopes what to build and why, including the design work to make it usable. AI & Tech builds and ships the underlying AI system. The two work in sequence.',
+    q: 'How does UX Strategy differ from the AI & Tech capability?',
+    a: 'Product & Design scopes what to build and how it looks, including the design work to make it usable. AI & Tech builds and ships the underlying AI system. The two work in sequence.',
   },
   {
     q: 'What if we need heavy visual design or a full design system?',
-    a: 'We deliver this directly for most engagements. For design-system-heavy or brand-identity-intensive work beyond our standing bandwidth, we bring in vetted design partners from our network -- accountability stays with Maxinor.',
+    a: 'We deliver this directly for most engagements. For design-system-heavy or brand-identity-intensive work beyond our standing bandwidth, we bring in vetted design partners from our network, accountability stays with Maxinor.',
   },
   {
     q: 'Is this only for tech companies?',
@@ -137,9 +137,9 @@ const faqs = [
 
 const operator = {
   name: 'Amar Daing',
-  role: 'Partner, Product & Research',
+  role: 'Partner, Product & Design',
   bg: 'ex-Google x Tata Trusts, ex-OYO, ex-Grofers',
-  depth: 'Product and growth operator with experience building and scaling consumer and B2B platforms across India. At OYO, operated at the intersection of product and growth. At Google x Tata Trusts, designed product for the next billion users. At Grofers and Dineout, owned CX end-to-end. For design-system-heavy or visual-design-intensive engagements, Amar draws on Maxinor\'s design network to extend delivery bandwidth.',
+  depth: 'Product and design operator with experience building and scaling consumer and B2B platforms across India. At OYO, operated at the intersection of product and growth. At Google x Tata Trusts, designed product for the next billion users. At Grofers and Dineout, owned CX end-to-end. For design-system-heavy or visual-design-intensive engagements, Amar draws on Maxinor\'s design network to extend delivery bandwidth.',
   slug: 'amar-daing',
   image: 'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/68e50d8f17573e0fcd4ec3c1_1663569415671.jpeg',
 };
@@ -320,7 +320,7 @@ export default function ProductResearchPage() {
             transition={{ duration: 0.6 }}
             className="mb-4 text-[11px] font-bold uppercase tracking-[0.22em] text-brand"
           >
-            Capability · Product & Research
+            Capability · Product & Design
           </motion.p>
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
@@ -337,7 +337,7 @@ export default function ProductResearchPage() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="mb-10 max-w-2xl text-base font-light leading-relaxed text-warm-white/60 md:text-lg"
           >
-            Knowing what to build is half the job. Designing it well and shipping it without losing the original intent is the other half -- and it&apos;s where most teams lose momentum. Maxinor Product & Research operators embed inside your team across the full arc: research, strategy, design, and the build itself.
+            Knowing what to build is half the job. Designing it well and shipping it without losing the original intent is the other half, and it&apos;s where most teams lose momentum. Maxinor Product & Design operators embed inside your team across the full arc: discovery, strategy, design, and the build itself.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -405,7 +405,7 @@ export default function ProductResearchPage() {
           >
             <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">Capability Stack</p>
             <h2 className="mb-3 max-w-2xl text-3xl font-display font-medium tracking-tight text-navy md:text-4xl">
-              The full product and research capability stack.
+              The full product and design capability stack.
             </h2>
             <p className="max-w-xl text-base font-light leading-relaxed text-grey">
               Four layers. Every capability mapped. Select a layer to explore what sits inside it.
@@ -471,7 +471,7 @@ export default function ProductResearchPage() {
           >
             <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">The Team Behind This</p>
             <h2 className="max-w-2xl text-3xl font-display font-medium tracking-tight text-warm-white md:text-4xl">
-              An operator who has built, designed, and shipped products -- not just managed them.
+              An operator who has built, designed, and shipped products, not just managed them.
             </h2>
           </motion.div>
           <motion.div
@@ -556,10 +556,10 @@ export default function ProductResearchPage() {
               Ready to go from signal to shipped product?
             </h2>
             <p className="mb-8 max-w-xl mx-auto text-base font-light leading-relaxed text-warm-white/60 md:text-lg">
-              Whether you&apos;re scoping a new product direction, need it designed and built, or identifying which AI use cases to build first -- start here.
+              Whether you&apos;re scoping a new product direction, need it designed and built, or identifying which AI use cases to build first, start here.
             </p>
             <p className="mb-8 max-w-xl mx-auto text-sm font-light leading-relaxed text-warm-white/50">
-              Every engagement ends with the system running without us. We build it, we embed until it works, and we hand it over to your team -- fully documented, fully owned by you.
+              Every engagement ends with the system running without us. We build it, we embed until it works, and we hand it over to your team, fully documented, fully owned by you.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link href="/contact" className={primaryBtn}>

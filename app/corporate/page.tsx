@@ -103,16 +103,6 @@ const partners = [
     url: 'https://iaccelgbi.com/',
     logo: 'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/6a4e70f6eb738b4cf11a6c00_logo-removebg.avif',
   },
-  {
-    name: 'IZF',
-    url: 'https://izfworld.com/',
-    logo: 'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/695e7c054bb39ce328e497b7_izf%20fill%20logo.png',
-  },
-  {
-    name: 'Adaapt',
-    url: 'https://www.adaapt.ai/',
-    logo: 'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/695e7c0571637f2d25422210_Adaapt.svg',
-  },
 ];
 
 const faqs = [

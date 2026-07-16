@@ -97,8 +97,8 @@ const engagements = [
 
 const faqs = [
   {
-    q: 'Where does AI use-case selection happen -- here or in Product & Research?',
-    a: "Product & Research scopes which use cases to build based on business outcomes. AI & Tech builds and ships the system once that decision is made. If you're not sure which AI problems are worth solving first, start with Product & Research.",
+    q: 'Where does AI use-case selection happen, here or in Product & Design?',
+    a: "Product & Design scopes which use cases to build based on business outcomes. AI & Tech builds and ships the system once that decision is made. If you're not sure which AI problems are worth solving first, start with Product & Design.",
   },
   {
     q: 'We are not a tech company. Can Maxinor still help?',
