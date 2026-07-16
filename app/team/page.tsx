@@ -33,16 +33,16 @@ const partnerCardClass =
 const leadership: TeamMember[] = [
   {
     name: 'Samir Gupta',
-    role: 'Revenue, Growth & Ops',
-    desc: 'Entrepreneur | ex-Paytm, ex-Bzinga, ex-Solv',
+    role: 'Growth & Operations',
+    desc: 'ex-Paytm | ex-Bzinga | ex-SOLV',
     image:
       'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/68e50d8f8eb88abaaf2dbbb5_1695013342712.jpeg',
     linkedin: 'https://www.linkedin.com/in/samirgupta1/',
   },
   {
     name: 'Amar Daing',
-    role: 'Product, CX & GTM',
-    desc: 'Entrepreneur | ex-Google x Tata, ex-Oyo, ex-Grofers',
+    role: 'Product & GTM',
+    desc: 'ex-OYO | ex-Google + Tata | ex-BlinkIt',
     image:
       'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/68e50d8f17573e0fcd4ec3c1_1663569415671.jpeg',
     linkedin: 'https://www.linkedin.com/in/amar-daing/',
@@ -65,8 +65,8 @@ const leadership: TeamMember[] = [
   },
   {
     name: 'Rajesh Ramanathan',
-    role: 'Fintech',
-    desc: 'Entrepreneur | Ex Accenture, Ex Wipro, Ex Mastek',
+    role: 'BFSI & Enterprise Tech',
+    desc: 'ex-Accenture | ex-Wipro | ex-Mastek',
     image:
       'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/69b299cedd0e417ecb1e2533_WhatsApp%20Image%202026-03-12%20at%204.11.45%20PM.jpeg',
     linkedin: 'https://www.linkedin.com/in/rajeshramanathan/',
@@ -94,6 +94,13 @@ const leadership: TeamMember[] = [
     image:
       'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/6a142ce51a9da04ec8dc7a9a_manik.avif',
     linkedin: 'https://www.linkedin.com/in/manik-sood-64402313/',
+  },
+  {
+    name: 'Alok Lall',
+    role: 'Strategy',
+    desc: 'Ex-Microsoft COO India',
+    image: 'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/6a5933b4ed3c4224eb155040_1516285295392.jpg',
+    linkedin: 'https://in.linkedin.com/in/alok-lall',
   },
 ];
 

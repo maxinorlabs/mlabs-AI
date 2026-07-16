@@ -74,7 +74,7 @@ const capabilities = [
     ],
     operatorBg: 'Consumer Marketing lead',
     operatorLinks: [
-      { name: 'Priyabrata Padhi', slug: 'priyabrata-padhi' },
+      { name: 'Maxinor Team', slug: null },
     ],
   },
   // ── Scale ──
@@ -115,7 +115,7 @@ const capabilities = [
     ],
     operatorBg: 'Operations',
     operatorLinks: [
-      { name: 'Maxinor Team', slug: null },
+      { name: 'Samir Gupta', slug: 'samir-gupta' },
     ],
   },
   {

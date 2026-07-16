@@ -30,35 +30,35 @@ const secondaryButtonClass =
 const engagements = [
   {
     name: 'Discovery',
-    duration: '30 days',
-    model: 'Fixed scope & Cost',
-    description: "A focused 30-day sprint to diagnose what's blocking you and build an execution roadmap.",
-    bullets: ['Problem diagnosis', 'Capability mapping', '90-day execution plan', 'Operator assignment'],
-    bestFor: 'Founders who need clarity before committing capital.',
+    duration: '30 DAYS',
+    model: 'Fixed scope. Fixed cost.',
+    description: '',
+    bullets: ['Root cause diagnosis', 'Capability gap mapping', '90-day execution roadmap'],
+    bestFor: '',
     commercial: '',
-    cta: 'Start a Sprint',
+    cta: 'Start Your Discovery',
     featured: false,
   },
   {
-    name: 'Partnership',
-    duration: '1-3 years',
-    model: 'Embedded co-ownership',
-    description: 'An operator joins your team, embedded, accountable, and aligned on outcomes.',
-    bullets: ['Execution + P&L ownership', 'Co-aligned Business Goals', 'Operator Bench access', 'Build & Scale capability you own'],
-    bestFor: 'Ventures ready to invest in embedded execution, not just advice.',
+    name: 'Operator',
+    duration: '',
+    model: '',
+    description: '',
+    bullets: ['Co-aligned Functional Execution', 'Integrated P&L ownership', 'Full operator bench access', 'Build & Scale capability you own'],
+    bestFor: 'Ventures ready for full or fractional operator execution, not just advice.',
     commercial: '',
-    cta: 'Explore Partnership',
-    featured: true,
+    cta: 'Explore Operator Models',
+    featured: false,
   },
   {
-    name: 'Fractional',
-    duration: 'On demand',
-    model: 'Custom design',
-    description: 'A fractional CXO who operates as part of your leadership team.',
-    bullets: ['Functional gap coverage', 'Team building and systems', 'Transition planning', 'Strategy and execution'],
-    bestFor: 'Companies that need executive depth without full-time cost.',
+    name: 'AI Capability Centre',
+    duration: 'ON REQUIREMENT',
+    model: 'Operator-built, ready to deploy.',
+    description: 'AI capabilities, without building it yourself. We design, staff, and run it end-to-end.',
+    bullets: ['AI Product & Engineering capability', 'Agentic automation & Workflow design', 'Data infrastructure & AI operations', 'Systems & Intelligence'],
+    bestFor: 'Startups, SMEs, Corporates - from AI-fitment to a structured AI function.',
     commercial: '',
-    cta: 'Get a Fractional CXO',
+    cta: 'Explore the Capability Centre',
     featured: false,
   },
 ];
@@ -116,6 +116,80 @@ const sectorGroups = [
     ],
   },
 ];
+
+type Engagement = {
+  name: string;
+  duration: string;
+  model: string;
+  description: string;
+  bullets: string[];
+  bestFor: string;
+  commercial: string;
+  cta: string;
+  featured: boolean;
+};
+
+function EngagementCard({ eng, i }: { eng: Engagement; i: number }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6, delay: i * 0.1 }}
+      className={`relative flex flex-col rounded-[2rem] border bg-white p-8 transition-all duration-500 hover:shadow-xl md:p-10 ${
+        eng.featured
+          ? 'border-brand border-t-4 shadow-[0_0_50px_rgba(243,111,33,0.1)]'
+          : 'border-grey/20 hover:border-brand/30'
+      }`}
+    >
+      {eng.featured && (
+        <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-brand px-5 py-1.5 text-xs font-bold uppercase tracking-widest text-white shadow-lg">
+          Most Popular
+        </div>
+      )}
+      {eng.duration && (
+        <p className="mb-2 text-xs font-bold uppercase tracking-[0.2em] text-brand">{eng.duration}</p>
+      )}
+      <h3 className="mb-1 text-[28px] font-display font-semibold leading-tight text-navy">{eng.name}</h3>
+      {eng.model && <p className="mb-4 text-sm text-grey/60">{eng.model}</p>}
+      {eng.description && (
+        <p className="mb-6 text-[15px] font-normal leading-relaxed text-grey md:text-base">{eng.description}</p>
+      )}
+      <ul className="mb-6 flex-1 space-y-2.5">
+        {eng.bullets.map((b) => (
+          <li key={b} className="flex items-start gap-3 text-[15px] text-grey md:text-base">
+            <span className="mt-0.5 text-brand">
+              <Check className="h-4 w-4" />
+            </span>
+            {b}
+          </li>
+        ))}
+      </ul>
+      {eng.commercial && (
+        <p className="mb-4 text-[13px] leading-relaxed text-grey/70 md:text-sm">
+          {eng.commercial}
+        </p>
+      )}
+      {eng.bestFor && (
+        <div className="mb-6 rounded-2xl bg-warm-white px-4 py-3.5 space-y-1">
+          <p className="text-[13px] leading-relaxed text-grey/70 md:text-sm">
+            <span className="font-semibold text-navy">Best for:</span> {eng.bestFor}
+          </p>
+        </div>
+      )}
+      <Link
+        href="/contact"
+        className={`inline-flex w-full items-center justify-center rounded-full py-3.5 text-[15px] font-semibold tracking-wide transition-all duration-300 md:text-base ${
+          eng.featured
+            ? 'bg-brand text-white hover:bg-brand/90 shadow-[0_0_30px_rgba(243,111,33,0.2)]'
+            : 'border border-grey/25 text-navy hover:border-brand hover:text-brand'
+        }`}
+      >
+        {eng.cta} <ArrowRight className="ml-2 h-4 w-4" />
+      </Link>
+    </motion.div>
+  );
+}
 
 export default function Home() {
   return (
@@ -247,58 +321,7 @@ export default function Home() {
             </div>
             <div className="grid gap-6 md:grid-cols-3">
               {engagements.map((eng, i) => (
-                <motion.div
-                  key={eng.name}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: i * 0.1 }}
-                  className={`relative flex flex-col rounded-[2rem] border bg-white p-8 transition-all duration-500 hover:shadow-xl md:p-10 ${
-                    eng.featured
-                      ? 'border-brand border-t-4 shadow-[0_0_50px_rgba(243,111,33,0.1)]'
-                      : 'border-grey/20 hover:border-brand/30'
-                  }`}
-                >
-                  {eng.featured && (
-                    <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-brand px-5 py-1.5 text-xs font-bold uppercase tracking-widest text-white shadow-lg">
-                      Most Popular
-                    </div>
-                  )}
-                  <p className="mb-2 text-xs font-bold uppercase tracking-[0.2em] text-brand">{eng.duration}</p>
-                  <h3 className="mb-1 text-[28px] font-display font-semibold leading-tight text-navy">{eng.name}</h3>
-                  <p className="mb-4 text-sm text-grey/60">{eng.model}</p>
-                  <p className="mb-6 text-[15px] font-normal leading-relaxed text-grey md:text-base">{eng.description}</p>
-                  <ul className="mb-6 flex-1 space-y-2.5">
-                    {eng.bullets.map((b) => (
-                      <li key={b} className="flex items-start gap-3 text-[15px] text-grey md:text-base">
-                        <span className="mt-0.5 text-brand">
-                          <Check className="h-4 w-4" />
-                        </span>
-                        {b}
-                      </li>
-                    ))}
-                  </ul>
-                  {eng.commercial && (
-                    <p className="mb-4 text-[13px] leading-relaxed text-grey/70 md:text-sm">
-                      {eng.commercial}
-                    </p>
-                  )}
-                  <div className="mb-6 rounded-2xl bg-warm-white px-4 py-3.5 space-y-1">
-                    <p className="text-[13px] leading-relaxed text-grey/70 md:text-sm">
-                      <span className="font-semibold text-navy">Best for:</span> {eng.bestFor}
-                    </p>
-                  </div>
-                  <Link
-                    href="/contact"
-                    className={`inline-flex w-full items-center justify-center rounded-full py-3.5 text-[15px] font-semibold tracking-wide transition-all duration-300 md:text-base ${
-                      eng.featured
-                        ? 'bg-brand text-white hover:bg-brand/90 shadow-[0_0_30px_rgba(243,111,33,0.2)]'
-                        : 'border border-grey/25 text-navy hover:border-brand hover:text-brand'
-                    }`}
-                  >
-                    {eng.cta} <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
-                </motion.div>
+                <EngagementCard key={eng.name} eng={eng} i={i} />
               ))}
             </div>
           </div>

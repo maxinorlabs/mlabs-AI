@@ -398,6 +398,28 @@ export const teamProfiles: TeamProfile[] = [
     ],
   },
   {
+    slug: 'alok-lall',
+    name: 'Alok Lall',
+    role: 'Strategy',
+    shortDesc: 'Ex-Microsoft COO India',
+    image: 'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/6a5933b4ed3c4224eb155040_1516285295392.jpg',
+    linkedin: 'https://in.linkedin.com/in/alok-lall',
+    section: 'leadership',
+    tagline: 'Strategy operator with over three decades of leadership experience, most recently as COO of Microsoft India and South Asia.',
+    bio: [
+      'Alok brings over three decades of leadership experience across technology, marketing, and business transformation, most recently as Chief Operating Officer of Microsoft India and South Asia.',
+    ],
+    expertise: [
+      'Strategy',
+    ],
+    career: [
+      {
+        company: 'Microsoft',
+        context: 'Chief Operating Officer, Microsoft India and South Asia.',
+      },
+    ],
+  },
+  {
     slug: 'aditi-agrawal',
     name: 'Aditi Agrawal',
     role: 'Entrepreneur in Residence - Advertising',
