@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useState } from 'react';
-import { ArrowRight, Plus, Minus } from 'lucide-react';
+import { ArrowRight, Plus, Minus, TrendingUp, Boxes, Calculator } from 'lucide-react';
 
 // Section
 
@@ -36,9 +36,9 @@ const painPoints = [
 
 const engines = [
   {
+    icon: TrendingUp,
     title: 'Growth (GTM, Sales & Partnerships)',
     href: '/capabilities/growth-revenue',
-    accent: 'brand',
     items: [
       'GTM strategy and channel buildout',
       'Sales playbook and pipeline execution',
@@ -48,9 +48,9 @@ const engines = [
     ],
   },
   {
+    icon: Boxes,
     title: 'Supply Chain & Operations',
     href: '/capabilities/operations',
-    accent: 'indigo',
     items: [
       'End-to-end supply chain design and management',
       'Vendor sourcing, warehousing, logistics and fulfilment',
@@ -60,9 +60,9 @@ const engines = [
     ],
   },
   {
+    icon: Calculator,
     title: 'Finance & Accounting',
     href: '/capabilities/finance-accounting',
-    accent: 'teal',
     items: [
       'Financial modelling and MIS reporting',
       'Accounting systems and bookkeeping infrastructure',
@@ -75,22 +75,22 @@ const engines = [
 
 const engagementModels = [
   {
-    name: 'Discovery Sprint',
-    duration: '30 days',
+    name: 'Discovery',
+    duration: '30 DAYS',
     description:
-      'Diagnose what is blocking growth. Map your capabilities. Build a 90-day execution roadmap with operator assignment. Fixed fee. No equity.',
+      'Fixed scope. Fixed cost. A root cause diagnosis, capability gap mapping, and a 90-day execution roadmap. The right start if you need clarity before committing.',
   },
   {
     name: 'Partnership',
-    duration: '1-3 years',
+    duration: 'EMBEDDED OR FRACTIONAL',
     description:
-      'An operator embeds in your team. Owns a function. Accountable to milestones. Series A preparation included. Equity-linked plus execution fee.',
+      'Co-aligned functional execution, integrated P&L ownership, and full operator bench access to build and scale a capability you own. The right model for ventures ready for full or fractional operator execution, not just advice.',
   },
   {
-    name: 'Fractional CXO',
-    duration: '6 to 12 months',
+    name: 'AI Capability Centre',
+    duration: 'ON REQUIREMENT',
     description:
-      'A fractional CMO, CTO, CFO or CPO joins your leadership team. Builds the function. Hires the permanent leader. Retainer model.',
+      'AI capabilities, without building it yourself. We design, staff, and run it end-to-end, spanning AI product and engineering, agentic automation and workflow design, data infrastructure and AI operations, and systems and intelligence.',
   },
 ];
 
@@ -155,25 +155,13 @@ const faqs = [
   },
   {
     q: 'Do we need to give equity?',
-    a: 'The Partner model involves a small equity stake aligned to execution milestones. The Discovery Sprint and Fractional CXO models are fee-based with no equity.',
+    a: 'The Partnership model involves a small equity stake aligned to execution milestones. Discovery is fee-based with no equity.',
   },
   {
     q: 'How do we know if Venture Scale is working?',
     a: 'We set measurable milestones at the start of every engagement. If we do not hit them, we diagnose why and adjust. Operators are accountable to outcomes, not hours.',
   },
 ];
-
-// Section
-
-function engineAccentClasses(accent: string) {
-  const map: Record<string, { dot: string; bar: string; badge: string }> = {
-    brand:  { dot: 'bg-brand',        bar: 'bg-brand',        badge: 'bg-brand/10 text-brand' },
-    indigo: { dot: 'bg-indigo-400',   bar: 'bg-indigo-400',   badge: 'bg-indigo-50 text-indigo-600' },
-    teal:   { dot: 'bg-teal-500',     bar: 'bg-teal-500',     badge: 'bg-teal-50 text-teal-600' },
-    purple: { dot: 'bg-purple-400',   bar: 'bg-purple-400',   badge: 'bg-purple-50 text-purple-600' },
-  };
-  return map[accent] ?? map['brand'];
-}
 
 // Section
 
@@ -366,43 +354,40 @@ export default function ScalePage() {
           </motion.div>
 
           <div className="grid gap-6 sm:grid-cols-3">
-            {engines.map((engine, i) => {
-              const ac = engineAccentClasses(engine.accent);
-              return (
-                <motion.div
-                  key={engine.title}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: i * 0.1 }}
-                  className="flex flex-col rounded-[2rem] border border-grey/15 bg-white p-8 transition-all duration-300 hover:border-brand/20 hover:shadow-sm md:p-10"
+            {engines.map((engine, i) => (
+              <motion.div
+                key={engine.title}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: i * 0.1 }}
+                className="flex flex-col rounded-[2rem] border border-grey/15 bg-warm-white p-8 md:p-10"
+              >
+                <div className="mb-5 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-brand/10">
+                  <engine.icon className="h-5 w-5 text-brand" />
+                </div>
+                <h3 className="mb-5 text-xl font-display font-semibold text-navy md:text-2xl">
+                  {engine.title}
+                </h3>
+                <ul className="mb-6 flex-1 space-y-3">
+                  {engine.items.map((item) => (
+                    <li
+                      key={item}
+                      className="flex items-start gap-2.5 text-sm font-light leading-relaxed text-grey md:text-base"
+                    >
+                      <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-brand" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+                <Link
+                  href={engine.href}
+                  className="inline-flex items-center gap-1 text-sm font-semibold text-brand transition-all duration-200 hover:gap-2"
                 >
-                  <div className={`mb-5 inline-block self-start rounded-full px-3 py-1 text-[11px] font-bold uppercase tracking-[0.16em] ${ac.badge}`}>
-                    Engine {String(i + 1).padStart(2, '0')}
-                  </div>
-                  <h3 className="mb-5 text-xl font-display font-semibold text-navy md:text-2xl">
-                    {engine.title}
-                  </h3>
-                  <ul className="mb-6 flex-1 space-y-3">
-                    {engine.items.map((item) => (
-                      <li
-                        key={item}
-                        className="flex items-start gap-2.5 text-sm font-light leading-relaxed text-navy/60 md:text-base"
-                      >
-                        <span className={`mt-2 h-1.5 w-1.5 shrink-0 rounded-full ${ac.dot}`} />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                  <Link
-                    href={engine.href}
-                    className="inline-flex items-center gap-1 text-sm font-semibold text-brand transition-all duration-200 hover:gap-2"
-                  >
-                    Learn more <ArrowRight className="h-3.5 w-3.5" />
-                  </Link>
-                </motion.div>
-              );
-            })}
+                  Learn more <ArrowRight className="h-3.5 w-3.5" />
+                </Link>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>

@@ -61,7 +61,7 @@ const engagementModels = [
       'Fixed scope. Fixed cost. A root cause diagnosis, capability gap mapping, and a 90-day execution roadmap. The right start if you need clarity before committing.',
   },
   {
-    name: 'Operator',
+    name: 'Partnership',
     duration: 'EMBEDDED OR FRACTIONAL',
     description:
       'Co-aligned functional execution, integrated P&L ownership, and full operator bench access to build and scale a capability you own. The right model for ventures ready for full or fractional operator execution, not just advice.',
@@ -113,7 +113,7 @@ const faqs = [
   },
   {
     q: 'Do I have to give up equity?',
-    a: 'Discovery is a fixed fee with no equity. The Operator model involves a small equity stake aligned to execution milestones. We structure to minimise dilution while creating real alignment.',
+    a: 'Discovery is a fixed fee with no equity. The Partnership model involves a small equity stake aligned to execution milestones. We structure to minimise dilution while creating real alignment.',
   },
   {
     q: 'How do I know if an engagement is working?',

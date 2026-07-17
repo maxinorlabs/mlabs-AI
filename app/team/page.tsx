@@ -34,7 +34,7 @@ const leadership: TeamMember[] = [
   {
     name: 'Samir Gupta',
     role: 'Growth & Operations',
-    desc: 'ex-Paytm | ex-Bzinga | ex-SOLV',
+    desc: 'Entrepreneur | ex-Paytm, ex-Bzinga, ex-Solv',
     image:
       'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/68e50d8f8eb88abaaf2dbbb5_1695013342712.jpeg',
     linkedin: 'https://www.linkedin.com/in/samirgupta1/',
@@ -42,7 +42,7 @@ const leadership: TeamMember[] = [
   {
     name: 'Amar Daing',
     role: 'Product & GTM',
-    desc: 'ex-OYO | ex-Google + Tata | ex-BlinkIt',
+    desc: 'Entrepreneur | ex-Google x Tata, ex-Oyo, ex-Grofers',
     image:
       'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/68e50d8f17573e0fcd4ec3c1_1663569415671.jpeg',
     linkedin: 'https://www.linkedin.com/in/amar-daing/',
@@ -66,7 +66,7 @@ const leadership: TeamMember[] = [
   {
     name: 'Rajesh Ramanathan',
     role: 'BFSI & Enterprise Tech',
-    desc: 'ex-Accenture | ex-Wipro | ex-Mastek',
+    desc: 'Entrepreneur | ex-Accenture, ex-Wipro, ex-Mastek',
     image:
       'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/69b299cedd0e417ecb1e2533_WhatsApp%20Image%202026-03-12%20at%204.11.45%20PM.jpeg',
     linkedin: 'https://www.linkedin.com/in/rajeshramanathan/',

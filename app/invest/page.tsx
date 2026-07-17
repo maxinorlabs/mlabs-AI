@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useState } from 'react';
-import { ArrowRight, Plus, Minus } from 'lucide-react';
+import { ArrowRight, Plus, Minus, Landmark, Handshake } from 'lucide-react';
 
 const primaryBtn =
   'inline-flex items-center justify-center gap-2 rounded-full bg-brand px-8 py-4 text-base font-semibold tracking-wide text-warm-white transition-all duration-300 hover:-translate-y-1 hover:bg-brand/90 shadow-[0_0_40px_rgba(243,111,33,0.15)] hover:shadow-[0_0_60px_rgba(243,111,33,0.3)] sm:px-10 sm:py-5';
@@ -32,8 +32,9 @@ const painPoints = [
 
 const engines = [
   {
+    icon: Landmark,
     title: 'Venture Capital',
-    accent: 'brand',
+    href: '/capabilities/venture-capital',
     items: [
       'Operator-validated deal sourcing and diligence',
       'Milestone-linked capital structuring',
@@ -44,8 +45,9 @@ const engines = [
     ],
   },
   {
+    icon: Handshake,
     title: 'M&A',
-    accent: 'indigo',
+    href: '/capabilities/mergers-acquisitions',
     items: [
       'Buy-side and sell-side advisory',
       'Valuation and deal structuring',
@@ -128,15 +130,6 @@ const faqs = [
     a: 'We target exits in 4 to 7 years. Portfolio companies are typically preparing for Series A within 18 months of our investment and subsequent rounds within 3 to 4 years.',
   },
 ];
-
-function engineAccentClasses(accent: string) {
-  switch (accent) {
-    case 'indigo':
-      return { dot: 'bg-indigo-400', border: 'hover:border-indigo-300' };
-    default:
-      return { dot: 'bg-brand', border: 'hover:border-brand/30' };
-  }
-}
 
 function FaqAccordion() {
   const [open, setOpen] = useState<number | null>(null);
@@ -308,35 +301,40 @@ export default function InvestPage() {
           </motion.div>
 
           <div className="grid gap-6 md:grid-cols-2">
-            {engines.map((engine, i) => {
-              const accent = engineAccentClasses(engine.accent);
-              return (
-                <motion.div
-                  key={engine.title}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: i * 0.1 }}
-                  className={`rounded-[2rem] border border-grey/15 bg-white p-8 transition-all duration-300 hover:shadow-sm md:p-10 ${accent.border}`}
+            {engines.map((engine, i) => (
+              <motion.div
+                key={engine.title}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: i * 0.1 }}
+                className="flex flex-col rounded-[2rem] border border-grey/15 bg-warm-white p-8 md:p-10"
+              >
+                <div className="mb-5 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-brand/10">
+                  <engine.icon className="h-5 w-5 text-brand" />
+                </div>
+                <h3 className="mb-5 text-xl font-display font-semibold text-navy md:text-2xl">
+                  {engine.title}
+                </h3>
+                <ul className="mb-6 flex-1 space-y-3">
+                  {engine.items.map((item) => (
+                    <li
+                      key={item}
+                      className="flex items-start gap-2.5 text-sm font-light leading-relaxed text-grey md:text-base"
+                    >
+                      <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-brand" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+                <Link
+                  href={engine.href}
+                  className="inline-flex items-center gap-1 text-sm font-semibold text-brand transition-all duration-200 hover:gap-2"
                 >
-                  <div className={`mb-5 h-0.5 w-8 ${accent.dot}`} />
-                  <h3 className="mb-5 text-xl font-display font-semibold text-navy md:text-2xl">
-                    {engine.title}
-                  </h3>
-                  <ul className="space-y-3">
-                    {engine.items.map((item) => (
-                      <li
-                        key={item}
-                        className="flex items-start gap-2.5 text-sm font-light leading-relaxed text-navy/60 md:text-base"
-                      >
-                        <span className={`mt-2 h-1.5 w-1.5 shrink-0 rounded-full ${accent.dot}`} />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </motion.div>
-              );
-            })}
+                  Learn more <ArrowRight className="h-3.5 w-3.5" />
+                </Link>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
