@@ -64,14 +64,6 @@ const leadership: TeamMember[] = [
     linkedin: 'https://www.linkedin.com/in/alok02/',
   },
   {
-    name: 'Rajesh Ramanathan',
-    role: 'BFSI & Enterprise Tech',
-    desc: 'Entrepreneur | ex-Accenture, ex-Wipro, ex-Mastek',
-    image:
-      'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/69b299cedd0e417ecb1e2533_WhatsApp%20Image%202026-03-12%20at%204.11.45%20PM.jpeg',
-    linkedin: 'https://www.linkedin.com/in/rajeshramanathan/',
-  },
-  {
     name: 'Priyabrata Padhi',
     role: 'Consumer Marketing',
     desc: 'Entrepreneur | Ex United Breweries, Ex ITC, Ex Britannia',
@@ -116,7 +108,7 @@ const eirTeam: TeamMember[] = [
   {
     name: 'Puneet Kolthe',
     role: 'Entrepreneur in Residence, CX & Service Operations',
-    desc: '25+ years | Building, transforming, scaling CX & Service Operations | ex-Arata, ex-Karbonn, ex-Panasonic',
+    desc: '25+ years | Building, transforming, scaling CX & Service Operations | Arata, ex-Karbonn, ex-Panasonic',
     image:
       'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/6a4c962caa5cc5d2afe7763a_Image%20Puneet%20Kolthe.avif',
     linkedin: 'https://www.linkedin.com/in/puneet-kolthe-6b28297',
