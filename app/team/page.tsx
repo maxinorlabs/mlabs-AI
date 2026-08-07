@@ -94,6 +94,14 @@ const leadership: TeamMember[] = [
     image: 'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/6a5933b4ed3c4224eb155040_1516285295392.jpg',
     linkedin: 'https://in.linkedin.com/in/alok-lall',
   },
+  {
+    name: 'Zubair Patel',
+    role: 'Retail & Consumer',
+    desc: 'CBO, CMO & Business/P&L Leader | ex-Shoppers Stop, ex-Future Group, ex-Health & Glow',
+    image:
+      'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/6a75e1f31272b2bc952fbe09_ZP%20Profile.JPG.jpeg',
+    linkedin: 'https://www.linkedin.com/in/zubairpatel/',
+  },
 ];
 
 const eirTeam: TeamMember[] = [
