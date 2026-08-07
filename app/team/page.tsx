@@ -173,7 +173,7 @@ function TeamGridSection({ title, members }: { title: string; members: TeamMembe
       <div className="grid gap-x-8 gap-y-12 md:grid-cols-2 md:gap-y-14 lg:grid-cols-3 lg:gap-y-16">
         {members.map((member) => (
           <article key={member.name} id={member.name.toLowerCase().replace(/[\s.]+/g, '-').replace(/[^a-z0-9-]/g, '')} className="group flex flex-col text-center md:text-left">
-            <Link href={`/team/${memberSlug(member.name)}`} className="relative mx-auto mb-6 block h-40 w-40 overflow-hidden rounded-full border-4 border-navy/10 transition-colors duration-500 group-hover:border-brand/40 sm:h-44 sm:w-44 md:mx-0 md:mb-8 md:h-56 md:w-56">
+            <div className="relative mx-auto mb-6 block h-40 w-40 overflow-hidden rounded-full border-4 border-navy/10 transition-colors duration-500 group-hover:border-brand/40 sm:h-44 sm:w-44 md:mx-0 md:mb-8 md:h-56 md:w-56">
               {member.image ? (
                 <Image
                   src={member.image}
@@ -188,10 +188,8 @@ function TeamGridSection({ title, members }: { title: string; members: TeamMembe
                   {member.name.charAt(0)}
                 </div>
               )}
-            </Link>
-            <Link href={`/team/${memberSlug(member.name)}`}>
-              <h3 className="mb-2 text-2xl font-display font-medium text-navy transition-colors hover:text-brand">{member.name}</h3>
-            </Link>
+            </div>
+            <h3 className="mb-2 text-2xl font-display font-medium text-navy">{member.name}</h3>
             <p className="mb-3 text-base font-medium text-brand md:mb-4">{member.role}</p>
             <p className="mb-6 max-w-[24rem] text-base font-light leading-relaxed text-navy/70 md:mb-7">
               {member.desc}
