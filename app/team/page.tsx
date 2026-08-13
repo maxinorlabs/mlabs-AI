@@ -14,6 +14,7 @@ type TeamMember = {
   desc: string;
   image?: string;
   imagePosition?: string;
+  imageScale?: string;
   linkedin: string;
 };
 
@@ -100,6 +101,8 @@ const leadership: TeamMember[] = [
     desc: 'CBO, CMO & Business/P&L Leader | ex-Shoppers Stop, ex-Future Group, ex-Health & Glow',
     image:
       'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/6a75e1f31272b2bc952fbe09_ZP%20Profile.JPG.jpeg',
+    imagePosition: '50% 5%',
+    imageScale: '1.15',
     linkedin: 'https://www.linkedin.com/in/zubairpatel/',
   },
 ];
@@ -183,14 +186,19 @@ function TeamGridSection({ title, members }: { title: string; members: TeamMembe
           <article key={member.name} id={member.name.toLowerCase().replace(/[\s.]+/g, '-').replace(/[^a-z0-9-]/g, '')} className="group flex flex-col text-center md:text-left">
             <div className="relative mx-auto mb-6 block h-40 w-40 overflow-hidden rounded-full border-4 border-navy/10 transition-colors duration-500 group-hover:border-brand/40 sm:h-44 sm:w-44 md:mx-0 md:mb-8 md:h-56 md:w-56">
               {member.image ? (
-                <Image
-                  src={member.image}
-                  alt={member.name}
-                  fill
-                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                  style={{ objectPosition: member.imagePosition ?? 'center' }}
-                  referrerPolicy="no-referrer"
-                />
+                <div
+                  className="absolute inset-0"
+                  style={{ transform: `scale(${member.imageScale ?? 1})`, transformOrigin: 'center' }}
+                >
+                  <Image
+                    src={member.image}
+                    alt={member.name}
+                    fill
+                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                    style={{ objectPosition: member.imagePosition ?? 'center' }}
+                    referrerPolicy="no-referrer"
+                  />
+                </div>
               ) : (
                 <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-grey/10 to-grey/20 text-5xl font-display text-grey/40">
                   {member.name.charAt(0)}

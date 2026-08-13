@@ -10,6 +10,7 @@ export type TeamProfile = {
   shortDesc: string;
   image?: string;
   imagePosition?: string;
+  imageScale?: string;
   linkedin: string;
   section: 'leadership' | 'eir' | 'program';
   tagline: string;
