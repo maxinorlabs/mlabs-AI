@@ -11,6 +11,9 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   async redirects() {
     return [
+      ...(basePath
+        ? []
+        : [{ source: '/home/contact', destination: '/contact', permanent: false }]),
       { source: '/domains', destination: '/sectors', permanent: true },
       { source: '/domains/bfsi', destination: '/sectors/bfsi', permanent: true },
       { source: '/domains/media', destination: '/sectors/media', permanent: true },

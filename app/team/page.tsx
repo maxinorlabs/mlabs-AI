@@ -14,7 +14,6 @@ type TeamMember = {
   desc: string;
   image?: string;
   imagePosition?: string;
-  imageScale?: string;
   linkedin: string;
 };
 
@@ -23,7 +22,7 @@ function memberSlug(name: string) {
 }
 
 const pagePadding = 'bg-warm-white px-6 pt-24 pb-20 text-navy md:pt-32 md:pb-28 lg:pb-32';
-const introSpacing = 'mb-14 md:mb-24 lg:mb-28';
+const introSpacing = 'mb-14 md:mb-20 lg:mb-12';
 const introTitle = 'mb-5 text-4xl font-display font-medium tracking-tight text-navy sm:text-5xl md:mb-6 md:text-7xl';
 const introBody = 'max-w-2xl text-base font-light leading-relaxed text-navy/70 md:text-xl';
 const sectionSpacing = 'mb-16 md:mb-24 lg:mb-28';
@@ -59,15 +58,16 @@ const leadership: TeamMember[] = [
   {
     name: 'Alok Kumar',
     role: 'AI & Tech',
-    desc: 'Entrepreneur | Ex Zee, Ex StanChart, Ex Fidelity, Ex Oracle',
+    desc: 'Entrepreneur | ex-Zee, ex-Oracle, ex-StanChart, ex-Fidelity',
     image:
       'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/69b29541adceb2f4cf8144ad_79c886e0-fd1f-49a4-bfed-f481d5bb1f38.jpg',
+    imagePosition: '50% 20%',
     linkedin: 'https://www.linkedin.com/in/alok02/',
   },
   {
     name: 'Priyabrata Padhi',
     role: 'Consumer Marketing',
-    desc: 'Entrepreneur | Ex United Breweries, Ex ITC, Ex Britannia',
+    desc: 'Entrepreneur | ex-United Breweries, ex-ITC, ex-Britannia',
     image:
       'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/69c11ffc5c1c2e2f2a9cadaa_Gemini_Generated_Image_m5qmrom5qmrom5qm.avif',
     linkedin: 'https://www.linkedin.com/in/priyabratapadhi/',
@@ -78,6 +78,7 @@ const leadership: TeamMember[] = [
     desc: 'Entrepreneur | ex-Operation Smile, ex-World Bank, ex-PATH',
     image:
       'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/69f302142cd2dca8aba0e22a_WhatsApp%20Image%202026-04-30%20at%2012.35.34%20PM.jpeg',
+    imagePosition: '50% 15%',
     linkedin: 'https://www.linkedin.com/in/rachitnegi/',
   },
   {
@@ -86,12 +87,13 @@ const leadership: TeamMember[] = [
     desc: 'Lawyer | ex-Paytm, ex-Zee, ex-Healthkart | 20+ years cross-industry expertise',
     image:
       'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/6a142ce51a9da04ec8dc7a9a_manik.avif',
+    imagePosition: '50% 20%',
     linkedin: 'https://www.linkedin.com/in/manik-sood-64402313/',
   },
   {
     name: 'Alok Lall',
     role: 'Strategy',
-    desc: 'Ex-Microsoft COO India',
+    desc: 'ex-Microsoft COO India',
     image: 'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/6a5933b4ed3c4224eb155040_1516285295392.jpg',
     linkedin: 'https://in.linkedin.com/in/alok-lall',
   },
@@ -102,7 +104,6 @@ const leadership: TeamMember[] = [
     image:
       'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/6a75e1f31272b2bc952fbe09_ZP%20Profile.JPG.jpeg',
     imagePosition: '50% 5%',
-    imageScale: '1.15',
     linkedin: 'https://www.linkedin.com/in/zubairpatel/',
   },
 ];
@@ -119,7 +120,7 @@ const eirTeam: TeamMember[] = [
   {
     name: 'Puneet Kolthe',
     role: 'Entrepreneur in Residence, CX & Service Operations',
-    desc: '25+ years | Building, transforming, scaling CX & Service Operations | Arata, ex-Karbonn, ex-Panasonic',
+    desc: '25+ years | Building, transforming, scaling CX & Service Operations | ex-Arata, ex-Karbonn, ex-Panasonic',
     image:
       'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/6a4c962caa5cc5d2afe7763a_Image%20Puneet%20Kolthe.avif',
     linkedin: 'https://www.linkedin.com/in/puneet-kolthe-6b28297',
@@ -133,6 +134,7 @@ const programTeam: TeamMember[] = [
     desc: 'Postgrad in Biotechnology',
     image:
       'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/69b295fc064e36e1c0266a56_WhatsApp%20Image%202026-03-12%20at%203.59.29%20PM.jpeg',
+    imagePosition: '50% 10%',
     linkedin: 'https://www.linkedin.com/in/saniya-f-369a98213/',
   },
   // Hidden — keep entry for later re-enable, do not delete.
@@ -184,21 +186,16 @@ function TeamGridSection({ title, members }: { title: string; members: TeamMembe
       <div className="grid gap-x-8 gap-y-12 md:grid-cols-2 md:gap-y-14 lg:grid-cols-3 lg:gap-y-16">
         {members.map((member) => (
           <article key={member.name} id={member.name.toLowerCase().replace(/[\s.]+/g, '-').replace(/[^a-z0-9-]/g, '')} className="group flex flex-col text-center md:text-left">
-            <div className="relative mx-auto mb-6 block h-40 w-40 overflow-hidden rounded-full border-4 border-navy/10 transition-colors duration-500 group-hover:border-brand/40 sm:h-44 sm:w-44 md:mx-0 md:mb-8 md:h-56 md:w-56">
+            <div className="relative mx-auto mb-6 block h-40 w-40 overflow-hidden rounded-full border-4 border-navy/10 transition-colors duration-500 group-hover:border-brand/40 sm:h-44 sm:w-44 md:mx-0 md:mb-8 md:h-52 md:w-52">
               {member.image ? (
-                <div
-                  className="absolute inset-0"
-                  style={{ transform: `scale(${member.imageScale ?? 1})`, transformOrigin: 'center' }}
-                >
-                  <Image
-                    src={member.image}
-                    alt={member.name}
-                    fill
-                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                    style={{ objectPosition: member.imagePosition ?? 'center' }}
-                    referrerPolicy="no-referrer"
-                  />
-                </div>
+                <Image
+                  src={member.image}
+                  alt={member.name}
+                  fill
+                  className="object-cover"
+                  style={{ objectPosition: member.imagePosition ?? 'center' }}
+                  referrerPolicy="no-referrer"
+                />
               ) : (
                 <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-grey/10 to-grey/20 text-5xl font-display text-grey/40">
                   {member.name.charAt(0)}

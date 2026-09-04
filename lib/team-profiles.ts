@@ -10,7 +10,6 @@ export type TeamProfile = {
   shortDesc: string;
   image?: string;
   imagePosition?: string;
-  imageScale?: string;
   linkedin: string;
   section: 'leadership' | 'eir' | 'program';
   tagline: string;
@@ -141,6 +140,7 @@ export const teamProfiles: TeamProfile[] = [
     shortDesc: 'Entrepreneur | ex-Zee, ex-Oracle, ex-StanChart, ex-Fidelity',
     image:
       'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/69b29541adceb2f4cf8144ad_79c886e0-fd1f-49a4-bfed-f481d5bb1f38.jpg',
+    imagePosition: '50% 20%',
     linkedin: 'https://www.linkedin.com/in/alok02/',
     section: 'leadership',
     tagline: 'Technology and AI operator with a career spanning enterprise software, financial services, and media.',
@@ -259,6 +259,7 @@ export const teamProfiles: TeamProfile[] = [
     shortDesc: 'Entrepreneur | ex-Operation Smile, ex-World Bank, ex-PATH',
     image:
       'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/69f302142cd2dca8aba0e22a_WhatsApp%20Image%202026-04-30%20at%2012.35.34%20PM.jpeg',
+    imagePosition: '50% 15%',
     linkedin: 'https://www.linkedin.com/in/rachitnegi/',
     section: 'leadership',
     tagline: 'Global health operator with institutional experience across the World Bank, PATH, and Operation Smile.',
@@ -297,6 +298,7 @@ export const teamProfiles: TeamProfile[] = [
     shortDesc: 'Postgrad in Biotechnology',
     image:
       'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/69b295fc064e36e1c0266a56_WhatsApp%20Image%202026-03-12%20at%203.59.29%20PM.jpeg',
+    imagePosition: '50% 10%',
     linkedin: 'https://www.linkedin.com/in/saniya-f-369a98213/',
     section: 'program',
     tagline: "Research and analytical rigour at the core of the Founder's Office.",
@@ -354,6 +356,7 @@ export const teamProfiles: TeamProfile[] = [
     shortDesc: 'Lawyer | Founder, Law Grammar | ex-Paytm, ex-Zee, ex-Healthkart',
     image:
       'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/6a142ce51a9da04ec8dc7a9a_manik.avif',
+    imagePosition: '50% 20%',
     linkedin: 'https://www.linkedin.com/in/manik-sood-64402313/',
     section: 'leadership',
     tagline: 'Founder of Law Grammar. Two decades of cross-industry legal expertise spanning FinTech, Real Estate, E-commerce, and Media.',
@@ -402,7 +405,7 @@ export const teamProfiles: TeamProfile[] = [
     slug: 'alok-lall',
     name: 'Alok Lall',
     role: 'Strategy',
-    shortDesc: 'Ex-Microsoft COO India',
+    shortDesc: 'ex-Microsoft COO India',
     image: 'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/6a5933b4ed3c4224eb155040_1516285295392.jpg',
     linkedin: 'https://in.linkedin.com/in/alok-lall',
     section: 'leadership',

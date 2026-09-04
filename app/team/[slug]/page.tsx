@@ -64,20 +64,15 @@ export default async function TeamMemberPage({ params }: { params: Promise<{ slu
             {/* Photo */}
             <div className="relative h-48 w-48 shrink-0 overflow-hidden rounded-[2rem] border-4 border-white/10 sm:h-56 sm:w-56 md:h-64 md:w-64">
               {profile.image ? (
-                <div
-                  className="absolute inset-0"
-                  style={{ transform: `scale(${profile.imageScale ?? 1})`, transformOrigin: 'center' }}
-                >
-                  <Image
-                    src={profile.image}
-                    alt={profile.name}
-                    fill
-                    className="object-cover"
-                    style={{ objectPosition: profile.imagePosition ?? 'center' }}
-                    referrerPolicy="no-referrer"
-                    priority
-                  />
-                </div>
+                <Image
+                  src={profile.image}
+                  alt={profile.name}
+                  fill
+                  className="object-cover"
+                  style={{ objectPosition: profile.imagePosition ?? 'center' }}
+                  referrerPolicy="no-referrer"
+                  priority
+                />
               ) : (
                 <div className="absolute inset-0 flex items-center justify-center bg-navy/60 text-6xl font-display text-white/30">
                   {profile.name.charAt(0)}
@@ -236,19 +231,14 @@ export default async function TeamMemberPage({ params }: { params: Promise<{ slu
                 >
                   <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-full border-2 border-navy/10 group-hover:border-brand/30 transition-colors">
                     {member.image ? (
-                      <div
-                        className="absolute inset-0"
-                        style={{ transform: `scale(${member.imageScale ?? 1})`, transformOrigin: 'center' }}
-                      >
-                        <Image
-                          src={member.image}
-                          alt={member.name}
-                          fill
-                          className="object-cover"
-                          style={{ objectPosition: member.imagePosition ?? 'center' }}
-                          referrerPolicy="no-referrer"
-                        />
-                      </div>
+                      <Image
+                        src={member.image}
+                        alt={member.name}
+                        fill
+                        className="object-cover"
+                        style={{ objectPosition: member.imagePosition ?? 'center' }}
+                        referrerPolicy="no-referrer"
+                      />
                     ) : (
                       <div className="absolute inset-0 flex items-center justify-center bg-grey/10 text-xl font-display text-grey/40">
                         {member.name.charAt(0)}

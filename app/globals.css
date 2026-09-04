@@ -24,6 +24,18 @@ body {
   color: var(--color-navy);
 }
 
+.contact-control:user-invalid {
+  border-color: rgb(220 38 38 / 0.72);
+  box-shadow: 0 0 0 2px rgb(220 38 38 / 0.08);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-control,
+  .contact-control * {
+    transition-duration: 0.01ms !important;
+  }
+}
+
 @keyframes marquee {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
