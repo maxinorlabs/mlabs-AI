@@ -47,7 +47,7 @@ function RequiredMark() {
   return <span className="ml-0.5 text-red-600" aria-hidden="true">*</span>;
 }
 
-export function ContactForm() {
+export function ContactForm({ endpoint }: { endpoint: string }) {
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
   const [attachedFile, setAttachedFile] = useState<File | null>(null);
@@ -108,12 +108,19 @@ export function ContactForm() {
         payload.fileMimeType = attachedFile.type || 'application/octet-stream';
       }
 
-      const response = await fetch('/api/contact', {
+      const response = await fetch(endpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
       });
-      const result = (await response.json()) as ContactSubmissionResult;
+      const responseText = await response.text();
+      let result: ContactSubmissionResult;
+
+      try {
+        result = JSON.parse(responseText) as ContactSubmissionResult;
+      } catch {
+        throw new Error('The contact service is temporarily unavailable. Please try again shortly.');
+      }
 
       if (!response.ok || !result.ok) {
         throw new Error(result.message ?? 'Submission failed. Please try again.');

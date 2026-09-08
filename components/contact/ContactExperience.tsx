@@ -1,4 +1,5 @@
 import { ContactForm } from './ContactForm';
+import { configuredBasePath, withBasePath } from '@/lib/site-path';
 
 const audiences = ['Founders', 'SMEs', 'Corporates', 'Investors'];
 
@@ -30,6 +31,8 @@ function ContactIntro() {
 }
 
 export function ContactExperience() {
+  const contactEndpoint = withBasePath('/api/contact', configuredBasePath);
+
   return (
     <section className="relative min-h-[100svh] overflow-hidden bg-warm-white px-5 pb-10 pt-28 sm:px-8 lg:h-[100svh] lg:min-h-[680px] lg:px-10 lg:pb-5 lg:pt-24">
       <div className="pointer-events-none absolute inset-x-0 top-20 h-px bg-navy/10" />
@@ -38,7 +41,7 @@ export function ContactExperience() {
         <div className="flex items-center lg:h-[calc(100svh-7rem)] lg:min-h-[550px] lg:border-r lg:border-navy/12 lg:pr-10 xl:pr-16">
           <ContactIntro />
         </div>
-        <ContactForm />
+        <ContactForm endpoint={contactEndpoint} />
       </div>
     </section>
   );
