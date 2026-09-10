@@ -210,7 +210,7 @@ export function ContactForm({ endpoint }: { endpoint: string }) {
             <label htmlFor="contact-email" className={`${fieldLabel} ${labelClass}`}>Email</label>
             <input id="contact-email" name="email" type="email" autoComplete="email" inputMode="email" placeholder="you@company.com" className={inputClass} required aria-required="true" disabled={status === 'submitting'} />
           </div>
-          <div className="group">
+          <div className="group sm:order-1">
             <span id="attachment-label" className={`${fieldLabel} ${labelClass}`}>Attachment <span className={`normal-case tracking-normal ${optionalClass}`}>(Optional)</span></span>
             <span id="attachment-help" className="sr-only">Accepted formats: PDF, PPT, PPTX, DOC, or DOCX. Maximum size 10MB.</span>
             <input ref={fileInputRef} id="contact-attachment" name="attachment" type="file" accept={ACCEPTED_FILE_TYPES} className="sr-only" onChange={handleFileChange} disabled={status === 'submitting'} aria-labelledby="attachment-label attachment-help" />
