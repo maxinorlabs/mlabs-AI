@@ -27,7 +27,7 @@ type ContactSubmissionResult = {
 };
 
 const engagementOptions = [
-  { label: 'Founder / Startup', value: 'Founder' },
+  { label: 'Founder', value: 'Founder' },
   { label: 'Investor', value: 'Investor' },
   { label: 'CXO / Operator', value: 'CXO / Operator' },
   { label: 'Job Seeker', value: 'Job Seeker' },
@@ -150,7 +150,7 @@ export function ContactForm({ endpoint }: { endpoint: string }) {
           <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-brand/10 text-brand">
             <CheckCircle2 className="h-7 w-7" />
           </div>
-          <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-brand">Message received</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand">Message received</p>
           <h2 className="mt-2 font-display text-3xl font-medium text-navy">We&apos;ll be in touch.</h2>
           <p className="mt-3 text-sm text-navy/55">Your note is now with the Maxinor team.</p>
           <button type="button" onClick={() => setStatus('idle')} className="mt-7 text-sm font-semibold text-brand hover:underline">
@@ -161,7 +161,7 @@ export function ContactForm({ endpoint }: { endpoint: string }) {
     );
   }
 
-  const fieldLabel = 'mb-1.5 block text-[11px] font-semibold uppercase tracking-[0.12em] transition-colors duration-200 group-focus-within:text-brand';
+  const fieldLabel = 'mb-1.5 block text-xs font-semibold uppercase tracking-[0.1em] transition-colors duration-200 group-focus-within:text-brand';
 
   return (
     <motion.div
@@ -169,16 +169,16 @@ export function ContactForm({ endpoint }: { endpoint: string }) {
       className={surfaceClass}
     >
       <form onSubmit={handleSubmit} onChange={clearError} aria-label="Contact Maxinor" noValidate>
-        <div className="mb-4 flex items-end justify-between gap-4 border-b border-current/10 pb-3">
-          <div>
-            <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-brand">Start a conversation</p>
-            <h2 className="mt-1 font-display text-xl font-medium tracking-tight text-navy sm:text-2xl">
-              Tell us where you&apos;re headed.
-            </h2>
+        <div className="mb-4 border-b border-current/10 pb-3">
+          <div className="flex items-center justify-between gap-3">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand">Start a conversation</p>
+            <p className="whitespace-nowrap text-xs leading-none text-navy/45">
+              Required unless marked optional
+            </p>
           </div>
-          <p className="hidden text-right text-[10px] leading-relaxed text-navy/40 sm:block">
-            Required fields<br />are marked <span className="text-red-500">*</span>
-          </p>
+          <h2 className="mt-2 font-display text-xl font-medium tracking-tight text-navy sm:text-2xl">
+            Tell us where you&apos;re headed.
+          </h2>
         </div>
 
         {status === 'error' && (
@@ -188,20 +188,16 @@ export function ContactForm({ endpoint }: { endpoint: string }) {
         )}
 
         <div className="grid gap-x-4 gap-y-3 sm:grid-cols-2">
-          <div className="group">
-            <label htmlFor="contact-name" className={`${fieldLabel} ${labelClass}`}>Name <RequiredMark /></label>
-            <input id="contact-name" name="name" type="text" autoComplete="name" placeholder="Your name" className={inputClass} required aria-required="true" disabled={status === 'submitting'} />
+          <div className="group sm:col-span-2">
+            <label htmlFor="contact-message" className={`${fieldLabel} ${labelClass}`}>I am looking for <RequiredMark /></label>
+            <textarea id="contact-message" name="message" rows={2} placeholder="A sentence or two about the outcome you need." className={`${inputClass} h-[62px] resize-none py-2.5 leading-relaxed`} required aria-required="true" disabled={status === 'submitting'} />
           </div>
           <div className="group">
-            <label htmlFor="contact-email" className={`${fieldLabel} ${labelClass}`}>Email <RequiredMark /></label>
-            <input id="contact-email" name="email" type="email" autoComplete="email" inputMode="email" placeholder="you@company.com" className={inputClass} required aria-required="true" disabled={status === 'submitting'} />
+            <label htmlFor="contact-company" className={`${fieldLabel} ${labelClass}`}>Company / venture <span className={`normal-case tracking-normal ${optionalClass}`}>(Optional)</span></label>
+            <input id="contact-company" name="company" type="text" autoComplete="organization" placeholder="Company or venture name" className={inputClass} disabled={status === 'submitting'} />
           </div>
           <div className="group">
-            <label htmlFor="contact-phone" className={`${fieldLabel} ${labelClass}`}>Phone number <RequiredMark /></label>
-            <input id="contact-phone" name="phone" type="tel" autoComplete="tel" inputMode="tel" placeholder="+91 98765 43210" className={inputClass} required aria-required="true" disabled={status === 'submitting'} />
-          </div>
-          <div className="group">
-            <label htmlFor="contact-engagement" className={`${fieldLabel} ${labelClass}`}>I am a... <RequiredMark /></label>
+            <label htmlFor="contact-engagement" className={`${fieldLabel} ${labelClass}`}>I am <RequiredMark /></label>
             <div className="relative">
               <select id="contact-engagement" name="engagementType" defaultValue="" className={`${inputClass} appearance-none pr-10`} required aria-required="true" disabled={status === 'submitting'}>
                 <option value="" disabled>Select one</option>
@@ -211,10 +207,14 @@ export function ContactForm({ endpoint }: { endpoint: string }) {
             </div>
           </div>
           <div className="group">
-            <label htmlFor="contact-company" className={`${fieldLabel} ${labelClass}`}>My company / venture <span className={`normal-case tracking-normal ${optionalClass}`}>(Optional)</span></label>
-            <input id="contact-company" name="company" type="text" autoComplete="organization" placeholder="Company or venture name" className={inputClass} disabled={status === 'submitting'} />
+            <label htmlFor="contact-name" className={`${fieldLabel} ${labelClass}`}>Name <span className={`normal-case tracking-normal ${optionalClass}`}>(Optional)</span></label>
+            <input id="contact-name" name="name" type="text" autoComplete="name" placeholder="Your name" className={inputClass} disabled={status === 'submitting'} />
           </div>
           <div className="group">
+            <label htmlFor="contact-email" className={`${fieldLabel} ${labelClass}`}>Email <RequiredMark /></label>
+            <input id="contact-email" name="email" type="email" autoComplete="email" inputMode="email" placeholder="you@company.com" className={inputClass} required aria-required="true" disabled={status === 'submitting'} />
+          </div>
+          <div className="group sm:order-1">
             <span id="attachment-label" className={`${fieldLabel} ${labelClass}`}>Attachment <span className={`normal-case tracking-normal ${optionalClass}`}>(Optional)</span></span>
             <span id="attachment-help" className="sr-only">Accepted formats: PDF, PPT, PPTX, DOC, or DOCX. Maximum size 10MB.</span>
             <input ref={fileInputRef} id="contact-attachment" name="attachment" type="file" accept={ACCEPTED_FILE_TYPES} className="sr-only" onChange={handleFileChange} disabled={status === 'submitting'} aria-labelledby="attachment-label attachment-help" />
@@ -230,20 +230,20 @@ export function ContactForm({ endpoint }: { endpoint: string }) {
               <label htmlFor="contact-attachment" className={`${inputClass} flex cursor-pointer items-center gap-2 hover:border-brand hover:text-brand`}>
                 <Paperclip className="h-4 w-4 shrink-0" aria-hidden="true" />
                 <span>Attach file</span>
-                <span className="ml-auto text-[9px] opacity-45 sm:text-[10px]">PDF, PPT or DOC · 10MB</span>
+                <span className="ml-auto text-xs opacity-45">PDF, PPT or DOC · 10MB</span>
               </label>
             )}
           </div>
-          <div className="group sm:col-span-2">
-            <label htmlFor="contact-message" className={`${fieldLabel} ${labelClass}`}>I am looking for... <RequiredMark /></label>
-            <textarea id="contact-message" name="message" rows={2} placeholder="A sentence or two about the outcome you need." className={`${inputClass} h-[62px] resize-none py-2.5 leading-relaxed`} required aria-required="true" disabled={status === 'submitting'} />
+          <div className="group">
+            <label htmlFor="contact-phone" className={`${fieldLabel} ${labelClass}`}>Phone number <RequiredMark /></label>
+            <input id="contact-phone" name="phone" type="tel" autoComplete="tel" inputMode="tel" placeholder="+91 98765 43210" className={inputClass} required aria-required="true" disabled={status === 'submitting'} />
           </div>
         </div>
 
         <button
           type="submit"
           disabled={status === 'submitting'}
-          className="group/button mt-4 inline-flex h-12 w-full items-center justify-between rounded-sm bg-navy px-5 text-sm font-semibold uppercase tracking-[0.14em] text-warm-white shadow-[0_10px_25px_rgba(11,31,59,0.12)] transition-[background-color,color,transform,box-shadow] duration-200 hover:bg-brand hover:shadow-[0_12px_30px_rgba(243,111,33,0.22)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand disabled:cursor-not-allowed disabled:opacity-60"
+          className="group/button mx-auto mt-4 flex items-center justify-center gap-2 rounded-full border border-navy bg-navy px-6 py-2.5 text-sm font-medium tracking-wide text-warm-white shadow-[0_10px_25px_rgba(11,31,59,0.12)] transition-all duration-300 hover:border-brand hover:bg-brand focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand disabled:cursor-not-allowed disabled:opacity-60"
         >
           <span>{status === 'submitting' ? 'Sending message...' : 'Send message'}</span>
           <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover/button:translate-x-1 motion-reduce:transition-none" aria-hidden="true" />

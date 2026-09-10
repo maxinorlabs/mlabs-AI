@@ -16,7 +16,7 @@ export default function Image() {
           <span style={{ fontSize: '26px', fontWeight: 700, color: '#F7F7F5', letterSpacing: '0.15em', fontFamily: 'sans-serif' }}>MAXINOR</span>
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-          <span style={{ fontSize: '14px', fontWeight: 700, color: '#F36F21', letterSpacing: '0.2em', textTransform: 'uppercase', fontFamily: 'sans-serif' }}>Get in Touch</span>
+          <span style={{ fontSize: '14px', fontWeight: 700, color: '#F36F21', letterSpacing: '0.2em', textTransform: 'uppercase', fontFamily: 'sans-serif' }}>Connect With Us</span>
           <div style={{ display: 'flex', alignItems: 'flex-start', gap: '20px' }}>
             <div style={{ width: '5px', height: '72px', background: '#F36F21', borderRadius: '4px', flexShrink: 0, marginTop: '6px' }} />
             <span style={{ fontSize: '62px', fontWeight: 700, color: '#F7F7F5', lineHeight: 1.1, fontFamily: 'sans-serif', letterSpacing: '-0.02em' }}>Start a Conversation</span>
