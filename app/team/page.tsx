@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
-import { Linkedin } from 'lucide-react';
 import Link from 'next/link';
+import { PartnerLogoTicker } from '@/components/PartnerLogoTicker';
 
 export const metadata: Metadata = {
   title: 'Our Team | Operators and Builders',
@@ -27,8 +27,6 @@ const introTitle = 'mb-5 text-4xl font-display font-medium tracking-tight text-n
 const introBody = 'max-w-2xl text-base font-light leading-relaxed text-navy/70 md:text-xl';
 const sectionSpacing = 'mb-16 md:mb-24 lg:mb-28';
 const sectionHeading = 'mb-8 flex items-center gap-3 text-2xl font-display font-medium tracking-tight text-navy md:mb-12 md:text-3xl';
-const partnerCardClass =
-  'group relative flex h-20 w-full items-center justify-center rounded-[1.5rem] border border-navy/10 bg-white p-3 transition-all duration-500 hover:border-brand/30 hover:bg-white sm:h-28 sm:rounded-[2rem] sm:p-5 md:h-32 md:p-6';
 
 const leadership: TeamMember[] = [
   {
@@ -158,24 +156,6 @@ const programTeam: TeamMember[] = [
   },
 ];
 
-const partners = [
-  {
-    name: 'Hygriv',
-    image: 'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/695e8f57198b4be76b7685ef_Logo%20with%20Capital.png',
-    url: 'https://www.hygriv.com/',
-  },
-  {
-    name: 'Saptharushi',
-    image: 'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/69b3cd584c566a57e84d3aae_saptharushi7_logo.jpg',
-    url: 'https://saptharushi.com/',
-  },
-  {
-    name: 'iAccel GBI',
-    image: 'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/6a4e70f6eb738b4cf11a6c00_logo-removebg.avif',
-    url: 'https://iaccelgbi.com/',
-  },
-];
-
 function TeamGridSection({ title, members }: { title: string; members: TeamMember[] }) {
   return (
     <section className={sectionSpacing}>
@@ -186,36 +166,35 @@ function TeamGridSection({ title, members }: { title: string; members: TeamMembe
       <div className="grid gap-x-8 gap-y-12 md:grid-cols-2 md:gap-y-14 lg:grid-cols-3 lg:gap-y-16">
         {members.map((member) => (
           <article key={member.name} id={member.name.toLowerCase().replace(/[\s.]+/g, '-').replace(/[^a-z0-9-]/g, '')} className="group flex flex-col text-center md:text-left">
-            <div className="relative mx-auto mb-6 block h-40 w-40 overflow-hidden rounded-full border-4 border-navy/10 transition-colors duration-500 group-hover:border-brand/40 sm:h-44 sm:w-44 md:mx-0 md:mb-8 md:h-52 md:w-52">
-              {member.image ? (
-                <Image
-                  src={member.image}
-                  alt={member.name}
-                  fill
-                  className="object-cover"
-                  style={{ objectPosition: member.imagePosition ?? 'center' }}
-                  referrerPolicy="no-referrer"
-                />
-              ) : (
-                <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-grey/10 to-grey/20 text-5xl font-display text-grey/40">
-                  {member.name.charAt(0)}
-                </div>
-              )}
-            </div>
-            <h3 className="mb-2 text-2xl font-display font-medium text-navy">{member.name}</h3>
+            <Link
+              href={member.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mb-4 inline-flex items-center gap-4 self-center rounded-xl text-left transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand md:self-start"
+              aria-label={`View ${member.name} on LinkedIn`}
+            >
+              <span className="relative h-16 w-16 shrink-0 overflow-hidden rounded-full border-2 border-navy/10 bg-white transition-colors duration-200 group-hover:border-brand/50 sm:h-20 sm:w-20">
+                {member.image ? (
+                  <Image
+                    src={member.image}
+                    alt=""
+                    fill
+                    className="object-cover"
+                    style={{ objectPosition: member.imagePosition ?? 'center' }}
+                    referrerPolicy="no-referrer"
+                  />
+                ) : (
+                  <span className="absolute inset-0 flex items-center justify-center bg-grey/10 text-2xl font-display text-grey/40">
+                    {member.name.charAt(0)}
+                  </span>
+                )}
+              </span>
+              <h3 className="text-xl font-display font-medium text-navy transition-colors group-hover:text-brand sm:text-2xl">{member.name}</h3>
+            </Link>
             <p className="mb-3 text-base font-medium text-brand md:mb-4">{member.role}</p>
-            <p className="mb-6 max-w-[24rem] text-base font-light leading-relaxed text-navy/70 md:mb-7">
+            <p className="mb-6 max-w-[24rem] text-sm font-light leading-relaxed text-navy/70 md:mb-7">
               {member.desc}
             </p>
-            <div className="mt-auto flex justify-center md:justify-start">
-              <Link
-                href={member.linkedin}
-                target="_blank"
-                className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-navy/15 bg-white transition-all duration-300 hover:border-brand hover:bg-brand hover:text-warm-white"
-              >
-                <Linkedin className="h-5 w-5" />
-              </Link>
-            </div>
           </article>
         ))}
       </div>
@@ -236,34 +215,19 @@ export default function TeamPage() {
           </p>
         </div>
 
-        <TeamGridSection title="Operating Partners" members={leadership} />
+        <TeamGridSection title="Operators" members={leadership} />
         <TeamGridSection title="Entrepreneurs in Residence" members={eirTeam} />
         <TeamGridSection title="Program Team" members={programTeam} />
 
         <section>
           <h2 className={sectionHeading}>
             <span className="h-1 w-8 bg-brand" />
-            Our Partners
+            Partnerships
           </h2>
-          <div className="mx-auto grid max-w-4xl grid-cols-3 gap-3 sm:gap-6 md:gap-8">
-            {partners.map((partner) => (
-              <Link
-                key={partner.name}
-                href={partner.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={partnerCardClass}
-              >
-                <Image
-                  src={partner.image}
-                  alt={partner.name}
-                  fill
-                  className="object-contain p-5 opacity-70 transition-opacity duration-500 group-hover:opacity-100 md:p-6"
-                  referrerPolicy="no-referrer"
-                />
-              </Link>
-            ))}
-          </div>
+          <p className="mb-6 max-w-2xl text-sm font-light leading-relaxed text-navy/65 md:text-base">
+            An evolving network of builders, ecosystem entities, and specialist partners who help ventures move faster.
+          </p>
+          <PartnerLogoTicker />
         </section>
       </div>
     </div>
