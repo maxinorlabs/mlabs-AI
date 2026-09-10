@@ -43,10 +43,6 @@ function fileToBase64(file: File): Promise<string> {
   });
 }
 
-function RequiredMark() {
-  return <span className="ml-0.5 text-red-600" aria-hidden="true">*</span>;
-}
-
 export function ContactForm({ endpoint }: { endpoint: string }) {
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
@@ -189,7 +185,7 @@ export function ContactForm({ endpoint }: { endpoint: string }) {
 
         <div className="grid gap-x-4 gap-y-3 sm:grid-cols-2">
           <div className="group sm:col-span-2">
-            <label htmlFor="contact-message" className={`${fieldLabel} ${labelClass}`}>I am looking for <RequiredMark /></label>
+            <label htmlFor="contact-message" className={`${fieldLabel} ${labelClass}`}>I am looking for</label>
             <textarea id="contact-message" name="message" rows={2} placeholder="A sentence or two about the outcome you need." className={`${inputClass} h-[62px] resize-none py-2.5 leading-relaxed`} required aria-required="true" disabled={status === 'submitting'} />
           </div>
           <div className="group">
@@ -197,7 +193,7 @@ export function ContactForm({ endpoint }: { endpoint: string }) {
             <input id="contact-company" name="company" type="text" autoComplete="organization" placeholder="Company or venture name" className={inputClass} disabled={status === 'submitting'} />
           </div>
           <div className="group">
-            <label htmlFor="contact-engagement" className={`${fieldLabel} ${labelClass}`}>I am <RequiredMark /></label>
+            <label htmlFor="contact-engagement" className={`${fieldLabel} ${labelClass}`}>I am</label>
             <div className="relative">
               <select id="contact-engagement" name="engagementType" defaultValue="" className={`${inputClass} appearance-none pr-10`} required aria-required="true" disabled={status === 'submitting'}>
                 <option value="" disabled>Select one</option>
@@ -211,7 +207,7 @@ export function ContactForm({ endpoint }: { endpoint: string }) {
             <input id="contact-name" name="name" type="text" autoComplete="name" placeholder="Your name" className={inputClass} disabled={status === 'submitting'} />
           </div>
           <div className="group">
-            <label htmlFor="contact-email" className={`${fieldLabel} ${labelClass}`}>Email <RequiredMark /></label>
+            <label htmlFor="contact-email" className={`${fieldLabel} ${labelClass}`}>Email</label>
             <input id="contact-email" name="email" type="email" autoComplete="email" inputMode="email" placeholder="you@company.com" className={inputClass} required aria-required="true" disabled={status === 'submitting'} />
           </div>
           <div className="group sm:order-1">
@@ -235,7 +231,7 @@ export function ContactForm({ endpoint }: { endpoint: string }) {
             )}
           </div>
           <div className="group">
-            <label htmlFor="contact-phone" className={`${fieldLabel} ${labelClass}`}>Phone number <RequiredMark /></label>
+            <label htmlFor="contact-phone" className={`${fieldLabel} ${labelClass}`}>Phone number</label>
             <input id="contact-phone" name="phone" type="tel" autoComplete="tel" inputMode="tel" placeholder="+91 98765 43210" className={inputClass} required aria-required="true" disabled={status === 'submitting'} />
           </div>
         </div>
