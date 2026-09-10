@@ -239,7 +239,7 @@ export function ContactForm({ endpoint }: { endpoint: string }) {
         <button
           type="submit"
           disabled={status === 'submitting'}
-          className="group/button mx-auto mt-4 flex items-center justify-center gap-2 rounded-full border border-navy bg-navy px-6 py-2.5 text-sm font-medium tracking-wide text-warm-white shadow-[0_10px_25px_rgba(11,31,59,0.12)] transition-all duration-300 hover:border-brand hover:bg-brand focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand disabled:cursor-not-allowed disabled:opacity-60"
+          className="group/button mx-auto mt-4 flex cursor-pointer items-center justify-center gap-2 rounded-full border border-navy bg-navy px-6 py-2.5 text-sm font-medium tracking-wide text-warm-white shadow-[0_10px_25px_rgba(11,31,59,0.12)] transition-all duration-300 hover:border-brand hover:bg-brand focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand disabled:cursor-not-allowed disabled:opacity-60"
         >
           <span>{status === 'submitting' ? 'Sending message...' : 'Send message'}</span>
           <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover/button:translate-x-1 motion-reduce:transition-none" aria-hidden="true" />
