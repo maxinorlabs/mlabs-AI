@@ -1,7 +1,6 @@
 import type { MetadataRoute } from 'next';
 import { getAllPosts } from '@/lib/blog';
 import { buildSiteUrl } from '@/lib/site';
-import { teamProfiles } from '@/lib/team-profiles';
 
 const pageRoutes = [
   { path: '/', priority: 1.0, changeFrequency: 'weekly' as const },
@@ -55,7 +54,7 @@ export default function sitemap({ id }: { id: number }): MetadataRoute.Sitemap {
     }));
   }
 
-  // Sitemap 0: all pages + team profiles
+  // Sitemap 0: all pages
   const pageEntries: MetadataRoute.Sitemap = pageRoutes.map(({ path, priority, changeFrequency }) => ({
     url: buildSiteUrl(path),
     lastModified: new Date(),
@@ -63,12 +62,5 @@ export default function sitemap({ id }: { id: number }): MetadataRoute.Sitemap {
     priority,
   }));
 
-  const teamEntries: MetadataRoute.Sitemap = teamProfiles.map((member) => ({
-    url: buildSiteUrl(`/team/${member.slug}`),
-    lastModified: new Date(),
-    changeFrequency: 'monthly' as const,
-    priority: 0.6,
-  }));
-
-  return [...pageEntries, ...teamEntries];
+  return pageEntries;
 }

@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence } from 'motion/react';
 import Link from 'next/link';
+import { getTeamLinkedIn } from '@/lib/team-links';
 import { useState } from 'react';
 import { ArrowRight, Zap, GitBranch, Layers } from 'lucide-react';
 
@@ -440,7 +441,7 @@ export default function AIServicesPage() {
                 </div>
                 <div>
                   <Link
-                    href="/team/alok-kumar"
+                    href={getTeamLinkedIn('alok-kumar')} target="_blank" rel="noopener noreferrer"
                     className="text-base font-semibold text-warm-white transition-colors hover:text-brand"
                   >
                     Alok Kumar

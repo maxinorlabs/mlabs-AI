@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence } from 'motion/react';
 import Link from 'next/link';
+import { getTeamLinkedIn } from '@/lib/team-links';
 import Image from 'next/image';
 import { useState } from 'react';
 import { ArrowRight, Rocket, Database, Brain, Plus, Minus } from 'lucide-react';
@@ -125,7 +126,7 @@ const operators = [
     bg: 'ex-Zee, ex-StanChart, ex-Fidelity, ex-Oracle',
     depth: 'Technology and AI operator spanning enterprise software, global financial services, and large-scale media. Alok brings the judgment to know which AI system to build, how to architect for scale, and how to get from lab to production with real business impact.',
     slug: 'alok-kumar',
-    image: 'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/69b29541adceb2f4cf8144ad_79c886e0-fd1f-49a4-bfed-f481d5bb1f38.jpg',
+    image: '/team/alok-kumar.webp',
   },
 ];
 
@@ -487,7 +488,7 @@ export default function AITechPage() {
                   )}
                   <div>
                     <Link
-                      href={`/team/${op.slug}`}
+                      href={getTeamLinkedIn(op.slug)} target="_blank" rel="noopener noreferrer"
                       className="text-base font-semibold text-warm-white transition-colors hover:text-brand"
                     >
                       {op.name}

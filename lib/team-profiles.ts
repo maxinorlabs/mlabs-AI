@@ -24,8 +24,7 @@ export const teamProfiles: TeamProfile[] = [
     name: 'Samir Gupta',
     role: 'Revenue, Growth & Ops',
     shortDesc: 'Entrepreneur | ex-Paytm, ex-Bzinga, ex-Solv',
-    image:
-      'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/68e50d8f8eb88abaaf2dbbb5_1695013342712.jpeg',
+    image: '/team/samir-gupta.webp',
     linkedin: 'https://www.linkedin.com/in/samirgupta1/',
     section: 'leadership',
     tagline: 'Operator who has scaled revenue across fintech, gaming, and B2B marketplaces.',
@@ -100,8 +99,8 @@ export const teamProfiles: TeamProfile[] = [
     name: 'Parool Duggal',
     role: 'People & Org Dev',
     shortDesc: 'Entrepreneur | ex-Bijnis, ex-EcomXpress, ex-AuthBridge',
-    image:
-      'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/68e50d8fb58f0e244a2a4d31_1635223380712.jpeg',
+    image: '/team/parool-duggal.webp',
+    imagePosition: '50% 25%',
     linkedin: 'https://www.linkedin.com/in/parool-duggal-1b651713/',
     section: 'leadership',
     tagline: 'People and culture operator who has built high-performance teams inside fast-scaling companies.',
@@ -138,8 +137,7 @@ export const teamProfiles: TeamProfile[] = [
     name: 'Alok Kumar',
     role: 'AI & Tech',
     shortDesc: 'Entrepreneur | ex-Zee, ex-Oracle, ex-StanChart, ex-Fidelity',
-    image:
-      'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/69b29541adceb2f4cf8144ad_79c886e0-fd1f-49a4-bfed-f481d5bb1f38.jpg',
+    image: '/team/alok-kumar.webp',
     imagePosition: '50% 20%',
     linkedin: 'https://www.linkedin.com/in/alok02/',
     section: 'leadership',

@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence } from 'motion/react';
 import Link from 'next/link';
+import { getTeamLinkedIn } from '@/lib/team-links';
 import { useEffect, useRef, useState } from 'react';
 import { ArrowRight, ChevronDown } from 'lucide-react';
 
@@ -479,7 +480,7 @@ export default function DomainsPage() {
                     Lead Operator
                   </p>
                   {domain.operatorSlug ? (
-                    <Link href={`/team/${domain.operatorSlug}`} className="text-base font-semibold text-navy transition-colors duration-200 hover:text-brand">
+                    <Link href={getTeamLinkedIn(domain.operatorSlug)} target="_blank" rel="noopener noreferrer" className="text-base font-semibold text-navy transition-colors duration-200 hover:text-brand">
                       {domain.operator}
                     </Link>
                   ) : (

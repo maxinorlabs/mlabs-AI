@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence } from 'motion/react';
 import Link from 'next/link';
+import { getTeamLinkedIn } from '@/lib/team-links';
 import Image from 'next/image';
 import { useState } from 'react';
 import { ArrowRight, TrendingDown, ShoppingCart, MapPin } from 'lucide-react';
@@ -467,7 +468,7 @@ export default function D2CPage() {
                   </div>
                   <div>
                     <Link
-                      href={`/team/${op.slug}`}
+                      href={getTeamLinkedIn(op.slug)} target="_blank" rel="noopener noreferrer"
                       className="text-base font-semibold text-warm-white transition-colors hover:text-brand"
                     >
                       {op.name}
