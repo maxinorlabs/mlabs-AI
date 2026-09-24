@@ -22,7 +22,7 @@ export function PartnerLogoTicker() {
               alt={partner.name}
               fill
               sizes="176px"
-              className="object-contain p-4 opacity-65 grayscale transition-[filter,opacity] duration-200 group-hover:grayscale-0 group-hover:opacity-100"
+              className="object-contain p-2 sm:p-4 sm:opacity-65 sm:grayscale transition-[filter,opacity] duration-200 group-hover:grayscale-0 group-hover:opacity-100"
               referrerPolicy="no-referrer"
             />
           </Link>

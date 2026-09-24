@@ -179,7 +179,7 @@ function TeamGridSection({ title, members }: { title: string; members: TeamMembe
               className="block flex-1 focus-visible:outline-2 focus-visible:outline-offset-[-3px] focus-visible:outline-brand lg:flex lg:min-h-64"
               aria-label={`View ${member.name} on LinkedIn`}
             >
-              <div className="relative aspect-[16/10] overflow-hidden bg-navy/5 sm:aspect-[16/9] md:aspect-[3/2] lg:aspect-auto lg:w-[42%] lg:shrink-0">
+              <div className="relative aspect-square overflow-hidden bg-navy/5 sm:aspect-[4/3] md:aspect-[3/2] lg:aspect-auto lg:w-[42%] lg:shrink-0">
                 {member.image ? (
                   <Image
                     src={member.image}
