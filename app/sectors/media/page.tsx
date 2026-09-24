@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence } from 'motion/react';
 import Link from 'next/link';
+import { getTeamLinkedIn } from '@/lib/team-links';
 import Image from 'next/image';
 import { useState } from 'react';
 import { ArrowRight, TrendingDown, Users, Zap } from 'lucide-react';
@@ -163,7 +164,7 @@ const operators = [
     bg: 'ex-Paytm, ex-Bzinga, ex-Solv',
     depth: 'Operator across media, fintech, and digital commerce. Built and scaled revenue engines at high-growth consumer businesses.',
     slug: 'samir-gupta',
-    image: 'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/68e50d8f8eb88abaaf2dbbb5_1695013342712.jpeg',
+    image: '/team/samir-gupta.webp',
   },
   {
     name: 'Priyabrata Padhi',
@@ -570,7 +571,7 @@ export default function MediaPage() {
                   </div>
                   <div>
                     <Link
-                      href={`/team/${op.slug}`}
+                      href={getTeamLinkedIn(op.slug)} target="_blank" rel="noopener noreferrer"
                       className="text-base font-semibold text-warm-white transition-colors hover:text-brand"
                     >
                       {op.name}

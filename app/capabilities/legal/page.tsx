@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence } from 'motion/react';
 import Link from 'next/link';
+import { getTeamLinkedIn } from '@/lib/team-links';
 import Image from 'next/image';
 import { useState } from 'react';
 import { ArrowRight, FileText, ShieldAlert, Handshake, Plus, Minus } from 'lucide-react';
@@ -472,7 +473,7 @@ export default function LegalPage() {
               </div>
               <div>
                 <Link
-                  href={`/team/${operator.slug}`}
+                  href={getTeamLinkedIn(operator.slug)} target="_blank" rel="noopener noreferrer"
                   className="text-base font-semibold text-warm-white transition-colors hover:text-brand"
                 >
                   {operator.name}

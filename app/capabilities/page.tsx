@@ -2,6 +2,7 @@
 
 import { motion, useInView } from 'motion/react';
 import Link from 'next/link';
+import { getTeamLinkedIn } from '@/lib/team-links';
 import Image from 'next/image';
 import { useRef, useEffect, useState } from 'react';
 import { ArrowRight, Check } from 'lucide-react';
@@ -450,7 +451,7 @@ export default function CapabilitiesPage() {
                           <span key={op.name}>
                             {op.slug ? (
                               <Link
-                                href={`/team/${op.slug}`}
+                                href={getTeamLinkedIn(op.slug)} target="_blank" rel="noopener noreferrer"
                                 className="font-semibold text-navy transition-colors hover:text-brand"
                               >
                                 {op.name}
@@ -519,7 +520,7 @@ export default function CapabilitiesPage() {
                         <span key={op.name}>
                           {op.slug ? (
                             <Link
-                              href={`/team/${op.slug}`}
+                              href={getTeamLinkedIn(op.slug)} target="_blank" rel="noopener noreferrer"
                               className="font-semibold text-navy transition-colors hover:text-brand"
                             >
                               {op.name}
