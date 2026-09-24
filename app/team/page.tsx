@@ -92,7 +92,7 @@ const leadership: TeamMember[] = [
     name: 'Alok Lall',
     role: 'Strategy',
     desc: 'ex-Microsoft COO India',
-    image: 'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/6a5933b4ed3c4224eb155040_1516285295392.jpg',
+    image: '/team/alok-lall.webp',
     linkedin: 'https://in.linkedin.com/in/alok-lall',
   },
   {
