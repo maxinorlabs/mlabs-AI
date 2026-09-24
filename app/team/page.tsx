@@ -59,7 +59,7 @@ const leadership: TeamMember[] = [
     role: 'AI & Tech',
     desc: 'Entrepreneur | ex-Zee, ex-Oracle, ex-StanChart, ex-Fidelity',
     image: '/team/alok-kumar.webp',
-    imagePosition: '50% 12%',
+    imagePosition: '50% 20%',
     linkedin: 'https://www.linkedin.com/in/alok02/',
   },
   {
