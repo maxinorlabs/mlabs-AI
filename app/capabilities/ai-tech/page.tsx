@@ -126,7 +126,7 @@ const operators = [
     bg: 'ex-Zee, ex-StanChart, ex-Fidelity, ex-Oracle',
     depth: 'Technology and AI operator spanning enterprise software, global financial services, and large-scale media. Alok brings the judgment to know which AI system to build, how to architect for scale, and how to get from lab to production with real business impact.',
     slug: 'alok-kumar',
-    image: '/team/alok-kumar.webp',
+    image: '/team/alok-kumar-v2.webp',
   },
 ];
 

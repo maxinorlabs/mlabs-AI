@@ -137,7 +137,7 @@ export const teamProfiles: TeamProfile[] = [
     name: 'Alok Kumar',
     role: 'AI & Tech',
     shortDesc: 'Entrepreneur | ex-Zee, ex-Oracle, ex-StanChart, ex-Fidelity',
-    image: '/team/alok-kumar.webp',
+    image: '/team/alok-kumar-v2.webp',
     imagePosition: '50% 20%',
     linkedin: 'https://www.linkedin.com/in/alok02/',
     section: 'leadership',
