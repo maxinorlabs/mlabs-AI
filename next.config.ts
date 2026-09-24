@@ -22,7 +22,7 @@ const nextConfig: NextConfig = {
       { source: '/domains/education', destination: '/sectors/education', permanent: true },
       { source: '/domains/marketing', destination: '/sectors/marketing', permanent: true },
       { source: '/domains/legal', destination: '/sectors/legal', permanent: true },
-      { source: '/team/:slug', destination: '/team', permanent: true },
+      { source: '/team/:slug([a-z0-9-]+)', destination: '/team', permanent: true },
     ];
   },
   eslint: {
