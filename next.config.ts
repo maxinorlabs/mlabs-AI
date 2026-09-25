@@ -13,7 +13,10 @@ const nextConfig: NextConfig = {
     return [
       ...(basePath
         ? []
-        : [{ source: '/home/contact', destination: '/contact', permanent: false }]),
+        : [
+            { source: '/home', destination: '/', permanent: true },
+            { source: '/home/:path*', destination: '/:path*', permanent: true },
+          ]),
       { source: '/domains', destination: '/sectors', permanent: true },
       { source: '/domains/bfsi', destination: '/sectors/bfsi', permanent: true },
       { source: '/domains/media', destination: '/sectors/media', permanent: true },
