@@ -1,0 +1,13 @@
+.git
+.github
+node_modules
+.next
+.open-next
+.wrangler
+.env*
+!.env.example
+previews
+*.tsbuildinfo
+npm-debug.log*
+Dockerfile
+.dockerignore

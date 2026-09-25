@@ -1,0 +1,62 @@
+name: Deploy to Cloud Run
+
+on:
+  push:
+    branches: [staging]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-${{ github.ref_name }}
+  cancel-in-progress: true
+
+env:
+  PROJECT_ID: maxoutreach
+  REGION: asia-south1
+  IMAGE: asia-south1-docker.pkg.dev/maxoutreach/mlabs-website/web
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Select environment
+        run: |
+          if [ "${GITHUB_REF_NAME}" = "main" ]; then
+            echo "SERVICE=mlabs-website-prod" >> "$GITHUB_ENV"
+            echo "RUNTIME_SA=mlabs-runtime-prod@maxoutreach.iam.gserviceaccount.com" >> "$GITHUB_ENV"
+            echo "CONTACT_SECRET=contact-form-apps-script-url-prod" >> "$GITHUB_ENV"
+          else
+            echo "SERVICE=mlabs-website-staging" >> "$GITHUB_ENV"
+            echo "RUNTIME_SA=mlabs-runtime-staging@maxoutreach.iam.gserviceaccount.com" >> "$GITHUB_ENV"
+            echo "CONTACT_SECRET=contact-form-apps-script-url-staging" >> "$GITHUB_ENV"
+          fi
+
+      - uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: projects/183811361443/locations/global/workloadIdentityPools/stickypin-pool/providers/github-provider
+          service_account: stickypin-deploy-sa@maxoutreach.iam.gserviceaccount.com
+
+      - uses: google-github-actions/setup-gcloud@v2
+
+      - name: Build and push image
+        run: |
+          gcloud auth configure-docker "${REGION}-docker.pkg.dev" --quiet
+          docker build -t "${IMAGE}:${GITHUB_SHA}" .
+          docker push "${IMAGE}:${GITHUB_SHA}"
+
+      # --update-secrets merges, so secrets added on the service directly
+      # (e.g. the staging basic-auth credentials) are kept.
+      - name: Deploy to Cloud Run
+        run: |
+          gcloud run deploy "${SERVICE}" \
+            --project "${PROJECT_ID}" \
+            --region "${REGION}" \
+            --image "${IMAGE}:${GITHUB_SHA}" \
+            --service-account "${RUNTIME_SA}" \
+            --port 8080 \
+            --update-secrets "CONTACT_FORM_APPS_SCRIPT_URL=${CONTACT_SECRET}:latest" \
+            --quiet
