@@ -151,7 +151,7 @@ const operators = [
     bg: 'ex-United Breweries, ex-ITC, ex-Britannia',
     depth: 'Deep operator experience across FMCG and D2C, with a track record of building brand equity, distribution networks, and scalable unit economics at some of India\'s most recognised consumer companies.',
     slug: 'priyabrata-padhi',
-    image: 'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/69c11ffc5c1c2e2f2a9cadaa_Gemini_Generated_Image_m5qmrom5qmrom5qm.avif',
+    image: '/images/gemini-generated-image-m5qmrom5qmrom5qm.avif',
   },
 ];
 

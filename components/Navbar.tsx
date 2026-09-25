@@ -12,7 +12,7 @@ import {
 } from 'lucide-react';
 
 const logoSrc =
-  'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/6a2a827cc0fcbfdb0121f0b0_true-north-v1.avif';
+  '/images/true-north-v1.avif';
 
 type SubItem = { name: string; path: string };
 

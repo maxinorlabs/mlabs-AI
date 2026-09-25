@@ -126,27 +126,27 @@ const ventures = [
   {
     name: 'IZF',
     url: 'https://izfworld.com/',
-    logo: 'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/695e7c054bb39ce328e497b7_izf%20fill%20logo.png',
+    logo: '/images/izf-fill-logo.png',
   },
   {
     name: 'Nattier',
     url: 'https://nattier.co.in/',
-    logo: 'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/695e7d29b07f70111e63e428_Screenshot%202026-01-07%20at%209.02.56%E2%80%AFPM.png',
+    logo: '/images/screenshot-2026-01-07-at-9-02-56-pm.png',
   },
   {
     name: 'Kachs',
     url: 'https://responcibleai.com/',
-    logo: 'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/69b2b537ff9642970327a58b_kachslogo-dJobQBobXJiEKPjL.avif',
+    logo: '/images/kachslogo-djobqbobxjiekpjl.avif',
   },
   {
     name: 'Adaapt',
     url: 'https://www.adaapt.ai/',
-    logo: 'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/695e7c0571637f2d25422210_Adaapt.svg',
+    logo: '/images/adaapt.svg',
   },
   {
     name: 'Aseed',
     url: 'https://aseedinternational.org/',
-    logo: 'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/695e7e0dfbb6090b487952b2_Screenshot%202026-01-07%20at%209.08.21%E2%80%AFPM.png',
+    logo: '/images/screenshot-2026-01-07-at-9-08-21-pm.png',
   },
 ];
 

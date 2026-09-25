@@ -3,7 +3,7 @@ import { Inter, Space_Grotesk } from 'next/font/google';
 import Script from 'next/script';
 import { Footer } from '@/components/Footer';
 import { Navbar } from '@/components/Navbar';
-import { METADATA_BASE, SITE_URL } from '@/lib/site';
+import { METADATA_BASE, SITE_URL, buildSiteUrl } from '@/lib/site';
 import './globals.css';
 
 const inter = Inter({
@@ -17,7 +17,7 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 const faviconUrl =
-  'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/6a2a827cc0fcbfdb0121f0b0_true-north-v1.avif';
+  '/images/true-north-v1.avif';
 const googleAnalyticsId = 'G-W4B4Z3JZLC';
 const gtmId = 'GTM-NKV82HD9';
 
@@ -64,7 +64,7 @@ const organizationSchema = {
   name: 'Maxinor',
   alternateName: 'Maxinor Venture Studio',
   url: SITE_URL,
-  logo: faviconUrl,
+  logo: buildSiteUrl(faviconUrl),
   description: "India's first operator-led AI venture studio. We build, scale, and back startups, SMEs, and corporates through hands-on execution, not just capital.",
   foundingDate: '2023',
   areaServed: 'IN',

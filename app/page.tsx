@@ -199,7 +199,7 @@ export default function Home() {
         <section className="relative flex min-h-[calc(100vh-5rem)] items-center justify-center overflow-hidden px-6 py-12 md:min-h-[90vh] md:py-16">
           {/* Background image */}
           <Image
-            src="https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/68e4de10bf5c464cee859085_adrian-cuj-o_9YmCY0bag-unsplash-2.webp"
+            src="/images/adrian-cuj-o-9ymcy0bag-unsplash-2.webp"
             alt="Maxinor studio workspace"
             fill
             className="object-cover object-center"
@@ -266,17 +266,17 @@ export default function Home() {
               {[...Array(2)].map((_, i) => (
                 <div key={i} className="flex gap-8 px-4 items-center">
                   {[
-                    { url: "https://izfworld.com/", logo: "https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/695e7c054bb39ce328e497b7_izf%20fill%20logo.png" },
-                    { url: "https://nattier.co.in/", logo: "https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/695e7d29b07f70111e63e428_Screenshot%202026-01-07%20at%209.02.56%E2%80%AFPM.png" },
+                    { url: "https://izfworld.com/", logo: "/images/izf-fill-logo.png" },
+                    { url: "https://nattier.co.in/", logo: "/images/screenshot-2026-01-07-at-9-02-56-pm.png" },
                     {
                       url: "https://trailytics.ai/",
-                      logo: "https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/6a4b4e2d2954d64364b79295_trailytics_logo.avif",
+                      logo: "/images/trailytics-logo.avif",
                       logoClass: "p-0",
                       cardClass: "w-48 md:w-56",
                     },
-                    { url: "https://www.adaapt.ai/", logo: "https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/695e7c0571637f2d25422210_Adaapt.svg" },
-                    { url: "", logo: "https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/69b2b70ff7ee3292c3baa5a9_Gemini_Generated_Image_2c1xpu2c1xpu2c1x.png" },
-                    { url: "https://aseedinternational.org/", logo: "https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/695e7e0dfbb6090b487952b2_Screenshot%202026-01-07%20at%209.08.21%E2%80%AFPM.png" }
+                    { url: "https://www.adaapt.ai/", logo: "/images/adaapt.svg" },
+                    { url: "", logo: "/images/gemini-generated-image-2c1xpu2c1xpu2c1x.png" },
+                    { url: "https://aseedinternational.org/", logo: "/images/screenshot-2026-01-07-at-9-08-21-pm.png" }
                   ].map((item, idx) => (
                     <Link 
                       key={`${i}-${idx}`} 
@@ -432,9 +432,9 @@ export default function Home() {
             </div>
             <div className="mx-auto grid max-w-4xl grid-cols-3 gap-3 sm:gap-6 md:gap-8">
               {[
-                { name: "Hygriv", image: "https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/695e8f57198b4be76b7685ef_Logo%20with%20Capital.png", url: "https://www.hygriv.com/" },
-                { name: "Saptharushi", image: "https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/69b3cd584c566a57e84d3aae_saptharushi7_logo.jpg", url: "https://saptharushi.com/" },
-                { name: "iAccel GBI", image: "https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/6a4e70f6eb738b4cf11a6c00_logo-removebg.avif", url: "https://iaccelgbi.com/" },
+                { name: "Hygriv", image: "/images/logo-with-capital.png", url: "https://www.hygriv.com/" },
+                { name: "Saptharushi", image: "/images/saptharushi7-logo.jpg", url: "https://saptharushi.com/" },
+                { name: "iAccel GBI", image: "/images/logo-removebg.avif", url: "https://iaccelgbi.com/" },
               ].map((partner, idx) => (
                 <Link
                   key={idx}

@@ -114,17 +114,17 @@ const stages = [
 const partnerLogos = [
   {
     name: 'Hygriv',
-    src: 'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/695e8f57198b4be76b7685ef_Logo%20with%20Capital.png',
+    src: '/images/logo-with-capital.png',
     url: 'https://www.hygriv.com/',
   },
   {
     name: 'Saptharushi',
-    src: 'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/69b3cd584c566a57e84d3aae_saptharushi7_logo.jpg',
+    src: '/images/saptharushi7-logo.jpg',
     url: 'https://saptharushi.com/',
   },
   {
     name: 'iAccel GBI',
-    src: 'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/6a4e70f6eb738b4cf11a6c00_logo-removebg.avif',
+    src: '/images/logo-removebg.avif',
     url: 'https://iaccelgbi.com/',
   },
 ];
@@ -132,12 +132,12 @@ const partnerLogos = [
 const portfolioLogos = [
   {
     name: 'Nattier',
-    src: 'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/695e7d29b07f70111e63e428_Screenshot%202026-01-07%20at%209.02.56%E2%80%AFPM.png',
+    src: '/images/screenshot-2026-01-07-at-9-02-56-pm.png',
     url: 'https://nattier.co.in/',
   },
   {
     name: 'Adaapt',
-    src: 'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/695e7c0571637f2d25422210_Adaapt.svg',
+    src: '/images/adaapt.svg',
     url: 'https://www.adaapt.ai/',
   },
 ];

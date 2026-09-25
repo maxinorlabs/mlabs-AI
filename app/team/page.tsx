@@ -43,7 +43,7 @@ const leadership: TeamMember[] = [
     role: 'Product & GTM',
     desc: 'Entrepreneur | ex-Google x Tata, ex-Oyo, ex-Grofers',
     image:
-      'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/68e50d8f17573e0fcd4ec3c1_1663569415671.jpeg',
+      '/images/1663569415671.jpg',
     linkedin: 'https://www.linkedin.com/in/amar-daing/',
   },
   {
@@ -67,7 +67,7 @@ const leadership: TeamMember[] = [
     role: 'Consumer Marketing',
     desc: 'Entrepreneur | ex-United Breweries, ex-ITC, ex-Britannia',
     image:
-      'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/69c11ffc5c1c2e2f2a9cadaa_Gemini_Generated_Image_m5qmrom5qmrom5qm.avif',
+      '/images/gemini-generated-image-m5qmrom5qmrom5qm.avif',
     linkedin: 'https://www.linkedin.com/in/priyabratapadhi/',
   },
   {
@@ -75,7 +75,7 @@ const leadership: TeamMember[] = [
     role: 'Global Health & Government Partnerships',
     desc: 'Entrepreneur | ex-Operation Smile, ex-World Bank, ex-PATH',
     image:
-      'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/69f302142cd2dca8aba0e22a_WhatsApp%20Image%202026-04-30%20at%2012.35.34%20PM.jpeg',
+      '/images/whatsapp-image-2026-04-30-at-12-35-34-pm.jpg',
     imagePosition: '50% 15%',
     linkedin: 'https://www.linkedin.com/in/rachitnegi/',
   },
@@ -84,7 +84,7 @@ const leadership: TeamMember[] = [
     role: 'Legal & Compliance',
     desc: 'Lawyer | ex-Paytm, ex-Zee, ex-Healthkart | 20+ years cross-industry expertise',
     image:
-      'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/6a142ce51a9da04ec8dc7a9a_manik.avif',
+      '/images/manik.avif',
     imagePosition: '50% 20%',
     linkedin: 'https://www.linkedin.com/in/manik-sood-64402313/',
   },
@@ -100,7 +100,7 @@ const leadership: TeamMember[] = [
     role: 'Retail & Consumer',
     desc: 'CBO, CMO & Business/P&L Leader | ex-Shoppers Stop, ex-Future Group, ex-Health & Glow',
     image:
-      'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/6a75e1f31272b2bc952fbe09_ZP%20Profile.JPG.jpeg',
+      '/images/zp-profile-jpg.jpg',
     imagePosition: '50% 5%',
     linkedin: 'https://www.linkedin.com/in/zubairpatel/',
   },
@@ -112,7 +112,7 @@ const eirTeam: TeamMember[] = [
     role: 'Entrepreneur in Residence - Advertising',
     desc: 'Founder, StickyPins & Avyu India | MBA, KJ Somaiya | IIM Bangalore',
     image:
-      'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/6a142ce6dd742f13761925d7_WhatsApp%20Image%202026-05-25%20at%203.23.59%20PM.avif',
+      '/images/whatsapp-image-2026-05-25-at-3-23-59-pm.avif',
     linkedin: 'https://www.linkedin.com/in/aditiagrawal2609',
   },
   {
@@ -120,7 +120,7 @@ const eirTeam: TeamMember[] = [
     role: 'Entrepreneur in Residence, CX & Service Operations',
     desc: '25+ years | Building, transforming, scaling CX & Service Operations | ex-Arata, ex-Karbonn, ex-Panasonic',
     image:
-      'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/6a4c962caa5cc5d2afe7763a_Image%20Puneet%20Kolthe.avif',
+      '/images/image-puneet-kolthe.avif',
     linkedin: 'https://www.linkedin.com/in/puneet-kolthe-6b28297',
   },
 ];
@@ -131,7 +131,7 @@ const programTeam: TeamMember[] = [
     role: "Research Associate, Founder's Office",
     desc: 'Postgrad in Biotechnology',
     image:
-      'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/69b295fc064e36e1c0266a56_WhatsApp%20Image%202026-03-12%20at%203.59.29%20PM.jpeg',
+      '/images/whatsapp-image-2026-03-12-at-3-59-29-pm.jpg',
     imagePosition: '50% 10%',
     linkedin: 'https://www.linkedin.com/in/saniya-f-369a98213/',
   },
@@ -141,7 +141,7 @@ const programTeam: TeamMember[] = [
   //   role: 'Product Growth, GTM & AI',
   //   desc: 'Operator across product growth, go-to-market, and AI execution',
   //   image:
-  //     'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/69c123c327dd93f3976c61ef_Gemini_Generated_Image_mjcmjxmjcmjxmjcm.avif',
+  //     '/images/gemini-generated-image-mjcmjxmjcmjxmjcm.avif',
   //   imagePosition: 'top',
   //   linkedin: 'https://www.linkedin.com/in/aman-sharma-77243b2a0/',
   // },
@@ -150,7 +150,7 @@ const programTeam: TeamMember[] = [
     role: 'Manager, Venture Operations',
     desc: 'Marketplace operations, inventory management and platform performance',
     image:
-      'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/69f8b3d00380c1ad6540ad69_WhatsApp%20Image%202026-05-04%20at%208.14.55%20PM.jpeg',
+      '/images/whatsapp-image-2026-05-04-at-8-14-55-pm.jpg',
     imagePosition: 'top',
     linkedin: 'https://www.linkedin.com/in/aptepushkar/',
   },

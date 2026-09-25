@@ -121,7 +121,7 @@ const operator = {
   bg: 'ex-Heineken India, ex-ITC, ex-Britannia',
   depth: 'Consumer goods and D2C operator with 15+ years of brand, channel, and distribution experience across FMCG and consumer companies. Priyabrata builds the brand and conversion infrastructure that turns awareness into revenue.',
   slug: 'priyabrata-padhi',
-  image: 'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/69c11ffc5c1c2e2f2a9cadaa_Gemini_Generated_Image_m5qmrom5qmrom5qm.avif',
+  image: '/images/gemini-generated-image-m5qmrom5qmrom5qm.avif',
 };
 
 function ArchitectureExplorer() {

@@ -91,17 +91,17 @@ const partners = [
   {
     name: 'Hygriv',
     url: 'https://www.hygriv.com/',
-    logo: 'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/695e8f57198b4be76b7685ef_Logo%20with%20Capital.png',
+    logo: '/images/logo-with-capital.png',
   },
   {
     name: 'Saptharushi',
     url: 'https://saptharushi.com/',
-    logo: 'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/69b3cd584c566a57e84d3aae_saptharushi7_logo.jpg',
+    logo: '/images/saptharushi7-logo.jpg',
   },
   {
     name: 'iAccel GBI',
     url: 'https://iaccelgbi.com/',
-    logo: 'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/6a4e70f6eb738b4cf11a6c00_logo-removebg.avif',
+    logo: '/images/logo-removebg.avif',
   },
 ];
 

@@ -164,7 +164,7 @@ const operators = [
     bg: 'ex-Accenture, ex-Wipro, ex-Mastek',
     depth: '20+ years across banking transformation, insurance tech, and BFSI consulting at global scale.',
     slug: 'rajesh-ramanathan',
-    image: 'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/69b299cedd0e417ecb1e2533_WhatsApp%20Image%202026-03-12%20at%204.11.45%20PM.jpeg',
+    image: '/images/whatsapp-image-2026-03-12-at-4-11-45-pm.jpg',
   },
   {
     name: 'Manik Sood',
@@ -172,7 +172,7 @@ const operators = [
     bg: 'ex-Paytm, ex-Zee, ex-Healthkart',
     depth: '20+ years cross-industry legal expertise spanning FinTech, real estate, e-commerce and media.',
     slug: 'manik-sood',
-    image: 'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/6a142ce51a9da04ec8dc7a9a_manik.avif',
+    image: '/images/manik.avif',
   },
 ];
 

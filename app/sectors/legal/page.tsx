@@ -152,7 +152,7 @@ const operators = [
     depth:
       'Manik brings 20+ years of cross-industry legal expertise spanning FinTech, real estate, e-commerce, and media. He advises founders on corporate structuring, regulatory licensing, and employment frameworks. Manik also runs Law Grammar, a law firm offering direct incorporation and legal services to startups and SMEs.',
     slug: 'manik-sood',
-    image: 'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/6a142ce51a9da04ec8dc7a9a_manik.avif',
+    image: '/images/manik.avif',
   },
 ];
 

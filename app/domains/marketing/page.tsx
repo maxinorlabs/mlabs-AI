@@ -151,7 +151,7 @@ const operators = [
     bg: 'Founder, StickyPins & Avyu India',
     depth: 'Brand strategist and founder with deep experience building consumer brands from zero, with a track record across D2C, community marketing, and founder-led growth.',
     slug: 'aditi-agrawal',
-    image: 'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/6a142ce6dd742f13761925d7_WhatsApp%20Image%202026-05-25%20at%203.23.59%20PM.avif',
+    image: '/images/whatsapp-image-2026-05-25-at-3-23-59-pm.avif',
   },
 ];
 

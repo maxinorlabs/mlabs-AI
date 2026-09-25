@@ -73,27 +73,27 @@ const investmentFormats = [
 const portfolioCompanies = [
   {
     name: 'IZF',
-    logo: 'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/695e7c054bb39ce328e497b7_izf%20fill%20logo.png',
+    logo: '/images/izf-fill-logo.png',
     url: 'https://izfworld.com/',
   },
   {
     name: 'Nattier',
-    logo: 'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/695e7d29b07f70111e63e428_Screenshot%202026-01-07%20at%209.02.56%E2%80%AFPM.png',
+    logo: '/images/screenshot-2026-01-07-at-9-02-56-pm.png',
     url: 'https://nattier.co.in/',
   },
   {
     name: 'Kachs',
-    logo: 'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/69b2b537ff9642970327a58b_kachslogo-dJobQBobXJiEKPjL.avif',
+    logo: '/images/kachslogo-djobqbobxjiekpjl.avif',
     url: 'https://responcibleai.com/',
   },
   {
     name: 'Adaapt',
-    logo: 'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/695e7c0571637f2d25422210_Adaapt.svg',
+    logo: '/images/adaapt.svg',
     url: 'https://www.adaapt.ai/',
   },
   {
     name: 'Aseed',
-    logo: 'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/695e7e0dfbb6090b487952b2_Screenshot%202026-01-07%20at%209.08.21%E2%80%AFPM.png',
+    logo: '/images/screenshot-2026-01-07-at-9-08-21-pm.png',
     url: 'https://aseedinternational.org/',
   },
 ];
@@ -101,17 +101,17 @@ const portfolioCompanies = [
 const partners = [
   {
     name: 'Hygriv',
-    logo: 'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/695e8f57198b4be76b7685ef_Logo%20with%20Capital.png',
+    logo: '/images/logo-with-capital.png',
     url: 'https://www.hygriv.com/',
   },
   {
     name: 'Saptharushi',
-    logo: 'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/69b3cd584c566a57e84d3aae_saptharushi7_logo.jpg',
+    logo: '/images/saptharushi7-logo.jpg',
     url: 'https://saptharushi.com/',
   },
   {
     name: 'iAccel GBI',
-    logo: 'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/6a4e70f6eb738b4cf11a6c00_logo-removebg.avif',
+    logo: '/images/logo-removebg.avif',
     url: 'https://iaccelgbi.com/',
   },
 ];

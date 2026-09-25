@@ -62,7 +62,7 @@ export const teamProfiles: TeamProfile[] = [
     role: 'Product, CX & GTM',
     shortDesc: 'Entrepreneur | ex-Google x Tata, ex-Oyo, ex-Grofers',
     image:
-      'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/68e50d8f17573e0fcd4ec3c1_1663569415671.jpeg',
+      '/images/1663569415671.jpg',
     linkedin: 'https://www.linkedin.com/in/amar-daing/',
     section: 'leadership',
     tagline: 'Product and GTM operator forged across hyper-growth internet companies.',
@@ -180,7 +180,7 @@ export const teamProfiles: TeamProfile[] = [
     role: 'BFSI',
     shortDesc: 'Entrepreneur | ex-Accenture, ex-Wipro, ex-Mastek',
     image:
-      'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/69b299cedd0e417ecb1e2533_WhatsApp%20Image%202026-03-12%20at%204.11.45%20PM.jpeg',
+      '/images/whatsapp-image-2026-03-12-at-4-11-45-pm.jpg',
     linkedin: 'https://www.linkedin.com/in/rajeshramanathan/',
     section: 'leadership',
     tagline: 'BFSI domain expert with decades inside the largest IT and consulting firms serving financial services.',
@@ -218,7 +218,7 @@ export const teamProfiles: TeamProfile[] = [
     role: 'Consumer Marketing',
     shortDesc: 'Entrepreneur | ex-United Breweries, ex-ITC, ex-Britannia',
     image:
-      'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/69c11ffc5c1c2e2f2a9cadaa_Gemini_Generated_Image_m5qmrom5qmrom5qm.avif',
+      '/images/gemini-generated-image-m5qmrom5qmrom5qm.avif',
     linkedin: 'https://www.linkedin.com/in/priyabratapadhi/',
     section: 'leadership',
     tagline: 'Consumer brand and marketing operator shaped by India\'s most iconic FMCG companies.',
@@ -256,7 +256,7 @@ export const teamProfiles: TeamProfile[] = [
     role: 'Global Health & Government Partnerships',
     shortDesc: 'Entrepreneur | ex-Operation Smile, ex-World Bank, ex-PATH',
     image:
-      'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/69f302142cd2dca8aba0e22a_WhatsApp%20Image%202026-04-30%20at%2012.35.34%20PM.jpeg',
+      '/images/whatsapp-image-2026-04-30-at-12-35-34-pm.jpg',
     imagePosition: '50% 15%',
     linkedin: 'https://www.linkedin.com/in/rachitnegi/',
     section: 'leadership',
@@ -295,7 +295,7 @@ export const teamProfiles: TeamProfile[] = [
     role: "Research Associate, Founder's Office",
     shortDesc: 'Postgrad in Biotechnology',
     image:
-      'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/69b295fc064e36e1c0266a56_WhatsApp%20Image%202026-03-12%20at%203.59.29%20PM.jpeg',
+      '/images/whatsapp-image-2026-03-12-at-3-59-29-pm.jpg',
     imagePosition: '50% 10%',
     linkedin: 'https://www.linkedin.com/in/saniya-f-369a98213/',
     section: 'program',
@@ -324,7 +324,7 @@ export const teamProfiles: TeamProfile[] = [
     role: 'Product Growth, GTM & AI',
     shortDesc: 'Operator across product growth, go-to-market, and AI execution',
     image:
-      'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/69c123c327dd93f3976c61ef_Gemini_Generated_Image_mjcmjxmjcmjxmjcm.avif',
+      '/images/gemini-generated-image-mjcmjxmjcmjxmjcm.avif',
     imagePosition: 'top',
     linkedin: 'https://www.linkedin.com/in/aman-sharma-77243b2a0/',
     section: 'program',
@@ -353,7 +353,7 @@ export const teamProfiles: TeamProfile[] = [
     role: 'Legal & Compliance',
     shortDesc: 'Lawyer | Founder, Law Grammar | ex-Paytm, ex-Zee, ex-Healthkart',
     image:
-      'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/6a142ce51a9da04ec8dc7a9a_manik.avif',
+      '/images/manik.avif',
     imagePosition: '50% 20%',
     linkedin: 'https://www.linkedin.com/in/manik-sood-64402313/',
     section: 'leadership',
@@ -427,7 +427,7 @@ export const teamProfiles: TeamProfile[] = [
     role: 'Entrepreneur in Residence - Advertising',
     shortDesc: 'Founder, StickyPins & Avyu India | MBA, KJ Somaiya | IIM Bangalore',
     image:
-      'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/6a142ce6dd742f13761925d7_WhatsApp%20Image%202026-05-25%20at%203.23.59%20PM.avif',
+      '/images/whatsapp-image-2026-05-25-at-3-23-59-pm.avif',
     linkedin: 'https://www.linkedin.com/in/aditiagrawal2609',
     section: 'eir',
     tagline: 'Founder building in consumer and marketing, embedded inside the Maxinor operator ecosystem.',
@@ -468,7 +468,7 @@ export const teamProfiles: TeamProfile[] = [
     role: 'Entrepreneur in Residence, CX & Service Operations',
     shortDesc: '25+ years | Building, transforming, scaling CX & Service Operations | ex-Arata, ex-Karbonn, ex-Panasonic',
     image:
-      'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/6a4c962caa5cc5d2afe7763a_Image%20Puneet%20Kolthe.avif',
+      '/images/image-puneet-kolthe.avif',
     linkedin: 'https://www.linkedin.com/in/puneet-kolthe-6b28297',
     section: 'eir',
     tagline: 'CX and service operations operator with 25 years building, transforming, and scaling customer experience functions.',
@@ -507,7 +507,7 @@ export const teamProfiles: TeamProfile[] = [
     role: 'Manager, Venture Operations',
     shortDesc: 'Marketplace operations, inventory management and platform performance',
     image:
-      'https://cdn.prod.website-files.com/68e4de0fbf5c464cee858fc3/69f8b3d00380c1ad6540ad69_WhatsApp%20Image%202026-05-04%20at%208.14.55%20PM.jpeg',
+      '/images/whatsapp-image-2026-05-04-at-8-14-55-pm.jpg',
     imagePosition: 'top',
     linkedin: 'https://www.linkedin.com/in/aptepushkar/',
     section: 'program',
