@@ -28,11 +28,11 @@ jobs:
           if [ "${GITHUB_REF_NAME}" = "main" ]; then
             echo "SERVICE=mlabs-website-prod" >> "$GITHUB_ENV"
             echo "RUNTIME_SA=mlabs-runtime-prod@maxoutreach.iam.gserviceaccount.com" >> "$GITHUB_ENV"
-            echo "CONTACT_SECRET=contact-form-apps-script-url-prod" >> "$GITHUB_ENV"
+            echo "SECRETS=CONTACT_FORM_APPS_SCRIPT_URL=contact-form-apps-script-url-prod:latest" >> "$GITHUB_ENV"
           else
             echo "SERVICE=mlabs-website-staging" >> "$GITHUB_ENV"
             echo "RUNTIME_SA=mlabs-runtime-staging@maxoutreach.iam.gserviceaccount.com" >> "$GITHUB_ENV"
-            echo "CONTACT_SECRET=contact-form-apps-script-url-staging" >> "$GITHUB_ENV"
+            echo "SECRETS=CONTACT_FORM_APPS_SCRIPT_URL=contact-form-apps-script-url-staging:latest,STAGING_BASIC_AUTH_USER=STAGING_BASIC_AUTH_USER:latest,STAGING_BASIC_AUTH_PASSWORD=STAGING_BASIC_AUTH_PASSWORD:latest" >> "$GITHUB_ENV"
           fi
 
       - uses: google-github-actions/auth@v2
@@ -48,8 +48,7 @@ jobs:
           docker build -t "${IMAGE}:${GITHUB_SHA}" .
           docker push "${IMAGE}:${GITHUB_SHA}"
 
-      # --update-secrets merges, so secrets added on the service directly
-      # (e.g. the staging basic-auth credentials) are kept.
+      # Staging gets the basic-auth secrets; production never does, so it stays public.
       - name: Deploy to Cloud Run
         run: |
           gcloud run deploy "${SERVICE}" \
@@ -58,5 +57,5 @@ jobs:
             --image "${IMAGE}:${GITHUB_SHA}" \
             --service-account "${RUNTIME_SA}" \
             --port 8080 \
-            --update-secrets "CONTACT_FORM_APPS_SCRIPT_URL=${CONTACT_SECRET}:latest" \
+            --update-secrets "${SECRETS}" \
             --quiet
