@@ -32,7 +32,7 @@ jobs:
           else
             echo "SERVICE=mlabs-website-staging" >> "$GITHUB_ENV"
             echo "RUNTIME_SA=mlabs-runtime-staging@maxoutreach.iam.gserviceaccount.com" >> "$GITHUB_ENV"
-            echo "SECRETS=CONTACT_FORM_APPS_SCRIPT_URL=contact-form-apps-script-url-staging:latest,STAGING_BASIC_AUTH_USER=STAGING_BASIC_AUTH_USER:latest,STAGING_BASIC_AUTH_PASSWORD=STAGING_BASIC_AUTH_PASSWORD:latest" >> "$GITHUB_ENV"
+            echo "SECRETS=CONTACT_FORM_APPS_SCRIPT_URL=contact-form-apps-script-url-staging:latest,STAGING_BASIC_AUTH_USER=staging-basic-auth-user:latest,STAGING_BASIC_AUTH_PASSWORD=staging-basic-auth-password:latest" >> "$GITHUB_ENV"
           fi
 
       - uses: google-github-actions/auth@v2
