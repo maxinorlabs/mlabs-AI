@@ -4,6 +4,7 @@ import Script from 'next/script';
 import { Footer } from '@/components/Footer';
 import { Navbar } from '@/components/Navbar';
 import { METADATA_BASE, SITE_URL, buildSiteUrl } from '@/lib/site';
+import { configuredBasePath } from '@/lib/site-path';
 import './globals.css';
 
 const inter = Inter({
@@ -51,11 +52,10 @@ export const metadata: Metadata = {
     shortcut: faviconUrl,
     apple: faviconUrl,
   },
-  robots: {
-    index: false,
-    follow: false,
-    googleBot: { index: false, follow: false },
-  },
+  // The Webflow-hosted build (served under /home) stays hidden until the domain moves to Cloud Run.
+  ...(configuredBasePath
+    ? { robots: { index: false, follow: false, googleBot: { index: false, follow: false } } }
+    : {}),
 };
 
 const organizationSchema = {
