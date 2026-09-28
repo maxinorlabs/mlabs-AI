@@ -2,7 +2,7 @@ name: Deploy to Cloud Run
 
 on:
   push:
-    branches: [staging]
+    branches: [main, staging]
   workflow_dispatch:
 
 concurrency:
