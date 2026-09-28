@@ -218,7 +218,7 @@ export const teamProfiles: TeamProfile[] = [
     role: 'Consumer Marketing',
     shortDesc: 'Entrepreneur | ex-United Breweries, ex-ITC, ex-Britannia',
     image:
-      '/images/gemini-generated-image-m5qmrom5qmrom5qm.avif',
+      '/images/gemini-generated-image-m5qmrom5qmrom5qm.webp',
     linkedin: 'https://www.linkedin.com/in/priyabratapadhi/',
     section: 'leadership',
     tagline: 'Consumer brand and marketing operator shaped by India\'s most iconic FMCG companies.',
@@ -324,7 +324,7 @@ export const teamProfiles: TeamProfile[] = [
     role: 'Product Growth, GTM & AI',
     shortDesc: 'Operator across product growth, go-to-market, and AI execution',
     image:
-      '/images/gemini-generated-image-mjcmjxmjcmjxmjcm.avif',
+      '/images/gemini-generated-image-mjcmjxmjcmjxmjcm.webp',
     imagePosition: 'top',
     linkedin: 'https://www.linkedin.com/in/aman-sharma-77243b2a0/',
     section: 'program',
@@ -353,7 +353,7 @@ export const teamProfiles: TeamProfile[] = [
     role: 'Legal & Compliance',
     shortDesc: 'Lawyer | Founder, Law Grammar | ex-Paytm, ex-Zee, ex-Healthkart',
     image:
-      '/images/manik.avif',
+      '/images/manik.webp',
     imagePosition: '50% 20%',
     linkedin: 'https://www.linkedin.com/in/manik-sood-64402313/',
     section: 'leadership',
@@ -427,7 +427,7 @@ export const teamProfiles: TeamProfile[] = [
     role: 'Entrepreneur in Residence - Advertising',
     shortDesc: 'Founder, StickyPins & Avyu India | MBA, KJ Somaiya | IIM Bangalore',
     image:
-      '/images/whatsapp-image-2026-05-25-at-3-23-59-pm.avif',
+      '/images/whatsapp-image-2026-05-25-at-3-23-59-pm.webp',
     linkedin: 'https://www.linkedin.com/in/aditiagrawal2609',
     section: 'eir',
     tagline: 'Founder building in consumer and marketing, embedded inside the Maxinor operator ecosystem.',
@@ -468,7 +468,7 @@ export const teamProfiles: TeamProfile[] = [
     role: 'Entrepreneur in Residence, CX & Service Operations',
     shortDesc: '25+ years | Building, transforming, scaling CX & Service Operations | ex-Arata, ex-Karbonn, ex-Panasonic',
     image:
-      '/images/image-puneet-kolthe.avif',
+      '/images/image-puneet-kolthe.webp',
     linkedin: 'https://www.linkedin.com/in/puneet-kolthe-6b28297',
     section: 'eir',
     tagline: 'CX and service operations operator with 25 years building, transforming, and scaling customer experience functions.',

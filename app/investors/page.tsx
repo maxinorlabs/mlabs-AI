@@ -83,7 +83,7 @@ const portfolioCompanies = [
   },
   {
     name: 'Kachs',
-    logo: '/images/kachslogo-djobqbobxjiekpjl.avif',
+    logo: '/images/kachslogo-djobqbobxjiekpjl.webp',
     url: 'https://responcibleai.com/',
   },
   {
@@ -111,7 +111,7 @@ const partners = [
   },
   {
     name: 'iAccel GBI',
-    logo: '/images/logo-removebg.avif',
+    logo: '/images/logo-removebg.webp',
     url: 'https://iaccelgbi.com/',
   },
 ];

@@ -121,7 +121,7 @@ const operator = {
   bg: 'ex-Paytm, ex-Zee Entertainment, ex-Healthkart. Founder, Law Grammar.',
   depth: "Corporate lawyer with deep experience inside some of India's most complex high-growth businesses -- navigating commercial, regulatory, and transactional legal complexity at scale, including M&A structuring, term sheet negotiation, and post-merger legal integration.",
   slug: 'manik-sood',
-  image: '/images/manik.avif',
+  image: '/images/manik.webp',
 };
 
 function ArchitectureExplorer() {

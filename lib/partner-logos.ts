@@ -19,7 +19,7 @@ export const partnerLogos: PartnerLogo[] = [
   },
   {
     name: 'iAccel GBI',
-    src: '/images/logo-removebg.avif',
+    src: '/images/logo-removebg.webp',
     url: 'https://iaccelgbi.com/',
   },
   {
@@ -34,7 +34,7 @@ export const partnerLogos: PartnerLogo[] = [
   },
   {
     name: 'Kachs',
-    src: '/images/kachslogo-djobqbobxjiekpjl.avif',
+    src: '/images/kachslogo-djobqbobxjiekpjl.webp',
     url: 'https://responcibleai.com/',
   },
   {
@@ -49,7 +49,7 @@ export const partnerLogos: PartnerLogo[] = [
   },
   {
     name: 'Trailytics',
-    src: '/images/trailytics-logo.avif',
+    src: '/images/trailytics-logo.webp',
     url: 'https://trailytics.ai/',
   },
 ];

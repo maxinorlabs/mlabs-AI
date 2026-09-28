@@ -270,7 +270,7 @@ export default function Home() {
                     { url: "https://nattier.co.in/", logo: "/images/screenshot-2026-01-07-at-9-02-56-pm.png" },
                     {
                       url: "https://trailytics.ai/",
-                      logo: "/images/trailytics-logo.avif",
+                      logo: "/images/trailytics-logo.webp",
                       logoClass: "p-0",
                       cardClass: "w-48 md:w-56",
                     },
@@ -434,7 +434,7 @@ export default function Home() {
               {[
                 { name: "Hygriv", image: "/images/logo-with-capital.png", url: "https://www.hygriv.com/" },
                 { name: "Saptharushi", image: "/images/saptharushi7-logo.jpg", url: "https://saptharushi.com/" },
-                { name: "iAccel GBI", image: "/images/logo-removebg.avif", url: "https://iaccelgbi.com/" },
+                { name: "iAccel GBI", image: "/images/logo-removebg.webp", url: "https://iaccelgbi.com/" },
               ].map((partner, idx) => (
                 <Link
                   key={idx}

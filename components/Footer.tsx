@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { ArrowRight, Linkedin, Mail } from 'lucide-react';
 
 const logoSrc =
-  '/images/true-north-v1.avif';
+  '/images/true-north-v1.webp';
 
 export function Footer() {
   return (

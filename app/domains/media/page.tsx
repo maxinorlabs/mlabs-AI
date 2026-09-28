@@ -159,7 +159,7 @@ const operators = [
     bg: 'ex-United Breweries, ex-ITC, ex-Britannia',
     depth: 'Deep consumer marketing expertise across FMCG and media. Brand building, distribution strategy, and audience growth at scale.',
     slug: 'priyabrata-padhi',
-    image: '/images/gemini-generated-image-m5qmrom5qmrom5qm.avif',
+    image: '/images/gemini-generated-image-m5qmrom5qmrom5qm.webp',
   },
 ];
 

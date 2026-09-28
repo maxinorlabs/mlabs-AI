@@ -121,7 +121,7 @@ const operator = {
   bg: 'ex-Paytm, ex-Zee Entertainment, ex-Healthkart. Founder, Law Grammar.',
   depth: "Corporate lawyer with deep experience inside some of India's most complex high-growth businesses -- navigating commercial, regulatory, and transactional legal complexity at scale. Delivers legal work directly as a Maxinor Partner; some engagements are supported through Law Grammar for execution. All work is engaged and billed through Maxinor.",
   slug: 'manik-sood',
-  image: '/images/manik.avif',
+  image: '/images/manik.webp',
 };
 
 function ArchitectureExplorer() {

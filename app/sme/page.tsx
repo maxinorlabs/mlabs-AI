@@ -124,7 +124,7 @@ const partnerLogos = [
   },
   {
     name: 'iAccel GBI',
-    src: '/images/logo-removebg.avif',
+    src: '/images/logo-removebg.webp',
     url: 'https://iaccelgbi.com/',
   },
 ];

@@ -93,7 +93,7 @@ const portfolioLogos = [
   },
   {
     name: 'Kachs',
-    src: '/images/kachslogo-djobqbobxjiekpjl.avif',
+    src: '/images/kachslogo-djobqbobxjiekpjl.webp',
     url: 'https://responcibleai.com/',
   },
   {

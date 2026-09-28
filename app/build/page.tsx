@@ -136,7 +136,7 @@ const ventures = [
   {
     name: 'Kachs',
     url: 'https://responcibleai.com/',
-    logo: '/images/kachslogo-djobqbobxjiekpjl.avif',
+    logo: '/images/kachslogo-djobqbobxjiekpjl.webp',
   },
   {
     name: 'Adaapt',

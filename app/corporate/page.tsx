@@ -101,7 +101,7 @@ const partners = [
   {
     name: 'iAccel GBI',
     url: 'https://iaccelgbi.com/',
-    logo: '/images/logo-removebg.avif',
+    logo: '/images/logo-removebg.webp',
   },
 ];
 

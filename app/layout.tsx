@@ -18,7 +18,7 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 const faviconUrl =
-  '/images/true-north-v1.avif';
+  '/images/true-north-v1.webp';
 const googleAnalyticsId = 'G-W4B4Z3JZLC';
 const gtmId = 'GTM-NKV82HD9';
 

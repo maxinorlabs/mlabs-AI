@@ -93,7 +93,7 @@ export default async function BlogPostPage({ params }: Props) {
       url: SITE_URL,
       logo: {
         '@type': 'ImageObject',
-        url: '/images/true-north-v1.avif',
+        url: '/images/true-north-v1.webp',
       },
     },
     image,
