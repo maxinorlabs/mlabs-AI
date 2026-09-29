@@ -7,6 +7,9 @@ import { METADATA_BASE, SITE_URL, buildSiteUrl } from '@/lib/site';
 import { configuredBasePath } from '@/lib/site-path';
 import './globals.css';
 
+// Firebase Hosting's CDN honours s-maxage; without this, pages are cached for a year and deploys never show up.
+export const revalidate = 300;
+
 const inter = Inter({
   subsets: ['latin'],
   variable: '--font-sans',
