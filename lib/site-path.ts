@@ -23,7 +23,7 @@ export function withBasePath(path: string, basePath = '') {
 }
 
 export const configuredBasePath = normalizeBasePath(
-  process.env.NEXT_PUBLIC_BASE_PATH ?? process.env.WEBFLOW_BASE_PATH ?? '',
+  process.env.NEXT_PUBLIC_BASE_PATH ?? '',
 );
 
 export const clientBasePath = normalizeBasePath(process.env.NEXT_PUBLIC_BASE_PATH ?? '');

@@ -3,9 +3,7 @@ import { Inter, Space_Grotesk } from 'next/font/google';
 import Script from 'next/script';
 import { Footer } from '@/components/Footer';
 import { Navbar } from '@/components/Navbar';
-import { METADATA_BASE, SITE_URL, buildSiteUrl } from '@/lib/site';
-import { configuredBasePath } from '@/lib/site-path';
-import './globals.css';
+import { METADATA_BASE, SITE_URL, buildSiteUrl } from '@/lib/site';import './globals.css';
 
 // Firebase Hosting's CDN honours s-maxage; without this, pages are cached for a year and deploys never show up.
 export const revalidate = 300;
@@ -55,10 +53,6 @@ export const metadata: Metadata = {
     shortcut: faviconUrl,
     apple: faviconUrl,
   },
-  // The Webflow-hosted build (served under /home) stays hidden until the domain moves to Cloud Run.
-  ...(configuredBasePath
-    ? { robots: { index: false, follow: false, googleBot: { index: false, follow: false } } }
-    : {}),
 };
 
 const organizationSchema = {
