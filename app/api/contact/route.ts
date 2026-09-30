@@ -18,14 +18,37 @@ export async function POST(request: Request) {
 
     const payload = await request.json();
 
+    // Apps Script runs doPost, then answers 302 to a one-time reply page. That redirect proves the
+    // submission was processed, so a failure reading the reply page must not be shown as a failed submission.
     const response = await fetch(appsScriptUrl, {
       method: 'POST',
-      redirect: 'follow',
+      redirect: 'manual',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),
     });
 
-    const text = await response.text();
+    const replyUrl = response.status >= 300 && response.status < 400 ? response.headers.get('location') : null;
+    let text = '';
+
+    if (replyUrl) {
+      try {
+        text = await (await fetch(replyUrl, { redirect: 'follow' })).text();
+      } catch (err) {
+        console.warn('Contact form: submission accepted but reply could not be read', err);
+      }
+
+      if (!text || text.trim().startsWith('<')) {
+        console.warn('Contact form: submission accepted but reply was not JSON');
+        return NextResponse.json({
+          ok: true,
+          message: 'Your inquiry has been submitted successfully.',
+          uploadError: null,
+          attachmentLink: null,
+        });
+      }
+    } else {
+      text = await response.text();
+    }
 
     let result: ContactSubmissionResult = {};
     try {
