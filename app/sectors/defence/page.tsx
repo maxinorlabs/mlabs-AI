@@ -1,15 +1,16 @@
 'use client';
 
 import { motion, AnimatePresence } from 'motion/react';
+import { NavyBackdrop } from '@/components/motion/NavyBackdrop';
 import Link from 'next/link';
 import { useState } from 'react';
 import { ArrowRight, Shield, Cpu, Globe } from 'lucide-react';
 
 const primaryBtn =
-  'inline-flex items-center justify-center rounded-full bg-brand px-8 py-4 text-base font-semibold tracking-wide text-warm-white transition-all duration-300 hover:-translate-y-1 hover:bg-brand/90 shadow-[0_0_40px_rgba(243,111,33,0.15)] hover:shadow-[0_0_60px_rgba(243,111,33,0.3)] sm:px-10 sm:py-5';
+  'inline-flex items-center justify-center rounded-full bg-brand px-8 py-4 text-base font-semibold tracking-wide text-warm-white transition-all duration-300 hover:-translate-y-1 hover:bg-brand/90 shadow-[0_0_40px_rgba(243,111,33,0.15)] hover:shadow-[0_0_60px_rgba(243,111,33,0.3)] sm:px-10 sm:py-5 group active:translate-y-0 active:scale-[0.98]';
 
 const ghostBtn =
-  'inline-flex items-center justify-center rounded-full border border-warm-white/30 px-8 py-4 text-base font-semibold tracking-wide text-warm-white transition-all duration-300 hover:-translate-y-1 hover:border-warm-white/60 sm:px-10 sm:py-5';
+  'inline-flex items-center justify-center rounded-full border border-warm-white/30 px-8 py-4 text-base font-semibold tracking-wide text-warm-white transition-all duration-300 hover:-translate-y-1 hover:border-warm-white/60 sm:px-10 sm:py-5 group active:translate-y-0 active:scale-[0.98]';
 
 const painPoints = [
   {
@@ -164,14 +165,7 @@ export default function DefencePage() {
 
       {/* Hero */}
       <section className="relative overflow-hidden bg-navy px-6 pt-32 pb-24 md:pt-44 md:pb-32">
-        <div
-          className="pointer-events-none absolute inset-0 opacity-[0.03]"
-          style={{
-            backgroundImage:
-              'linear-gradient(rgba(255,255,255,0.8) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.8) 1px, transparent 1px)',
-            backgroundSize: '60px 60px',
-          }}
-        />
+        <NavyBackdrop hero />
         <div className="pointer-events-none absolute -top-40 right-0 h-[600px] w-[600px] rounded-full bg-brand/5 blur-[120px]" />
         <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-warm-white" />
 
@@ -190,7 +184,7 @@ export default function DefencePage() {
           </p>
           <div className="flex flex-wrap gap-4">
             <Link href="/contact" className={primaryBtn}>
-              Talk to a defence operator <ArrowRight className="h-4 w-4 shrink-0" />
+              Talk to a defence operator <ArrowRight className="h-4 w-4 shrink-0 transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
             <Link href="/sectors" className={ghostBtn}>
               All Sectors
@@ -210,7 +204,7 @@ export default function DefencePage() {
             We&apos;re building out the full Defence sector page. In the meantime, talk to the team directly.
           </p>
           <Link href="/contact" className={primaryBtn}>
-            Talk to a defence operator <ArrowRight className="ml-2 h-4 w-4" />
+            Talk to a defence operator <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
           </Link>
         </div>
       </section>
@@ -250,7 +244,7 @@ export default function DefencePage() {
           </h2>
           <div className="grid gap-6 md:grid-cols-3">
             {painPoints.map((p) => (
-              <div key={p.number} className="rounded-[2rem] border border-grey/15 bg-warm-white p-8 transition-all duration-300 hover:border-brand/20 hover:shadow-md">
+              <div key={p.number} className="rounded-[2rem] border border-grey/15 bg-warm-white p-8 transition-all duration-300 hover:border-brand/20 hover:shadow-md card-interactive spotlight spotlight-border">
                 <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-xl bg-brand/10">
                   <p.icon className="h-5 w-5 text-brand" />
                 </div>
@@ -313,7 +307,7 @@ export default function DefencePage() {
           </p>
           <div className="grid gap-5 md:grid-cols-2 md:gap-6">
             {engagementModels.map((model) => (
-              <div key={model.title} className="rounded-[2rem] border border-grey/15 bg-white p-7 transition-all duration-300 hover:border-brand/20 hover:shadow-md md:p-9">
+              <div key={model.title} className="rounded-[2rem] border border-grey/15 bg-white p-7 transition-all duration-300 hover:border-brand/20 hover:shadow-md md:p-9 card-interactive spotlight spotlight-border">
                 <h3 className="mb-3 text-lg font-display font-semibold text-navy md:text-xl">{model.title}</h3>
                 <p className="mb-5 text-sm font-light leading-relaxed text-grey">{model.description}</p>
                 <ul className="space-y-2">
@@ -366,8 +360,9 @@ export default function DefencePage() {
       </section>
 
       {/* CTA */}
-      <section className="bg-navy px-6 py-20 md:py-28">
-        <div className="max-w-3xl mx-auto text-center">
+      <section className="relative overflow-hidden bg-navy px-6 py-20 md:py-28">
+        <NavyBackdrop />
+        <div className="relative max-w-3xl mx-auto text-center">
           <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">Get Started</p>
           <h2 className="mb-5 text-3xl font-display font-medium tracking-tight text-warm-white md:text-5xl">
             Ready to navigate defence the right way?
@@ -377,7 +372,7 @@ export default function DefencePage() {
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link href="/contact" className={primaryBtn}>
-              Talk to a defence operator <ArrowRight className="h-4 w-4 shrink-0" />
+              Talk to a defence operator <ArrowRight className="h-4 w-4 shrink-0 transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
             <Link href="/sectors" className={ghostBtn}>
               All Sectors

@@ -7,9 +7,12 @@ import Image from 'next/image';
 import { useRef, useEffect, useState } from 'react';
 import { ArrowRight, Check } from 'lucide-react';
 import { TShapeWidget } from '@/components/TShapeWidget';
+import { CountUp } from '@/components/motion/CountUp';
+import { NavyBackdrop } from '@/components/motion/NavyBackdrop';
+import { CompassRing } from '@/components/Compass';
 
 const primaryBtn =
-  'inline-flex items-center justify-center rounded-full bg-brand px-8 py-4 text-base font-semibold tracking-wide text-warm-white transition-all duration-300 hover:-translate-y-1 hover:bg-brand/90 shadow-[0_0_40px_rgba(243,111,33,0.15)] hover:shadow-[0_0_60px_rgba(243,111,33,0.3)] sm:px-10 sm:py-5';
+  'inline-flex items-center justify-center rounded-full bg-brand px-8 py-4 text-base font-semibold tracking-wide text-warm-white transition-all duration-300 hover:-translate-y-1 hover:bg-brand/90 shadow-[0_0_40px_rgba(243,111,33,0.15)] hover:shadow-[0_0_60px_rgba(243,111,33,0.3)] sm:px-10 sm:py-5 group active:translate-y-0 active:scale-[0.98]';
 const outlineBtn =
   'inline-flex items-center justify-center rounded-full border border-grey/40 bg-white/80 px-8 py-4 text-base font-semibold text-navy transition-all duration-300 hover:-translate-y-1 hover:bg-brand hover:text-warm-white sm:px-10 sm:py-5';
 
@@ -325,7 +328,9 @@ function StatItem({ display, label, delay }: { display: string; label: string; d
       transition={{ duration: 0.6, delay }}
       className="text-center"
     >
-      <div className="text-4xl font-display font-bold text-brand md:text-5xl lg:text-6xl">{display}</div>
+      <div className="text-4xl font-display font-bold tabular-nums text-brand md:text-5xl lg:text-6xl">
+        <CountUp value={display} />
+      </div>
       <p className="mt-2 text-sm font-light text-warm-white/60">{label}</p>
     </motion.div>
   );
@@ -354,6 +359,7 @@ export default function CapabilitiesPage() {
       {/* ── Hero ── */}
       <section className="relative overflow-hidden bg-warm-white px-6 pt-32 pb-20 md:pt-40 md:pb-28">
         <div className="pointer-events-none absolute right-0 top-0 h-full w-2/5 bg-brand/5 [clip-path:polygon(25%_0,100%_0,100%_100%,0%_100%)]" />
+        <CompassRing spin className="absolute -right-48 top-1/2 hidden w-[620px] -translate-y-1/2 text-navy opacity-40 md:block lg:-right-24" />
         <div className="relative z-10 max-w-7xl mx-auto">
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -387,7 +393,7 @@ export default function CapabilitiesPage() {
             className="flex flex-col gap-4 sm:flex-row"
           >
             <Link href="#capabilities" className={primaryBtn}>
-              See Capabilities <ArrowRight className="ml-2 h-4 w-4" />
+              See Capabilities <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
             <Link href="#how-we-work" className={outlineBtn}>
               How we engage
@@ -425,7 +431,7 @@ export default function CapabilitiesPage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: i * 0.08 }}
-                    className="group relative flex flex-col rounded-[2rem] border border-grey/20 bg-white p-8 transition-all duration-500 hover:border-brand/30 hover:shadow-lg"
+                    className="group relative flex flex-col rounded-[2rem] border border-grey/20 bg-white p-8 hover:border-brand/30 card-interactive spotlight spotlight-border"
                   >
                     <span className="pointer-events-none absolute right-5 top-3 select-none text-7xl font-display font-bold leading-none text-brand/6">
                       {cap.number}
@@ -494,7 +500,7 @@ export default function CapabilitiesPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: i * 0.08 }}
-                  className="group relative flex flex-col rounded-[2rem] border border-grey/20 bg-white p-8 transition-all duration-500 hover:border-brand/30 hover:shadow-lg"
+                  className="group relative flex flex-col rounded-[2rem] border border-grey/20 bg-white p-8 hover:border-brand/30 card-interactive spotlight spotlight-border"
                 >
                   <span className="pointer-events-none absolute right-5 top-3 select-none text-7xl font-display font-bold leading-none text-brand/6">
                     {cap.number}
@@ -549,8 +555,9 @@ export default function CapabilitiesPage() {
       </section>
 
       {/* ── Problems (navy) ── */}
-      <section className="bg-navy px-6 py-20 md:py-28">
-        <div className="max-w-7xl mx-auto">
+      <section className="relative overflow-hidden bg-navy px-6 py-20 md:py-28">
+        <NavyBackdrop />
+        <div className="relative max-w-7xl mx-auto">
           <div className="mb-14 text-center">
             <p className="mb-3 text-xs font-bold uppercase tracking-[0.22em] text-brand">What Brings Founders to Us</p>
             <h2 className="mx-auto max-w-2xl text-3xl font-display font-medium tracking-tight text-warm-white md:text-5xl">
@@ -582,7 +589,7 @@ export default function CapabilitiesPage() {
               If any of these sound familiar, you&apos;re in the right place.
             </p>
             <Link href="/contact" className={primaryBtn}>
-              Start a conversation <ArrowRight className="ml-2 h-4 w-4" />
+              Start a conversation <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
           </div>
         </div>
@@ -605,6 +612,14 @@ export default function CapabilitiesPage() {
           <div className="hidden lg:block">
             <div className="relative">
               <div className="absolute left-0 right-0 top-8 h-px bg-gradient-to-r from-transparent via-grey/20 to-transparent" />
+              {/* The course line plots itself across the steps as they arrive */}
+              <motion.div
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1.2, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                className="absolute left-[8.33%] right-[8.33%] top-8 h-0.5 -translate-y-px origin-left bg-gradient-to-r from-brand/70 to-brand"
+              />
               <div className="grid grid-cols-6 gap-4">
                 {steps.map((step, i) => (
                   <motion.div
@@ -713,7 +728,7 @@ export default function CapabilitiesPage() {
               you&apos;re building and where we might fit.
             </p>
             <Link href="/contact" className={primaryBtn}>
-              Start a conversation <ArrowRight className="ml-2 h-4 w-4" />
+              Start a conversation <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
             <p className="mt-5 text-sm text-grey/50">We respond to every inquiry within 24 hours.</p>
           </motion.div>

@@ -1,6 +1,7 @@
 'use client';
 
 import { motion, AnimatePresence } from 'motion/react';
+import { NavyBackdrop } from '@/components/motion/NavyBackdrop';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useState } from 'react';
@@ -13,15 +14,14 @@ import {
   Code2,
   Megaphone,
   Plus,
-  Minus,
 } from 'lucide-react';
 
 /* ─── Shared style tokens ─── */
 const primaryBtn =
-  'inline-flex items-center justify-center rounded-full bg-brand px-8 py-4 text-base font-semibold tracking-wide text-warm-white transition-all duration-300 hover:-translate-y-1 hover:bg-brand/90 shadow-[0_0_40px_rgba(243,111,33,0.15)] hover:shadow-[0_0_60px_rgba(243,111,33,0.3)] sm:px-10 sm:py-5';
+  'inline-flex items-center justify-center rounded-full bg-brand px-8 py-4 text-base font-semibold tracking-wide text-warm-white transition-all duration-300 hover:-translate-y-1 hover:bg-brand/90 shadow-[0_0_40px_rgba(243,111,33,0.15)] hover:shadow-[0_0_60px_rgba(243,111,33,0.3)] sm:px-10 sm:py-5 group active:translate-y-0 active:scale-[0.98]';
 
 const ghostBtn =
-  'inline-flex items-center justify-center rounded-full border border-warm-white/30 px-8 py-4 text-base font-semibold tracking-wide text-warm-white transition-all duration-300 hover:-translate-y-1 hover:border-warm-white/60 sm:px-10 sm:py-5';
+  'inline-flex items-center justify-center rounded-full border border-warm-white/30 px-8 py-4 text-base font-semibold tracking-wide text-warm-white transition-all duration-300 hover:-translate-y-1 hover:border-warm-white/60 sm:px-10 sm:py-5 group active:translate-y-0 active:scale-[0.98]';
 
 /* ─── Data ─── */
 const painPoints = [
@@ -187,7 +187,7 @@ function FaqAccordion() {
           >
             <span className="text-base font-semibold text-navy">{item.q}</span>
             <span className="shrink-0 text-brand">
-              {open === i ? <Minus className="h-5 w-5" /> : <Plus className="h-5 w-5" />}
+              <Plus className={`h-5 w-5 transition-transform duration-300 ${open === i ? 'rotate-45' : ''}`} />
             </span>
           </button>
           <AnimatePresence initial={false}>
@@ -218,14 +218,7 @@ export default function BuildPage() {
       {/* ── Section 1: Hero ── */}
       <section className="relative overflow-hidden bg-navy px-6 pt-32 pb-24 md:pt-44 md:pb-32">
         {/* Grid overlay */}
-        <div
-          className="pointer-events-none absolute inset-0 opacity-[0.03]"
-          style={{
-            backgroundImage:
-              'linear-gradient(rgba(255,255,255,0.8) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.8) 1px, transparent 1px)',
-            backgroundSize: '60px 60px',
-          }}
-        />
+        <NavyBackdrop hero />
         {/* Brand glow */}
         <div className="pointer-events-none absolute -top-40 right-0 h-[600px] w-[600px] rounded-full bg-brand/5 blur-[120px]" />
         {/* Gradient fade */}
@@ -281,7 +274,7 @@ export default function BuildPage() {
             className="flex flex-wrap gap-4"
           >
             <Link href="/contact" className={primaryBtn}>
-              Start a conversation <ArrowRight className="ml-2 h-4 w-4" />
+              Start a conversation <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
             <Link href="/scale" className={ghostBtn}>
               See how we scale
@@ -313,7 +306,7 @@ export default function BuildPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: i * 0.1 }}
-                className="relative rounded-[2rem] border border-grey/15 bg-white p-8"
+                className="relative rounded-[2rem] border border-grey/15 bg-white p-8 card-interactive spotlight spotlight-border"
               >
                 <span className="pointer-events-none absolute right-6 top-4 select-none text-7xl font-display font-bold leading-none text-brand/5">
                   {p.number}
@@ -352,7 +345,7 @@ export default function BuildPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: i * 0.08 }}
-                className="flex flex-col rounded-[2rem] border border-grey/15 bg-warm-white p-8"
+                className="flex flex-col rounded-[2rem] border border-grey/15 bg-warm-white p-8 card-interactive spotlight spotlight-border"
               >
                 <div className="mb-5 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-brand/10">
                   <engine.icon className="h-5 w-5 text-brand" />
@@ -380,13 +373,7 @@ export default function BuildPage() {
 
       {/* ── Section 4: How It Works ── */}
       <section className="relative overflow-hidden bg-navy px-6 py-20 md:py-28 border-t border-white/5">
-        <div className="pointer-events-none absolute inset-0 opacity-[0.025]"
-          style={{
-            backgroundImage:
-              'linear-gradient(rgba(255,255,255,0.8) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.8) 1px, transparent 1px)',
-            backgroundSize: '60px 60px',
-          }}
-        />
+        <NavyBackdrop />
         <div className="pointer-events-none absolute -top-60 left-1/2 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-brand/5 blur-[100px]" />
         <div className="relative z-10 max-w-7xl mx-auto">
           <motion.div
@@ -421,7 +408,7 @@ export default function BuildPage() {
                   <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-brand/40 bg-brand/10 text-xs font-bold text-brand">
                     {step.number}
                   </span>
-                  <div className="h-px flex-1 bg-white/10" />
+                  <motion.div initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.3 + i * 0.15, ease: [0.22, 1, 0.36, 1] }} className="h-px flex-1 origin-left bg-gradient-to-r from-brand/60 to-white/10" />
                 </div>
                 <p className="mb-1 text-xs font-bold uppercase tracking-[0.18em] text-brand/70">{step.timeline}</p>
                 <h3 className="mb-3 text-lg font-display font-semibold text-warm-white">{step.phase}</h3>
@@ -439,7 +426,7 @@ export default function BuildPage() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.08 }}
-                className="flex gap-5 rounded-[1.5rem] border border-white/8 bg-white/5 p-6"
+                className="flex gap-5 rounded-[1.5rem] border border-white/8 bg-white/5 p-6 card-interactive spotlight spotlight-border"
               >
                 <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-brand/40 bg-brand/10 text-xs font-bold text-brand">
                   {step.number}
@@ -482,7 +469,7 @@ export default function BuildPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.07 }}
-                className="group flex items-center justify-center rounded-2xl border border-grey/15 bg-white p-5 transition-all duration-300 hover:border-brand/30 hover:shadow-md sm:p-6"
+                className="group flex items-center justify-center rounded-2xl border border-grey/15 bg-white p-5 hover:border-brand/30 sm:p-6 card-interactive spotlight spotlight-border"
               >
                 <div className="relative h-10 w-full sm:h-12">
                   <Image
@@ -528,13 +515,7 @@ export default function BuildPage() {
 
       {/* ── Section 7: CTA ── */}
       <section className="relative overflow-hidden bg-navy px-6 py-20 text-center md:py-28">
-        <div className="pointer-events-none absolute inset-0 opacity-[0.025]"
-          style={{
-            backgroundImage:
-              'linear-gradient(rgba(255,255,255,0.8) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.8) 1px, transparent 1px)',
-            backgroundSize: '60px 60px',
-          }}
-        />
+        <NavyBackdrop />
         <div className="pointer-events-none absolute -bottom-40 left-1/2 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-brand/6 blur-[100px]" />
         <div className="relative z-10 max-w-3xl mx-auto">
           <motion.div
@@ -551,7 +532,7 @@ export default function BuildPage() {
               The conversation starts with an operator, not a pitch deck. Tell us about the opportunity and we will tell you if Venture Build is the right fit.
             </p>
             <Link href="/contact" className={primaryBtn}>
-              Start a conversation <ArrowRight className="ml-2 h-4 w-4" />
+              Start a conversation <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
           </motion.div>
         </div>

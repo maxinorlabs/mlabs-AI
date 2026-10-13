@@ -3,6 +3,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
 import { PartnerLogoTicker } from '@/components/PartnerLogoTicker';
+import { Reveal, Stagger, StaggerItem } from '@/components/motion/Reveal';
+import { Magnetic } from '@/components/motion/Magnetic';
+import { NavyBackdrop } from '@/components/motion/NavyBackdrop';
 
 export const metadata: Metadata = {
   title: 'Our Team | Operators and Builders',
@@ -24,7 +27,7 @@ function memberSlug(name: string) {
 
 const pagePadding = 'bg-warm-white px-5 pt-24 pb-20 text-navy sm:px-6 sm:pt-28 md:pb-24';
 const introSpacing = 'mb-10';
-const introTitle = 'mb-4 text-4xl font-display font-medium tracking-tight text-navy sm:text-5xl lg:text-[3.25rem]';
+const introTitle = 'mb-4 text-4xl font-display font-medium tracking-tight text-navy sm:text-5xl lg:text-[clamp(2.25rem,min(4vw,7svh),3.25rem)]';
 const introBody = 'max-w-2xl text-base font-light leading-relaxed text-grey';
 const sectionSpacing = 'mb-16 md:mb-20';
 const sectionHeading = 'mb-7 text-2xl font-display font-medium tracking-tight text-navy md:mb-8 md:text-3xl';
@@ -159,18 +162,19 @@ const programTeam: TeamMember[] = [
 function TeamGridSection({ title, members }: { title: string; members: TeamMember[] }) {
   return (
     <section className={sectionSpacing}>
-      <div className="mb-6 md:mb-7">
+      <Reveal className="mb-6 md:mb-7">
         <div>
           <p className="mb-2 text-xs font-bold uppercase tracking-[0.2em] text-brand">The people behind the work</p>
           <h2 className="text-2xl font-display font-medium tracking-tight text-navy md:text-3xl">{title}</h2>
         </div>
-      </div>
-      <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+      </Reveal>
+      <Stagger className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
         {members.map((member) => (
+          <StaggerItem key={member.name} className="flex">
           <article
             key={member.name}
             id={memberSlug(member.name)}
-            className="group flex flex-col overflow-hidden rounded-2xl border border-navy/10 bg-warm-white shadow-[0_14px_40px_rgba(26,31,46,0.06)] transition duration-300 hover:-translate-y-1 hover:border-navy/20 hover:shadow-[0_20px_50px_rgba(26,31,46,0.10)]"
+            className="spotlight spotlight-border group flex w-full flex-col overflow-hidden rounded-2xl border border-navy/10 bg-warm-white shadow-[0_14px_40px_rgba(26,31,46,0.06)] transition duration-300 hover:-translate-y-1 hover:border-navy/20 hover:shadow-[0_20px_50px_rgba(26,31,46,0.10)]"
           >
             <Link
               href={member.linkedin}
@@ -185,7 +189,7 @@ function TeamGridSection({ title, members }: { title: string; members: TeamMembe
                     src={member.image}
                     alt={member.name}
                     fill
-                    className="object-cover transition duration-500 group-hover:scale-[1.025]"
+                    className="object-cover saturate-[0.8] transition duration-700 group-hover:scale-[1.04] group-hover:saturate-100"
                     style={{ objectPosition: member.imagePosition ?? '50% 15%' }}
                     referrerPolicy="no-referrer"
                     sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
@@ -200,14 +204,15 @@ function TeamGridSection({ title, members }: { title: string; members: TeamMembe
                 <p className="mb-2 text-xs font-bold uppercase tracking-[0.16em] text-brand">{member.role}</p>
                 <div className="flex items-start justify-between gap-4">
                   <h3 className="text-xl font-display font-medium tracking-tight text-navy">{member.name}</h3>
-                  <ArrowUpRight className="mt-1 h-4 w-4 shrink-0 text-navy/35 transition group-hover:text-brand" aria-hidden="true" />
+                  <ArrowUpRight className="mt-1 h-4 w-4 shrink-0 text-navy/35 transition duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-brand" aria-hidden="true" />
                 </div>
                 <p className="mt-3 text-sm font-light leading-relaxed text-grey">{member.desc}</p>
               </div>
             </Link>
           </article>
+          </StaggerItem>
         ))}
-      </div>
+      </Stagger>
     </section>
   );
 }
@@ -216,14 +221,14 @@ export default function TeamPage() {
   return (
     <div className={`${pagePadding} [--color-warm-white:#F5EFE6] [--color-navy:#1A1F2E] [--color-grey:#3D3D3D]`}>
       <div className="max-w-7xl mx-auto">
-        <div className={introSpacing}>
+        <Reveal className={introSpacing}>
           <h1 className={introTitle}>
             Meet the <span className="text-brand">Operator Team</span>
           </h1>
           <p className={introBody}>
             Experienced operators and entrepreneurs driving founder success through hands-on execution.
           </p>
-        </div>
+        </Reveal>
 
         <TeamGridSection title="Operators" members={leadership} />
         <TeamGridSection title="Entrepreneurs in Residence" members={eirTeam} />
@@ -237,7 +242,9 @@ export default function TeamPage() {
           <PartnerLogoTicker />
         </section>
 
-        <section className="mt-16 rounded-3xl bg-navy px-6 py-12 text-center sm:px-10 md:mt-20 md:py-16">
+        <section className="relative mt-16 overflow-hidden rounded-3xl bg-navy px-6 py-12 text-center sm:px-10 md:mt-20 md:py-16">
+          <NavyBackdrop />
+          <div className="relative">
           <p className="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-brand">Work with our operators</p>
           <h2 className="mx-auto max-w-2xl text-3xl font-display font-medium tracking-tight text-warm-white md:text-4xl">
             Ready to build what comes next?
@@ -245,12 +252,15 @@ export default function TeamPage() {
           <p className="mx-auto mt-4 max-w-xl text-sm font-light leading-relaxed text-warm-white/70 md:text-base">
             Tell us where you are headed and we’ll connect you with the right operator.
           </p>
+          <Magnetic className="mt-8 inline-block">
           <Link
             href="/contact"
-            className="mt-8 inline-flex items-center justify-center rounded-full bg-brand px-7 py-3.5 text-sm font-semibold text-warm-white transition duration-300 hover:-translate-y-0.5 hover:bg-brand/90 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand"
+            className="inline-flex items-center justify-center rounded-full bg-brand px-7 py-3.5 text-sm font-semibold text-warm-white transition duration-300 hover:-translate-y-0.5 hover:bg-brand/90 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand"
           >
             Book an Appointment
           </Link>
+          </Magnetic>
+          </div>
         </section>
       </div>
     </div>

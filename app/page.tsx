@@ -1,6 +1,7 @@
 'use client';
 
-import { motion } from 'motion/react';
+import { useRef } from 'react';
+import { motion, useTransform, type Variants } from 'motion/react';
 import {
   ArrowRight,
   Check,
@@ -15,17 +16,29 @@ import Link from 'next/link';
 import Image from 'next/image';
 import WhyMaxinor from '../components/WhyMaxinor';
 import { TShapeWidget } from '../components/TShapeWidget';
+import { CompassRing } from '../components/Compass';
+import { HomeHero } from '../components/home/HomeHero';
+import { CourseLine } from '../components/home/CourseLine';
+import { VelocityMarquee } from '../components/home/VelocityMarquee';
+import { useScrub } from '../components/motion/useScrub';
+import { Magnetic } from '../components/motion/Magnetic';
+import { RevealText } from '../components/motion/RevealText';
+import { Reveal, Stagger, StaggerItem } from '../components/motion/Reveal';
+import { EASE_OUT } from '../lib/motion';
+import { trackSpotlight } from '../lib/spotlight';
+
+// The "Most Popular" badge settles onto its card just after the card itself arrives.
+const badgeVariants: Variants = {
+  hidden: { opacity: 0, scale: 0.9 },
+  visible: { opacity: 1, scale: 1, transition: { delay: 0.3, duration: 0.3, ease: EASE_OUT } },
+};
 
 const sectionPadding = 'px-6 py-20 md:py-28 lg:py-32';
 const sectionIntro = 'mb-14 text-center md:mb-20';
 const sectionTitle = 'text-3xl md:text-5xl font-display font-medium tracking-tight mb-5 md:mb-6';
 const sectionSubtitle = 'mx-auto max-w-xl text-base font-light md:text-lg';
 const primaryButtonClass =
-  'inline-flex w-full max-w-[320px] sm:w-auto items-center justify-center rounded-full bg-brand px-8 py-4 text-base font-semibold tracking-wide text-warm-white transition-all duration-300 hover:-translate-y-1 hover:bg-brand/90 sm:px-12 sm:py-5 sm:text-lg shadow-[0_0_40px_rgba(243,111,33,0.15)] hover:shadow-[0_0_60px_rgba(243,111,33,0.3)]';
-const heroScaleButtonClass =
-  'inline-flex w-full max-w-[320px] sm:w-auto items-center justify-center rounded-full bg-navy px-8 py-4 text-base font-semibold tracking-wide text-warm-white transition-all duration-300 hover:-translate-y-1 hover:bg-navy/90 sm:px-12 sm:py-5 sm:text-lg shadow-[0_0_40px_rgba(11,31,59,0.15)] hover:shadow-[0_0_60px_rgba(11,31,59,0.3)]';
-const secondaryButtonClass =
-  'inline-flex w-full max-w-[320px] sm:w-auto items-center justify-center rounded-full border border-grey/40 bg-white/80 px-8 py-4 text-base font-semibold text-navy transition-all duration-300 hover:-translate-y-1 hover:bg-brand hover:text-warm-white sm:px-12 sm:py-5 sm:text-lg';
+  'inline-flex w-full max-w-[320px] sm:w-auto items-center justify-center rounded-full bg-brand px-8 py-4 text-base font-semibold tracking-wide text-warm-white transition-all duration-300 hover:-translate-y-1 active:translate-y-0 active:scale-[0.98] hover:bg-brand/90 sm:px-12 sm:py-5 sm:text-lg shadow-[0_0_40px_rgba(243,111,33,0.15)] hover:shadow-[0_0_60px_rgba(243,111,33,0.3)]';
 
 const engagements = [
   {
@@ -129,126 +142,115 @@ type Engagement = {
   featured: boolean;
 };
 
-function EngagementCard({ eng, i }: { eng: Engagement; i: number }) {
+// Checklist items tick in one after another once their card has arrived.
+const bulletList: Variants = {
+  hidden: {},
+  visible: { transition: { delayChildren: 0.25, staggerChildren: 0.07 } },
+};
+const bulletItem: Variants = {
+  hidden: { opacity: 0, x: -8 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.35, ease: EASE_OUT } },
+};
+const bulletTick: Variants = {
+  hidden: { scale: 0 },
+  visible: { scale: 1, transition: { type: 'spring', stiffness: 500, damping: 22 } },
+};
+
+function EngagementCard({ eng, last }: { eng: Engagement; last: boolean }) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6, delay: i * 0.1 }}
-      className={`relative flex flex-col rounded-[2rem] border bg-white p-8 transition-all duration-500 hover:shadow-xl md:p-10 ${
-        eng.featured
-          ? 'border-brand border-t-4 shadow-[0_0_50px_rgba(243,111,33,0.1)]'
-          : 'border-grey/20 hover:border-brand/30'
-      }`}
-    >
-      {eng.featured && (
-        <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-brand px-5 py-1.5 text-xs font-bold uppercase tracking-widest text-white shadow-lg">
-          Most Popular
-        </div>
-      )}
-      {eng.duration && (
-        <p className="mb-2 text-xs font-bold uppercase tracking-[0.2em] text-brand">{eng.duration}</p>
-      )}
-      <h3 className="mb-1 text-[28px] font-display font-semibold leading-tight text-navy">{eng.name}</h3>
-      {eng.model && <p className="mb-4 text-sm text-grey/60">{eng.model}</p>}
-      {eng.description && (
-        <p className="mb-6 text-[15px] font-normal leading-relaxed text-grey md:text-base">{eng.description}</p>
-      )}
-      <ul className="mb-6 flex-1 space-y-2.5">
-        {eng.bullets.map((b) => (
-          <li key={b} className="flex items-start gap-3 text-[15px] text-grey md:text-base">
-            <span className="mt-0.5 text-brand">
-              <Check className="h-4 w-4" />
-            </span>
-            {b}
-          </li>
-        ))}
-      </ul>
-      {eng.commercial && (
-        <p className="mb-4 text-[13px] leading-relaxed text-grey/70 md:text-sm">
-          {eng.commercial}
-        </p>
-      )}
-      {eng.bestFor && (
-        <div className="mb-6 rounded-2xl bg-warm-white px-4 py-3.5 space-y-1">
-          <p className="text-[13px] leading-relaxed text-grey/70 md:text-sm">
-            <span className="font-semibold text-navy">Best for:</span> {eng.bestFor}
-          </p>
-        </div>
-      )}
-      <Link
-        href="/contact"
-        className={`inline-flex w-full items-center justify-center rounded-full py-3.5 text-[15px] font-semibold tracking-wide transition-all duration-300 md:text-base ${
+    <StaggerItem className="relative">
+      <div
+        className={`spotlight spotlight-border relative flex h-full flex-col rounded-[2rem] border bg-white p-8 transition-[translate,box-shadow,border-color] duration-300 ease-out hover:-translate-y-1.5 hover:shadow-[0_32px_60px_-28px_rgba(11,31,59,0.35)] md:p-10 ${
           eng.featured
-            ? 'bg-brand text-white hover:bg-brand/90 shadow-[0_0_30px_rgba(243,111,33,0.2)]'
-            : 'border border-grey/25 text-navy hover:border-brand hover:text-brand'
+            ? 'border-brand border-t-4 shadow-[0_0_50px_rgba(243,111,33,0.1)]'
+            : 'border-grey/20 hover:border-brand/30'
         }`}
       >
-        {eng.cta} <ArrowRight className="ml-2 h-4 w-4" />
-      </Link>
-    </motion.div>
+        {eng.featured && (
+          <motion.div
+            variants={badgeVariants}
+            className="absolute -top-3.5 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-brand px-5 py-1.5 text-xs font-bold uppercase tracking-widest text-white shadow-lg"
+          >
+            Most Popular
+          </motion.div>
+        )}
+        {eng.duration && (
+          <p className="mb-2 text-xs font-bold uppercase tracking-[0.2em] text-brand">{eng.duration}</p>
+        )}
+        <h3 className="mb-1 text-[28px] font-display font-semibold leading-tight text-navy">{eng.name}</h3>
+        {eng.model && <p className="mb-4 text-sm text-grey/60">{eng.model}</p>}
+        {eng.description && (
+          <p className="mb-6 text-[15px] font-normal leading-relaxed text-grey md:text-base">{eng.description}</p>
+        )}
+        <motion.ul variants={bulletList} className="mb-6 flex-1 space-y-2.5">
+          {eng.bullets.map((b) => (
+            <motion.li key={b} variants={bulletItem} className="flex items-start gap-3 text-[15px] text-grey md:text-base">
+              <motion.span variants={bulletTick} className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand/10 text-brand">
+                <Check className="h-3.5 w-3.5" strokeWidth={3} />
+              </motion.span>
+              {b}
+            </motion.li>
+          ))}
+        </motion.ul>
+        {eng.commercial && (
+          <p className="mb-4 text-[13px] leading-relaxed text-grey/70 md:text-sm">
+            {eng.commercial}
+          </p>
+        )}
+        {eng.bestFor && (
+          <div className="mb-6 rounded-2xl bg-warm-white px-4 py-3.5 space-y-1">
+            <p className="text-[13px] leading-relaxed text-grey/70 md:text-sm">
+              <span className="font-semibold text-navy">Best for:</span> {eng.bestFor}
+            </p>
+          </div>
+        )}
+        <Link
+          href="/contact"
+          className={`group/cta relative inline-flex w-full items-center justify-center overflow-hidden rounded-full py-3.5 text-[15px] font-semibold tracking-wide transition-all duration-300 active:scale-[0.98] md:text-base ${
+            eng.featured
+              ? 'bg-brand text-white hover:bg-brand/90 shadow-[0_0_30px_rgba(243,111,33,0.2)]'
+              : 'border border-grey/25 text-navy hover:border-brand hover:bg-brand hover:text-white'
+          }`}
+        >
+          {/* A sheen passes across the button on hover */}
+          <span aria-hidden="true" className="pointer-events-none absolute inset-y-0 -left-1/3 w-1/3 -skew-x-12 bg-gradient-to-r from-transparent via-white/40 to-transparent opacity-0 transition-[left,opacity] duration-700 ease-out group-hover/cta:left-full group-hover/cta:opacity-100" />
+          {eng.cta} <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover/cta:translate-x-1" />
+        </Link>
+      </div>
+      {/* Phones: the course continues down between the stacked cards */}
+      {!last && (
+        <motion.span
+          aria-hidden="true"
+          variants={{ hidden: { scaleY: 0 }, visible: { scaleY: 1, transition: { delay: 0.3, duration: 0.4, ease: EASE_OUT } } }}
+          className="absolute left-1/2 top-full h-6 w-0.5 origin-top -translate-x-1/2 bg-brand/50 md:hidden"
+        />
+      )}
+    </StaggerItem>
   );
 }
 
+// The operator capabilities, repeated in the scrolling band under the T-Shape.
+const MARQUEE = [
+  'AI & Tech',
+  'Product & Design',
+  'Brand & Marketing',
+  'Growth & Revenue',
+  'Supply Chain & Operations',
+  'Finance & Accounting',
+  'Venture Capital',
+  'M&A',
+];
+
 export default function Home() {
+  // The entry-point section rises over the navy band like a card, widening to full size as it arrives.
+  const entryRef = useRef<HTMLElement>(null);
+  const entryProgress = useScrub(entryRef, ['start end', 'start 35%']);
+  const entryScale = useTransform(entryProgress, [0, 1], [0.94, 1]);
+
   return (
     <div className="font-sans">
       <main className="pt-20">
-        {/* Hero Section */}
-        <section className="relative flex min-h-[calc(100vh-5rem)] items-center justify-center overflow-hidden px-6 py-12 md:min-h-[90vh] md:py-16">
-          {/* Background image */}
-          <Image
-            src="/images/adrian-cuj-o-9ymcy0bag-unsplash-2.webp"
-            alt="Maxinor studio workspace"
-            fill
-            className="object-cover object-center"
-            priority
-          />
-          {/* Dark overlay */}
-          <div className="absolute inset-0 bg-navy/70 pointer-events-none" />
-          {/* Bottom fade to page */}
-          <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(247,247,245,1)_0%,transparent_60%)] pointer-events-none" />
-
-          <div className="relative z-10 mx-auto max-w-5xl text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            >
-              <h1 className="mx-auto mb-6 max-w-4xl text-[40px] leading-[1.05] font-display font-medium tracking-tight text-warm-white sm:text-5xl md:mb-8 md:text-7xl lg:text-[84px]">
-                India&apos;s 1st <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-b from-brand to-brand/80">Operator Led AI Venture Studio</span>
-              </h1>
-            </motion.div>
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              className="mx-auto mb-10 max-w-2xl text-lg font-semibold leading-relaxed text-warm-white sm:text-xl md:mb-12 md:text-2xl lg:text-3xl"
-            >
-              Operators backing Entrepreneurs
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-              className="flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6"
-            >
-              <Link href="/build" className={secondaryButtonClass}>
-                Venture Build
-              </Link>
-              <Link href="/scale" className={heroScaleButtonClass}>
-                Venture Scale
-              </Link>
-              <Link href="/invest" className={secondaryButtonClass}>
-                Venture Invest
-              </Link>
-            </motion.div>
-          </div>
-        </section>
+        <HomeHero />
 
         {/* The Ventures We Work With — hidden, set to true to re-enable */}
         {false && (
@@ -307,25 +309,36 @@ export default function Home() {
         {/* T-Shape Advantage */}
         <TShapeWidget variant="home" fullBleed />
 
+        <VelocityMarquee items={MARQUEE} />
+
         {/* Pick Your Entry Point */}
-        <section className="bg-[#EDE7DC] px-6 py-20 md:py-28">
+        {/* Navy behind it, so while it's scaled down the section reads as a card rising out of the navy band */}
+        <div className="relative z-10 -mt-10 bg-navy md:-mt-16">
+        <motion.section
+          ref={entryRef}
+          style={{ scale: entryScale }}
+          className="origin-top rounded-t-[2.5rem] bg-[#EDE7DC] px-6 py-20 md:rounded-t-[4rem] md:py-28"
+        >
           <div className="max-w-7xl mx-auto">
-            <div className="mb-14 text-center md:mb-20">
+            <Reveal className="mb-14 text-center md:mb-20">
               <p className="mb-3 text-xs font-bold uppercase tracking-[0.22em] text-brand">Pick Your Entry Point</p>
-              <h2 className="mb-4 text-3xl font-display font-medium tracking-tight text-navy md:text-5xl">
-                We Scale, Not Just <span className="text-brand">Back Ventures!</span>
-              </h2>
+              <RevealText
+                className="mb-4 text-3xl font-display font-medium tracking-tight text-navy md:text-5xl"
+                parts={[{ text: 'We Scale, Not Just ' }, { text: 'Back Ventures!', className: 'text-brand' }]}
+              />
               <p className={`${sectionSubtitle} text-grey`}>
                 Maxinor accelerates venture growth with embedded operators and milestone-based funding, shortening the path to scale.
               </p>
-            </div>
-            <div className="grid gap-6 md:grid-cols-3">
+            </Reveal>
+            <CourseLine stops={engagements.length} />
+            <Stagger className="grid gap-6 md:grid-cols-3">
               {engagements.map((eng, i) => (
-                <EngagementCard key={eng.name} eng={eng} i={i} />
+                <EngagementCard key={eng.name} eng={eng} last={i === engagements.length - 1} />
               ))}
-            </div>
+            </Stagger>
           </div>
-        </section>
+        </motion.section>
+        </div>
 
         {/* What We Do Section — hidden, set to true to re-enable */}
         {false && (
@@ -422,55 +435,69 @@ export default function Home() {
         {/* Our Partners */}
         <section className="border-y border-grey/30 bg-warm-white px-6 py-20 md:py-24">
           <div className="max-w-7xl mx-auto">
-            <div className="mb-12 text-center md:mb-16">
-              <h2 className={`${sectionTitle} mb-4`}>
-                Our <span className="text-brand">Partners</span>
-              </h2>
+            <Reveal className="mb-12 text-center md:mb-16">
+              <RevealText className={`${sectionTitle} mb-4`} parts={[{ text: 'Our ' }, { text: 'Partners', className: 'text-brand' }]} />
               <p className={`${sectionSubtitle} text-grey`}>
                 Collaborating with industry leaders to unlock scale and build enduring ventures.
               </p>
-            </div>
-            <div className="mx-auto grid max-w-4xl grid-cols-3 gap-3 sm:gap-6 md:gap-8">
+            </Reveal>
+            <Stagger className="mx-auto grid max-w-4xl grid-cols-3 gap-3 sm:gap-6 md:gap-8">
               {[
                 { name: "Hygriv", image: "/images/logo-with-capital.png", url: "https://www.hygriv.com/" },
                 { name: "Saptharushi", image: "/images/saptharushi7-logo.jpg", url: "https://saptharushi.com/" },
                 { name: "iAccel GBI", image: "/images/logo-removebg.webp", url: "https://iaccelgbi.com/" },
               ].map((partner, idx) => (
-                <Link
-                  key={idx}
-                  href={partner.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group relative flex h-20 w-full items-center justify-center rounded-[1.5rem] border border-grey/30 bg-white p-3 transition-all duration-500 hover:border-brand/30 hover:bg-white sm:h-28 sm:rounded-[2rem] sm:p-5 md:h-32 md:p-6"
-                >
-                  <Image 
-                    src={partner.image} 
-                    alt={partner.name} 
-                    fill 
-                    className="object-contain p-6 opacity-70 group-hover:opacity-100 transition-opacity duration-500" 
-                    referrerPolicy="no-referrer" 
-                  />
-                </Link>
+                <StaggerItem key={idx}>
+                  <Link
+                    href={partner.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="spotlight spotlight-border group relative flex h-20 w-full items-center justify-center rounded-[1.5rem] border border-grey/30 bg-white p-3 transition-[translate,box-shadow,border-color] duration-300 ease-out hover:-translate-y-1 hover:border-brand/30 hover:shadow-[0_18px_36px_-20px_rgba(11,31,59,0.3)] sm:h-28 sm:rounded-[2rem] sm:p-5 md:h-32 md:p-6"
+                  >
+                    <Image
+                      src={partner.image}
+                      alt={partner.name}
+                      fill
+                      sizes="(min-width: 768px) 280px, 33vw"
+                      className="object-contain p-3 opacity-70 grayscale transition-[opacity,filter] duration-500 group-hover:opacity-100 group-hover:grayscale-0 sm:p-6 [@media(hover:none)]:opacity-100 [@media(hover:none)]:grayscale-0"
+                      referrerPolicy="no-referrer"
+                    />
+                  </Link>
+                </StaggerItem>
               ))}
-            </div>
+            </Stagger>
           </div>
         </section>
 
         {/* CTA Section */}
-        <section className={`${sectionPadding} bg-navy text-center text-warm-white`}>
-          <div className="max-w-3xl mx-auto">
-            <h2 className="mb-6 text-4xl font-display font-medium tracking-tight md:mb-8 md:text-6xl">
-              Ready to <span className="text-brand">Scale</span> Your Vision?
-            </h2>
+        <section
+          onPointerMove={trackSpotlight}
+          className={`${sectionPadding} group/cta-section relative overflow-hidden rounded-t-[2.5rem] bg-navy text-center text-warm-white md:rounded-t-[4rem]`}
+        >
+          {/* Warm light that follows the pointer */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 [@media(hover:hover)]:group-hover/cta-section:opacity-100"
+            style={{ background: 'radial-gradient(560px circle at var(--spot-x, 50%) var(--spot-y, 50%), rgba(243,111,33,0.14), transparent 70%)' }}
+          />
+          <div aria-hidden="true" className="grain absolute inset-0" />
+          <CompassRing spin className="absolute left-1/2 top-1/2 w-[min(140vw,760px)] -translate-x-1/2 -translate-y-1/2 text-warm-white opacity-60" />
+          <Reveal className="relative max-w-3xl mx-auto">
+            <RevealText
+              className="mb-6 text-4xl font-display font-medium tracking-tight md:mb-8 md:text-6xl"
+              parts={[{ text: 'Ready to ' }, { text: 'Scale', className: 'text-brand' }, { text: ' Your Vision?' }]}
+            />
             <p className={`${sectionSubtitle} mb-10 text-warm-white/80 md:mb-12`}>
               Join India&apos;s first operator-led AI venture studio. Whether you&apos;re a founder looking to scale or an investor seeking high-growth opportunities, let&apos;s build the future together.
             </p>
             <div className="flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6">
-              <Link href="/contact" className={primaryButtonClass}>
-                Get in Touch <ArrowRight className="w-4 h-4 ml-2" />
-              </Link>
+              <Magnetic className="w-full max-w-[320px] sm:w-auto">
+                <Link href="/contact" className={`group ${primaryButtonClass}`}>
+                  Get in Touch <ArrowRight className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" />
+                </Link>
+              </Magnetic>
             </div>
-          </div>
+          </Reveal>
         </section>
 
       </main>

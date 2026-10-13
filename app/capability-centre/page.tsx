@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { NavyBackdrop } from '@/components/motion/NavyBackdrop';
 import Link from 'next/link';
 import { CapabilityFAQ } from '@/components/CapabilityFAQ';
 import {
@@ -52,10 +53,10 @@ export const metadata: Metadata = {
 };
 
 const primaryBtn =
-  'inline-flex items-center justify-center gap-2 rounded-full bg-brand px-8 py-4 text-base font-semibold tracking-wide text-warm-white transition-all duration-300 hover:-translate-y-1 hover:bg-brand/90 shadow-[0_0_40px_rgba(243,111,33,0.15)] hover:shadow-[0_0_60px_rgba(243,111,33,0.3)] sm:px-10 sm:py-5';
+  'inline-flex items-center justify-center gap-2 rounded-full bg-brand px-8 py-4 text-base font-semibold tracking-wide text-warm-white transition-all duration-300 hover:-translate-y-1 hover:bg-brand/90 shadow-[0_0_40px_rgba(243,111,33,0.15)] hover:shadow-[0_0_60px_rgba(243,111,33,0.3)] sm:px-10 sm:py-5 group active:translate-y-0 active:scale-[0.98]';
 
 const ghostBtn =
-  'inline-flex items-center justify-center gap-2 rounded-full border border-warm-white/30 px-8 py-4 text-base font-semibold tracking-wide text-warm-white transition-all duration-300 hover:-translate-y-1 hover:border-warm-white/60 sm:px-10 sm:py-5';
+  'inline-flex items-center justify-center gap-2 rounded-full border border-warm-white/30 px-8 py-4 text-base font-semibold tracking-wide text-warm-white transition-all duration-300 hover:-translate-y-1 hover:border-warm-white/60 sm:px-10 sm:py-5 group active:translate-y-0 active:scale-[0.98]';
 
 const services = [
   {
@@ -142,14 +143,7 @@ export default function CapabilityCentrePage() {
 
       {/* ── Section 1: Hero ── */}
       <section className="relative overflow-hidden bg-navy px-6 pt-32 pb-24 md:pt-44 md:pb-32">
-        <div
-          className="pointer-events-none absolute inset-0 opacity-[0.03]"
-          style={{
-            backgroundImage:
-              'linear-gradient(rgba(255,255,255,0.8) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.8) 1px, transparent 1px)',
-            backgroundSize: '60px 60px',
-          }}
-        />
+        <NavyBackdrop hero />
         <div className="pointer-events-none absolute -top-40 right-0 h-[600px] w-[600px] rounded-full bg-brand/5 blur-[120px]" />
         <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-warm-white" />
 
@@ -180,7 +174,7 @@ export default function CapabilityCentrePage() {
           </div>
           <div className="flex flex-wrap gap-4">
             <Link href="/contact" className={primaryBtn}>
-              Build your AI GCC <ArrowRight className="h-4 w-4 shrink-0" />
+              Build your AI GCC <ArrowRight className="h-4 w-4 shrink-0 transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
             <Link href="/capabilities" className={ghostBtn}>
               Our capabilities
@@ -226,7 +220,7 @@ export default function CapabilityCentrePage() {
               <Link
                 key={card.label}
                 href={card.href}
-                className="group rounded-[1.5rem] border border-navy/10 bg-white p-7 transition-all duration-300 hover:border-brand/30 hover:shadow-lg"
+                className="group rounded-[1.5rem] border border-navy/10 bg-white p-7 hover:border-brand/30 card-interactive spotlight spotlight-border"
               >
                 <h3 className="mb-3 text-base font-semibold text-navy group-hover:text-brand transition-colors">
                   {card.label} <ArrowRight className="inline h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -252,7 +246,7 @@ export default function CapabilityCentrePage() {
             {services.map((svc) => (
               <div
                 key={svc.title}
-                className="group rounded-[2rem] border border-grey/15 bg-warm-white p-7 transition-all duration-500 hover:border-brand/25 hover:bg-white hover:shadow-md md:p-8"
+                className="group rounded-[2rem] border border-grey/15 bg-warm-white p-7 hover:border-brand/25 hover:bg-white md:p-8 card-interactive spotlight spotlight-border"
               >
                 <div className="mb-5 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-brand/10 transition-colors group-hover:bg-brand/15">
                   <svc.icon className="h-5 w-5 text-brand" />
@@ -279,7 +273,7 @@ export default function CapabilityCentrePage() {
             {differentiators.map((d) => (
               <div
                 key={d.number}
-                className="relative grid gap-5 rounded-[2rem] border border-grey/15 bg-white p-7 transition-all duration-500 hover:border-brand/25 hover:shadow-md md:grid-cols-[auto_1fr] md:items-start md:gap-8 md:p-9"
+                className="relative grid gap-5 rounded-[2rem] border border-grey/15 bg-white p-7 hover:border-brand/25 md:grid-cols-[auto_1fr] md:items-start md:gap-8 md:p-9 card-interactive spotlight spotlight-border"
               >
                 <span className="text-4xl font-display font-bold text-brand/15 md:text-5xl">{d.number}</span>
                 <div>
@@ -319,7 +313,7 @@ export default function CapabilityCentrePage() {
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link href="/contact" className={primaryBtn}>
-              Start the conversation <ArrowRight className="h-4 w-4 shrink-0" />
+              Start the conversation <ArrowRight className="h-4 w-4 shrink-0 transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
             <Link
               href="/capabilities"

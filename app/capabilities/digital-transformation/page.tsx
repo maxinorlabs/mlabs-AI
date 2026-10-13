@@ -1,14 +1,15 @@
 'use client';
 
 import { motion } from 'motion/react';
+import { NavyBackdrop } from '@/components/motion/NavyBackdrop';
 import Link from 'next/link';
 import { ArrowRight, Map, RefreshCw, Layers, Users, Building2, BarChart3 } from 'lucide-react';
 
 const primaryBtn =
-  'inline-flex items-center justify-center rounded-full bg-brand px-8 py-4 text-base font-semibold tracking-wide text-warm-white transition-all duration-300 hover:-translate-y-1 hover:bg-brand/90 shadow-[0_0_40px_rgba(243,111,33,0.15)] hover:shadow-[0_0_60px_rgba(243,111,33,0.3)] sm:px-10 sm:py-5';
+  'inline-flex items-center justify-center rounded-full bg-brand px-8 py-4 text-base font-semibold tracking-wide text-warm-white transition-all duration-300 hover:-translate-y-1 hover:bg-brand/90 shadow-[0_0_40px_rgba(243,111,33,0.15)] hover:shadow-[0_0_60px_rgba(243,111,33,0.3)] sm:px-10 sm:py-5 group active:translate-y-0 active:scale-[0.98]';
 
 const ghostBtn =
-  'inline-flex items-center justify-center rounded-full border border-warm-white/30 px-8 py-4 text-base font-semibold tracking-wide text-warm-white transition-all duration-300 hover:-translate-y-1 hover:border-warm-white/60 sm:px-10 sm:py-5';
+  'inline-flex items-center justify-center rounded-full border border-warm-white/30 px-8 py-4 text-base font-semibold tracking-wide text-warm-white transition-all duration-300 hover:-translate-y-1 hover:border-warm-white/60 sm:px-10 sm:py-5 group active:translate-y-0 active:scale-[0.98]';
 
 const offerings = [
   {
@@ -80,14 +81,7 @@ export default function DigitalTransformationPage() {
     <div className="font-sans">
       {/* Hero */}
       <section className="relative overflow-hidden bg-navy px-6 pt-32 pb-24 md:pt-44 md:pb-32">
-        <div
-          className="pointer-events-none absolute inset-0 opacity-[0.03]"
-          style={{
-            backgroundImage:
-              'linear-gradient(rgba(255,255,255,0.8) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.8) 1px, transparent 1px)',
-            backgroundSize: '60px 60px',
-          }}
-        />
+        <NavyBackdrop hero />
         <div className="pointer-events-none absolute -top-40 right-0 h-[600px] w-[600px] rounded-full bg-brand/5 blur-[120px]" />
         <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-warm-white" />
         <div className="relative z-10 max-w-7xl mx-auto">
@@ -139,7 +133,7 @@ export default function DigitalTransformationPage() {
             className="flex flex-wrap gap-4"
           >
             <Link href="/contact" className={primaryBtn}>
-              Start the conversation <ArrowRight className="ml-2 h-4 w-4" />
+              Start the conversation <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
             <Link href="/capabilities" className={ghostBtn}>
               All capabilities
@@ -174,7 +168,7 @@ export default function DigitalTransformationPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.07 }}
-                className="group rounded-[2rem] border border-grey/15 bg-white p-7 transition-all duration-300 hover:border-brand/25 hover:shadow-md"
+                className="group rounded-[2rem] border border-grey/15 bg-white p-7 transition-all duration-300 hover:border-brand/25 hover:shadow-md card-interactive spotlight spotlight-border"
               >
                 <div className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-brand/10 transition-colors group-hover:bg-brand/15">
                   <o.icon className="h-5 w-5 text-brand" />
@@ -213,7 +207,7 @@ export default function DigitalTransformationPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.08 }}
-                className="relative grid gap-5 rounded-[2rem] border border-grey/15 bg-warm-white p-7 transition-all duration-500 hover:border-brand/25 hover:shadow-md md:grid-cols-[auto_1fr] md:items-start md:gap-8 md:p-9"
+                className="relative grid gap-5 rounded-[2rem] border border-grey/15 bg-warm-white p-7 transition-all duration-500 hover:border-brand/25 hover:shadow-md md:grid-cols-[auto_1fr] md:items-start md:gap-8 md:p-9 card-interactive spotlight spotlight-border"
               >
                 <span className="text-4xl font-display font-bold text-brand/15 md:text-5xl">{d.number}</span>
                 <div>
@@ -261,8 +255,9 @@ export default function DigitalTransformationPage() {
       </section>
 
       {/* CTA */}
-      <section className="bg-navy px-6 py-20 md:py-28">
-        <div className="max-w-3xl mx-auto text-center">
+      <section className="relative overflow-hidden bg-navy px-6 py-20 md:py-28">
+        <NavyBackdrop />
+        <div className="relative max-w-3xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -278,7 +273,7 @@ export default function DigitalTransformationPage() {
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link href="/contact" className={primaryBtn}>
-                Start the conversation <ArrowRight className="h-4 w-4 shrink-0" />
+                Start the conversation <ArrowRight className="h-4 w-4 shrink-0 transition-transform duration-300 group-hover:translate-x-1" />
               </Link>
               <Link
                 href="/capabilities"

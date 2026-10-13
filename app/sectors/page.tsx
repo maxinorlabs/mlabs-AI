@@ -1,13 +1,14 @@
 'use client';
 
 import { motion, AnimatePresence } from 'motion/react';
+import { NavyBackdrop } from '@/components/motion/NavyBackdrop';
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import { ArrowRight, ChevronDown } from 'lucide-react';
 import { TShapeWidget } from '@/components/TShapeWidget';
 
 const primaryBtn =
-  'inline-flex items-center justify-center rounded-full bg-brand px-8 py-4 text-base font-semibold tracking-wide text-warm-white transition-all duration-300 hover:-translate-y-1 hover:bg-brand/90 shadow-[0_0_40px_rgba(243,111,33,0.15)] hover:shadow-[0_0_60px_rgba(243,111,33,0.3)] sm:px-10 sm:py-5';
+  'inline-flex items-center justify-center rounded-full bg-brand px-8 py-4 text-base font-semibold tracking-wide text-warm-white transition-all duration-300 hover:-translate-y-1 hover:bg-brand/90 shadow-[0_0_40px_rgba(243,111,33,0.15)] hover:shadow-[0_0_60px_rgba(243,111,33,0.3)] sm:px-10 sm:py-5 group active:translate-y-0 active:scale-[0.98]';
 
 const sectors = [
   {
@@ -245,14 +246,7 @@ export default function DomainsPage() {
       {/* ── Hero ── */}
       <section className="relative overflow-hidden bg-navy px-6 pt-32 pb-20 md:pt-40 md:pb-24">
         {/* Subtle grid pattern */}
-        <div
-          className="pointer-events-none absolute inset-0 opacity-[0.03]"
-          style={{
-            backgroundImage:
-              'linear-gradient(rgba(255,255,255,0.8) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.8) 1px, transparent 1px)',
-            backgroundSize: '60px 60px',
-          }}
-        />
+        <NavyBackdrop hero />
         <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-warm-white" />
 
         <div className="relative z-10 max-w-7xl mx-auto">
@@ -288,7 +282,7 @@ export default function DomainsPage() {
             transition={{ duration: 0.8, delay: 0.3 }}
           >
             <button onClick={() => scrollTo('overview')} className={primaryBtn}>
-              Find Your Sector <ArrowRight className="ml-2 h-4 w-4" />
+              Find Your Sector <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
             </button>
           </motion.div>
         </div>
@@ -309,7 +303,7 @@ export default function DomainsPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: i * 0.08 }}
-                className="group relative rounded-[2rem] border border-grey/20 bg-white p-8 transition-all duration-500 hover:border-brand/30 hover:shadow-lg"
+                className="group relative rounded-[2rem] border border-grey/20 bg-white p-8 hover:border-brand/30 card-interactive spotlight spotlight-border"
               >
                 <span className="pointer-events-none absolute right-5 top-3 select-none text-7xl font-display font-bold leading-none text-brand/6">
                   {sector.number}
@@ -359,8 +353,9 @@ export default function DomainsPage() {
 
       {/* ── T-Shape Section — hidden, set to true to re-enable ── */}
       {false && (
-      <section className="bg-navy px-6 py-20 md:py-28">
-        <div className="max-w-7xl mx-auto">
+      <section className="relative overflow-hidden bg-navy px-6 py-20 md:py-28">
+        <NavyBackdrop />
+        <div className="relative max-w-7xl mx-auto">
           <div className="mb-14 text-center">
             <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">
               The T-Shape Advantage
@@ -484,7 +479,7 @@ export default function DomainsPage() {
               Tell us what you&apos;re building. We&apos;ll tell you where we fit, and if we don&apos;t, we&apos;ll say so.
             </p>
             <Link href="/contact" className={primaryBtn}>
-              Start the conversation <ArrowRight className="ml-2 h-4 w-4" />
+              Start the conversation <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
           </motion.div>
         </div>

@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Plus, Minus } from 'lucide-react';
+import { Plus } from 'lucide-react';
 
 type FAQItem = { name: string; acceptedAnswer: { text: string } };
 
@@ -18,7 +18,7 @@ export function CapabilityFAQ({ items }: { items: FAQItem[] }) {
           >
             <span className="text-base font-semibold text-navy">{item.name}</span>
             <span className="shrink-0 text-brand">
-              {open === i ? <Minus className="h-4 w-4" /> : <Plus className="h-4 w-4" />}
+              <Plus className={`h-4 w-4 transition-transform duration-300 ${open === i ? 'rotate-45' : ''}`} />
             </span>
           </button>
           <AnimatePresence initial={false}>

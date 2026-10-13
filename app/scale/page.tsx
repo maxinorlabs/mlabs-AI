@@ -1,18 +1,19 @@
 'use client';
 
 import { motion, AnimatePresence } from 'motion/react';
+import { NavyBackdrop } from '@/components/motion/NavyBackdrop';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useState } from 'react';
-import { ArrowRight, Plus, Minus, TrendingUp, Boxes, Calculator } from 'lucide-react';
+import { ArrowRight, Plus, TrendingUp, Boxes, Calculator } from 'lucide-react';
 
 // Section
 
 const primaryBtn =
-  'inline-flex items-center justify-center gap-2 rounded-full bg-brand px-8 py-4 text-base font-semibold tracking-wide text-warm-white transition-all duration-300 hover:-translate-y-1 hover:bg-brand/90 shadow-[0_0_40px_rgba(243,111,33,0.15)] hover:shadow-[0_0_60px_rgba(243,111,33,0.3)] sm:px-10 sm:py-5';
+  'inline-flex items-center justify-center gap-2 rounded-full bg-brand px-8 py-4 text-base font-semibold tracking-wide text-warm-white transition-all duration-300 hover:-translate-y-1 hover:bg-brand/90 shadow-[0_0_40px_rgba(243,111,33,0.15)] hover:shadow-[0_0_60px_rgba(243,111,33,0.3)] sm:px-10 sm:py-5 group active:translate-y-0 active:scale-[0.98]';
 
 const ghostBtn =
-  'inline-flex items-center justify-center gap-2 rounded-full border border-warm-white/30 px-8 py-4 text-base font-semibold tracking-wide text-warm-white transition-all duration-300 hover:-translate-y-1 hover:border-warm-white/60 sm:px-10 sm:py-5';
+  'inline-flex items-center justify-center gap-2 rounded-full border border-warm-white/30 px-8 py-4 text-base font-semibold tracking-wide text-warm-white transition-all duration-300 hover:-translate-y-1 hover:border-warm-white/60 sm:px-10 sm:py-5 group active:translate-y-0 active:scale-[0.98]';
 
 // Section
 
@@ -182,7 +183,7 @@ function FaqItem({ q, a, index }: { q: string; a: string; index: number }) {
       >
         <span className="text-base font-semibold text-navy md:text-lg">{q}</span>
         <span className="shrink-0 rounded-full border border-navy/15 p-1.5 text-navy/50 transition-colors hover:border-brand/30 hover:text-brand">
-          {open ? <Minus className="h-4 w-4" /> : <Plus className="h-4 w-4" />}
+          <Plus className={`h-4 w-4 transition-transform duration-300 ${open ? 'rotate-45' : ''}`} />
         </span>
       </button>
       <AnimatePresence initial={false}>
@@ -212,14 +213,7 @@ export default function ScalePage() {
       {/* ── Section 1: Hero ──────────────────────────────────────────────────── */}
       <section className="relative overflow-hidden bg-navy px-6 pt-32 pb-28 md:pt-44 md:pb-36">
         {/* Grid overlay */}
-        <div
-          className="pointer-events-none absolute inset-0 opacity-[0.03]"
-          style={{
-            backgroundImage:
-              'linear-gradient(rgba(255,255,255,0.8) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.8) 1px, transparent 1px)',
-            backgroundSize: '60px 60px',
-          }}
-        />
+        <NavyBackdrop hero />
         {/* Brand glow */}
         <div className="pointer-events-none absolute -top-40 right-0 h-[600px] w-[600px] rounded-full bg-brand/5 blur-[120px]" />
         <div className="pointer-events-none absolute bottom-0 left-1/4 h-[400px] w-[400px] rounded-full bg-brand/3 blur-[100px]" />
@@ -285,7 +279,7 @@ export default function ScalePage() {
             className="flex flex-wrap gap-4"
           >
             <Link href="/contact" className={primaryBtn}>
-              Start with a Discovery Sprint <ArrowRight className="h-4 w-4 shrink-0" />
+              Start with a Discovery Sprint <ArrowRight className="h-4 w-4 shrink-0 transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
             <Link href="/build" className={ghostBtn}>
               See Venture Build
@@ -321,7 +315,7 @@ export default function ScalePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: i * 0.1 }}
-                className="relative overflow-hidden rounded-[2rem] border border-grey/15 bg-white p-8"
+                className="relative overflow-hidden rounded-[2rem] border border-grey/15 bg-white p-8 card-interactive spotlight spotlight-border"
               >
                 <span className="pointer-events-none absolute right-6 top-4 select-none text-7xl font-display font-bold leading-none text-brand/5">
                   {p.number}
@@ -361,7 +355,7 @@ export default function ScalePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: i * 0.1 }}
-                className="flex flex-col rounded-[2rem] border border-grey/15 bg-warm-white p-8 md:p-10"
+                className="flex flex-col rounded-[2rem] border border-grey/15 bg-warm-white p-8 md:p-10 card-interactive spotlight spotlight-border"
               >
                 <div className="mb-5 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-brand/10">
                   <engine.icon className="h-5 w-5 text-brand" />
@@ -395,14 +389,7 @@ export default function ScalePage() {
       {/* ── Section 4: Engagement Models ─────────────────────────────────────── */}
       <section className="bg-navy px-6 py-20 md:py-28">
         {/* Subtle grid */}
-        <div
-          className="pointer-events-none absolute inset-0 opacity-[0.025]"
-          style={{
-            backgroundImage:
-              'linear-gradient(rgba(255,255,255,0.8) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.8) 1px, transparent 1px)',
-            backgroundSize: '60px 60px',
-          }}
-        />
+        <NavyBackdrop />
         <div className="relative mx-auto max-w-7xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -427,7 +414,7 @@ export default function ScalePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: i * 0.1 }}
-                className="flex flex-col rounded-[2rem] border border-white/10 bg-white/5 p-8 backdrop-blur-sm transition-all duration-300 hover:border-brand/30 hover:bg-white/8 md:p-10"
+                className="flex flex-col rounded-[2rem] border border-white/10 bg-white/5 p-8 backdrop-blur-sm hover:border-brand/30 hover:bg-white/8 md:p-10 card-interactive spotlight spotlight-border"
               >
                 <span className="mb-4 inline-block self-start rounded-full border border-brand/30 bg-brand/10 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.15em] text-brand">
                   {model.duration}
@@ -571,14 +558,7 @@ export default function ScalePage() {
 
       {/* ── Section 7: CTA ───────────────────────────────────────────────────── */}
       <section className="relative overflow-hidden bg-navy px-6 py-20 text-center md:py-28">
-        <div
-          className="pointer-events-none absolute inset-0 opacity-[0.025]"
-          style={{
-            backgroundImage:
-              'linear-gradient(rgba(255,255,255,0.8) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.8) 1px, transparent 1px)',
-            backgroundSize: '60px 60px',
-          }}
-        />
+        <NavyBackdrop />
         <div className="pointer-events-none absolute -bottom-20 left-1/2 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-brand/6 blur-[120px]" />
 
         <div className="relative z-10 mx-auto max-w-2xl">
@@ -600,7 +580,7 @@ export default function ScalePage() {
               90-day operator-led execution plan.
             </p>
             <Link href="/contact" className={primaryBtn}>
-              Book a Discovery Sprint <ArrowRight className="h-4 w-4 shrink-0" />
+              Book a Discovery Sprint <ArrowRight className="h-4 w-4 shrink-0 transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
           </motion.div>
         </div>

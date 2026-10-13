@@ -1,7 +1,12 @@
 'use client';
 
+import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
-import { motion } from 'motion/react';
+import { motion, useReducedMotion, useTransform, type MotionValue } from 'motion/react';
+import { ArrowRight, GraduationCap, Hospital, Landmark, MonitorPlay, Shield, Store } from 'lucide-react';
+import { Reveal } from '@/components/motion/Reveal';
+import { useScrub } from '@/components/motion/useScrub';
+import { EASE_OUT } from '@/lib/motion';
 
 type Variant = 'home' | 'sectors' | 'capabilities';
 
@@ -29,13 +34,27 @@ const GROUP_STYLE: Record<string, { bg: string; text: string }> = {
 };
 
 const SECTORS = [
-  { name: 'Healthcare', href: '/sectors/healthcare' },
-  { name: 'D2C', href: '/sectors/d2c' },
-  { name: 'BFSI', href: '/sectors/bfsi' },
-  { name: 'Media', href: '/sectors/media' },
-  { name: 'Education', href: '/sectors/education' },
-  { name: 'Defence', href: '/sectors/defence' },
+  { name: 'Healthcare', href: '/sectors/healthcare', icon: Hospital },
+  { name: 'D2C', href: '/sectors/d2c', icon: Store },
+  { name: 'BFSI', href: '/sectors/bfsi', icon: Landmark },
+  { name: 'Media', href: '/sectors/media', icon: MonitorPlay },
+  { name: 'Education', href: '/sectors/education', icon: GraduationCap },
+  { name: 'Defence', href: '/sectors/defence', icon: Shield },
 ];
+
+// The T builds with the scroll position (and unbuilds when scrolling back): the capability bar wipes in
+// left to right, the stem draws down, then sectors arrive one by one along it. Values are scroll progress.
+const BAR = [0, 0.3];
+const STEM = [0.28, 0.4];
+const SPINE = [0.36, 1];
+const sectorRange = (i: number) => [0.38 + i * 0.09, 0.52 + i * 0.09];
+
+function ScrubRow({ progress, index, children }: { progress: MotionValue<number>; index: number; children: React.ReactNode }) {
+  const range = sectorRange(index);
+  const opacity = useTransform(progress, range, [0, 1]);
+  const x = useTransform(progress, range, [index % 2 === 0 ? -28 : 28, 0]);
+  return <motion.div style={{ opacity, x }}>{children}</motion.div>;
+}
 
 const COPY: Record<Variant, { eyebrow: string; headline: string; concept: string }> = {
   home: {
@@ -60,22 +79,62 @@ export function TShapeWidget({ variant = 'home', fullBleed = false }: { variant?
   const dimHorizontal = variant === 'sectors';
   const dimVertical = variant === 'capabilities';
   const dark = variant === 'home';
+  const reduceMotion = useReducedMotion();
+  const buildRef = useRef<HTMLDivElement>(null);
+  const pinRef = useRef<HTMLDivElement>(null);
+  // On the home page, on screens tall enough to show the whole T at once, the T holds still in view while
+  // the scroll builds it. Elsewhere (phones, short laptops, other pages) it builds as it scrolls past.
+  // Decided after mount, so the server markup is always the unpinned version.
+  const [pinned, setPinned] = useState(false);
+  useEffect(() => {
+    if (variant !== 'home') return;
+    const query = window.matchMedia('(min-width: 1024px) and (min-height: 860px) and (prefers-reduced-motion: no-preference)');
+    const update = () => setPinned(query.matches);
+    update();
+    query.addEventListener('change', update);
+    return () => query.removeEventListener('change', update);
+  }, [variant]);
+  const progress = useScrub(pinned ? pinRef : buildRef, pinned ? ['start start', 'end end'] : ['start 80%', 'end 85%']);
+  const barClip = useTransform(progress, BAR, ['inset(0 100% 0 0)', 'inset(0 0% 0 0)']);
+  const stemScale = useTransform(progress, STEM, [0, 1]);
+  const spineScale = useTransform(progress, SPINE, [0, 1]);
+  // Hover links the two halves of the T: a sector lights the stem up to the full capability bar,
+  // a capability lights the whole sector stack. `sweep` restarts the light passing across the bar.
+  const [activeSector, setActiveSector] = useState<number | null>(null);
+  const [capActive, setCapActive] = useState(false);
+  const [sweep, setSweep] = useState(0);
+  const linked = activeSector !== null || capActive;
+
+  const sectorOn = (i: number) => {
+    setActiveSector(i);
+    setSweep((n) => n + 1);
+  };
+  const capHandlers = {
+    onPointerEnter: () => setCapActive(true),
+    onPointerLeave: () => setCapActive(false),
+    onFocus: () => setCapActive(true),
+    onBlur: () => setCapActive(false),
+  };
 
   const wrapperClass = dark
-    ? `relative overflow-hidden bg-navy px-6 py-20 md:py-28 ${fullBleed ? '' : 'rounded-[2.5rem] md:px-12'}`
+    ? `relative overflow-clip bg-navy px-6 py-20 md:py-28 ${fullBleed ? '' : 'rounded-[2.5rem] md:px-12'}`
     : 'relative';
 
   return (
     <div className={wrapperClass}>
       {dark && (
         <>
+          <div aria-hidden="true" className="grain absolute inset-0" />
           <div className="pointer-events-none absolute -top-32 left-1/2 h-[420px] w-[420px] -translate-x-1/2 rounded-full bg-brand/10 blur-[110px]" />
           <div className="pointer-events-none absolute bottom-0 right-0 h-[300px] w-[300px] rounded-full bg-teal/10 blur-[100px]" />
         </>
       )}
 
-      <div className="relative z-10 mx-auto max-w-4xl">
-        <div className="mb-8 text-center md:mb-10">
+      {/* overflow-clip above (not hidden) keeps position: sticky working inside this section */}
+      <div ref={pinRef} className={pinned ? 'h-[200vh]' : undefined}>
+      <div className={pinned ? 'sticky top-20 flex h-[calc(100svh-5rem)] items-center' : undefined}>
+      <div ref={buildRef} className="relative z-10 mx-auto w-full max-w-4xl">
+        <Reveal className="mb-8 text-center md:mb-10">
           <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">{copy.eyebrow}</p>
           <h2 className={`text-2xl font-display font-medium tracking-tight md:text-4xl ${dark ? 'text-warm-white' : 'text-navy'}`}>
             {copy.headline}
@@ -83,104 +142,144 @@ export function TShapeWidget({ variant = 'home', fullBleed = false }: { variant?
           {copy.concept && (
             <p className={`mt-4 text-[10px] font-bold uppercase tracking-[0.2em] ${dark ? 'text-warm-white/35' : 'text-grey/50'}`}>{copy.concept}</p>
           )}
-        </div>
+        </Reveal>
 
         {/* Capability block — group headers + cells */}
-        <motion.div
-          initial={{ y: 16 }}
-          whileInView={{ y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className={`overflow-hidden rounded-2xl transition-opacity duration-500 ${dimHorizontal ? 'opacity-30' : 'opacity-100'}`}
+        <div
+          className={`rounded-2xl transition-shadow duration-500 ${
+            activeSector !== null ? 'shadow-[0_0_0_2px_rgba(243,111,33,0.7),0_0_60px_-6px_rgba(243,111,33,0.45)]' : ''
+          }`}
         >
-          {/* Desktop: single 8-col row, grouped headers on top */}
-          <div className="hidden sm:block">
-            <div className="grid grid-cols-8">
+          <motion.div
+            style={{ clipPath: barClip }}
+            className={`relative overflow-hidden rounded-2xl transition-opacity duration-500 ${dimHorizontal ? 'opacity-30' : 'opacity-100'}`}
+          >
+            {sweep > 0 && !reduceMotion && (
+              <motion.span
+                key={sweep}
+                aria-hidden="true"
+                initial={{ left: '-30%' }}
+                animate={{ left: '110%' }}
+                transition={{ duration: 0.9, ease: EASE_OUT }}
+                className="pointer-events-none absolute inset-y-0 z-10 w-1/4 -skew-x-12 bg-gradient-to-r from-transparent via-white/45 to-transparent"
+              />
+            )}
+            {/* Desktop: single 8-col row, grouped headers on top */}
+            <div className="hidden sm:block">
+              <div className="grid grid-cols-8">
+                {GROUPS.map((g) => (
+                  <Link
+                    key={g.id}
+                    href={`/capabilities#${g.id}`}
+                    style={{ gridColumn: `span ${g.span} / span ${g.span}` }}
+                    className="border-r border-white/10 bg-navy py-3 text-center text-xs font-bold uppercase tracking-[0.14em] text-warm-white transition-colors last:border-r-0 hover:bg-white/10 hover:text-brand"
+                  >
+                    {g.name}
+                  </Link>
+                ))}
+              </div>
+              <div className="grid grid-cols-8">
+                {CAPABILITIES.map((cap) => {
+                  const style = GROUP_STYLE[cap.group];
+                  return (
+                    <Link
+                      key={cap.name}
+                      href={cap.href}
+                      {...capHandlers}
+                      className={`flex min-h-[84px] items-center justify-center border-r border-white/15 px-2 py-4 text-center text-xs font-semibold leading-tight transition-[filter] duration-300 last:border-r-0 hover:brightness-105 ${style.bg} ${style.text}`}
+                    >
+                      {cap.name}
+                    </Link>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Mobile: grouped rows of 3 / 3 / 2 */}
+            <div className="flex flex-col gap-1.5 sm:hidden">
               {GROUPS.map((g) => (
-                <Link
-                  key={g.id}
-                  href={`/capabilities#${g.id}`}
-                  style={{ gridColumn: `span ${g.span} / span ${g.span}` }}
-                  className="border-r border-white/10 bg-navy py-3 text-center text-xs font-bold uppercase tracking-[0.14em] text-warm-white transition-colors last:border-r-0 hover:bg-white/10 hover:text-brand"
-                >
-                  {g.name}
-                </Link>
+                <div key={g.id} className="overflow-hidden rounded-xl">
+                  <Link
+                    href={`/capabilities#${g.id}`}
+                    className="block bg-navy py-2 text-center text-[10px] font-bold uppercase tracking-[0.14em] text-warm-white transition-colors hover:text-brand"
+                  >
+                    {g.name}
+                  </Link>
+                  <div className={`grid gap-0.5 ${g.span === 2 ? 'grid-cols-2' : 'grid-cols-3'}`}>
+                    {CAPABILITIES.filter((c) => c.group === g.id).map((cap) => {
+                      const style = GROUP_STYLE[cap.group];
+                      return (
+                        <Link
+                          key={cap.name}
+                          href={cap.href}
+                          {...capHandlers}
+                          className={`flex min-h-[64px] items-center justify-center px-1.5 py-2.5 text-center text-[10px] font-semibold leading-tight ${style.bg} ${style.text}`}
+                        >
+                          {cap.name}
+                        </Link>
+                      );
+                    })}
+                  </div>
+                </div>
               ))}
             </div>
-            <div className="grid grid-cols-8">
-              {CAPABILITIES.map((cap) => {
-                const style = GROUP_STYLE[cap.group];
-                return (
-                  <Link
-                    key={cap.name}
-                    href={cap.href}
-                    className={`flex min-h-[84px] items-center justify-center border-r border-white/15 px-2 py-4 text-center text-xs font-semibold leading-tight transition-opacity duration-300 last:border-r-0 hover:opacity-90 ${style.bg} ${style.text}`}
-                  >
-                    {cap.name}
-                  </Link>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Mobile: grouped rows of 3 / 3 / 2 */}
-          <div className="flex flex-col gap-1.5 sm:hidden">
-            {GROUPS.map((g) => (
-              <div key={g.id} className="overflow-hidden rounded-xl">
-                <Link
-                  href={`/capabilities#${g.id}`}
-                  className="block bg-navy py-2 text-center text-[10px] font-bold uppercase tracking-[0.14em] text-warm-white transition-colors hover:text-brand"
-                >
-                  {g.name}
-                </Link>
-                <div className={`grid gap-0.5 ${g.span === 2 ? 'grid-cols-2' : 'grid-cols-3'}`}>
-                  {CAPABILITIES.filter((c) => c.group === g.id).map((cap) => {
-                    const style = GROUP_STYLE[cap.group];
-                    return (
-                      <Link
-                        key={cap.name}
-                        href={cap.href}
-                        className={`flex min-h-[64px] items-center justify-center px-1.5 py-2.5 text-center text-[10px] font-semibold leading-tight ${style.bg} ${style.text}`}
-                      >
-                        {cap.name}
-                      </Link>
-                    );
-                  })}
-                </div>
-              </div>
-            ))}
-          </div>
-        </motion.div>
-
-        {/* Stem connector */}
-        <div className="flex justify-center py-4">
-          <div className={`h-8 w-0.5 bg-gradient-to-b ${dark ? 'from-white/25 to-white/5' : 'from-navy/20 to-navy/5'}`} />
+          </motion.div>
         </div>
 
-        {/* Sectors — stacked one on top of the other */}
-        <motion.div
-          initial={{ y: 16 }}
-          whileInView={{ y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className={`mx-auto flex max-w-sm flex-col gap-2 transition-opacity duration-500 ${dimVertical ? 'opacity-30' : 'opacity-100'}`}
-        >
-          {SECTORS.map((sector) => (
-            <Link
-              key={sector.name}
-              href={sector.href}
-              className={`rounded-xl border px-5 py-3 text-center text-sm font-medium transition-all duration-300 hover:-translate-y-0.5 ${
-                variant === 'sectors'
-                  ? 'border-brand/40 bg-brand/10 font-semibold text-navy shadow-[0_0_24px_rgba(243,111,33,0.12)]'
-                  : dark
-                    ? 'border-white/10 bg-white/5 text-warm-white/80 hover:border-white/25 hover:bg-white/8'
-                    : 'border-grey/15 bg-warm-white text-navy/80 hover:border-navy/20 hover:bg-navy/5'
-              }`}
-            >
-              {sector.name}
-            </Link>
-          ))}
-        </motion.div>
+        {/* Stem connector */}
+        <div className="relative flex justify-center py-4">
+          <div
+            aria-hidden="true"
+            className={`absolute inset-y-0 left-1/2 w-0.5 -translate-x-1/2 bg-brand shadow-[0_0_12px_rgba(243,111,33,0.8)] transition-opacity duration-300 ${linked ? 'opacity-100' : 'opacity-0'}`}
+          />
+          <motion.div
+            style={{ scaleY: stemScale }}
+            className={`h-8 w-0.5 origin-top bg-gradient-to-b ${dark ? 'from-white/25 to-white/10' : 'from-navy/20 to-navy/10'}`}
+          />
+        </div>
+
+        {/* Sectors — stacked down the stem of the T, which runs on behind them */}
+        <div className={`relative mx-auto max-w-sm transition-opacity duration-500 ${dimVertical ? 'opacity-30' : 'opacity-100'}`}>
+          <motion.div
+            aria-hidden="true"
+            style={{ scaleY: spineScale }}
+            className={`absolute inset-y-0 left-1/2 w-0.5 -translate-x-1/2 origin-top bg-gradient-to-b ${dark ? 'from-white/10 to-white/0' : 'from-navy/10 to-navy/0'}`}
+          />
+          {/* Lit section of the stem, running down to the hovered sector (or the whole stack) */}
+          <motion.div
+            aria-hidden="true"
+            initial={false}
+            animate={{ scaleY: capActive ? 1 : activeSector !== null ? (activeSector + 0.5) / SECTORS.length : 0 }}
+            transition={{ duration: 0.35, ease: EASE_OUT }}
+            className="absolute inset-y-0 left-1/2 w-0.5 -translate-x-1/2 origin-top bg-brand shadow-[0_0_12px_rgba(243,111,33,0.8)]"
+          />
+          <div className="relative flex flex-col gap-2">
+            {SECTORS.map((sector, i) => (
+              <ScrubRow key={sector.name} progress={progress} index={i}>
+                <Link
+                  href={sector.href}
+                  onPointerEnter={() => sectorOn(i)}
+                  onPointerLeave={() => setActiveSector(null)}
+                  onFocus={() => sectorOn(i)}
+                  onBlur={() => setActiveSector(null)}
+                  className={`group grid grid-cols-[1rem_1fr_1rem] items-center gap-3 rounded-xl border px-5 py-3 text-center text-sm font-medium transition-[translate,background-color,border-color,color] duration-300 ease-out hover:-translate-y-0.5 ${
+                    variant === 'sectors'
+                      ? 'border-brand/40 bg-[#F7E9E0] font-semibold text-navy shadow-[0_0_24px_rgba(243,111,33,0.12)]'
+                      : dark
+                        ? `bg-[#172A45] text-warm-white/80 hover:border-brand/60 hover:bg-[#1E3150] hover:text-warm-white ${capActive ? 'border-brand/50' : 'border-white/10'}`
+                        : `bg-warm-white text-navy/80 hover:border-brand/50 hover:bg-[#EBECEC] ${capActive ? 'border-brand/50' : 'border-grey/15'}`
+                  }`}
+                >
+                  <sector.icon className={`h-4 w-4 transition-colors duration-300 group-hover:text-brand ${dark ? 'text-warm-white/40' : 'text-navy/40'}`} />
+                  {sector.name}
+                  <ArrowRight className="h-4 w-4 -translate-x-1 text-brand opacity-0 transition-[opacity,translate] duration-300 group-hover:translate-x-0 group-hover:opacity-100 [@media(hover:none)]:translate-x-0 [@media(hover:none)]:opacity-60" />
+                </Link>
+              </ScrubRow>
+            ))}
+          </div>
+        </div>
+      </div>
+      </div>
       </div>
     </div>
   );

@@ -11,7 +11,7 @@ function ContactIntro() {
       <p className="mb-2 text-xs font-semibold uppercase tracking-[0.18em] text-brand">
         Contact Us
       </p>
-      <h1 className="font-display text-[3rem] font-medium uppercase leading-[0.92] tracking-[-0.045em] text-navy sm:text-6xl lg:text-[4.65rem]">
+      <h1 className="font-display text-[clamp(2.25rem,min(9vw,7svh),3rem)] font-medium uppercase leading-[0.92] tracking-[-0.045em] text-navy sm:text-6xl lg:text-[clamp(3rem,min(5.4vw,9.5svh),4.65rem)]">
         Let’s build<br />
         what’s<br />
         <span className="text-brand">next</span>
