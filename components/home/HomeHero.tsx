@@ -206,7 +206,6 @@ export function HomeHero() {
 
       <div className="relative z-10 mx-auto grid w-full max-w-7xl flex-1 items-center gap-6 px-6 py-[clamp(16px,5svh,64px)] xl:grid-cols-[1.25fr_1fr]">
         <motion.div style={{ y: contentY, opacity: contentOpacity }} className="relative z-10">
-          <span aria-hidden="true" className="mb-[clamp(12px,3.5svh,32px)] block h-px w-16 origin-left animate-draw-across bg-brand" />
           <Headline />
           <p className="mb-[clamp(16px,5svh,48px)] max-w-xl animate-rise text-[clamp(17px,min(2.4vw,3svh),24px)] font-semibold leading-relaxed text-navy/80 [animation-delay:560ms]">
             Operators backing Entrepreneurs

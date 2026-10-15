@@ -86,15 +86,6 @@ body {
   animation: draw-down 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-@keyframes draw-across {
-  from { transform: scaleX(0); }
-  to { transform: scaleX(1); }
-}
-
-.animate-draw-across {
-  animation: draw-across 0.8s cubic-bezier(0.22, 1, 0.36, 1) 80ms both;
-}
-
 /* Orange headline words: a highlight passes across once, after the words have risen. */
 @keyframes shimmer {
   from { background-position: 100% 0; }
