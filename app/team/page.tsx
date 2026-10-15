@@ -107,6 +107,14 @@ const leadership: TeamMember[] = [
     imagePosition: '50% 5%',
     linkedin: 'https://www.linkedin.com/in/zubairpatel/',
   },
+  {
+    name: 'Soham Mondal',
+    role: 'Product Design & Engineering',
+    desc: 'Founding Partner, Triveous | Founder, TheOutpost.ai | Lead Anchor Mentor, Google for Startups India',
+    image: '/team/soham-mondal.webp',
+    imagePosition: '50% 20%',
+    linkedin: 'https://www.linkedin.com/in/sohammondal/',
+  },
 ];
 
 const eirTeam: TeamMember[] = [
