@@ -6,7 +6,6 @@ import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
 import {
   motion,
-  useInView,
   useMotionValue,
   useReducedMotion,
   useScroll,
@@ -144,17 +143,7 @@ function RouteCell({
 export function HomeHero() {
   const ref = useRef<HTMLElement>(null);
   const reduceMotion = useReducedMotion();
-  // `hovered` is the route the visitor is pointing at; otherwise a slow tour cycles through the routes.
-  const [hovered, setActive] = useState<number | null>(null);
-  const [tour, setTour] = useState(0);
-  const inView = useInView(ref, { amount: 0.4 });
-  const touring = hovered === null && inView && !reduceMotion;
-  useEffect(() => {
-    if (!touring) return;
-    const id = window.setInterval(() => setTour((t) => (t + 1) % ROUTES.length), 4000);
-    return () => window.clearInterval(id);
-  }, [touring]);
-  const active = hovered ?? tour;
+  const [active, setActive] = useState<number | null>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] });
 
   // Scrolling away: the copy lifts and fades, the compass turns and the contours open out.
@@ -192,7 +181,7 @@ export function HomeHero() {
     };
   }, [rawX, rawY, reduceMotion]);
 
-  const bearing = reduceMotion ? null : ROUTES[active].bearing;
+  const bearing = active === null || reduceMotion ? null : ROUTES[active].bearing;
 
   return (
     <section
@@ -268,11 +257,17 @@ export function HomeHero() {
             })}
           </motion.div>
 
-          {/* Caption under the dial: the one-liner for the route the needle points at */}
-          <p className="absolute -bottom-10 left-1/2 hidden w-[130%] -translate-x-1/2 animate-fade text-center [animation-delay:1200ms] xl:block">
-            <span key={active} className="block animate-fade">
-              <span className="block text-[11px] font-bold uppercase tracking-[0.24em] text-brand">{ROUTES[active].label}</span>
-              <span className="mt-1 block text-sm text-navy/70">{ROUTES[active].line}</span>
+          {/* Caption under the dial: what the compass means at rest, the hovered route's one-liner otherwise */}
+          <p className="absolute -bottom-6 left-1/2 hidden w-[120%] -translate-x-1/2 animate-fade text-center text-sm [animation-delay:1200ms] xl:block">
+            <span key={active ?? 'rest'} className="inline-block animate-fade">
+              {active === null ? (
+                <span className="text-navy/45">Three ways we work with founders</span>
+              ) : (
+                <>
+                  <span className="font-semibold text-brand">{ROUTES[active].label}</span>
+                  <span className="text-navy/70"> · {ROUTES[active].line}</span>
+                </>
+              )}
             </span>
           </p>
         </motion.div>
