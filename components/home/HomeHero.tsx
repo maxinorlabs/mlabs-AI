@@ -237,15 +237,22 @@ export function HomeHero() {
             {ROUTES.map((route, i) => {
               const rad = ((route.bearing - 90) * Math.PI) / 180;
               return (
-                <span
+                // The cards above are the accessible links; these repeat them for the pointer, so they stay out of the tab order.
+                <Link
                   key={route.href}
-                  className={`absolute hidden -translate-x-1/2 -translate-y-1/2 whitespace-nowrap text-[11px] font-bold uppercase tracking-[0.24em] transition-colors duration-300 xl:block ${
-                    active === i ? 'text-brand' : 'text-navy/35'
+                  href={route.href}
+                  tabIndex={-1}
+                  onMouseEnter={() => setActive(i)}
+                  onMouseLeave={() => setActive(null)}
+                  className={`pointer-events-auto absolute hidden -translate-x-1/2 -translate-y-1/2 whitespace-nowrap rounded-full border px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.24em] transition-colors duration-300 xl:block ${
+                    active === i
+                      ? 'border-brand/40 bg-warm-white text-brand'
+                      : 'border-transparent text-navy/40 hover:border-navy/15'
                   }`}
                   style={{ left: `${50 + 55 * Math.cos(rad)}%`, top: `${50 + 55 * Math.sin(rad)}%` }}
                 >
                   {route.label.replace('Venture ', '')}
-                </span>
+                </Link>
               );
             })}
           </motion.div>
