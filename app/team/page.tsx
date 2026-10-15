@@ -39,7 +39,7 @@ const sectionHeading = 'mb-7 text-2xl font-display font-medium tracking-tight te
 const leadership: TeamMember[] = [
   {
     name: 'Samir Gupta',
-    role: 'Growth & Operations',
+    role: 'Founder & Managing Partner',
     desc: 'Entrepreneur | ex-Paytm, ex-Bzinga, ex-Solv',
     bio: "Samir is an entrepreneur and operator with over 25 years of experience building and scaling businesses across e-commerce, B2B marketplaces, gaming and BPO. He was a core founding member at SOLV, which reached a US$260M+ GMV run-rate. He also led business at Bzinga and Paytm, and helped drive 10x revenue growth at Teleperformance India. He founded Maxinor to build alongside founders as an operator rather than simply back them.",
     image: '/team/samir-gupta.webp',
@@ -48,7 +48,7 @@ const leadership: TeamMember[] = [
   },
   {
     name: 'Amar Daing',
-    role: 'Product & GTM',
+    role: 'Partner, Product & CX',
     desc: 'Entrepreneur | ex-Google x Tata, ex-Oyo, ex-Grofers',
     bio: "Amar works where product, customer experience and go-to-market meet. He has held product and CX leadership roles at OYO, Airtel, Blinkit and FREND, where he built products for the Google–Tata Trusts Internet Saathi programme. At Maxinor he helps founders turn half-built ideas into clear, sellable customer journeys.",
     image:
@@ -57,7 +57,7 @@ const leadership: TeamMember[] = [
   },
   {
     name: 'Parool Duggal',
-    role: 'People & Org Dev',
+    role: 'Partner, HR & Org Development',
     desc: 'Entrepreneur | ex-Bijnis, ex-EcomXpress, ex-AuthBridge',
     bio: "Parool is a senior HR and talent leader with over two decades of experience across Teleperformance, Ecom Express, AuthBridge and bijnis. She now advises companies on HR as a Senior Consultant at Proteam. At Maxinor she helps startups build and scale the teams they need to grow.",
     image: '/team/parool-duggal.webp',
@@ -66,7 +66,7 @@ const leadership: TeamMember[] = [
   },
   {
     name: 'Alok Kumar',
-    role: 'AI & Tech',
+    role: 'Partner, AI & Technology',
     desc: 'Entrepreneur | ex-Zee, ex-Oracle, ex-StanChart, ex-Fidelity',
     bio: "Alok architects AI-native systems for Maxinor's portfolio ventures, from HIPAA-compliant health platforms to large-scale multi-agent systems. He brings 21+ years of engineering leadership, most recently as SVP Engineering at ZEE5, where he led a 200-engineer organisation that modernised the platform for 80M+ users. Earlier, he built the engineering function for SOLV, Standard Chartered's greenfield B2B fintech venture, and held engineering roles at Fidelity and Oracle.",
     image: '/team/alok-kumar-v2.webp',
@@ -75,7 +75,7 @@ const leadership: TeamMember[] = [
   },
   {
     name: 'Priyabrata Padhi',
-    role: 'Consumer Marketing',
+    role: 'Partner, Marketing',
     desc: 'Entrepreneur | ex-United Breweries, ex-ITC, ex-Britannia',
     bio: "Priyabrata is a consumer marketing leader with nearly two decades at ITC, Britannia and Heineken India/United Breweries, most recently as Head of Marketing Excellence. His expertise spans brand building, media, sponsorships and FMCG go-to-market. He is also building a wellness and healthcare startup, and he brings that founder perspective to Maxinor's ventures.",
     image:
@@ -84,7 +84,7 @@ const leadership: TeamMember[] = [
   },
   {
     name: 'Dr Rachit Negi',
-    role: 'Global Health & Government Partnerships',
+    role: 'Partner, Health',
     desc: 'Entrepreneur | ex-Operation Smile, ex-World Bank, ex-PATH',
     bio: "Dr. Rachit Negi is a global health strategist with over 10 years of experience strengthening health systems, building multi-stakeholder partnerships, and scaling healthcare innovation across Asia and MENA. Trained at the Johns Hopkins Bloomberg School of Public Health, he has worked across government, global health, philanthropy, and healthcare ecosystems, including engagements with the World Bank, USAID, GAVI, GFATM-funded programmes, and Operation Smile. At Maxinor, he leads the Health vertical, helping healthcare and health-tech ventures navigate governments, donors, health systems, and markets to translate innovative technologies into scalable real-world impact.",
     image:
@@ -94,7 +94,7 @@ const leadership: TeamMember[] = [
   },
   {
     name: 'Manik Sood',
-    role: 'Legal & Compliance',
+    role: 'Partner, Legal',
     desc: 'Lawyer | ex-Paytm, ex-Zee, ex-Healthkart | 20+ years cross-industry expertise',
     bio: "Manik is a corporate lawyer with nearly two decades of experience across e-commerce, fintech, media and data privacy. As SVP Legal at Zee Entertainment and Head of Legal at Paytm E-Commerce, he closed deals with Google, Microsoft and eBay. He now leads Law Grammar, the firm he founded.",
     image:
@@ -111,7 +111,7 @@ const leadership: TeamMember[] = [
   },
   {
     name: 'Zubair Patel',
-    role: 'Retail & Consumer',
+    role: 'Partner, Retail',
     desc: 'CBO, CMO & Business/P&L Leader | ex-Shoppers Stop, ex-Future Group, ex-Health & Glow',
     bio: "Zubair brings over 25 years running P&Ls across fashion, beauty and lifestyle retail, from D2C startups to large format businesses like Shoppers Stop, Future Lifestyle Fashions and Health & Glow. He has managed categories worth over ₹1,500 Cr, built private label portfolios of 60+ brands, scaled a fashion retail business 6x, and led a full omnichannel pivot in just 60 days. At Maxinor, he works inside founder-led D2C and retail businesses, building growth strategy and omnichannel operations.",
     image:
@@ -121,7 +121,7 @@ const leadership: TeamMember[] = [
   },
   {
     name: 'Soham Mondal',
-    role: 'Product Design & Engineering',
+    role: 'Partner',
     desc: 'Founding Partner, Triveous | Founder, TheOutpost.ai | Lead Anchor Mentor, Google for Startups India',
     bio: "Soham works at the intersection of product design and engineering. He is the Founding Partner of product studio Triveous and the Founder of TheOutpost.ai. He has built mobile-first products with Google, IDEO and WHO, and has been a Lead Anchor Mentor at Google for Startups India for over a decade.",
     image: '/team/soham-mondal.webp',
@@ -133,7 +133,7 @@ const leadership: TeamMember[] = [
 const eirTeam: TeamMember[] = [
   {
     name: 'Aditi Agrawal',
-    role: 'Entrepreneur in Residence - Advertising',
+    role: 'Entrepreneur in Residence',
     desc: 'Founder, StickyPins & Avyu India | MBA, KJ Somaiya | IIM Bangalore',
     bio: "Aditi is a serial entrepreneur and digital marketing specialist. She founded the 360° agency StickyPins.Inc in 2016 and co-founded the wellness brand AVYU India in 2023. She is an alumna of the Goldman Sachs 10,000 Women programme at IIM Bangalore and a guest lecturer on entrepreneurship, branding and leadership.",
     image:
@@ -142,7 +142,7 @@ const eirTeam: TeamMember[] = [
   },
   {
     name: 'Puneet Kolthe',
-    role: 'Entrepreneur in Residence, CX & Service Operations',
+    role: 'Entrepreneur in Residence',
     desc: '25+ years | Building, transforming, scaling CX & Service Operations | ex-Arata, ex-Karbonn, ex-Panasonic',
     bio: "Puneet is a customer service and operations leader with over two decades of experience building service functions for consumer brands and BPOs. He was Director of Customer Service at Heads Up For Tails and now heads Customer Service at Arata. His work centres on designing workflows, SOPs and service standards that keep customer satisfaction high as businesses scale.",
     image:
