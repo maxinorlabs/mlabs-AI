@@ -3,18 +3,17 @@
 import { useRef } from 'react';
 import { X } from 'lucide-react';
 
-// The bio clamped to three lines on the card; the full text opens in a native dialog,
+// Opens a member's full bio in a native dialog,
 // which gives focus trapping, Escape to close and a backdrop for free.
 export function TeamBio({ name, role, bio }: { name: string; role: string; bio: string }) {
   const dialogRef = useRef<HTMLDialogElement>(null);
 
   return (
     <>
-      <p className="mt-3 line-clamp-3 text-sm font-light leading-relaxed text-grey">{bio}</p>
       <button
         type="button"
         onClick={() => dialogRef.current?.showModal()}
-        className="mt-2 self-start text-sm font-medium text-brand underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+        className="text-sm font-medium text-brand underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
       >
         Read full bio
       </button>
