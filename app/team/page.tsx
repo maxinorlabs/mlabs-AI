@@ -1,8 +1,6 @@
 import type { Metadata } from 'next';
-import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowUpRight, BookOpen, CalendarDays, Linkedin } from 'lucide-react';
-import { TeamBio } from '@/components/team/TeamBio';
+import { TeamCard, type TeamMember } from '@/components/team/TeamCard';
 import { PartnerLogoTicker } from '@/components/PartnerLogoTicker';
 import { Reveal, Stagger, StaggerItem } from '@/components/motion/Reveal';
 import { Magnetic } from '@/components/motion/Magnetic';
@@ -11,16 +9,6 @@ import { NavyBackdrop } from '@/components/motion/NavyBackdrop';
 export const metadata: Metadata = {
   title: 'Our Team | Operators and Builders',
   description: 'Meet the operators, founders, and domain experts who run Maxinor. A team that has built and scaled businesses across India and globally.',
-};
-
-type TeamMember = {
-  name: string;
-  role: string;
-  desc: string;
-  bio?: string;
-  image?: string;
-  imagePosition?: string;
-  linkedin: string;
 };
 
 function memberSlug(name: string) {
@@ -32,8 +20,6 @@ const introSpacing = 'mb-10';
 const introTitle = 'mb-4 text-4xl font-display font-medium tracking-tight text-navy sm:text-5xl lg:text-[clamp(2.25rem,min(4vw,7svh),3.25rem)]';
 const introBody = 'max-w-2xl text-base font-light leading-relaxed text-grey';
 const sectionSpacing = 'mb-16 md:mb-20';
-const profileButton =
-  'inline-flex items-center gap-1.5 whitespace-nowrap rounded-full border border-navy/15 px-3 py-1.5 text-xs font-medium text-navy transition hover:border-navy/30 hover:bg-navy/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand';
 const sectionHeading = 'mb-7 text-2xl font-display font-medium tracking-tight text-navy md:mb-8 md:text-3xl';
 
 const leadership: TeamMember[] = [
@@ -194,68 +180,7 @@ function TeamGridSection({ title, members }: { title: string; members: TeamMembe
       <Stagger className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
         {members.map((member) => (
           <StaggerItem key={member.name} className="flex">
-          <article
-            key={member.name}
-            id={memberSlug(member.name)}
-            className="spotlight spotlight-border group flex w-full flex-col overflow-hidden rounded-2xl border border-navy/10 bg-warm-white shadow-[0_14px_40px_rgba(26,31,46,0.06)] transition duration-300 hover:-translate-y-1 hover:border-navy/20 hover:shadow-[0_20px_50px_rgba(26,31,46,0.10)]"
-          >
-            <Link
-              href={member.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block flex-1 focus-visible:outline-2 focus-visible:outline-offset-[-3px] focus-visible:outline-brand lg:flex lg:min-h-64"
-              aria-label={`View ${member.name} on LinkedIn`}
-            >
-              <div className="relative aspect-square overflow-hidden bg-navy/5 sm:aspect-[4/3] md:aspect-[3/2] lg:aspect-auto lg:w-[42%] lg:shrink-0">
-                {member.image ? (
-                  <Image
-                    src={member.image}
-                    alt={member.name}
-                    fill
-                    className="object-cover saturate-[0.8] transition duration-700 group-hover:scale-[1.04] group-hover:saturate-100"
-                    style={{ objectPosition: member.imagePosition ?? '50% 15%' }}
-                    referrerPolicy="no-referrer"
-                    sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-                  />
-                ) : (
-                  <span className="absolute inset-0 flex items-center justify-center text-5xl font-display text-grey/40">
-                    {member.name.charAt(0)}
-                  </span>
-                )}
-              </div>
-              <div className="p-5 lg:flex lg:min-w-0 lg:flex-1 lg:flex-col lg:justify-center">
-                <p className="mb-2 text-xs font-bold uppercase tracking-[0.16em] text-brand">{member.role}</p>
-                <div className="flex items-start justify-between gap-4">
-                  <h3 className="text-xl font-display font-medium tracking-tight text-navy">{member.name}</h3>
-                  <ArrowUpRight className="mt-1 h-4 w-4 shrink-0 text-navy/35 transition duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-brand" aria-hidden="true" />
-                </div>
-                <p className="mt-3 line-clamp-3 text-sm font-light leading-relaxed text-grey">{member.bio ?? member.desc}</p>
-              </div>
-            </Link>
-            <div className="flex flex-wrap items-center gap-2 border-t border-navy/10 px-5 py-4">
-              {member.bio && <TeamBio name={member.name} role={member.role} bio={member.bio} />}
-              <div className="ml-auto flex gap-2">
-                <a
-                  href={member.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`${member.name} on LinkedIn`}
-                  className={profileButton}
-                >
-                  <Linkedin className="h-3.5 w-3.5" aria-hidden="true" />
-                  LinkedIn
-                </a>
-                <Link href="/blog" className={profileButton}>
-                  <BookOpen className="h-3.5 w-3.5" aria-hidden="true" />
-                  Blog
-                </Link>
-                <Link href="/contact" className={`${profileButton} border-brand bg-brand text-warm-white hover:border-brand/90 hover:bg-brand/90`}>
-                  <CalendarDays className="h-3.5 w-3.5" aria-hidden="true" />
-                  Book a call
-                </Link>
-              </div>
-            </div>
-          </article>
+            <TeamCard member={member} id={memberSlug(member.name)} />
           </StaggerItem>
         ))}
       </Stagger>
