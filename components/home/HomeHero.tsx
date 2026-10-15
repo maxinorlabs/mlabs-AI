@@ -257,12 +257,10 @@ export function HomeHero() {
             })}
           </motion.div>
 
-          {/* Caption under the dial: what the compass means at rest, the hovered route's one-liner otherwise */}
+          {/* Caption under the dial: the hovered route's one-liner */}
           <p className="absolute -bottom-6 left-1/2 hidden w-[120%] -translate-x-1/2 animate-fade text-center text-sm [animation-delay:1200ms] xl:block">
             <span key={active ?? 'rest'} className="inline-block animate-fade">
-              {active === null ? (
-                <span className="text-navy/45">Three ways we work with founders</span>
-              ) : (
+              {active !== null && (
                 <>
                   <span className="font-semibold text-brand">{ROUTES[active].label}</span>
                   <span className="text-navy/70"> · {ROUTES[active].line}</span>
