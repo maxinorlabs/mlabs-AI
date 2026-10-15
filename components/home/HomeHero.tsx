@@ -19,9 +19,9 @@ import { EASE_OUT } from '@/lib/motion';
 
 // The three ways in. Each is a bearing on the hero compass: hovering or focusing one swings the needle to it.
 const ROUTES = [
-  { label: 'Venture Build', href: '/build', bearing: 300 },
-  { label: 'Venture Scale', href: '/scale', bearing: 0 },
-  { label: 'Venture Invest', href: '/invest', bearing: 60 },
+  { label: 'Venture Build', href: '/build', bearing: 300, line: 'Idea to launch in 90 days, with operators embedded.' },
+  { label: 'Venture Scale', href: '/scale', bearing: 0, line: 'Operators inside your startup. Not advisors, not consultants.' },
+  { label: 'Venture Invest', href: '/invest', bearing: 60, line: 'Deal flow where we already know the business works.' },
 ];
 
 const OPERATORS = [
@@ -256,6 +256,20 @@ export function HomeHero() {
               );
             })}
           </motion.div>
+
+          {/* Caption under the dial: what the compass means at rest, the hovered route's one-liner otherwise */}
+          <p className="absolute -bottom-6 left-1/2 hidden w-[120%] -translate-x-1/2 animate-fade text-center text-sm [animation-delay:1200ms] xl:block">
+            <span key={active ?? 'rest'} className="inline-block animate-fade">
+              {active === null ? (
+                <span className="text-navy/45">Three ways we work with founders</span>
+              ) : (
+                <>
+                  <span className="font-semibold text-brand">{ROUTES[active].label}</span>
+                  <span className="text-navy/70"> · {ROUTES[active].line}</span>
+                </>
+              )}
+            </span>
+          </p>
         </motion.div>
       </div>
 
