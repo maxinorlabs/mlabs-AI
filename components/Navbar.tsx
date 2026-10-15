@@ -166,10 +166,10 @@ export function Navbar() {
         scrolled ? 'bg-warm-white/95 shadow-[0_10px_30px_-18px_rgba(11,31,59,0.35)]' : 'bg-warm-white/90'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         <Link
           href="/"
-          className="text-2xl font-display font-medium tracking-tight flex items-center gap-2 relative z-50"
+          className="text-xl font-display font-medium tracking-tight flex items-center gap-2 relative z-50"
           onClick={() => setIsOpen(false)}
         >
           <Image
@@ -178,7 +178,7 @@ export function Navbar() {
             width={32}
             height={32}
             priority
-            className="w-8 h-8 rounded-[99px] object-cover"
+            className="w-7 h-7 rounded-[99px] object-cover"
           />
           MAXINOR
         </Link>
@@ -375,7 +375,7 @@ export function Navbar() {
         <div className="hidden lg:block">
           <Link
             href="/contact"
-            className="inline-flex items-center justify-center px-6 py-2.5 text-sm font-medium tracking-wide bg-white/80 text-navy hover:bg-brand hover:text-warm-white border border-grey/40 transition-all duration-300 rounded-full active:scale-[0.97]"
+            className="inline-flex items-center justify-center px-5 py-2 text-sm font-medium tracking-wide bg-white/80 text-navy hover:bg-brand hover:text-warm-white border border-grey/40 transition-all duration-300 rounded-full active:scale-[0.97]"
           >
             Get in Touch
           </Link>
@@ -398,7 +398,7 @@ export function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.2 }}
-            className="absolute top-20 left-0 right-0 bg-warm-white/95 backdrop-blur-xl border-b border-grey/30 shadow-2xl lg:hidden"
+            className="absolute top-16 left-0 right-0 bg-warm-white/95 backdrop-blur-xl border-b border-grey/30 shadow-2xl lg:hidden"
           >
             <div className="flex flex-col px-6 py-8 gap-6">
               {navLinks.map((link) =>

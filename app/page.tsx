@@ -249,7 +249,7 @@ export default function Home() {
 
   return (
     <div className="font-sans">
-      <main className="pt-20">
+      <main className="pt-16">
         <HomeHero />
 
         {/* The Ventures We Work With — hidden, set to true to re-enable */}

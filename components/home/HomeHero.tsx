@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
@@ -117,7 +117,7 @@ function RouteCell({
       onMouseLeave={() => onActive(null)}
       onFocus={() => onActive(index)}
       onBlur={() => onActive(null)}
-      className="group relative flex flex-1 items-center gap-5 overflow-hidden px-6 py-[clamp(12px,2.2svh,20px)] text-navy outline-none transition-colors duration-500 focus-visible:text-warm-white hover:text-warm-white sm:flex-col sm:items-start sm:gap-[clamp(8px,3svh,32px)] sm:py-[clamp(12px,2.6svh,24px)] lg:px-7"
+      className="group relative flex flex-1 items-center gap-5 overflow-hidden px-5 py-3 text-navy outline-none transition-colors duration-500 focus-visible:text-warm-white hover:text-warm-white sm:flex-col sm:items-start sm:gap-[clamp(6px,1.6svh,14px)] sm:py-[clamp(10px,1.8svh,16px)]"
     >
       <span
         aria-hidden="true"
@@ -131,18 +131,17 @@ function RouteCell({
         </span>
         <ArrowUpRight
           aria-hidden="true"
-          className="hidden h-5 w-5 transition-transform duration-500 group-hover:-translate-y-1 group-hover:translate-x-1 sm:block"
+          className="hidden h-4 w-4 transition-transform duration-500 group-hover:-translate-y-1 group-hover:translate-x-1 sm:block"
         />
       </span>
-      <span className="relative whitespace-nowrap text-lg font-semibold tracking-tight md:text-xl">{route.label}</span>
-      <ArrowUpRight aria-hidden="true" className="relative ml-auto h-5 w-5 sm:hidden" />
+      <span className="relative whitespace-nowrap text-base font-semibold tracking-tight md:text-[17px]">{route.label}</span>
+      <ArrowUpRight aria-hidden="true" className="relative ml-auto h-4 w-4 sm:hidden" />
     </Link>
   );
 }
 
 export function HomeHero() {
   const ref = useRef<HTMLElement>(null);
-  const headingRef = useRef<HTMLSpanElement>(null);
   const reduceMotion = useReducedMotion();
   const [active, setActive] = useState<number | null>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] });
@@ -182,18 +181,13 @@ export function HomeHero() {
     };
   }, [rawX, rawY, reduceMotion]);
 
-  // The heading readout under the dial, written straight to the DOM (no re-render per frame).
-  const onHeading = useCallback((deg: number) => {
-    if (headingRef.current) headingRef.current.textContent = `${String(deg).padStart(3, '0')}°`;
-  }, []);
-
   const bearing = active === null || reduceMotion ? null : ROUTES[active].bearing;
 
   return (
     <section
       ref={ref}
       onPointerMove={trackSpotlight}
-      className="group/hero relative flex min-h-[calc(100svh-5rem)] xl:h-[calc(100svh-5rem)] xl:min-h-[480px] flex-col overflow-hidden bg-warm-white text-navy"
+      className="group/hero relative flex min-h-[calc(100svh-4rem)] xl:h-[calc(100svh-4rem)] xl:min-h-[480px] flex-col overflow-hidden bg-warm-white text-navy"
     >
       {/* Paper: fine navy dot grid fading to the edges, lit orange around the pointer, and a little grain */}
       <div
@@ -213,7 +207,7 @@ export function HomeHero() {
 
           <nav
             aria-label="Ways to work with Maxinor"
-            className="flex max-w-3xl animate-rise flex-col divide-y divide-navy/15 overflow-hidden rounded-2xl border border-navy/15 bg-white/60 shadow-[0_24px_60px_-30px_rgba(11,31,59,0.35)] backdrop-blur-sm [animation-delay:660ms] sm:flex-row sm:divide-x sm:divide-y-0"
+            className="flex max-w-xl animate-rise flex-col divide-y divide-navy/15 overflow-hidden rounded-xl border border-navy/15 bg-white/60 shadow-[0_24px_60px_-30px_rgba(11,31,59,0.35)] backdrop-blur-sm [animation-delay:660ms] sm:flex-row sm:divide-x sm:divide-y-0"
           >
             {ROUTES.map((route, i) => (
               <RouteCell key={route.href} route={route} index={i} onActive={setActive} />
@@ -239,7 +233,7 @@ export function HomeHero() {
           </motion.svg>
 
           <motion.div style={{ rotate: dialRotate }} className="relative">
-            <HeroCompass bearing={bearing} onHeading={onHeading} className="relative w-full animate-fade text-navy [animation-delay:200ms]" />
+            <HeroCompass bearing={bearing} className="relative w-full animate-fade text-navy [animation-delay:200ms]" />
             {ROUTES.map((route, i) => {
               const rad = ((route.bearing - 90) * Math.PI) / 180;
               return (
@@ -254,20 +248,6 @@ export function HomeHero() {
                 </span>
               );
             })}
-          </motion.div>
-
-          {/* Heading readout, like the bezel window on an instrument */}
-          <motion.div
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 1.2, ease: EASE_OUT }}
-            className="absolute -bottom-4 left-1/2 hidden -translate-x-1/2 items-center gap-3 rounded-full border border-navy/15 bg-warm-white/90 px-4 py-1.5 font-mono text-xs tracking-[0.18em] text-navy/60 xl:flex"
-          >
-            <span className="h-1.5 w-1.5 rounded-full bg-brand" />
-            HDG <span ref={headingRef} className="w-10 text-navy">000°</span>
-            <span className={`whitespace-nowrap transition-colors duration-300 ${active === null ? 'text-navy/30' : 'text-brand'}`}>
-              {active === null ? 'TRUE N' : ROUTES[active].label.replace('Venture ', '').toUpperCase()}
-            </span>
           </motion.div>
         </motion.div>
       </div>
