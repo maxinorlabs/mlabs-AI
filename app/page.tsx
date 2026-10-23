@@ -15,7 +15,7 @@ import {
 import Link from 'next/link';
 import Image from 'next/image';
 import WhyMaxinor from '../components/WhyMaxinor';
-import { TShapeWidget } from '../components/TShapeWidget';
+import { HomeTShape } from '../components/home/HomeTShape';
 import { CompassRing } from '../components/Compass';
 import { HomeHero } from '../components/home/HomeHero';
 import { CourseLine } from '../components/home/CourseLine';
@@ -307,7 +307,7 @@ export default function Home() {
         )}
 
         {/* T-Shape Advantage */}
-        <TShapeWidget variant="home" fullBleed />
+        <HomeTShape />
 
         <VelocityMarquee items={MARQUEE} />
 

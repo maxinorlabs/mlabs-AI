@@ -10,7 +10,7 @@ import { EASE_OUT } from '@/lib/motion';
 
 type Variant = 'home' | 'sectors' | 'capabilities';
 
-const CAPABILITIES = [
+export const CAPABILITIES = [
   { name: 'AI & Tech', href: '/capabilities/ai-tech', group: 'build' as const },
   { name: 'Product & Design', href: '/capabilities/product-research', group: 'build' as const },
   { name: 'Brand & Marketing', href: '/capabilities/brand-marketing', group: 'build' as const },
@@ -21,7 +21,7 @@ const CAPABILITIES = [
   { name: 'M&A', href: '/capabilities/mergers-acquisitions', group: 'invest' as const },
 ];
 
-const GROUPS = [
+export const GROUPS = [
   { id: 'build', name: 'Build', span: 3 },
   { id: 'scale', name: 'Scale', span: 3 },
   { id: 'invest', name: 'Invest', span: 2 },
@@ -33,7 +33,7 @@ const GROUP_STYLE: Record<string, { bg: string; text: string }> = {
   invest: { bg: 'bg-[#FAC775]', text: 'text-[#412402]' },
 };
 
-const SECTORS = [
+export const SECTORS = [
   { name: 'Healthcare', href: '/sectors/healthcare', icon: Hospital },
   { name: 'D2C', href: '/sectors/d2c', icon: Store },
   { name: 'BFSI', href: '/sectors/bfsi', icon: Landmark },
