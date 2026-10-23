@@ -7,6 +7,7 @@ import { ArrowRight, GraduationCap, Hospital, Landmark, MonitorPlay, Shield, Sto
 import { Reveal } from '@/components/motion/Reveal';
 import { useScrub } from '@/components/motion/useScrub';
 import { EASE_OUT } from '@/lib/motion';
+import { trackSpotlight } from '@/lib/spotlight';
 
 type Variant = 'home' | 'sectors' | 'capabilities';
 
@@ -32,6 +33,25 @@ const GROUP_STYLE: Record<string, { bg: string; text: string }> = {
   scale: { bg: 'bg-[#F0997B]', text: 'text-[#4A1B0C]' },
   invest: { bg: 'bg-[#FAC775]', text: 'text-[#412402]' },
 };
+
+// Home: the hero's paper look. Hairline cells that fill from the bottom on hover, orange for Build, navy otherwise.
+const PAPER_FILL: Record<string, string> = { build: 'bg-brand', scale: 'bg-navy', invest: 'bg-navy' };
+
+function PaperCell({ cap, className, handlers }: { cap: (typeof CAPABILITIES)[number]; className: string; handlers: object }) {
+  return (
+    <Link
+      href={cap.href}
+      {...handlers}
+      className={`group/cell relative flex items-center justify-center overflow-hidden text-center font-semibold leading-tight text-navy outline-none transition-colors duration-500 hover:text-warm-white focus-visible:text-warm-white ${className}`}
+    >
+      <span
+        aria-hidden="true"
+        className={`absolute inset-0 origin-bottom scale-y-0 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/cell:scale-y-100 group-focus-visible/cell:scale-y-100 ${PAPER_FILL[cap.group]}`}
+      />
+      <span className="relative">{cap.name}</span>
+    </Link>
+  );
+}
 
 const SECTORS = [
   { name: 'Healthcare', href: '/sectors/healthcare', icon: Hospital },
@@ -78,7 +98,7 @@ export function TShapeWidget({ variant = 'home', fullBleed = false }: { variant?
   const copy = COPY[variant];
   const dimHorizontal = variant === 'sectors';
   const dimVertical = variant === 'capabilities';
-  const dark = variant === 'home';
+  const paper = variant === 'home';
   const reduceMotion = useReducedMotion();
   const buildRef = useRef<HTMLDivElement>(null);
   const pinRef = useRef<HTMLDivElement>(null);
@@ -116,43 +136,54 @@ export function TShapeWidget({ variant = 'home', fullBleed = false }: { variant?
     onBlur: () => setCapActive(false),
   };
 
-  const wrapperClass = dark
-    ? `relative overflow-clip bg-navy px-6 py-20 md:py-28 ${fullBleed ? '' : 'rounded-[2.5rem] md:px-12'}`
+  const wrapperClass = paper
+    ? `group/hero relative overflow-clip border-t border-navy/10 bg-warm-white px-6 py-20 md:py-28 ${fullBleed ? '' : 'rounded-[2.5rem] md:px-12'}`
     : 'relative';
 
   return (
-    <div className={wrapperClass}>
-      {dark && (
+    <div className={wrapperClass} onPointerMove={paper ? trackSpotlight : undefined}>
+      {paper && (
         <>
-          <div aria-hidden="true" className="grain absolute inset-0" />
-          <div className="pointer-events-none absolute -top-32 left-1/2 h-[420px] w-[420px] -translate-x-1/2 rounded-full bg-brand/10 blur-[110px]" />
-          <div className="pointer-events-none absolute bottom-0 right-0 h-[300px] w-[300px] rounded-full bg-teal/10 blur-[100px]" />
+          {/* The hero's paper: navy dot grid, lit orange around the pointer, and a little grain */}
+          <div
+            aria-hidden="true"
+            className="hero-grid pointer-events-none absolute inset-0"
+            style={{ backgroundImage: 'radial-gradient(rgb(11 31 59 / 0.16) 1px, transparent 1.4px)' }}
+          />
+          <div aria-hidden="true" className="hero-grid hero-grid-lit pointer-events-none absolute inset-0" />
+          <div aria-hidden="true" className="grain absolute inset-0 opacity-[0.35] mix-blend-multiply" />
         </>
       )}
 
       {/* overflow-clip above (not hidden) keeps position: sticky working inside this section */}
       <div ref={pinRef} className={pinned ? 'h-[200vh]' : undefined}>
-      <div className={pinned ? 'sticky top-20 flex h-[calc(100svh-5rem)] items-center' : undefined}>
+      <div className={pinned ? 'sticky top-16 flex h-[calc(100svh-4rem)] items-center' : undefined}>
       <div ref={buildRef} className="relative z-10 mx-auto w-full max-w-4xl">
         <Reveal className="mb-8 text-center md:mb-10">
           <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">{copy.eyebrow}</p>
-          <h2 className={`text-2xl font-display font-medium tracking-tight md:text-4xl ${dark ? 'text-warm-white' : 'text-navy'}`}>
+          <h2 className={`text-2xl font-display font-medium tracking-tight md:text-4xl text-navy`}>
             {copy.headline}
           </h2>
           {copy.concept && (
-            <p className={`mt-4 text-[10px] font-bold uppercase tracking-[0.2em] ${dark ? 'text-warm-white/35' : 'text-grey/50'}`}>{copy.concept}</p>
+            <p className={`mt-4 text-[10px] font-bold uppercase tracking-[0.2em] text-grey/50`}>{copy.concept}</p>
           )}
         </Reveal>
 
         {/* Capability block — group headers + cells */}
         <div
           className={`rounded-2xl transition-shadow duration-500 ${
-            activeSector !== null ? 'shadow-[0_0_0_2px_rgba(243,111,33,0.7),0_0_60px_-6px_rgba(243,111,33,0.45)]' : ''
+            activeSector !== null
+              ? 'shadow-[0_0_0_2px_rgba(243,111,33,0.7),0_0_60px_-6px_rgba(243,111,33,0.45)]'
+              : paper
+                ? 'shadow-[0_24px_60px_-30px_rgba(11,31,59,0.35)]'
+                : ''
           }`}
         >
           <motion.div
             style={{ clipPath: barClip }}
-            className={`relative overflow-hidden rounded-2xl transition-opacity duration-500 ${dimHorizontal ? 'opacity-30' : 'opacity-100'}`}
+            className={`relative overflow-hidden rounded-2xl transition-opacity duration-500 ${dimHorizontal ? 'opacity-30' : 'opacity-100'} ${
+              paper ? 'border border-navy/15 bg-white/60 backdrop-blur-sm' : ''
+            }`}
           >
             {sweep > 0 && !reduceMotion && (
               <motion.span
@@ -167,20 +198,44 @@ export function TShapeWidget({ variant = 'home', fullBleed = false }: { variant?
             {/* Desktop: single 8-col row, grouped headers on top */}
             <div className="hidden sm:block">
               <div className="grid grid-cols-8">
-                {GROUPS.map((g) => (
-                  <Link
-                    key={g.id}
-                    href={`/capabilities#${g.id}`}
-                    style={{ gridColumn: `span ${g.span} / span ${g.span}` }}
-                    className="border-r border-white/10 bg-navy py-3 text-center text-xs font-bold uppercase tracking-[0.14em] text-warm-white transition-colors last:border-r-0 hover:bg-white/10 hover:text-brand"
-                  >
-                    {g.name}
-                  </Link>
-                ))}
+                {GROUPS.map((g, gi) =>
+                  paper ? (
+                    <Link
+                      key={g.id}
+                      href={`/capabilities#${g.id}`}
+                      style={{ gridColumn: `span ${g.span} / span ${g.span}` }}
+                      className="flex items-center justify-center gap-3 border-b border-r border-navy/10 py-3 text-xs font-bold uppercase tracking-[0.18em] text-navy transition-colors last:border-r-0 hover:text-brand"
+                    >
+                      <span className="font-mono text-[11px] font-normal tracking-wider text-brand">0{gi + 1}</span>
+                      {g.name}
+                    </Link>
+                  ) : (
+                    <Link
+                      key={g.id}
+                      href={`/capabilities#${g.id}`}
+                      style={{ gridColumn: `span ${g.span} / span ${g.span}` }}
+                      className="border-r border-white/10 bg-navy py-3 text-center text-xs font-bold uppercase tracking-[0.14em] text-warm-white transition-colors last:border-r-0 hover:bg-white/10 hover:text-brand"
+                    >
+                      {g.name}
+                    </Link>
+                  ),
+                )}
               </div>
               <div className="grid grid-cols-8">
-                {CAPABILITIES.map((cap) => {
+                {CAPABILITIES.map((cap, ci) => {
                   const style = GROUP_STYLE[cap.group];
+                  if (paper) {
+                    // A slightly stronger divider where one group ends and the next begins
+                    const groupEnd = ci === 2 || ci === 5;
+                    return (
+                      <PaperCell
+                        key={cap.name}
+                        cap={cap}
+                        handlers={capHandlers}
+                        className={`min-h-[84px] px-2 py-4 text-xs last:border-r-0 ${groupEnd ? 'border-r border-navy/15' : 'border-r border-navy/[0.07]'}`}
+                      />
+                    );
+                  }
                   return (
                     <Link
                       key={cap.name}
@@ -197,17 +252,25 @@ export function TShapeWidget({ variant = 'home', fullBleed = false }: { variant?
 
             {/* Mobile: grouped rows of 3 / 3 / 2 */}
             <div className="flex flex-col gap-1.5 sm:hidden">
-              {GROUPS.map((g) => (
-                <div key={g.id} className="overflow-hidden rounded-xl">
+              {GROUPS.map((g, gi) => (
+                <div key={g.id} className={`overflow-hidden rounded-xl ${paper ? 'border border-navy/15 bg-white/60' : ''}`}>
                   <Link
                     href={`/capabilities#${g.id}`}
-                    className="block bg-navy py-2 text-center text-[10px] font-bold uppercase tracking-[0.14em] text-warm-white transition-colors hover:text-brand"
+                    className={
+                      paper
+                        ? 'flex items-center justify-center gap-2 border-b border-navy/10 py-2 text-[10px] font-bold uppercase tracking-[0.16em] text-navy transition-colors hover:text-brand'
+                        : 'block bg-navy py-2 text-center text-[10px] font-bold uppercase tracking-[0.14em] text-warm-white transition-colors hover:text-brand'
+                    }
                   >
+                    {paper && <span className="font-mono font-normal text-brand">0{gi + 1}</span>}
                     {g.name}
                   </Link>
-                  <div className={`grid gap-0.5 ${g.span === 2 ? 'grid-cols-2' : 'grid-cols-3'}`}>
+                  <div className={`grid ${paper ? 'divide-x divide-navy/[0.07]' : 'gap-0.5'} ${g.span === 2 ? 'grid-cols-2' : 'grid-cols-3'}`}>
                     {CAPABILITIES.filter((c) => c.group === g.id).map((cap) => {
                       const style = GROUP_STYLE[cap.group];
+                      if (paper) {
+                        return <PaperCell key={cap.name} cap={cap} handlers={capHandlers} className="min-h-[64px] px-1.5 py-2.5 text-[10px]" />;
+                      }
                       return (
                         <Link
                           key={cap.name}
@@ -234,7 +297,7 @@ export function TShapeWidget({ variant = 'home', fullBleed = false }: { variant?
           />
           <motion.div
             style={{ scaleY: stemScale }}
-            className={`h-8 w-0.5 origin-top bg-gradient-to-b ${dark ? 'from-white/25 to-white/10' : 'from-navy/20 to-navy/10'}`}
+            className={`h-8 w-0.5 origin-top bg-gradient-to-b from-navy/20 to-navy/10`}
           />
         </div>
 
@@ -243,7 +306,7 @@ export function TShapeWidget({ variant = 'home', fullBleed = false }: { variant?
           <motion.div
             aria-hidden="true"
             style={{ scaleY: spineScale }}
-            className={`absolute inset-y-0 left-1/2 w-0.5 -translate-x-1/2 origin-top bg-gradient-to-b ${dark ? 'from-white/10 to-white/0' : 'from-navy/10 to-navy/0'}`}
+            className={`absolute inset-y-0 left-1/2 w-0.5 -translate-x-1/2 origin-top bg-gradient-to-b from-navy/10 to-navy/0`}
           />
           {/* Lit section of the stem, running down to the hovered sector (or the whole stack) */}
           <motion.div
@@ -265,12 +328,12 @@ export function TShapeWidget({ variant = 'home', fullBleed = false }: { variant?
                   className={`group grid grid-cols-[1rem_1fr_1rem] items-center gap-3 rounded-xl border px-5 py-3 text-center text-sm font-medium transition-[translate,background-color,border-color,color] duration-300 ease-out hover:-translate-y-0.5 ${
                     variant === 'sectors'
                       ? 'border-brand/40 bg-[#F7E9E0] font-semibold text-navy shadow-[0_0_24px_rgba(243,111,33,0.12)]'
-                      : dark
-                        ? `bg-[#172A45] text-warm-white/80 hover:border-brand/60 hover:bg-[#1E3150] hover:text-warm-white ${capActive ? 'border-brand/50' : 'border-white/10'}`
+                      : paper
+                        ? `bg-white/60 text-navy/80 backdrop-blur-sm hover:border-brand/50 hover:bg-white hover:text-navy ${capActive ? 'border-brand/50' : 'border-navy/15'}`
                         : `bg-warm-white text-navy/80 hover:border-brand/50 hover:bg-[#EBECEC] ${capActive ? 'border-brand/50' : 'border-grey/15'}`
                   }`}
                 >
-                  <sector.icon className={`h-4 w-4 transition-colors duration-300 group-hover:text-brand ${dark ? 'text-warm-white/40' : 'text-navy/40'}`} />
+                  <sector.icon className={`h-4 w-4 transition-colors duration-300 group-hover:text-brand text-navy/40`} />
                   {sector.name}
                   <ArrowRight className="h-4 w-4 -translate-x-1 text-brand opacity-0 transition-[opacity,translate] duration-300 group-hover:translate-x-0 group-hover:opacity-100 [@media(hover:none)]:translate-x-0 [@media(hover:none)]:opacity-60" />
                 </Link>
