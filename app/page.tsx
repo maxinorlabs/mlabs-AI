@@ -229,7 +229,7 @@ function EngagementCard({ eng, last }: { eng: Engagement; last: boolean }) {
   );
 }
 
-// The operator capabilities, repeated in the scrolling band under the T-Shape.
+// The operator capabilities, repeated in the scrolling tape under the T-Shape.
 const MARQUEE = [
   'AI & Tech',
   'Product & Design',
@@ -312,8 +312,8 @@ export default function Home() {
         <VelocityMarquee items={MARQUEE} />
 
         {/* Pick Your Entry Point */}
-        {/* Navy behind it, so while it's scaled down the section reads as a card rising out of the navy band */}
-        <div className="relative z-10 -mt-10 bg-navy md:-mt-16">
+        {/* Paper behind it, so while it's scaled down the section reads as a card rising up the page */}
+        <div className="relative z-10 bg-warm-white pt-4 md:pt-6">
         <motion.section
           ref={entryRef}
           style={{ scale: entryScale }}
