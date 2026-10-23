@@ -1,8 +1,8 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useLayoutEffect, useRef, useState } from 'react';
 import Link from 'next/link';
-import { motion, useMotionValueEvent, useTransform, type MotionValue } from 'motion/react';
+import { motion, useMotionValueEvent, useTransform } from 'motion/react';
 import { ArrowUpRight } from 'lucide-react';
 import { CAPABILITIES, GROUPS, SECTORS } from '@/components/TShapeWidget';
 import { useScrub } from '@/components/motion/useScrub';
@@ -15,8 +15,6 @@ import { trackSpotlight } from '@/lib/spotlight';
 const FILL: Record<string, string> = { build: 'bg-brand', scale: 'bg-navy', invest: 'bg-navy' };
 const ROWS = Math.ceil(SECTORS.length / 2);
 const SPINE = [0.05, 0.8];
-// Scroll progress at which the drawn spine reaches node row r.
-const reach = (row: number) => SPINE[0] + ((row + 0.5) / ROWS) * (SPINE[1] - SPINE[0]);
 
 function Axis({ children, className = '' }: { children: React.ReactNode; className?: string }) {
   return (
@@ -29,31 +27,32 @@ function Axis({ children, className = '' }: { children: React.ReactNode; classNa
 function SectorBranch({
   sector,
   index,
-  progress,
   lit,
   reached,
+  innerRef,
   onEnter,
   onLeave,
 }: {
   sector: (typeof SECTORS)[number];
   index: number;
-  progress: MotionValue<number>;
   lit: boolean;
   reached: boolean;
+  innerRef: (el: HTMLDivElement | null) => void;
   onEnter: () => void;
   onLeave: () => void;
 }) {
   const row = Math.floor(index / 2);
   const left = index % 2 === 0;
-  const at = reach(row);
-  const opacity = useTransform(progress, [at - 0.04, at + 0.06], [0, 1]);
-  // Branches slide out from the spine: left ones move left, right ones move right.
-  const x = useTransform(progress, [at - 0.04, at + 0.08], [left ? 24 : -24, 0]);
   const Icon = sector.icon;
 
   return (
     <motion.div
-      style={{ opacity, x, ['--row' as string]: row + 1 }}
+      ref={innerRef}
+      // Branches slide out from the spine once the drawn line reaches their node: left ones move left, right ones right.
+      initial={false}
+      animate={{ opacity: reached ? 1 : 0, x: reached ? 0 : left ? 24 : -24 }}
+      transition={{ duration: 0.5, ease: EASE_OUT }}
+      style={{ ['--row' as string]: row + 1 }}
       className={`relative flex items-center md:[grid-row:var(--row)] ${left ? 'md:col-start-1 md:justify-end' : 'md:col-start-3'}`}
     >
       {/* Connector from the spine to the card: always on the left on phones, toward the spine on desktop */}
@@ -96,12 +95,38 @@ export function HomeTShape() {
   const spineRef = useRef<HTMLDivElement>(null);
   const progress = useScrub(spineRef, ['start 85%', 'end end']);
   const spineScale = useTransform(progress, SPINE, [0, 1]);
+  const gridRef = useRef<HTMLDivElement>(null);
+  const branchRefs = useRef<(HTMLDivElement | null)[]>([]);
+  // The spine stops at the last node: kept in step with the layout as the screen size changes.
+  const [tailPx, setTailPx] = useState(0);
+  useLayoutEffect(() => {
+    const grid = gridRef.current;
+    if (!grid) return;
+    const measure = () => {
+      const last = branchRefs.current[SECTORS.length - 1];
+      if (last) setTailPx(grid.offsetHeight - (last.offsetTop + last.offsetHeight / 2));
+    };
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(grid);
+    return () => observer.disconnect();
+  }, []);
 
-  // How many node rows the drawn spine has reached, for lighting the nodes.
+  // How many sectors the drawn spine has reached, measured against where each one's node actually sits
+  // (side by side in pairs on desktop, one per row on phones).
+  const trackRef = useRef<HTMLDivElement>(null);
   const [reached, setReached] = useState(0);
-  useMotionValueEvent(progress, 'change', (p) => {
+  useMotionValueEvent(spineScale, 'change', (v) => {
+    const track = trackRef.current;
+    const grid = gridRef.current;
+    if (!track || !grid) return;
+    const drawn = v * track.offsetHeight;
     let n = 0;
-    while (n < ROWS && p >= reach(n)) n++;
+    while (n < SECTORS.length) {
+      const branch = branchRefs.current[n];
+      if (!branch || grid.offsetTop + branch.offsetTop + branch.offsetHeight / 2 > drawn + 1) break;
+      n++;
+    }
     setReached((prev) => (prev === n ? prev : n));
   });
 
@@ -109,7 +134,15 @@ export function HomeTShape() {
   const [activeSector, setActiveSector] = useState<number | null>(null);
   const [capActive, setCapActive] = useState(false);
   const activeRow = activeSector === null ? null : Math.floor(activeSector / 2);
-  const litTo = capActive ? 1 : activeRow === null ? 0 : (activeRow + 0.5) / ROWS;
+  // The lit stretch runs from the top of the spine to the hovered sector's node, measured from the layout
+  // (the spine also covers the space above the first row, so a fraction of its height would fall short).
+  const [litPx, setLitPx] = useState(0);
+  useLayoutEffect(() => {
+    const branch = activeSector === null ? null : branchRefs.current[activeSector];
+    if (!branch || !gridRef.current) return;
+    setLitPx(gridRef.current.offsetTop + branch.offsetTop + branch.offsetHeight / 2);
+  }, [activeSector]);
+  const litHeight = capActive ? '100%' : activeSector === null ? 0 : litPx;
   const capHandlers = {
     onPointerEnter: () => setCapActive(true),
     onPointerLeave: () => setCapActive(false),
@@ -198,22 +231,22 @@ export function HomeTShape() {
         {/* Depth: the spine, with sectors branching off it */}
         <div ref={spineRef} className="relative mt-0 pt-10 md:pt-[clamp(28px,5svh,40px)]">
           {/* Spine: a faint track, the scroll-drawn line, and the lit stretch on hover */}
-          <div aria-hidden="true" className="absolute bottom-6 left-4 top-0 w-px md:left-1/2 md:-translate-x-1/2">
+          <div ref={trackRef} aria-hidden="true" style={{ bottom: tailPx }} className="absolute left-4 top-0 w-px md:left-1/2 md:-translate-x-1/2">
             <div className="absolute inset-0 bg-navy/[0.07]" />
             <motion.div style={{ scaleY: spineScale }} className="absolute inset-0 origin-top bg-navy/30" />
             <motion.div
               initial={false}
-              animate={{ scaleY: litTo }}
+              animate={{ height: litHeight }}
               transition={{ duration: 0.4, ease: EASE_OUT }}
-              className="absolute inset-0 origin-top bg-brand shadow-[0_0_10px_rgba(243,111,33,0.7)]"
+              className="absolute inset-x-0 top-0 bg-brand shadow-[0_0_10px_rgba(243,111,33,0.7)]"
             />
           </div>
           <Axis className="absolute left-8 top-3 md:left-[calc(50%+14px)]">Depth · 0{SECTORS.length} sectors ↓</Axis>
 
-          <div className="relative grid gap-x-12 gap-y-3 pl-10 md:grid-cols-[1fr_0_1fr] md:gap-y-[clamp(8px,1.6svh,16px)] md:pl-0" style={{ gridTemplateRows: `repeat(${ROWS}, auto)` }}>
+          <div ref={gridRef} className="relative grid gap-x-12 gap-y-3 pl-10 md:grid-cols-[1fr_0_1fr] md:gap-y-[clamp(8px,1.6svh,16px)] md:pl-0" style={{ gridTemplateRows: `repeat(${ROWS}, auto)` }}>
             {/* Nodes on the spine, one per row */}
             {Array.from({ length: ROWS }, (_, row) => {
-              const on = row < reached || capActive || (activeRow !== null && row <= activeRow);
+              const on = row * 2 < reached || capActive || (activeRow !== null && row <= activeRow);
               return (
                 <span
                   key={row}
@@ -234,9 +267,11 @@ export function HomeTShape() {
                 key={sector.name}
                 sector={sector}
                 index={i}
-                progress={progress}
                 lit={activeSector === i || capActive}
-                reached={Math.floor(i / 2) < reached}
+                reached={i < reached}
+                innerRef={(el) => {
+                  branchRefs.current[i] = el;
+                }}
                 onEnter={() => setActiveSector(i)}
                 onLeave={() => setActiveSector(null)}
               />
