@@ -160,7 +160,7 @@ function EngagementCard({ eng, last }: { eng: Engagement; last: boolean }) {
   return (
     <StaggerItem className="relative">
       <div
-        className={`spotlight spotlight-border relative flex h-full flex-col rounded-[2rem] border bg-white p-8 transition-[translate,box-shadow,border-color] duration-300 ease-out hover:-translate-y-1.5 hover:shadow-[0_32px_60px_-28px_rgba(11,31,59,0.35)] md:p-10 ${
+        className={`spotlight spotlight-border relative flex h-full flex-col rounded-[2rem] border bg-white p-8 transition-[translate,box-shadow,border-color] duration-300 ease-out hover:-translate-y-1.5 hover:shadow-[0_32px_60px_-28px_rgba(11,31,59,0.35)] md:p-[clamp(18px,2.8svh,40px)] ${
           eng.featured
             ? 'border-brand border-t-4 shadow-[0_0_50px_rgba(243,111,33,0.1)]'
             : 'border-grey/20 hover:border-brand/30'
@@ -177,14 +177,14 @@ function EngagementCard({ eng, last }: { eng: Engagement; last: boolean }) {
         {eng.duration && (
           <p className="mb-2 text-xs font-bold uppercase tracking-[0.2em] text-brand">{eng.duration}</p>
         )}
-        <h3 className="mb-1 text-[28px] font-display font-semibold leading-tight text-navy">{eng.name}</h3>
-        {eng.model && <p className="mb-4 text-sm text-grey/60">{eng.model}</p>}
+        <h3 className="mb-1 text-[28px] font-display font-semibold leading-tight text-navy md:text-[clamp(22px,3.4svh,28px)]">{eng.name}</h3>
+        {eng.model && <p className="mb-4 text-sm text-grey/60 md:mb-[clamp(8px,1.8svh,16px)]">{eng.model}</p>}
         {eng.description && (
-          <p className="mb-6 text-[15px] font-normal leading-relaxed text-grey md:text-base">{eng.description}</p>
+          <p className="mb-6 text-[15px] font-normal leading-relaxed text-grey md:mb-[clamp(10px,1.8svh,24px)] md:text-[clamp(14px,2svh,16px)]">{eng.description}</p>
         )}
-        <motion.ul variants={bulletList} className="mb-6 flex-1 space-y-2.5">
+        <motion.ul variants={bulletList} className="mb-6 flex-1 space-y-2.5 md:mb-[clamp(10px,1.8svh,24px)] md:space-y-[clamp(4px,0.9svh,10px)]">
           {eng.bullets.map((b) => (
-            <motion.li key={b} variants={bulletItem} className="flex items-start gap-3 text-[15px] text-grey md:text-base">
+            <motion.li key={b} variants={bulletItem} className="flex items-start gap-3 text-[15px] text-grey md:text-[clamp(14px,2svh,16px)]">
               <motion.span variants={bulletTick} className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand/10 text-brand">
                 <Check className="h-3.5 w-3.5" strokeWidth={3} />
               </motion.span>
@@ -198,7 +198,7 @@ function EngagementCard({ eng, last }: { eng: Engagement; last: boolean }) {
           </p>
         )}
         {eng.bestFor && (
-          <div className="mb-6 rounded-2xl bg-warm-white px-4 py-3.5 space-y-1">
+          <div className="mb-6 space-y-1 rounded-2xl bg-warm-white px-4 py-3.5 md:mb-[clamp(10px,1.8svh,24px)] md:py-[clamp(6px,1.3svh,14px)]">
             <p className="text-[13px] leading-relaxed text-grey/70 md:text-sm">
               <span className="font-semibold text-navy">Best for:</span> {eng.bestFor}
             </p>
@@ -206,7 +206,7 @@ function EngagementCard({ eng, last }: { eng: Engagement; last: boolean }) {
         )}
         <Link
           href="/contact"
-          className={`group/cta relative inline-flex w-full items-center justify-center overflow-hidden rounded-full py-3.5 text-[15px] font-semibold tracking-wide transition-all duration-300 active:scale-[0.98] md:text-base ${
+          className={`group/cta relative inline-flex w-full items-center justify-center overflow-hidden rounded-full py-3.5 text-[15px] font-semibold tracking-wide transition-all duration-300 active:scale-[0.98] md:py-[clamp(10px,1.8svh,14px)] md:text-base ${
             eng.featured
               ? 'bg-brand text-white hover:bg-brand/90 shadow-[0_0_30px_rgba(243,111,33,0.2)]'
               : 'border border-grey/25 text-navy hover:border-brand hover:bg-brand hover:text-white'
@@ -317,13 +317,13 @@ export default function Home() {
         <motion.section
           ref={entryRef}
           style={{ scale: entryScale }}
-          className="origin-top rounded-t-[2.5rem] bg-[#EDE7DC] px-6 py-20 md:rounded-t-[4rem] md:py-28"
+          className="flex origin-top flex-col justify-center rounded-t-[2.5rem] bg-[#EDE7DC] px-6 py-20 md:min-h-[calc(100svh-4rem)] md:rounded-t-[4rem] md:py-[clamp(20px,4svh,80px)]"
         >
-          <div className="max-w-7xl mx-auto">
-            <Reveal className="mb-14 text-center md:mb-20">
+          <div className="mx-auto w-full max-w-7xl">
+            <Reveal className="mb-14 text-center md:mb-[clamp(12px,3svh,56px)]">
               <p className="mb-3 text-xs font-bold uppercase tracking-[0.22em] text-brand">Pick Your Entry Point</p>
               <RevealText
-                className="mb-4 text-3xl font-display font-medium tracking-tight text-navy md:text-5xl"
+                className="mb-4 text-3xl font-display font-medium tracking-tight text-navy md:mb-[clamp(8px,1.6svh,16px)] md:text-[clamp(30px,min(4.4vw,6.4svh),48px)]"
                 parts={[{ text: 'We Scale, Not Just ' }, { text: 'Back Ventures!', className: 'text-brand' }]}
               />
               <p className={`${sectionSubtitle} text-grey`}>
@@ -432,10 +432,12 @@ export default function Home() {
         {/* Why Maxinor — hidden, set to true to re-enable */}
         {false && <WhyMaxinor />}
 
+        {/* Partners and the closing call share one screen: partners at their natural height, the call fills the rest */}
+        <div className="md:flex md:min-h-[calc(100svh-4rem)] md:flex-col">
         {/* Our Partners */}
-        <section className="border-y border-grey/30 bg-warm-white px-6 py-20 md:py-24">
+        <section className="border-y border-grey/30 bg-warm-white px-6 py-20 md:py-[clamp(24px,4.5svh,72px)]">
           <div className="max-w-7xl mx-auto">
-            <Reveal className="mb-12 text-center md:mb-16">
+            <Reveal className="mb-12 text-center md:mb-[clamp(16px,3.5svh,48px)]">
               <RevealText className={`${sectionTitle} mb-4`} parts={[{ text: 'Our ' }, { text: 'Partners', className: 'text-brand' }]} />
               <p className={`${sectionSubtitle} text-grey`}>
                 Collaborating with industry leaders to unlock scale and build enduring ventures.
@@ -452,7 +454,7 @@ export default function Home() {
                     href={partner.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="spotlight spotlight-border group relative flex h-20 w-full items-center justify-center rounded-[1.5rem] border border-grey/30 bg-white p-3 transition-[translate,box-shadow,border-color] duration-300 ease-out hover:-translate-y-1 hover:border-brand/30 hover:shadow-[0_18px_36px_-20px_rgba(11,31,59,0.3)] sm:h-28 sm:rounded-[2rem] sm:p-5 md:h-32 md:p-6"
+                    className="spotlight spotlight-border group relative flex h-20 w-full items-center justify-center rounded-[1.5rem] border border-grey/30 bg-white p-3 transition-[translate,box-shadow,border-color] duration-300 ease-out hover:-translate-y-1 hover:border-brand/30 hover:shadow-[0_18px_36px_-20px_rgba(11,31,59,0.3)] sm:h-28 sm:rounded-[2rem] sm:p-5 md:h-[clamp(64px,11svh,128px)] md:p-6"
                   >
                     <Image
                       src={partner.image}
@@ -472,7 +474,7 @@ export default function Home() {
         {/* CTA Section */}
         <section
           onPointerMove={trackSpotlight}
-          className={`${sectionPadding} group/cta-section relative overflow-hidden rounded-t-[2.5rem] bg-navy text-center text-warm-white md:rounded-t-[4rem]`}
+          className={`px-6 py-20 group/cta-section relative flex flex-col justify-center overflow-hidden rounded-t-[2.5rem] bg-navy text-center text-warm-white md:flex-1 md:rounded-t-[4rem] md:py-[clamp(28px,6svh,128px)]`}
         >
           {/* Warm light that follows the pointer */}
           <div
@@ -484,10 +486,10 @@ export default function Home() {
           <CompassRing spin className="absolute left-1/2 top-1/2 w-[min(140vw,760px)] -translate-x-1/2 -translate-y-1/2 text-warm-white opacity-60" />
           <Reveal className="relative max-w-3xl mx-auto">
             <RevealText
-              className="mb-6 text-4xl font-display font-medium tracking-tight md:mb-8 md:text-6xl"
+              className="mb-6 text-4xl font-display font-medium tracking-tight md:mb-[clamp(12px,3svh,32px)] md:text-[clamp(36px,min(5.4vw,8svh),60px)]"
               parts={[{ text: 'Ready to ' }, { text: 'Scale', className: 'text-brand' }, { text: ' Your Vision?' }]}
             />
-            <p className={`${sectionSubtitle} mb-10 text-warm-white/80 md:mb-12`}>
+            <p className={`${sectionSubtitle} mb-10 text-warm-white/80 md:mb-[clamp(20px,4.5svh,48px)]`}>
               Join India&apos;s first operator-led AI venture studio. Whether you&apos;re a founder looking to scale or an investor seeking high-growth opportunities, let&apos;s build the future together.
             </p>
             <div className="flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6">
@@ -499,6 +501,7 @@ export default function Home() {
             </div>
           </Reveal>
         </section>
+        </div>
 
       </main>
     </div>

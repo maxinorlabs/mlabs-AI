@@ -76,7 +76,7 @@ function SectorBranch({
         onPointerLeave={onLeave}
         onFocus={onEnter}
         onBlur={onLeave}
-        className={`group/sector flex w-full items-center gap-4 rounded-xl border bg-white/60 px-4 py-3 text-navy backdrop-blur-sm transition-[border-color,background-color,translate] duration-300 hover:-translate-y-0.5 hover:bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand md:max-w-xs ${
+        className={`group/sector flex w-full items-center gap-4 rounded-xl border bg-white/60 px-4 py-3 text-navy backdrop-blur-sm transition-[border-color,background-color,translate] duration-300 md:py-[clamp(8px,1.5svh,12px)] hover:-translate-y-0.5 hover:bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand md:max-w-xs ${
           lit ? 'border-brand/50' : 'border-navy/15'
         }`}
       >
@@ -94,7 +94,7 @@ function SectorBranch({
 
 export function HomeTShape() {
   const spineRef = useRef<HTMLDivElement>(null);
-  const progress = useScrub(spineRef, ['start 85%', 'end 55%']);
+  const progress = useScrub(spineRef, ['start 85%', 'end end']);
   const spineScale = useTransform(progress, SPINE, [0, 1]);
 
   // How many node rows the drawn spine has reached, for lighting the nodes.
@@ -120,7 +120,7 @@ export function HomeTShape() {
   return (
     <section
       onPointerMove={trackSpotlight}
-      className="group/hero relative overflow-clip border-t border-navy/10 bg-warm-white px-6 py-20 text-navy md:py-28"
+      className="group/hero relative flex flex-col justify-center overflow-clip border-t border-navy/10 bg-warm-white px-6 py-20 text-navy md:min-h-[calc(100svh-4rem)] md:py-[clamp(24px,5svh,64px)]"
     >
       {/* The hero's paper: navy dot grid, lit orange around the pointer, and a little grain */}
       <div
@@ -131,16 +131,16 @@ export function HomeTShape() {
       <div aria-hidden="true" className="hero-grid hero-grid-lit pointer-events-none absolute inset-0" />
       <div aria-hidden="true" className="grain absolute inset-0 opacity-[0.35] mix-blend-multiply" />
 
-      <div className="relative mx-auto max-w-5xl">
+      <div className="relative mx-auto w-full max-w-5xl">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.6 }}
           transition={{ duration: 0.7, ease: EASE_OUT }}
-          className="mb-10 text-center md:mb-12"
+          className="mb-10 text-center md:mb-[clamp(20px,4.5svh,48px)]"
         >
           <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">The T-Shape Advantage</p>
-          <h2 className="mx-auto max-w-3xl text-2xl font-display font-medium tracking-tight md:text-4xl">
+          <h2 className="mx-auto max-w-3xl text-2xl font-display font-medium tracking-tight md:text-[clamp(26px,min(3.4vw,5.4svh),36px)]">
             Six sectors. One operator team. Your entire business covered.
           </h2>
         </motion.div>
@@ -178,7 +178,7 @@ export function HomeTShape() {
                         <Link
                           href={cap.href}
                           {...capHandlers}
-                          className="group/cell relative flex h-full min-h-[72px] items-center justify-center overflow-hidden px-2 py-4 text-center text-[11px] font-semibold leading-tight outline-none transition-colors duration-500 hover:text-warm-white focus-visible:text-warm-white sm:min-h-[84px] sm:text-xs"
+                          className="group/cell relative flex h-full min-h-[72px] items-center justify-center overflow-hidden px-2 py-4 text-center text-[11px] font-semibold leading-tight outline-none transition-colors duration-500 hover:text-warm-white focus-visible:text-warm-white sm:min-h-[clamp(56px,9svh,84px)] sm:text-xs"
                         >
                           <span
                             aria-hidden="true"
@@ -196,7 +196,7 @@ export function HomeTShape() {
         </div>
 
         {/* Depth: the spine, with sectors branching off it */}
-        <div ref={spineRef} className="relative mt-0 pt-10">
+        <div ref={spineRef} className="relative mt-0 pt-10 md:pt-[clamp(28px,5svh,40px)]">
           {/* Spine: a faint track, the scroll-drawn line, and the lit stretch on hover */}
           <div aria-hidden="true" className="absolute bottom-6 left-4 top-0 w-px md:left-1/2 md:-translate-x-1/2">
             <div className="absolute inset-0 bg-navy/[0.07]" />
@@ -210,7 +210,7 @@ export function HomeTShape() {
           </div>
           <Axis className="absolute left-8 top-3 md:left-[calc(50%+14px)]">Depth · 0{SECTORS.length} sectors ↓</Axis>
 
-          <div className="relative grid gap-x-12 gap-y-3 pl-10 md:grid-cols-[1fr_0_1fr] md:gap-y-4 md:pl-0" style={{ gridTemplateRows: `repeat(${ROWS}, auto)` }}>
+          <div className="relative grid gap-x-12 gap-y-3 pl-10 md:grid-cols-[1fr_0_1fr] md:gap-y-[clamp(8px,1.6svh,16px)] md:pl-0" style={{ gridTemplateRows: `repeat(${ROWS}, auto)` }}>
             {/* Nodes on the spine, one per row */}
             {Array.from({ length: ROWS }, (_, row) => {
               const on = row < reached || capActive || (activeRow !== null && row <= activeRow);

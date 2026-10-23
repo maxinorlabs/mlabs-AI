@@ -24,7 +24,7 @@ export function CourseLine({ stops }: { stops: number }) {
   const inset = `${50 / stops}%`;
 
   return (
-    <div ref={ref} aria-hidden="true" className="relative mb-10 hidden h-6 md:block">
+    <div ref={ref} aria-hidden="true" className="relative mb-10 hidden h-6 md:mb-[clamp(16px,3.5svh,40px)] md:block [@media(max-height:820px)]:md:hidden">
       {/* The plotted course: dashed track underneath, solid line drawn over it */}
       <div className="absolute top-1/2 h-px -translate-y-1/2 border-t border-dashed border-navy/20" style={{ left: inset, right: inset }} />
       <motion.div
