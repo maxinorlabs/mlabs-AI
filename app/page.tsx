@@ -156,11 +156,11 @@ const bulletTick: Variants = {
   visible: { scale: 1, transition: { type: 'spring', stiffness: 500, damping: 22 } },
 };
 
-function EngagementCard({ eng, last }: { eng: Engagement; last: boolean }) {
+function EngagementCard({ eng, index, last }: { eng: Engagement; index: number; last: boolean }) {
   return (
     <StaggerItem className="relative">
       <div
-        className={`spotlight spotlight-border relative flex h-full flex-col rounded-[2rem] border bg-white p-8 transition-[translate,box-shadow,border-color] duration-300 ease-out hover:-translate-y-1.5 hover:shadow-[0_32px_60px_-28px_rgba(11,31,59,0.35)] md:p-[clamp(18px,2.8svh,40px)] ${
+        className={`spotlight spotlight-border relative flex h-full flex-col rounded-[2rem] border bg-white/75 p-8 backdrop-blur-[2px] transition-[translate,box-shadow,border-color] duration-300 ease-out hover:-translate-y-1.5 hover:shadow-[0_32px_60px_-28px_rgba(11,31,59,0.35)] md:p-[clamp(18px,2.8svh,40px)] ${
           eng.featured
             ? 'border-brand border-t-4 shadow-[0_0_50px_rgba(243,111,33,0.1)]'
             : 'border-grey/20 hover:border-brand/30'
@@ -175,7 +175,11 @@ function EngagementCard({ eng, last }: { eng: Engagement; last: boolean }) {
           </motion.div>
         )}
         {eng.duration && (
-          <p className="mb-2 text-xs font-bold uppercase tracking-[0.2em] text-brand">{eng.duration}</p>
+          <p className="mb-2 flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-brand">
+            <span className="text-navy/40">{String(index + 1).padStart(2, '0')}</span>
+            <span aria-hidden="true" className="h-px w-4 bg-navy/20" />
+            {eng.duration}
+          </p>
         )}
         <h3 className="mb-1 text-[28px] font-display font-semibold leading-tight text-navy md:text-[clamp(22px,3.4svh,28px)]">{eng.name}</h3>
         {eng.model && <p className="mb-4 text-sm text-grey/60 md:mb-[clamp(8px,1.8svh,16px)]">{eng.model}</p>}
@@ -198,7 +202,7 @@ function EngagementCard({ eng, last }: { eng: Engagement; last: boolean }) {
           </p>
         )}
         {eng.bestFor && (
-          <div className="mb-6 space-y-1 rounded-2xl bg-warm-white px-4 py-3.5 md:mb-[clamp(10px,1.8svh,24px)] md:py-[clamp(6px,1.3svh,14px)]">
+          <div className="mb-6 space-y-1 rounded-2xl border border-navy/10 bg-warm-white/80 px-4 py-3.5 md:mb-[clamp(10px,1.8svh,24px)] md:py-[clamp(6px,1.3svh,14px)]">
             <p className="text-[13px] leading-relaxed text-grey/70 md:text-sm">
               <span className="font-semibold text-navy">Best for:</span> {eng.bestFor}
             </p>
@@ -317,9 +321,18 @@ export default function Home() {
         <motion.section
           ref={entryRef}
           style={{ scale: entryScale }}
-          className="flex origin-top flex-col justify-center rounded-t-[2.5rem] bg-[#EDE7DC] px-6 py-20 md:min-h-[calc(100svh-4rem)] md:rounded-t-[4rem] md:py-[clamp(20px,4svh,80px)]"
+          onPointerMove={trackSpotlight}
+          className="group/hero relative flex origin-top flex-col justify-center overflow-clip rounded-t-[2.5rem] border-x border-t border-navy/10 bg-warm-white px-6 py-20 shadow-[0_-24px_60px_-40px_rgba(11,31,59,0.25)] md:min-h-[calc(100svh-4rem)] md:rounded-t-[4rem] md:py-[clamp(20px,4svh,80px)]"
         >
-          <div className="mx-auto w-full max-w-7xl">
+          {/* The hero's paper: navy dot grid, lit orange around the pointer, and a little grain */}
+          <div
+            aria-hidden="true"
+            className="hero-grid pointer-events-none absolute inset-0"
+            style={{ backgroundImage: 'radial-gradient(rgb(11 31 59 / 0.16) 1px, transparent 1.4px)' }}
+          />
+          <div aria-hidden="true" className="hero-grid hero-grid-lit pointer-events-none absolute inset-0" />
+          <div aria-hidden="true" className="grain pointer-events-none absolute inset-0 opacity-[0.35] mix-blend-multiply" />
+          <div className="relative mx-auto w-full max-w-7xl">
             <Reveal className="mb-14 text-center md:mb-[clamp(12px,3svh,56px)]">
               <p className="mb-3 text-xs font-bold uppercase tracking-[0.22em] text-brand">Pick Your Entry Point</p>
               <RevealText
@@ -333,7 +346,7 @@ export default function Home() {
             <CourseLine stops={engagements.length} />
             <Stagger className="grid gap-6 md:grid-cols-3">
               {engagements.map((eng, i) => (
-                <EngagementCard key={eng.name} eng={eng} last={i === engagements.length - 1} />
+                <EngagementCard key={eng.name} eng={eng} index={i} last={i === engagements.length - 1} />
               ))}
             </Stagger>
           </div>
