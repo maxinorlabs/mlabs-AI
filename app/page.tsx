@@ -157,79 +157,65 @@ const bulletTick: Variants = {
   visible: { scale: 1, transition: { type: 'spring', stiffness: 500, damping: 22 } },
 };
 
-function EngagementCard({ eng, index, last }: { eng: Engagement; index: number; last: boolean }) {
+// One column of the entry-point panel, drawn like the T-shape: hairline rules, mono labels, no card chrome.
+function EngagementCard({ eng, index }: { eng: Engagement; index: number }) {
   return (
-    <StaggerItem className="relative">
-      <div
-        className={`spotlight spotlight-border relative flex h-full flex-col rounded-[2rem] border bg-white/75 p-8 backdrop-blur-[2px] transition-[translate,box-shadow,border-color] duration-300 ease-out hover:-translate-y-1.5 hover:shadow-[0_32px_60px_-28px_rgba(11,31,59,0.35)] md:p-[clamp(18px,2.8svh,40px)] ${
+    <StaggerItem
+      className={`group relative flex flex-col px-6 py-7 transition-colors duration-300 hover:bg-white md:px-[clamp(20px,2.4vw,36px)] md:py-[clamp(16px,3svh,36px)] ${
+        eng.featured ? 'bg-white' : ''
+      }`}
+    >
+      {/* The featured route is marked by an orange rule along its top edge, like a lit route on the compass */}
+      <span
+        aria-hidden="true"
+        className={`absolute inset-x-0 top-0 h-0.5 origin-left bg-brand transition-transform duration-500 ease-out ${
+          eng.featured ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
+        }`}
+      />
+      <p className="mb-4 flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.2em] md:mb-[clamp(8px,1.8svh,16px)]">
+        <span className="text-brand">{String(index + 1).padStart(2, '0')}</span>
+        <span aria-hidden="true" className="h-px w-4 bg-navy/20" />
+        <span className="text-navy/50">{eng.duration}</span>
+        {eng.featured && (
+          <motion.span variants={badgeVariants} className="-my-1 ml-auto rounded-full bg-brand/10 px-2 py-0.5 text-[10px] tracking-[0.16em] text-brand">
+            Most Popular
+          </motion.span>
+        )}
+      </p>
+      <h3 className="text-[26px] font-display font-medium leading-tight tracking-tight text-navy md:text-[clamp(22px,3.4svh,28px)]">{eng.name}</h3>
+      {eng.model && <p className="mt-1 text-sm text-grey/70">{eng.model}</p>}
+      {eng.description && (
+        <p className="mt-4 text-[15px] font-light leading-relaxed text-grey md:mt-[clamp(8px,1.8svh,16px)] md:text-[clamp(14px,2svh,16px)]">{eng.description}</p>
+      )}
+      <motion.ul variants={bulletList} className="mt-5 flex-1 border-t border-navy/10 md:mt-[clamp(10px,2svh,20px)]">
+        {eng.bullets.map((b) => (
+          <motion.li
+            key={b}
+            variants={bulletItem}
+            className="flex items-center gap-3 border-b border-navy/[0.06] py-2 text-[14px] text-navy/80 md:py-[clamp(4px,0.9svh,9px)] md:text-[clamp(13px,1.9svh,15px)]"
+          >
+            <motion.span variants={bulletTick} aria-hidden="true" className="h-1.5 w-1.5 shrink-0 rotate-45 bg-brand" />
+            {b}
+          </motion.li>
+        ))}
+      </motion.ul>
+      {eng.bestFor && (
+        <p className="mt-4 text-[13px] leading-relaxed text-grey md:mt-[clamp(8px,1.8svh,16px)]">
+          <span className="mr-1.5 font-mono text-[10px] uppercase tracking-[0.18em] text-navy/50">Best for</span>
+          {eng.bestFor}
+        </p>
+      )}
+      <Link
+        href="/contact"
+        className={`group/cta mt-5 inline-flex items-center justify-between gap-3 rounded-full border px-5 py-3 text-[15px] font-semibold transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand md:mt-[clamp(10px,2svh,20px)] md:py-[clamp(8px,1.5svh,12px)] ${
           eng.featured
-            ? 'border-brand border-t-4 shadow-[0_0_50px_rgba(243,111,33,0.1)]'
-            : 'border-grey/20 hover:border-brand/30'
+            ? 'border-brand bg-brand text-white hover:bg-brand/90'
+            : 'border-navy/15 text-navy hover:border-brand hover:text-brand'
         }`}
       >
-        {eng.featured && (
-          <motion.div
-            variants={badgeVariants}
-            className="absolute -top-3.5 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-brand px-5 py-1.5 text-xs font-bold uppercase tracking-widest text-white shadow-lg"
-          >
-            Most Popular
-          </motion.div>
-        )}
-        {eng.duration && (
-          <p className="mb-2 flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-brand">
-            <span className="text-navy/40">{String(index + 1).padStart(2, '0')}</span>
-            <span aria-hidden="true" className="h-px w-4 bg-navy/20" />
-            {eng.duration}
-          </p>
-        )}
-        <h3 className="mb-1 text-[28px] font-display font-semibold leading-tight text-navy md:text-[clamp(22px,3.4svh,28px)]">{eng.name}</h3>
-        {eng.model && <p className="mb-4 text-sm text-grey/60 md:mb-[clamp(8px,1.8svh,16px)]">{eng.model}</p>}
-        {eng.description && (
-          <p className="mb-6 text-[15px] font-normal leading-relaxed text-grey md:mb-[clamp(10px,1.8svh,24px)] md:text-[clamp(14px,2svh,16px)]">{eng.description}</p>
-        )}
-        <motion.ul variants={bulletList} className="mb-6 flex-1 space-y-2.5 md:mb-[clamp(10px,1.8svh,24px)] md:space-y-[clamp(4px,0.9svh,10px)]">
-          {eng.bullets.map((b) => (
-            <motion.li key={b} variants={bulletItem} className="flex items-start gap-3 text-[15px] text-grey md:text-[clamp(14px,2svh,16px)]">
-              <motion.span variants={bulletTick} className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand/10 text-brand">
-                <Check className="h-3.5 w-3.5" strokeWidth={3} />
-              </motion.span>
-              {b}
-            </motion.li>
-          ))}
-        </motion.ul>
-        {eng.commercial && (
-          <p className="mb-4 text-[13px] leading-relaxed text-grey/70 md:text-sm">
-            {eng.commercial}
-          </p>
-        )}
-        {eng.bestFor && (
-          <div className="mb-6 space-y-1 rounded-2xl border border-navy/10 bg-warm-white/80 px-4 py-3.5 md:mb-[clamp(10px,1.8svh,24px)] md:py-[clamp(6px,1.3svh,14px)]">
-            <p className="text-[13px] leading-relaxed text-grey/70 md:text-sm">
-              <span className="font-semibold text-navy">Best for:</span> {eng.bestFor}
-            </p>
-          </div>
-        )}
-        <Link
-          href="/contact"
-          className={`group/cta relative inline-flex w-full items-center justify-center overflow-hidden rounded-full py-3.5 text-[15px] font-semibold tracking-wide transition-all duration-300 active:scale-[0.98] md:py-[clamp(10px,1.8svh,14px)] md:text-base ${
-            eng.featured
-              ? 'bg-brand text-white hover:bg-brand/90 shadow-[0_0_30px_rgba(243,111,33,0.2)]'
-              : 'border border-grey/25 text-navy hover:border-brand hover:bg-brand hover:text-white'
-          }`}
-        >
-          {/* A sheen passes across the button on hover */}
-          <span aria-hidden="true" className="pointer-events-none absolute inset-y-0 -left-1/3 w-1/3 -skew-x-12 bg-gradient-to-r from-transparent via-white/40 to-transparent opacity-0 transition-[left,opacity] duration-700 ease-out group-hover/cta:left-full group-hover/cta:opacity-100" />
-          {eng.cta} <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover/cta:translate-x-1" />
-        </Link>
-      </div>
-      {/* Phones: the course continues down between the stacked cards */}
-      {!last && (
-        <motion.span
-          aria-hidden="true"
-          variants={{ hidden: { scaleY: 0 }, visible: { scaleY: 1, transition: { delay: 0.3, duration: 0.4, ease: EASE_OUT } } }}
-          className="absolute left-1/2 top-full h-6 w-0.5 origin-top -translate-x-1/2 bg-brand/50 md:hidden"
-        />
-      )}
+        {eng.cta}
+        <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover/cta:translate-x-1" />
+      </Link>
     </StaggerItem>
   );
 }
@@ -345,9 +331,9 @@ export default function Home() {
               </p>
             </Reveal>
             <CourseLine stops={engagements.length} />
-            <Stagger className="grid gap-6 md:grid-cols-3">
+            <Stagger className="mx-auto grid max-w-6xl divide-y divide-navy/10 overflow-hidden rounded-2xl border border-navy/10 bg-white/60 shadow-[0_24px_60px_-36px_rgba(11,31,59,0.35)] backdrop-blur-[2px] md:grid-cols-3 md:divide-x md:divide-y-0">
               {engagements.map((eng, i) => (
-                <EngagementCard key={eng.name} eng={eng} index={i} last={i === engagements.length - 1} />
+                <EngagementCard key={eng.name} eng={eng} index={i} />
               ))}
             </Stagger>
           </div>
