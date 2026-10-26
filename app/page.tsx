@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { motion, useTransform, type Variants } from 'motion/react';
 import {
   ArrowRight,
@@ -17,7 +17,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import WhyMaxinor from '../components/WhyMaxinor';
 import { HomeTShape } from '../components/home/HomeTShape';
-import { CompassRing } from '../components/Compass';
+import { CompassRing, HeroCompass } from '../components/Compass';
 import { HomeHero } from '../components/home/HomeHero';
 import { CourseLine } from '../components/home/CourseLine';
 import { VelocityMarquee } from '../components/home/VelocityMarquee';
@@ -237,6 +237,8 @@ export default function Home() {
   const entryRef = useRef<HTMLElement>(null);
   const entryProgress = useScrub(entryRef, ['start end', 'start 35%']);
   const entryScale = useTransform(entryProgress, [0, 1], [0.94, 1]);
+  // Pointing at the closing button swings the closing compass's needle to Scale, echoing the hero.
+  const [ctaHover, setCtaHover] = useState(false);
 
   return (
     <div className="font-sans">
@@ -493,7 +495,7 @@ export default function Home() {
         {/* CTA Section */}
         <section
           onPointerMove={trackSpotlight}
-          className="group/hero relative flex flex-col justify-center overflow-clip rounded-t-[2.5rem] border-x border-t border-navy/10 bg-warm-white px-6 py-20 text-center text-navy shadow-[0_-24px_60px_-40px_rgba(11,31,59,0.25)] md:flex-1 md:rounded-t-[4rem] md:py-[clamp(28px,6svh,128px)]"
+          className="group/hero relative flex flex-col justify-center overflow-clip rounded-t-[2.5rem] border-x border-t border-navy/10 bg-warm-white px-6 py-20 text-center text-navy shadow-[0_-24px_60px_-40px_rgba(11,31,59,0.25)] md:flex-1 md:px-12 md:rounded-t-[4rem] md:py-[clamp(28px,6svh,128px)]"
         >
           {/* The hero's paper: navy dot grid, lit orange around the pointer, and a little grain */}
           <div
@@ -503,21 +505,41 @@ export default function Home() {
           />
           <div aria-hidden="true" className="hero-grid hero-grid-lit pointer-events-none absolute inset-0" />
           <div aria-hidden="true" className="grain pointer-events-none absolute inset-0 opacity-[0.35] mix-blend-multiply" />
-          <CompassRing spin className="absolute left-1/2 top-1/2 w-[min(140vw,760px)] -translate-x-1/2 -translate-y-1/2 text-navy opacity-25" />
-          <Reveal className="relative max-w-3xl mx-auto">
-            <RevealText
-              className="mb-6 text-4xl font-display font-medium tracking-tight md:mb-[clamp(12px,3svh,32px)] md:text-[clamp(36px,min(5.4vw,8svh),60px)]"
-              parts={[{ text: 'Ready to ' }, { text: 'Scale', className: 'text-brand' }, { text: ' Your Vision?' }]}
-            />
-            <p className={`${sectionSubtitle} mb-10 text-grey md:mb-[clamp(20px,4.5svh,48px)]`}>
-              Join India&apos;s first operator-led AI venture studio. Whether you&apos;re a founder looking to scale or an investor seeking high-growth opportunities, let&apos;s build the future together.
-            </p>
-            <div className="flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6">
-              <Magnetic className="w-full max-w-[320px] sm:w-auto">
-                <Link href="/contact" className={`group ${primaryButtonClass}`}>
-                  Get in Touch <ArrowRight className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" />
-                </Link>
-              </Magnetic>
+          {/* Laid out like the hero: words on the left, the compass ring on the right */}
+          <CompassRing
+            spin
+            className="absolute left-1/2 top-1/2 w-[min(140vw,760px)] -translate-x-1/2 -translate-y-1/2 text-navy opacity-20 md:left-auto md:right-[2%] md:w-[min(46vw,80svh,640px)] md:translate-x-0 md:opacity-60"
+          />
+          {/* The hero's compass sits inside the ring, so the page ends where it began */}
+          <div aria-hidden="true" className="pointer-events-none absolute right-[2%] top-1/2 hidden aspect-square w-[min(46vw,80svh,640px)] -translate-y-1/2 items-center justify-center md:flex">
+            <HeroCompass bearing={ctaHover ? 0 : null} className="relative w-[58%] text-navy" />
+          </div>
+          <Reveal className="relative mx-auto w-full max-w-7xl md:text-left">
+            <div className="md:max-w-[min(600px,52%)]">
+              <p className="mb-4 flex items-center justify-center gap-2 font-mono text-[11px] uppercase tracking-[0.2em] text-navy/50 md:justify-start">
+                <span className="text-brand">→</span> Next step
+              </p>
+              <RevealText
+                className="mb-6 text-4xl font-display font-medium tracking-tight md:mb-[clamp(12px,3svh,32px)] md:text-[clamp(36px,min(5.4vw,8svh),64px)] md:leading-[1.05]"
+                parts={[{ text: 'Ready to ' }, { text: 'Scale', className: 'text-brand' }, { text: ' Your Vision?' }]}
+              />
+              <p className="mx-auto mb-10 max-w-xl border-t border-navy/10 pt-5 text-base font-light text-grey md:mx-0 md:mb-[clamp(20px,4.5svh,48px)] md:text-lg">
+                Join India&apos;s first operator-led AI venture studio. Whether you&apos;re a founder looking to scale or an investor seeking high-growth opportunities, let&apos;s build the future together.
+              </p>
+              <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center md:justify-start">
+                <Magnetic className="w-full max-w-[320px] sm:w-auto">
+                  <Link
+                    href="/contact"
+                    onMouseEnter={() => setCtaHover(true)}
+                    onMouseLeave={() => setCtaHover(false)}
+                    onFocus={() => setCtaHover(true)}
+                    onBlur={() => setCtaHover(false)}
+                    className={`group ${primaryButtonClass}`}
+                  >
+                    Get in Touch <ArrowRight className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" />
+                  </Link>
+                </Magnetic>
+              </div>
             </div>
           </Reveal>
         </section>
