@@ -507,22 +507,23 @@ export default function Home() {
         {/* CTA Section */}
         <section
           onPointerMove={trackSpotlight}
-          className={`px-6 py-20 group/cta-section relative flex flex-col justify-center overflow-hidden rounded-t-[2.5rem] bg-navy text-center text-warm-white md:flex-1 md:rounded-t-[4rem] md:py-[clamp(28px,6svh,128px)]`}
+          className="group/hero relative flex flex-col justify-center overflow-clip rounded-t-[2.5rem] border-x border-t border-navy/10 bg-warm-white px-6 py-20 text-center text-navy shadow-[0_-24px_60px_-40px_rgba(11,31,59,0.25)] md:flex-1 md:rounded-t-[4rem] md:py-[clamp(28px,6svh,128px)]"
         >
-          {/* Warm light that follows the pointer */}
+          {/* The hero's paper: navy dot grid, lit orange around the pointer, and a little grain */}
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 [@media(hover:hover)]:group-hover/cta-section:opacity-100"
-            style={{ background: 'radial-gradient(560px circle at var(--spot-x, 50%) var(--spot-y, 50%), rgba(243,111,33,0.14), transparent 70%)' }}
+            className="hero-grid pointer-events-none absolute inset-0"
+            style={{ backgroundImage: 'radial-gradient(rgb(11 31 59 / 0.16) 1px, transparent 1.4px)' }}
           />
-          <div aria-hidden="true" className="grain absolute inset-0" />
-          <CompassRing spin className="absolute left-1/2 top-1/2 w-[min(140vw,760px)] -translate-x-1/2 -translate-y-1/2 text-warm-white opacity-60" />
+          <div aria-hidden="true" className="hero-grid hero-grid-lit pointer-events-none absolute inset-0" />
+          <div aria-hidden="true" className="grain pointer-events-none absolute inset-0 opacity-[0.35] mix-blend-multiply" />
+          <CompassRing spin className="absolute left-1/2 top-1/2 w-[min(140vw,760px)] -translate-x-1/2 -translate-y-1/2 text-navy opacity-25" />
           <Reveal className="relative max-w-3xl mx-auto">
             <RevealText
               className="mb-6 text-4xl font-display font-medium tracking-tight md:mb-[clamp(12px,3svh,32px)] md:text-[clamp(36px,min(5.4vw,8svh),60px)]"
               parts={[{ text: 'Ready to ' }, { text: 'Scale', className: 'text-brand' }, { text: ' Your Vision?' }]}
             />
-            <p className={`${sectionSubtitle} mb-10 text-warm-white/80 md:mb-[clamp(20px,4.5svh,48px)]`}>
+            <p className={`${sectionSubtitle} mb-10 text-grey md:mb-[clamp(20px,4.5svh,48px)]`}>
               Join India&apos;s first operator-led AI venture studio. Whether you&apos;re a founder looking to scale or an investor seeking high-growth opportunities, let&apos;s build the future together.
             </p>
             <div className="flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6">
