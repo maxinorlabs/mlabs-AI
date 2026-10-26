@@ -4,6 +4,7 @@ import { useRef } from 'react';
 import { motion, useTransform, type Variants } from 'motion/react';
 import {
   ArrowRight,
+  ArrowUpRight,
   Check,
   Hospital,
   Landmark,
@@ -448,35 +449,54 @@ export default function Home() {
         {/* Partners and the closing call share one screen: partners at their natural height, the call fills the rest */}
         <div className="md:flex md:min-h-[calc(100svh-4rem)] md:flex-col">
         {/* Our Partners */}
-        <section className="border-y border-grey/30 bg-warm-white px-6 py-20 md:py-[clamp(24px,4.5svh,72px)]">
-          <div className="max-w-7xl mx-auto">
+        <section
+          onPointerMove={trackSpotlight}
+          className="group/hero relative overflow-clip border-t border-navy/10 bg-warm-white px-6 py-20 md:py-[clamp(24px,4.5svh,72px)]"
+        >
+          {/* The hero's paper: navy dot grid, lit orange around the pointer, and a little grain */}
+          <div
+            aria-hidden="true"
+            className="hero-grid pointer-events-none absolute inset-0"
+            style={{ backgroundImage: 'radial-gradient(rgb(11 31 59 / 0.16) 1px, transparent 1.4px)' }}
+          />
+          <div aria-hidden="true" className="hero-grid hero-grid-lit pointer-events-none absolute inset-0" />
+          <div aria-hidden="true" className="grain pointer-events-none absolute inset-0 opacity-[0.35] mix-blend-multiply" />
+          <div className="relative mx-auto max-w-7xl">
             <Reveal className="mb-12 text-center md:mb-[clamp(16px,3.5svh,48px)]">
               <RevealText className={`${sectionTitle} mb-4`} parts={[{ text: 'Our ' }, { text: 'Partners', className: 'text-brand' }]} />
               <p className={`${sectionSubtitle} text-grey`}>
                 Collaborating with industry leaders to unlock scale and build enduring ventures.
               </p>
             </Reveal>
-            <Stagger className="mx-auto grid max-w-4xl grid-cols-3 gap-3 sm:gap-6 md:gap-8">
+            {/* One ruled strip split into cells, like the hero's route cards */}
+            <Stagger className="mx-auto grid max-w-4xl grid-cols-1 divide-y divide-navy/10 overflow-hidden rounded-2xl border border-navy/10 bg-white/70 shadow-[0_24px_60px_-36px_rgba(11,31,59,0.35)] backdrop-blur-[2px] sm:grid-cols-3 sm:divide-x sm:divide-y-0">
               {[
                 { name: "Hygriv", image: "/images/logo-with-capital.png", url: "https://www.hygriv.com/" },
                 { name: "Saptharushi", image: "/images/saptharushi7-logo.jpg", url: "https://saptharushi.com/" },
                 { name: "iAccel GBI", image: "/images/logo-removebg.webp", url: "https://iaccelgbi.com/" },
               ].map((partner, idx) => (
-                <StaggerItem key={idx}>
+                <StaggerItem key={partner.name}>
                   <Link
                     href={partner.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="spotlight spotlight-border group relative flex h-20 w-full items-center justify-center rounded-[1.5rem] border border-grey/30 bg-white p-3 transition-[translate,box-shadow,border-color] duration-300 ease-out hover:-translate-y-1 hover:border-brand/30 hover:shadow-[0_18px_36px_-20px_rgba(11,31,59,0.3)] sm:h-28 sm:rounded-[2rem] sm:p-5 md:h-[clamp(64px,11svh,128px)] md:p-6"
+                    className="group relative flex flex-col gap-2 px-5 py-4 transition-colors duration-300 hover:bg-white focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-brand md:py-[clamp(10px,2svh,20px)]"
                   >
-                    <Image
-                      src={partner.image}
-                      alt={partner.name}
-                      fill
-                      sizes="(min-width: 768px) 280px, 33vw"
-                      className="object-contain p-3 opacity-70 grayscale transition-[opacity,filter] duration-500 group-hover:opacity-100 group-hover:grayscale-0 sm:p-6 [@media(hover:none)]:opacity-100 [@media(hover:none)]:grayscale-0"
-                      referrerPolicy="no-referrer"
-                    />
+                    <span className="flex items-center justify-between font-mono text-xs uppercase tracking-[0.18em]">
+                      <span className="text-brand">{String(idx + 1).padStart(2, '0')}</span>
+                      <ArrowUpRight className="h-4 w-4 text-navy/40 transition duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-brand" />
+                    </span>
+                    <span className="relative block h-16 md:h-[clamp(48px,9svh,96px)]">
+                      <Image
+                        src={partner.image}
+                        alt={partner.name}
+                        fill
+                        sizes="(min-width: 640px) 280px, 90vw"
+                        className="object-contain opacity-70 grayscale transition-[opacity,filter] duration-500 group-hover:opacity-100 group-hover:grayscale-0 [@media(hover:none)]:opacity-100 [@media(hover:none)]:grayscale-0"
+                        referrerPolicy="no-referrer"
+                      />
+                    </span>
+                    <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-navy/50 transition-colors duration-300 group-hover:text-navy">{partner.name}</span>
                   </Link>
                 </StaggerItem>
               ))}
