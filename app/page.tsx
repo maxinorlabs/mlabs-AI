@@ -220,6 +220,13 @@ function EngagementCard({ eng, index }: { eng: Engagement; index: number }) {
   );
 }
 
+// The three ways in, around the closing compass at the same bearings as the hero's.
+const CLOSING_ROUTES = [
+  { label: 'Build', href: '/build', bearing: 300 },
+  { label: 'Scale', href: '/scale', bearing: 0 },
+  { label: 'Invest', href: '/invest', bearing: 60 },
+];
+
 // The operator capabilities, repeated in the scrolling tape under the T-Shape.
 const MARQUEE = [
   'AI & Tech',
@@ -237,8 +244,8 @@ export default function Home() {
   const entryRef = useRef<HTMLElement>(null);
   const entryProgress = useScrub(entryRef, ['start end', 'start 35%']);
   const entryScale = useTransform(entryProgress, [0, 1], [0.94, 1]);
-  // Pointing at the closing button swings the closing compass's needle to Scale, echoing the hero.
-  const [ctaHover, setCtaHover] = useState(false);
+  // The closing compass echoes the hero: its labels and the button swing the needle to a bearing.
+  const [ctaBearing, setCtaBearing] = useState<number | null>(null);
 
   return (
     <div className="font-sans">
@@ -510,9 +517,32 @@ export default function Home() {
             spin
             className="absolute left-1/2 top-1/2 w-[min(140vw,760px)] -translate-x-1/2 -translate-y-1/2 text-navy opacity-20 md:left-auto md:right-[2%] md:w-[min(46vw,80svh,640px)] md:translate-x-0 md:opacity-60"
           />
-          {/* The hero's compass sits inside the ring, so the page ends where it began */}
-          <div aria-hidden="true" className="pointer-events-none absolute right-[2%] top-1/2 hidden aspect-square w-[min(46vw,80svh,640px)] -translate-y-1/2 items-center justify-center md:flex">
-            <HeroCompass bearing={ctaHover ? 0 : null} className="relative w-[58%] text-navy" />
+          {/* The hero's compass sits inside the ring, so the page ends where it began. Its three bearings
+              are the three ways in again; they repeat links found higher up, so they stay out of the tab order. */}
+          <div className="pointer-events-none absolute right-[2%] top-1/2 hidden aspect-square w-[min(46vw,80svh,640px)] -translate-y-1/2 items-center justify-center md:flex">
+            <div className="relative w-[58%]">
+              <HeroCompass bearing={ctaBearing} className="relative w-full text-navy" />
+              {CLOSING_ROUTES.map((route) => {
+                const rad = ((route.bearing - 90) * Math.PI) / 180;
+                return (
+                  <Link
+                    key={route.href}
+                    href={route.href}
+                    tabIndex={-1}
+                    onMouseEnter={() => setCtaBearing(route.bearing)}
+                    onMouseLeave={() => setCtaBearing(null)}
+                    className={`pointer-events-auto absolute -translate-x-1/2 -translate-y-1/2 whitespace-nowrap rounded-full border px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.24em] transition-colors duration-300 ${
+                      ctaBearing === route.bearing
+                        ? 'border-brand/40 bg-warm-white text-brand'
+                        : 'border-transparent text-navy/40 hover:border-navy/15'
+                    }`}
+                    style={{ left: `${50 + 58 * Math.cos(rad)}%`, top: `${50 + 58 * Math.sin(rad)}%` }}
+                  >
+                    {route.label}
+                  </Link>
+                );
+              })}
+            </div>
           </div>
           <Reveal className="relative mx-auto w-full max-w-7xl md:text-left">
             <div className="md:max-w-[min(600px,52%)]">
@@ -530,15 +560,36 @@ export default function Home() {
                 <Magnetic className="w-full max-w-[320px] sm:w-auto">
                   <Link
                     href="/contact"
-                    onMouseEnter={() => setCtaHover(true)}
-                    onMouseLeave={() => setCtaHover(false)}
-                    onFocus={() => setCtaHover(true)}
-                    onBlur={() => setCtaHover(false)}
+                    onMouseEnter={() => setCtaBearing(0)}
+                    onMouseLeave={() => setCtaBearing(null)}
+                    onFocus={() => setCtaBearing(0)}
+                    onBlur={() => setCtaBearing(null)}
                     className={`group ${primaryButtonClass}`}
                   >
                     Get in Touch <ArrowRight className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" />
                   </Link>
                 </Magnetic>
+              </div>
+              {/* Other ways to reach us, ruled like the panels above */}
+              <div className="mx-auto mt-10 grid max-w-xl grid-cols-1 divide-y divide-navy/10 border-y border-navy/10 text-left sm:grid-cols-2 sm:divide-x sm:divide-y-0 md:mx-0 md:mt-[clamp(20px,4.5svh,48px)]">
+                {[
+                  { label: 'Email', value: 'contact@mlabs.co.in', href: 'mailto:contact@mlabs.co.in' },
+                  { label: 'Meet', value: 'The operator team', href: '/team' },
+                ].map((item, i) => (
+                  <Link
+                    key={item.label}
+                    href={item.href}
+                    className="group/row flex items-center justify-between gap-3 py-3 transition-colors duration-300 hover:text-brand focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand sm:px-4 sm:first:pl-0"
+                  >
+                    <span>
+                      <span className="block font-mono text-[10px] uppercase tracking-[0.2em] text-navy/50">
+                        <span className="text-brand">{String(i + 1).padStart(2, '0')}</span> · {item.label}
+                      </span>
+                      <span className="text-[15px] font-medium">{item.value}</span>
+                    </span>
+                    <ArrowUpRight className="h-4 w-4 text-navy/40 transition duration-300 group-hover/row:-translate-y-0.5 group-hover/row:translate-x-0.5 group-hover/row:text-brand" />
+                  </Link>
+                ))}
               </div>
             </div>
           </Reveal>
