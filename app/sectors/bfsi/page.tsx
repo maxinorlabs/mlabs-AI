@@ -173,7 +173,7 @@ const operators = [
     bg: 'ex-Paytm, ex-Zee, ex-Healthkart',
     depth: '20+ years cross-industry legal expertise spanning FinTech, real estate, e-commerce and media.',
     slug: 'manik-sood',
-    image: '/images/manik.webp',
+    image: '/team/manik-sood-v3.webp',
   },
 ];
 

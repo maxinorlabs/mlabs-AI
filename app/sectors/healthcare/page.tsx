@@ -165,7 +165,7 @@ const operators = [
     bg: 'ex-Operation Smile, ex-World Bank, ex-PATH',
     depth: 'Deep expertise in global health systems, government programme design, and scaling clinical interventions across public and private sectors.',
     slug: 'dr-rachit-negi',
-    image: '/images/whatsapp-image-2026-04-30-at-12-35-34-pm.jpg',
+    image: '/team/dr-rachit-negi-v3.webp',
   },
 ];
 

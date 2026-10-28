@@ -143,7 +143,7 @@ const operator = {
   bg: 'ex-Google x Tata Trusts, ex-OYO, ex-Grofers',
   depth: 'Product and design operator with experience building and scaling consumer and B2B platforms across India. At OYO, operated at the intersection of product and growth. At Google x Tata Trusts, designed product for the next billion users. At Grofers and Dineout, owned CX end-to-end. For design-system-heavy or visual-design-intensive engagements, Amar draws on Maxinor\'s design network to extend delivery bandwidth.',
   slug: 'amar-daing',
-  image: '/images/1663569415671.jpg',
+  image: '/team/amar-daing-v3.webp',
 };
 
 function ArchitectureExplorer() {

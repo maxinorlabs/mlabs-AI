@@ -25,12 +25,12 @@ const ROUTES = [
 ];
 
 const OPERATORS = [
-  { name: 'Samir Gupta', src: '/team/samir-gupta.webp' },
-  { name: 'Amar Daing', src: '/images/1663569415671.jpg' },
-  { name: 'Parool Duggal', src: '/team/parool-duggal.webp' },
-  { name: 'Alok Kumar', src: '/team/alok-kumar-v2.webp' },
-  { name: 'Alok Lall', src: '/team/alok-lall.webp' },
-  { name: 'Manik Sood', src: '/images/manik.webp' },
+  { name: 'Samir Gupta', src: '/team/samir-gupta-v3.webp' },
+  { name: 'Amar Daing', src: '/team/amar-daing-v3.webp' },
+  { name: 'Parool Duggal', src: '/team/parool-duggal-v3.webp' },
+  { name: 'Alok Kumar', src: '/team/alok-kumar-v3.webp' },
+  { name: 'Alok Lall', src: '/team/alok-lall-v3.webp' },
+  { name: 'Manik Sood', src: '/team/manik-sood-v3.webp' },
 ];
 
 const HEADLINE = [

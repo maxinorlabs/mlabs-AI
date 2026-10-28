@@ -165,7 +165,7 @@ const operators = [
     bg: 'ex-Paytm, ex-Bzinga, ex-Solv',
     depth: 'Operator across media, fintech, and digital commerce. Built and scaled revenue engines at high-growth consumer businesses.',
     slug: 'samir-gupta',
-    image: '/team/samir-gupta.webp',
+    image: '/team/samir-gupta-v3.webp',
   },
   {
     name: 'Priyabrata Padhi',
@@ -173,7 +173,7 @@ const operators = [
     bg: 'ex-United Breweries, ex-ITC, ex-Britannia',
     depth: 'Deep consumer marketing expertise across FMCG and media. Brand building, distribution strategy, and audience growth at scale.',
     slug: 'priyabrata-padhi',
-    image: '/images/gemini-generated-image-m5qmrom5qmrom5qm.webp',
+    image: '/team/priyabrata-padhi-v3.webp',
   },
 ];
 
