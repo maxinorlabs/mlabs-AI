@@ -384,7 +384,8 @@ export default function CorporatePage() {
         </div>
       </section>
 
-      {/* ── Section 5: Partners and Ventures ── */}
+      {/* ── Section 5: Partners and Ventures — hidden, set to true to re-enable ── */}
+      {false && (
       <section className="bg-warm-white px-6 py-20 md:py-28 border-t border-grey/10">
         <div className="max-w-7xl mx-auto">
           <motion.div
@@ -426,6 +427,7 @@ export default function CorporatePage() {
           </div>
         </div>
       </section>
+      )}
 
       {/* ── Section 6: FAQ ── */}
       <section className="bg-warm-white px-6 pb-20 md:pb-28 border-t border-grey/10">

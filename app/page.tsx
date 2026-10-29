@@ -439,9 +439,10 @@ export default function Home() {
         {/* Why Maxinor — hidden, set to true to re-enable */}
         {false && <WhyMaxinor />}
 
-        {/* Partners and the closing call share one screen: partners at their natural height, the call fills the rest */}
+        {/* The closing call fills one screen */}
         <div className="md:flex md:min-h-[calc(100svh-4rem)] md:flex-col">
-        {/* Our Partners */}
+        {/* Our Partners — hidden, set to true to re-enable */}
+        {false && (
         <section
           onPointerMove={trackSpotlight}
           className="group/hero relative overflow-clip border-t border-navy/10 bg-warm-white px-6 py-20 md:py-[clamp(24px,4.5svh,72px)]"
@@ -495,6 +496,7 @@ export default function Home() {
             </Stagger>
           </div>
         </section>
+        )}
 
         {/* CTA Section */}
         <section

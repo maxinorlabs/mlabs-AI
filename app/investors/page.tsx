@@ -368,7 +368,8 @@ export default function InvestorsPage() {
         </div>
       </section>
 
-      {/* ── Section 5: Partners and co-investors (warm-white) ───────────────────── */}
+      {/* ── Section 5: Partners and co-investors (warm-white) — hidden, set to true to re-enable ── */}
+      {false && (
       <section className="bg-warm-white px-6 py-20 md:py-28">
         <div className="max-w-7xl mx-auto">
           {/* Partners row */}
@@ -411,6 +412,7 @@ export default function InvestorsPage() {
           </motion.div>
         </div>
       </section>
+      )}
 
       {/* ── Section 6: FAQ (warm-white) ───────────────────────────────────── */}
       <section className="border-t border-grey/10 bg-warm-white px-6 py-20 md:py-28">
