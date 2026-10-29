@@ -125,10 +125,7 @@ function RouteCell({
           index === 0 ? 'bg-brand' : 'bg-navy'
         }`}
       />
-      <span className="relative flex items-center justify-between gap-4 sm:w-full">
-        <span className="font-mono text-xs tracking-wider text-brand transition-colors duration-500 group-hover:text-warm-white/70 group-focus-visible:text-warm-white/70">
-          0{index + 1}
-        </span>
+      <span className="relative flex items-center justify-end gap-4 sm:w-full">
         <ArrowUpRight
           aria-hidden="true"
           className="hidden h-4 w-4 transition-transform duration-500 group-hover:-translate-y-1 group-hover:translate-x-1 sm:block"

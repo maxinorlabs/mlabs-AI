@@ -45,8 +45,9 @@ function IconLink({ label, href, icon: Icon, external, name }: ReturnType<typeof
   );
 }
 
-// A team card: the whole card opens the full bio in a native dialog (focus trap, Escape to close),
-// and the icon links sit above the card's click area so they work on their own.
+// A team card: the whole card links to the member's LinkedIn profile, "Read more" opens the full bio
+// in a native dialog (focus trap, Escape to close), and the icon links and button sit above the
+// card's click area so they work on their own.
 export function TeamCard({ member, id }: { member: TeamMember; id: string }) {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const links = profileLinks(member);
@@ -57,10 +58,11 @@ export function TeamCard({ member, id }: { member: TeamMember; id: string }) {
       id={id}
       className="spotlight spotlight-border group relative flex w-full flex-col overflow-hidden rounded-2xl border border-navy/10 bg-warm-white shadow-[0_14px_40px_rgba(26,31,46,0.06)] transition duration-300 hover:-translate-y-1 hover:border-navy/20 hover:shadow-[0_20px_50px_rgba(26,31,46,0.10)] lg:flex-row lg:min-h-64"
     >
-      <button
-        type="button"
-        onClick={() => dialogRef.current?.showModal()}
-        aria-label={`Read ${member.name}'s full bio`}
+      <a
+        href={member.linkedin}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={`${member.name} on LinkedIn`}
         className="absolute inset-0 z-0 rounded-2xl focus-visible:outline-2 focus-visible:outline-offset-[-3px] focus-visible:outline-brand"
       />
       <div className="pointer-events-none relative aspect-square overflow-hidden bg-navy/5 sm:aspect-[4/3] md:aspect-[3/2] lg:aspect-auto lg:w-[42%] lg:shrink-0">
@@ -84,6 +86,15 @@ export function TeamCard({ member, id }: { member: TeamMember; id: string }) {
         <p className="mb-2 text-xs font-bold uppercase tracking-[0.16em] text-brand">{member.role}</p>
         <h3 className="text-xl font-display font-medium tracking-tight text-navy">{member.name}</h3>
         <p className="mt-3 line-clamp-3 text-sm font-light leading-relaxed text-grey">{text}</p>
+        {member.bio && (
+          <button
+            type="button"
+            onClick={() => dialogRef.current?.showModal()}
+            className="pointer-events-auto relative z-10 mt-1.5 self-start text-sm font-medium text-brand underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+          >
+            Read more<span className="sr-only"> about {member.name}</span>
+          </button>
+        )}
         <div className="pointer-events-auto relative z-10 mt-4 flex gap-1.5">
           {links.map((link) => (
             <IconLink key={link.label} {...link} name={member.name} />

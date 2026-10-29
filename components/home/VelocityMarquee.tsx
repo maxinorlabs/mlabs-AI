@@ -58,7 +58,6 @@ export function VelocityMarquee({ items, baseSpeed = 1.6 }: { items: string[]; b
     items.map((item, i) => (
       <span key={`${copy}-${i}`} className="flex shrink-0 items-center">
         <span className="px-6 md:px-9">
-          <span className="mr-3 text-brand">{String(i + 1).padStart(2, '0')}</span>
           {item}
         </span>
         <svg viewBox="-10 -10 20 20" className="h-2.5 w-2.5 shrink-0 text-brand md:h-3 md:w-3" fill="currentColor">
