@@ -381,7 +381,8 @@ export default function InvestmentPage() {
         </div>
       </section>
 
-      {/* ── Section 5: Partners and co-investors ───────────────────── */}
+      {/* ── Section 5: Partners and co-investors — hidden, set to true to re-enable ── */}
+      {false && (
       <section className="bg-warm-white px-6 py-20 md:py-28">
         <div className="max-w-7xl mx-auto">
           {/* Partners row */}
@@ -424,6 +425,7 @@ export default function InvestmentPage() {
           </motion.div>
         </div>
       </section>
+      )}
 
       {/* ── Section 6: Co-invest and LP Program ──────────────── */}
       <section className="border-t border-grey/10 bg-white px-6 py-20 md:py-28">

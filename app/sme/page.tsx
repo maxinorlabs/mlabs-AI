@@ -420,7 +420,8 @@ export default function SMEPage() {
         </div>
       </section>
 
-      {/* ── Section 5: Companies and Partners ───────────────────────────────── */}
+      {/* ── Section 5: Companies and Partners — hidden, set to true to re-enable ── */}
+      {false && (
       <section className="bg-warm-white px-6 py-20 md:py-28">
         <div className="mx-auto max-w-7xl">
           <motion.div
@@ -531,6 +532,7 @@ export default function SMEPage() {
           )}
         </div>
       </section>
+      )}
 
       {/* ── Section 6: FAQ ────────────────────────────────────────────────────── */}
       <section className="border-t border-grey/10 bg-warm-white px-6 py-20 md:py-28">
