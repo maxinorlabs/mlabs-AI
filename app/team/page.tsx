@@ -90,7 +90,7 @@ const leadership: TeamMember[] = [
   },
   {
     name: 'Alok Lall',
-    role: 'Strategy',
+    role: 'Partner, Strategy',
     desc: 'ex-Microsoft COO India',
     image: '/team/alok-lall-v3.webp',
     linkedin: 'https://in.linkedin.com/in/alok-lall',
@@ -107,7 +107,7 @@ const leadership: TeamMember[] = [
   },
   {
     name: 'Soham Mondal',
-    role: 'Partner',
+    role: 'Partner, AI & Technology',
     desc: 'Founding Partner, Triveous | Founder, TheOutpost.ai | Lead Anchor Mentor, Google for Startups India',
     bio: "Soham works at the intersection of product design and engineering. He is the Founding Partner of product studio Triveous and the Founder of TheOutpost.ai. He has built mobile-first products with Google, IDEO and WHO, and has been a Lead Anchor Mentor at Google for Startups India for over a decade.",
     image: '/team/soham-mondal-v3.webp',

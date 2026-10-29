@@ -79,7 +79,6 @@ function SectorBranch({
           lit ? 'border-brand/50' : 'border-navy/15'
         }`}
       >
-        <span className="font-mono text-[11px] tracking-wider text-brand">0{index + 1}</span>
         <Icon className="h-4 w-4 text-navy/40 transition-colors duration-300 group-hover/sector:text-brand" aria-hidden="true" />
         <span className="flex-1 text-sm font-semibold tracking-tight">{sector.name}</span>
         <ArrowUpRight
@@ -188,7 +187,7 @@ export function HomeTShape() {
           }`}
         >
           <div className="grid grid-cols-1 divide-y divide-navy/10 sm:grid-cols-8 sm:divide-x sm:divide-y-0">
-            {GROUPS.map((group, gi) => {
+            {GROUPS.map((group) => {
               const caps = CAPABILITIES.filter((c) => c.group === group.id);
               return (
                 <div key={group.id} className="sm:[grid-column:span_var(--span)/span_var(--span)]" style={{ ['--span' as string]: group.span }}>
@@ -196,7 +195,6 @@ export function HomeTShape() {
                     href={`/capabilities#${group.id}`}
                     className="flex items-center justify-center gap-3 border-b border-navy/10 py-3 text-xs font-bold uppercase tracking-[0.18em] transition-colors hover:text-brand"
                   >
-                    <span className="font-mono text-[11px] font-normal tracking-wider text-brand">0{gi + 1}</span>
                     {group.name}
                   </Link>
                   <div className="grid divide-x divide-navy/[0.07]" style={{ gridTemplateColumns: `repeat(${caps.length}, minmax(0, 1fr))` }}>

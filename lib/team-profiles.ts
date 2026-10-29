@@ -402,7 +402,7 @@ export const teamProfiles: TeamProfile[] = [
   {
     slug: 'alok-lall',
     name: 'Alok Lall',
-    role: 'Strategy',
+    role: 'Partner, Strategy',
     shortDesc: 'ex-Microsoft COO India',
     image: '/team/alok-lall-v3.webp',
     linkedin: 'https://in.linkedin.com/in/alok-lall',

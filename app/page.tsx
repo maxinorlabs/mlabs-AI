@@ -158,7 +158,7 @@ const bulletTick: Variants = {
 };
 
 // One column of the entry-point panel, drawn like the T-shape: hairline rules, mono labels, no card chrome.
-function EngagementCard({ eng, index }: { eng: Engagement; index: number }) {
+function EngagementCard({ eng }: { eng: Engagement }) {
   return (
     <StaggerItem
       className={`group relative flex flex-col px-6 py-7 transition-colors duration-300 hover:bg-white md:px-[clamp(20px,2.4vw,36px)] md:py-[clamp(16px,3svh,36px)] ${
@@ -173,8 +173,6 @@ function EngagementCard({ eng, index }: { eng: Engagement; index: number }) {
         }`}
       />
       <p className="mb-4 flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.2em] md:mb-[clamp(8px,1.8svh,16px)]">
-        <span className="text-brand">{String(index + 1).padStart(2, '0')}</span>
-        <span aria-hidden="true" className="h-px w-4 bg-navy/20" />
         <span className="text-navy/50">{eng.duration}</span>
         {eng.featured && (
           <motion.span variants={badgeVariants} className="-my-1 ml-auto rounded-full bg-brand/10 px-2 py-0.5 text-[10px] tracking-[0.16em] text-brand">
@@ -341,8 +339,8 @@ export default function Home() {
             </Reveal>
             <CourseLine stops={engagements.length} />
             <Stagger className="mx-auto grid max-w-6xl divide-y divide-navy/10 overflow-hidden rounded-2xl border border-navy/10 bg-white/60 shadow-[0_24px_60px_-36px_rgba(11,31,59,0.35)] backdrop-blur-[2px] md:grid-cols-3 md:divide-x md:divide-y-0">
-              {engagements.map((eng, i) => (
-                <EngagementCard key={eng.name} eng={eng} index={i} />
+              {engagements.map((eng) => (
+                <EngagementCard key={eng.name} eng={eng} />
               ))}
             </Stagger>
           </div>
@@ -470,7 +468,7 @@ export default function Home() {
                 { name: "Hygriv", image: "/images/logo-with-capital.png", url: "https://www.hygriv.com/" },
                 { name: "Saptharushi", image: "/images/saptharushi7-logo.jpg", url: "https://saptharushi.com/" },
                 { name: "iAccel GBI", image: "/images/logo-removebg.webp", url: "https://iaccelgbi.com/" },
-              ].map((partner, idx) => (
+              ].map((partner) => (
                 <StaggerItem key={partner.name}>
                   <Link
                     href={partner.url}
@@ -478,8 +476,7 @@ export default function Home() {
                     rel="noopener noreferrer"
                     className="group relative flex flex-col gap-2 px-5 py-4 transition-colors duration-300 hover:bg-white focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-brand md:py-[clamp(10px,2svh,20px)]"
                   >
-                    <span className="flex items-center justify-between font-mono text-xs uppercase tracking-[0.18em]">
-                      <span className="text-brand">{String(idx + 1).padStart(2, '0')}</span>
+                    <span className="flex items-center justify-end font-mono text-xs uppercase tracking-[0.18em]">
                       <ArrowUpRight className="h-4 w-4 text-navy/40 transition duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-brand" />
                     </span>
                     <span className="relative block h-16 md:h-[clamp(48px,9svh,96px)]">
@@ -577,7 +574,7 @@ export default function Home() {
                 {[
                   { label: 'Email', value: 'contact@mlabs.co.in', href: 'mailto:contact@mlabs.co.in' },
                   { label: 'Meet', value: 'The operator team', href: '/team' },
-                ].map((item, i) => (
+                ].map((item) => (
                   <Link
                     key={item.label}
                     href={item.href}
@@ -585,7 +582,7 @@ export default function Home() {
                   >
                     <span>
                       <span className="block font-mono text-[10px] uppercase tracking-[0.2em] text-navy/50">
-                        <span className="text-brand">{String(i + 1).padStart(2, '0')}</span> · {item.label}
+                        {item.label}
                       </span>
                       <span className="text-[15px] font-medium">{item.value}</span>
                     </span>
