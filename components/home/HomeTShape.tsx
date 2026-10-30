@@ -178,7 +178,7 @@ export function HomeTShape() {
         </motion.div>
 
         {/* Breadth: the capability bar */}
-        <Axis className="mb-2">Breadth · 0{CAPABILITIES.length} capabilities →</Axis>
+        <Axis className="mb-2">Breadth · {CAPABILITIES.length} capabilities →</Axis>
         <div
           className={`overflow-hidden rounded-2xl border bg-white/60 backdrop-blur-sm transition-[border-color,box-shadow] duration-500 ${
             activeSector !== null
@@ -239,7 +239,7 @@ export function HomeTShape() {
               className="absolute inset-x-0 top-0 bg-brand shadow-[0_0_10px_rgba(243,111,33,0.7)]"
             />
           </div>
-          <Axis className="absolute left-8 top-3 md:left-[calc(50%+14px)]">Depth · 0{SECTORS.length} sectors ↓</Axis>
+          <Axis className="absolute left-8 top-3 md:left-[calc(50%+14px)]">Depth · {SECTORS.length} sectors ↓</Axis>
 
           <div ref={gridRef} className="relative grid gap-x-12 gap-y-3 pl-10 md:grid-cols-[1fr_0_1fr] md:gap-y-[clamp(8px,1.6svh,16px)] md:pl-0" style={{ gridTemplateRows: `repeat(${ROWS}, auto)` }}>
             {/* Nodes on the spine, one per row */}
