@@ -9,6 +9,9 @@ import { useScrub } from '@/components/motion/useScrub';
 import { EASE_OUT } from '@/lib/motion';
 import { trackSpotlight } from '@/lib/spotlight';
 
+// The counts in the axis labels ("8 capabilities", "6 sectors") are hidden for now; set to true to show them.
+const SHOW_COUNTS = false;
+
 // The T on the hero's paper: breadth across the top (capabilities), depth down a spine (sectors).
 // Scrolling draws the spine down; each node turns orange as the line reaches it and its sector branches out.
 
@@ -178,7 +181,7 @@ export function HomeTShape() {
         </motion.div>
 
         {/* Breadth: the capability bar */}
-        <Axis className="mb-2">Breadth · {CAPABILITIES.length} capabilities →</Axis>
+        <Axis className="mb-2">Breadth · {SHOW_COUNTS && `${CAPABILITIES.length} `}capabilities →</Axis>
         <div
           className={`overflow-hidden rounded-2xl border bg-white/60 backdrop-blur-sm transition-[border-color,box-shadow] duration-500 ${
             activeSector !== null
@@ -239,7 +242,7 @@ export function HomeTShape() {
               className="absolute inset-x-0 top-0 bg-brand shadow-[0_0_10px_rgba(243,111,33,0.7)]"
             />
           </div>
-          <Axis className="absolute left-8 top-3 md:left-[calc(50%+14px)]">Depth · {SECTORS.length} sectors ↓</Axis>
+          <Axis className="absolute left-8 top-3 md:left-[calc(50%+14px)]">Depth · {SHOW_COUNTS && `${SECTORS.length} `}sectors ↓</Axis>
 
           <div ref={gridRef} className="relative grid gap-x-12 gap-y-3 pl-10 md:grid-cols-[1fr_0_1fr] md:gap-y-[clamp(8px,1.6svh,16px)] md:pl-0" style={{ gridTemplateRows: `repeat(${ROWS}, auto)` }}>
             {/* Nodes on the spine, one per row */}
