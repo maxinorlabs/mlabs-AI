@@ -43,6 +43,7 @@ function SectorPanel({ sector, onClose }: { sector: Sector; onClose: () => void 
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
+      data-lenis-prevent
       className="fixed inset-0 z-[60] flex items-end justify-center bg-navy/70 p-0 backdrop-blur-sm sm:items-center sm:p-6"
       onClick={onClose}
     >

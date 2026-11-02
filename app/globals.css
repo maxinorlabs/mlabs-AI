@@ -223,6 +223,11 @@ body:has(.hero-intro) .hero-await * {
   opacity: 1;
 }
 
+/* Smooth scrolling (Lenis) does its own easing, so the browser's smooth scroll must stand down while it runs. */
+html.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
 /* Cards on inner pages: lift and cast a shadow on hover (pointer devices), with the .spotlight glow. */
 .card-interactive {
   transition:

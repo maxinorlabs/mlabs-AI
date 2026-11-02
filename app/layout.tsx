@@ -4,6 +4,8 @@ import Script from 'next/script';
 import { Footer } from '@/components/Footer';
 import { Navbar } from '@/components/Navbar';
 import { MotionProvider } from '@/components/motion/MotionProvider';
+import { SmoothScroll } from '@/components/motion/SmoothScroll';
+import 'lenis/dist/lenis.css';
 import { METADATA_BASE, SITE_URL, buildSiteUrl } from '@/lib/site';import './globals.css';
 
 // Firebase Hosting's CDN honours s-maxage; without this, pages are cached for a year and deploys never show up.
@@ -128,6 +130,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </noscript>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }} />
+        <SmoothScroll />
         <MotionProvider>
           <Navbar />
           <main className="flex-grow">{children}</main>
