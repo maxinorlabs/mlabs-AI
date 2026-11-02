@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { AnimatePresence, motion } from 'motion/react';
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
-import { Eyebrow, PaperSection } from '@/components/page/Paper';
+import { NavyBackdrop } from '@/components/motion/NavyBackdrop';
 import { RevealText } from '@/components/motion/RevealText';
 import { EASE_OUT } from '@/lib/motion';
 
@@ -24,7 +24,7 @@ export type Insight = {
 function Avatar({ name, image, size }: { name: string; image?: string; size: number }) {
   return (
     <span
-      className="relative inline-flex shrink-0 items-center justify-center overflow-hidden rounded-full bg-navy/10 text-[11px] font-semibold text-navy ring-2 ring-white"
+      className="relative inline-flex shrink-0 items-center justify-center overflow-hidden rounded-full bg-brand text-[10px] font-semibold text-white ring-2 ring-white"
       style={{ width: size, height: size }}
     >
       {image ? (
@@ -50,21 +50,25 @@ export function OperatorInsights({ insights }: { insights: Insight[] }) {
   if (!shown) return null;
 
   return (
-    <PaperSection className="py-20 md:flex md:min-h-[calc(100svh-4rem)] md:flex-col md:justify-center md:py-[clamp(40px,8svh,112px)]">
+    <section className="relative overflow-clip bg-navy px-6 py-20 text-warm-white md:flex md:min-h-[calc(100svh-4rem)] md:flex-col md:justify-center md:px-12 md:py-[clamp(40px,8svh,112px)]">
+      <NavyBackdrop />
+      <div className="relative mx-auto w-full max-w-7xl">
       <div className="mb-10 flex flex-col gap-4 md:mb-[clamp(24px,5svh,48px)] md:flex-row md:items-end md:justify-between">
         <div>
-          <Eyebrow>From the operators</Eyebrow>
+          <p className="mb-4 flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.2em] text-warm-white/50">
+            <span aria-hidden="true" className="text-brand">→</span> From the operators
+          </p>
           <RevealText
             className="max-w-2xl text-3xl font-display font-medium tracking-tight md:text-5xl"
             parts={[{ text: 'Operator-tested ' }, { text: 'insights.', className: 'text-brand' }]}
           />
-          <p className="mt-4 max-w-xl text-base font-light leading-relaxed text-grey md:text-lg">
+          <p className="mt-4 max-w-xl text-base font-light leading-relaxed text-warm-white/60 md:text-lg">
             Written by founders and operators who have been in the trenches.
           </p>
         </div>
         <Link
           href="/blog"
-          className="group inline-flex w-fit items-center gap-2 rounded-full border border-navy/20 px-5 py-2.5 text-sm font-semibold text-navy transition-colors hover:border-brand hover:text-brand"
+          className="group inline-flex w-fit items-center gap-2 rounded-full border border-white/20 px-5 py-2.5 text-sm font-semibold text-warm-white transition-colors hover:border-brand hover:bg-brand"
         >
           All articles
           <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
@@ -73,9 +77,9 @@ export function OperatorInsights({ insights }: { insights: Insight[] }) {
 
       <div className="grid gap-8 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] md:gap-10">
         {/* The list */}
-        <ol className="border-t border-navy/15">
+        <ol className="border-t border-white/15">
           {insights.map((post, i) => (
-            <li key={post.slug} className="border-b border-navy/15">
+            <li key={post.slug} className="border-b border-white/15">
               <Link
                 href={`/blog/${post.slug}`}
                 onMouseEnter={() => setActive(i)}
@@ -87,26 +91,25 @@ export function OperatorInsights({ insights }: { insights: Insight[] }) {
                   className={`absolute inset-y-0 left-0 w-0.5 origin-top bg-brand transition-transform duration-300 ${active === i ? 'scale-y-100' : 'scale-y-0'}`}
                 />
                 <span className="min-w-0 flex-1">
-                  <span className="mb-1.5 block font-mono text-[10px] uppercase tracking-[0.18em] text-navy/45">
+                  <span className="mb-1.5 block font-mono text-[10px] uppercase tracking-[0.18em] text-warm-white/45">
                     {post.category} · {post.date}
                   </span>
-                  <span className={`block text-lg font-display font-medium leading-snug transition-colors duration-300 md:text-xl ${active === i ? 'text-brand' : 'text-navy group-hover:text-brand'}`}>
+                  <span className={`block text-lg font-display font-medium leading-snug transition-colors duration-300 md:text-xl ${active === i ? 'text-brand' : 'text-warm-white group-hover:text-brand'}`}>
                     {post.title}
                   </span>
-                  <span className="mt-2 flex items-center gap-2 text-xs text-grey">
+                  <span className="mt-2 flex items-center gap-2 text-xs text-warm-white/60">
                     <Avatar name={post.author} image={post.authorImage} size={22} />
                     {post.author} · {post.minutes} min read
                   </span>
                 </span>
-                <ArrowUpRight className="mt-1 h-4 w-4 shrink-0 text-navy/30 transition duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-brand" />
+                <ArrowUpRight className="mt-1 h-4 w-4 shrink-0 text-warm-white/30 transition duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-brand" />
               </Link>
             </li>
           ))}
         </ol>
 
-        {/* The reading panel (desktop) */}
-        <div className="relative hidden overflow-hidden rounded-3xl bg-navy p-[clamp(24px,4svh,44px)] text-warm-white shadow-[0_30px_80px_-40px_rgba(11,31,59,0.6)] md:flex md:flex-col">
-          <div aria-hidden="true" className="grain pointer-events-none absolute inset-0 opacity-30" />
+        {/* The reading panel (desktop): a paper card that sizes to the article, not to the list */}
+        <div className="relative hidden self-start overflow-hidden rounded-3xl bg-warm-white md:sticky md:top-24 p-[clamp(24px,4svh,44px)] text-navy shadow-[0_30px_80px_-30px_rgba(0,0,0,0.6)] md:flex md:flex-col">
           <AnimatePresence mode="wait">
             <motion.div
               key={shown.slug}
@@ -114,17 +117,17 @@ export function OperatorInsights({ insights }: { insights: Insight[] }) {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.35, ease: EASE_OUT }}
-              className="relative flex flex-1 flex-col"
+              className="relative flex flex-col"
             >
               <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.2em] text-brand">{shown.category}</p>
               <p className="mb-5 text-[clamp(24px,min(2.6vw,4.4svh),36px)] font-display font-medium leading-[1.15] tracking-tight">{shown.title}</p>
-              <p className="mb-8 line-clamp-5 flex-1 text-[15px] font-light leading-relaxed text-warm-white/70">{shown.excerpt}</p>
-              <div className="flex items-center justify-between gap-4 border-t border-white/10 pt-5">
+              <p className="mb-8 line-clamp-5 text-[15px] font-light leading-relaxed text-grey">{shown.excerpt}</p>
+              <div className="flex items-center justify-between gap-4 border-t border-navy/10 pt-5">
                 <span className="flex items-center gap-3">
                   <Avatar name={shown.author} image={shown.authorImage} size={40} />
                   <span>
                     <span className="block text-sm font-semibold">{shown.author}</span>
-                    {shown.authorRole && <span className="block text-xs text-warm-white/55">{shown.authorRole}</span>}
+                    {shown.authorRole && <span className="block text-xs text-grey">{shown.authorRole}</span>}
                   </span>
                 </span>
                 <Link
@@ -140,6 +143,7 @@ export function OperatorInsights({ insights }: { insights: Insight[] }) {
           </AnimatePresence>
         </div>
       </div>
-    </PaperSection>
+      </div>
+    </section>
   );
 }

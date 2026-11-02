@@ -109,12 +109,13 @@ export function OperatorProof() {
             />
           </div>
           <p className="max-w-md text-base font-light leading-relaxed text-warm-white/60 md:justify-self-end">
-            A few of the numbers our partners put on the board before Maxinor. Hover a face to see who.
+            A few of the numbers our partners put on the board before Maxinor.{' '}
+            <span className="hidden [@media(hover:hover)]:inline">Hover a face to see who.</span>
           </p>
         </div>
 
         {/* The numbers, each signed by the operator behind it */}
-        <div className="grid gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 lg:grid-cols-4">
           {RECORDS.map((record, i) => (
             <motion.div
               key={record.label}
@@ -122,14 +123,14 @@ export function OperatorProof() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.4 }}
               transition={{ duration: 0.6, delay: i * 0.1, ease: EASE_OUT }}
-              className="group relative flex flex-col bg-navy/90 px-6 py-7 transition-colors duration-300 hover:bg-[#13294a] md:py-[clamp(20px,3.6svh,36px)]"
+              className="group relative flex flex-col bg-navy/90 px-4 py-5 transition-colors sm:px-6 sm:py-7 duration-300 hover:bg-[#13294a] md:py-[clamp(20px,3.6svh,36px)]"
             >
               <span aria-hidden="true" className="absolute inset-x-0 top-0 h-0.5 origin-left scale-x-0 bg-brand transition-transform duration-500 ease-out group-hover:scale-x-100" />
-              <p className="mb-3 text-[clamp(36px,min(4vw,7svh),56px)] font-display font-medium leading-none tracking-tight text-warm-white">
+              <p className="mb-3 text-[28px] sm:text-[clamp(36px,min(4vw,7svh),56px)] font-display font-medium leading-none tracking-tight text-warm-white">
                 <CountUp value={record.value} prefix={record.prefix} suffix={record.suffix} />
               </p>
-              <p className="mb-6 flex-1 text-sm font-light leading-relaxed text-warm-white/65">{record.label}</p>
-              <p className="flex items-center gap-2.5 border-t border-white/10 pt-4 text-xs text-warm-white/70">
+              <p className="mb-4 flex-1 text-xs font-light leading-relaxed text-warm-white/65 sm:mb-6 sm:text-sm">{record.label}</p>
+              <p className="flex items-center gap-2 border-t border-white/10 pt-3 text-[11px] text-warm-white/70 sm:gap-2.5 sm:pt-4 sm:text-xs">
                 <span className="relative h-7 w-7 shrink-0 overflow-hidden rounded-full bg-white/10 ring-1 ring-white/20">
                   <Image src={record.image} alt="" fill sizes="28px" className="object-cover object-top" />
                 </span>

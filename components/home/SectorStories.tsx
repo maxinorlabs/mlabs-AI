@@ -136,7 +136,7 @@ export function SectorStories() {
     const track = trackRef.current;
     if (!track || reduceMotion) return;
     const wide = window.matchMedia('(min-width: 768px)');
-    const measure = () => setDistance(wide.matches ? Math.max(0, track.scrollWidth - window.innerWidth) : 0);
+    const measure = () => setDistance(wide.matches ? Math.max(0, track.offsetWidth - document.documentElement.clientWidth) : 0);
     measure();
     const observer = new ResizeObserver(measure);
     observer.observe(track);
@@ -172,31 +172,29 @@ export function SectorStories() {
       <div className="relative overflow-hidden py-20 md:sticky md:top-16 md:flex md:h-[calc(100svh-4rem)] md:flex-col md:justify-center md:py-0">
         <NavyBackdrop />
 
-        <motion.div
-          ref={trackRef}
-          style={{ x }}
-          className="relative flex w-full snap-x snap-mandatory items-center gap-4 overflow-x-auto px-6 pb-4 [scrollbar-width:none] md:w-max md:snap-none md:gap-5 md:overflow-visible md:px-12 md:pb-0"
-          onMouseLeave={() => setFocused(null)}
-        >
-          {/* The reel opens with its title card */}
-          <div className="w-[80vw] shrink-0 snap-start pr-4 md:w-[min(34vw,460px)] md:pr-10">
-            <p className="mb-4 flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.2em] text-warm-white/50">
+        {/* The title stays put above the reel, so the moving cards never slice it */}
+        <div className="relative mx-auto mb-8 flex w-full max-w-7xl flex-col gap-4 px-6 md:mb-[clamp(16px,3.5svh,36px)] md:flex-row md:items-end md:justify-between md:px-12">
+          <div>
+            <p className="mb-3 flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.2em] text-warm-white/50">
               <span aria-hidden="true" className="text-brand">→</span> Inside each sector
             </p>
             <RevealText
-              className="mb-6 text-3xl font-display font-medium leading-[1.08] tracking-tight md:text-[clamp(32px,min(3.6vw,6.4svh),52px)]"
+              className="text-3xl font-display font-medium leading-[1.08] tracking-tight md:text-[clamp(28px,min(3.4vw,5.6svh),48px)]"
               parts={[{ text: "We don't just know your industry. " }, { text: "We've built inside it.", className: 'text-brand' }]}
             />
-            <p className="max-w-xs text-sm font-light leading-relaxed text-warm-white/55">
-              Open a sector to see the problems founders bring us and how we work on them.
-            </p>
-            {distance > 0 && (
-              <p aria-hidden="true" className="mt-8 flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.2em] text-warm-white/40">
-                Scroll <span className="h-px w-12 bg-warm-white/30" /> →
-              </p>
-            )}
           </div>
+          <p className="max-w-xs text-sm font-light leading-relaxed text-warm-white/55">
+            Open a sector to see the problems founders bring us and how we work on them.
+            {distance > 0 && <span className="mt-2 block font-mono text-[10px] uppercase tracking-[0.2em] text-warm-white/40">Scroll to move along →</span>}
+          </p>
+        </div>
 
+        <motion.div
+          ref={trackRef}
+          style={{ x }}
+          className="relative flex w-full snap-x snap-mandatory scroll-px-6 items-center gap-4 overflow-x-auto px-6 pb-4 [scrollbar-width:none] md:w-max md:snap-none md:gap-5 md:overflow-visible md:px-12 md:pb-0"
+          onMouseLeave={() => setFocused(null)}
+        >
           {sectors.map((sector, i) => {
             const photo = SECTOR_PHOTOS[sector.id];
             const dimmed = focused !== null && focused !== i;
@@ -212,7 +210,7 @@ export function SectorStories() {
                 }}
                 onFocus={() => setFocused(i)}
                 aria-label={`Open the ${sector.name} story`}
-                className={`group relative aspect-[3/4] w-[68vw] shrink-0 snap-start overflow-hidden rounded-2xl text-left transition-[filter,opacity,transform] duration-500 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand sm:w-[42vw] md:h-[min(64svh,560px)] md:w-auto ${
+                className={`group relative aspect-[3/4] w-[68vw] shrink-0 snap-start overflow-hidden rounded-2xl text-left transition-[filter,opacity,transform] duration-500 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand sm:w-[42vw] md:h-[min(52svh,480px)] md:w-auto ${
                   dimmed ? 'opacity-50 blur-[2px] md:scale-[0.97]' : ''
                 }`}
               >

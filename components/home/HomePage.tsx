@@ -23,7 +23,6 @@ import { CourseLine } from '@/components/home/CourseLine';
 import { VelocityMarquee } from '@/components/home/VelocityMarquee';
 import { OperatorProof } from '@/components/home/OperatorProof';
 import { SectorStories } from '@/components/home/SectorStories';
-import { RouteStory } from '@/components/home/RouteStory';
 import { OperatorInsights, type Insight } from '@/components/home/OperatorInsights';
 import { SectionRail, type RailStop } from '@/components/home/SectionRail';
 import { useScrub } from '@/components/motion/useScrub';
@@ -238,12 +237,11 @@ const CLOSING_ROUTES = [
 // The stops on the section rail, in page order.
 const RAIL: RailStop[] = [
   { id: 'top', label: 'Home' },
-  { id: 'track-record', label: 'Track record' },
+  { id: 'track-record', label: 'Track record', dark: true },
   { id: 't-shape', label: 'The T-shape' },
-  { id: 'sectors', label: 'Sectors' },
-  { id: 'how-we-work', label: 'How we work' },
+  { id: 'sectors', label: 'Sectors', dark: true },
   { id: 'entry-points', label: 'Entry points' },
-  { id: 'insights', label: 'Insights' },
+  { id: 'insights', label: 'Insights', dark: true },
   { id: 'get-started', label: 'Get started' },
 ];
 
@@ -349,10 +347,6 @@ export function HomePage({ insights }: { insights: Insight[] }) {
 
         <VelocityMarquee items={MARQUEE} />
 
-        {/* Build, Scale and Invest as a pinned scroll story */}
-        <div id="how-we-work">
-          <RouteStory />
-        </div>
 
         {/* Pick Your Entry Point */}
         {/* Paper behind it, so while it's scaled down the section reads as a card rising up the page */}
