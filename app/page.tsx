@@ -21,6 +21,9 @@ import { CompassRing, HeroCompass } from '../components/Compass';
 import { HomeHero } from '../components/home/HomeHero';
 import { CourseLine } from '../components/home/CourseLine';
 import { VelocityMarquee } from '../components/home/VelocityMarquee';
+import { OperatorProof } from '../components/home/OperatorProof';
+import { SectorStories } from '../components/home/SectorStories';
+import { RouteStory } from '../components/home/RouteStory';
 import { useScrub } from '../components/motion/useScrub';
 import { Magnetic } from '../components/motion/Magnetic';
 import { RevealText } from '../components/motion/RevealText';
@@ -250,6 +253,9 @@ export default function Home() {
       <main className="pt-16">
         <HomeHero />
 
+        {/* Proof: the operators' own numbers and faces */}
+        <OperatorProof />
+
         {/* The Ventures We Work With — hidden, set to true to re-enable */}
         {false && (
         <section className="overflow-hidden border-y border-grey/10 bg-white px-6 py-20 md:py-24">
@@ -307,7 +313,13 @@ export default function Home() {
         {/* T-Shape Advantage */}
         <HomeTShape />
 
+        {/* The sectors as photo stories that open up */}
+        <SectorStories />
+
         <VelocityMarquee items={MARQUEE} />
+
+        {/* Build, Scale and Invest as a pinned scroll story */}
+        <RouteStory />
 
         {/* Pick Your Entry Point */}
         {/* Paper behind it, so while it's scaled down the section reads as a card rising up the page */}
