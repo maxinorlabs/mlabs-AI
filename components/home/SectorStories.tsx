@@ -1,9 +1,17 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { AnimatePresence, motion } from 'motion/react';
+import {
+  AnimatePresence,
+  motion,
+  useMotionValue,
+  useReducedMotion,
+  useScroll,
+  useSpring,
+  useTransform,
+} from 'motion/react';
 import { ArrowUpRight, Plus, X } from 'lucide-react';
 import { NavyBackdrop } from '@/components/motion/NavyBackdrop';
 import { RevealText } from '@/components/motion/RevealText';
@@ -109,83 +117,143 @@ function SectorPanel({ sector, onClose }: { sector: Sector; onClose: () => void 
 }
 
 /**
- * The sectors as tall photo cards. Pointing at one brings it into focus and dims the rest; opening one grows it
- * into the sector's full story. On phones the cards scroll sideways.
+ * The sectors as a reel of tall photo cards. On desktop the section pins and scrolling down glides the reel
+ * sideways, each photo drifting inside its frame; a small "Open story" tag follows the pointer over a card.
+ * Pointing at a card brings it into focus and dims the rest; opening one grows it into the sector's story.
+ * On phones (and for reduced motion) the reel is an ordinary sideways swipe.
  */
 export function SectorStories() {
   const [focused, setFocused] = useState<number | null>(null);
   const [open, setOpen] = useState<Sector | null>(null);
+  const reduceMotion = useReducedMotion();
+  const sectionRef = useRef<HTMLElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+  // How far the reel has to travel sideways: its overflow past the screen. Zero on phones and for reduced motion.
+  const [distance, setDistance] = useState(0);
+
+  useLayoutEffect(() => {
+    const track = trackRef.current;
+    if (!track || reduceMotion) return;
+    const wide = window.matchMedia('(min-width: 768px)');
+    const measure = () => setDistance(wide.matches ? Math.max(0, track.scrollWidth - window.innerWidth) : 0);
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(track);
+    wide.addEventListener('change', measure);
+    window.addEventListener('resize', measure);
+    return () => {
+      observer.disconnect();
+      wide.removeEventListener('change', measure);
+      window.removeEventListener('resize', measure);
+    };
+  }, [reduceMotion]);
+
+  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ['start start', 'end end'] });
+  const progress = useSpring(scrollYProgress, { stiffness: 160, damping: 32, restDelta: 0.001 });
+  const x = useTransform(progress, (p) => -p * distance);
+  const drift = useTransform(progress, [0, 1], distance ? ['6%', '-6%'] : ['0%', '0%']);
+
+  // The pointer tag, placed in screen coordinates.
+  const tagX = useMotionValue(0);
+  const tagY = useMotionValue(0);
+  const placeTag = (event: { clientX: number; clientY: number }) => {
+    tagX.set(event.clientX + 16);
+    tagY.set(event.clientY + 16);
+  };
 
   return (
-    <section className="relative overflow-hidden bg-navy py-20 text-warm-white md:flex md:min-h-[calc(100svh-4rem)] md:flex-col md:justify-center md:py-[clamp(32px,6svh,96px)]">
-      <NavyBackdrop />
-      <div className="relative mx-auto w-full max-w-7xl px-6 md:px-12">
-        <div className="mb-10 flex flex-col gap-4 md:mb-[clamp(24px,5svh,56px)] md:flex-row md:items-end md:justify-between">
-          <div>
+    <section
+      ref={sectionRef}
+      onPointerMove={placeTag}
+      style={{ ['--reel' as string]: `${distance}px` }}
+      className="relative bg-navy text-warm-white md:h-[calc(100svh-4rem+var(--reel))]"
+    >
+      <div className="relative overflow-hidden py-20 md:sticky md:top-16 md:flex md:h-[calc(100svh-4rem)] md:flex-col md:justify-center md:py-0">
+        <NavyBackdrop />
+
+        <motion.div
+          ref={trackRef}
+          style={{ x }}
+          className="relative flex w-full snap-x snap-mandatory items-center gap-4 overflow-x-auto px-6 pb-4 [scrollbar-width:none] md:w-max md:snap-none md:gap-5 md:overflow-visible md:px-12 md:pb-0"
+          onMouseLeave={() => setFocused(null)}
+        >
+          {/* The reel opens with its title card */}
+          <div className="w-[80vw] shrink-0 snap-start pr-4 md:w-[min(34vw,460px)] md:pr-10">
             <p className="mb-4 flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.2em] text-warm-white/50">
               <span aria-hidden="true" className="text-brand">→</span> Inside each sector
             </p>
             <RevealText
-              className="max-w-2xl text-3xl font-display font-medium leading-[1.08] tracking-tight md:text-[clamp(32px,min(4.2vw,6.6svh),56px)]"
+              className="mb-6 text-3xl font-display font-medium leading-[1.08] tracking-tight md:text-[clamp(32px,min(3.6vw,6.4svh),52px)]"
               parts={[{ text: "We don't just know your industry. " }, { text: "We've built inside it.", className: 'text-brand' }]}
             />
+            <p className="max-w-xs text-sm font-light leading-relaxed text-warm-white/55">
+              Open a sector to see the problems founders bring us and how we work on them.
+            </p>
+            {distance > 0 && (
+              <p aria-hidden="true" className="mt-8 flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.2em] text-warm-white/40">
+                Scroll <span className="h-px w-12 bg-warm-white/30" /> →
+              </p>
+            )}
           </div>
-          <p className="max-w-xs text-sm font-light leading-relaxed text-warm-white/55">
-            Open a sector to see the problems founders bring us and how we work on them.
-          </p>
-        </div>
+
+          {sectors.map((sector, i) => {
+            const photo = SECTOR_PHOTOS[sector.id];
+            const dimmed = focused !== null && focused !== i;
+            return (
+              <motion.button
+                key={sector.id}
+                layoutId={`sector-${sector.id}`}
+                type="button"
+                onClick={() => setOpen(sector)}
+                onMouseEnter={(event) => {
+                  placeTag(event);
+                  setFocused(i);
+                }}
+                onFocus={() => setFocused(i)}
+                aria-label={`Open the ${sector.name} story`}
+                className={`group relative aspect-[3/4] w-[68vw] shrink-0 snap-start overflow-hidden rounded-2xl text-left transition-[filter,opacity,transform] duration-500 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand sm:w-[42vw] md:h-[min(64svh,560px)] md:w-auto ${
+                  dimmed ? 'opacity-50 blur-[2px] md:scale-[0.97]' : ''
+                }`}
+              >
+                <motion.div layoutId={`sector-photo-${sector.id}`} className="absolute inset-0 overflow-hidden">
+                  <motion.div style={{ x: drift }} className="absolute inset-y-0 -inset-x-[8%]">
+                    <Image
+                      src={photo.src}
+                      alt=""
+                      fill
+                      sizes="(min-width: 768px) 420px, 70vw"
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                      style={{ objectPosition: photo.position }}
+                    />
+                  </motion.div>
+                </motion.div>
+                <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/30 to-navy/0" />
+                <div className="absolute inset-x-0 bottom-0 p-5 md:p-6">
+                  <p className="mb-1 font-mono text-[9px] uppercase leading-snug tracking-[0.18em] text-warm-white/60">{sector.sector}</p>
+                  <p className="text-2xl font-display font-medium text-warm-white md:text-3xl">{sector.name}</p>
+                  <p className="mt-2 max-h-0 overflow-hidden text-sm font-light leading-relaxed text-warm-white/75 opacity-0 transition-all duration-500 group-hover:max-h-24 group-hover:opacity-100">
+                    {sector.problem}
+                  </p>
+                </div>
+                <span className="absolute right-4 top-4 flex h-8 w-8 items-center justify-center rounded-full border border-white/30 bg-navy/30 text-warm-white backdrop-blur transition-colors duration-300 group-hover:border-brand group-hover:bg-brand md:hidden">
+                  <Plus className="h-4 w-4" />
+                </span>
+              </motion.button>
+            );
+          })}
+        </motion.div>
       </div>
 
-      {/* Cards: a row on desktop, a sideways scroll on phones */}
-      <div
-        className="relative mx-auto flex w-full max-w-7xl snap-x snap-mandatory gap-4 overflow-x-auto px-6 pb-4 [scrollbar-width:none] md:grid md:grid-cols-6 md:gap-3 md:overflow-visible md:px-12 md:pb-0"
-        onMouseLeave={() => setFocused(null)}
+      {/* The pointer tag over a card (mouse only) */}
+      <motion.span
+        aria-hidden="true"
+        style={{ x: tagX, y: tagY }}
+        animate={{ opacity: focused !== null && !open ? 1 : 0, scale: focused !== null && !open ? 1 : 0.6 }}
+        transition={{ duration: 0.2 }}
+        className="pointer-events-none fixed left-0 top-0 z-50 hidden items-center gap-1.5 rounded-full bg-brand px-3.5 py-2 text-xs font-semibold text-white shadow-lg [@media(hover:hover)]:md:flex"
       >
-        {sectors.map((sector, i) => {
-          const photo = SECTOR_PHOTOS[sector.id];
-          const dimmed = focused !== null && focused !== i;
-          return (
-            <motion.button
-              key={sector.id}
-              layoutId={`sector-${sector.id}`}
-              type="button"
-              onClick={() => setOpen(sector)}
-              onMouseEnter={() => setFocused(i)}
-              onFocus={() => setFocused(i)}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.6, delay: i * 0.07, ease: EASE_OUT }}
-              aria-label={`Open the ${sector.name} story`}
-              className={`group relative aspect-[3/4] w-[68vw] shrink-0 snap-start overflow-hidden rounded-2xl text-left transition-[filter,opacity,transform] duration-500 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand sm:w-[42vw] md:aspect-[3/5] md:max-h-[58svh] md:w-auto ${
-                dimmed ? 'opacity-50 blur-[2px] md:scale-[0.97]' : ''
-              }`}
-            >
-              <motion.div layoutId={`sector-photo-${sector.id}`} className="absolute inset-0">
-                <Image
-                  src={photo.src}
-                  alt=""
-                  fill
-                  sizes="(min-width: 768px) 220px, 70vw"
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
-                  style={{ objectPosition: photo.position }}
-                />
-              </motion.div>
-              <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/30 to-navy/0" />
-              <div className="absolute inset-x-0 bottom-0 p-5">
-                <p className="mb-1 font-mono text-[9px] uppercase leading-snug tracking-[0.18em] text-warm-white/60">{sector.sector}</p>
-                <p className="text-2xl font-display font-medium text-warm-white">{sector.name}</p>
-                <p className="mt-2 max-h-0 overflow-hidden text-xs font-light leading-relaxed text-warm-white/75 opacity-0 transition-all duration-500 group-hover:max-h-24 group-hover:opacity-100">
-                  {sector.problem}
-                </p>
-              </div>
-              <span className="absolute right-4 top-4 flex h-8 w-8 items-center justify-center rounded-full border border-white/30 bg-navy/30 text-warm-white backdrop-blur transition-colors duration-300 group-hover:border-brand group-hover:bg-brand">
-                <Plus className="h-4 w-4" />
-              </span>
-            </motion.button>
-          );
-        })}
-      </div>
+        <Plus className="h-3.5 w-3.5" /> Open story
+      </motion.span>
 
       <AnimatePresence>{open && <SectorPanel key={open.id} sector={open} onClose={() => setOpen(null)} />}</AnimatePresence>
     </section>

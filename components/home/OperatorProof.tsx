@@ -3,7 +3,8 @@
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { animate, motion, useInView, useReducedMotion } from 'motion/react';
+import { animate, motion, useInView, useReducedMotion, useTransform } from 'motion/react';
+import { useScrub } from '@/components/motion/useScrub';
 import { ArrowUpRight } from 'lucide-react';
 import { NavyBackdrop } from '@/components/motion/NavyBackdrop';
 import { RevealText } from '@/components/motion/RevealText';
@@ -97,9 +98,13 @@ function CountUp({ value, prefix, suffix }: { value: number; prefix: string; suf
  */
 export function OperatorProof() {
   const [hovered, setHovered] = useState<number | null>(null);
+  // Scrolling in from the hero, the navy spreads out from where the compass sits, like ink from its centre.
+  const ref = useRef<HTMLElement>(null);
+  const progress = useScrub(ref, ['start end', 'start 15%']);
+  const clipPath = useTransform(progress, (p) => `circle(${(p * 150).toFixed(2)}% at 76% 0%)`);
 
   return (
-    <section className="relative overflow-hidden bg-navy px-6 py-20 text-warm-white md:flex md:min-h-[calc(100svh-4rem)] md:flex-col md:justify-center md:px-12 md:py-[clamp(32px,6svh,96px)]">
+    <motion.section ref={ref} style={{ clipPath }} className="relative overflow-hidden bg-navy px-6 py-20 text-warm-white md:flex md:min-h-[calc(100svh-4rem)] md:flex-col md:justify-center md:px-12 md:py-[clamp(32px,6svh,96px)]">
       <NavyBackdrop />
       <div className="relative mx-auto w-full max-w-7xl">
         <div className="mb-12 grid gap-6 md:mb-[clamp(28px,6svh,64px)] md:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] md:items-end">
@@ -185,6 +190,6 @@ export function OperatorProof() {
           </Link>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }
