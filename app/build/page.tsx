@@ -1,10 +1,8 @@
 'use client';
 
-import { motion, AnimatePresence } from 'motion/react';
-import { NavyBackdrop } from '@/components/motion/NavyBackdrop';
+import { motion } from 'motion/react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useState } from 'react';
 import {
   ArrowRight,
   FileQuestion,
@@ -13,15 +11,21 @@ import {
   Lightbulb,
   Code2,
   Megaphone,
-  Plus,
 } from 'lucide-react';
-
-/* ─── Shared style tokens ─── */
-const primaryBtn =
-  'inline-flex items-center justify-center rounded-full bg-brand px-8 py-4 text-base font-semibold tracking-wide text-warm-white transition-all duration-300 hover:-translate-y-1 hover:bg-brand/90 shadow-[0_0_40px_rgba(243,111,33,0.15)] hover:shadow-[0_0_60px_rgba(243,111,33,0.3)] sm:px-10 sm:py-5 group active:translate-y-0 active:scale-[0.98]';
-
-const ghostBtn =
-  'inline-flex items-center justify-center rounded-full border border-warm-white/30 px-8 py-4 text-base font-semibold tracking-wide text-warm-white transition-all duration-300 hover:-translate-y-1 hover:border-warm-white/60 sm:px-10 sm:py-5 group active:translate-y-0 active:scale-[0.98]';
+import { Reveal, Stagger, StaggerItem } from '@/components/motion/Reveal';
+import { RevealText } from '@/components/motion/RevealText';
+import {
+  Eyebrow,
+  HoverRule,
+  PaperSection,
+  RouteCompass,
+  RuledFaq,
+  RuledList,
+  panelClass,
+  primaryButtonClass,
+  secondaryButtonClass,
+} from '@/components/page/Paper';
+import { EASE_OUT } from '@/lib/motion';
 
 /* ─── Data ─── */
 const painPoints = [
@@ -173,314 +177,199 @@ const faqs = [
   },
 ];
 
-/* ─── FAQ Accordion ─── */
-function FaqAccordion() {
-  const [open, setOpen] = useState<number | null>(null);
-
+/* ─── The build process, drawn as a course: a line that plots itself through each phase ─── */
+function BuildCourse() {
   return (
-    <div className="divide-y divide-grey/15 overflow-hidden rounded-[2rem] border border-grey/15 bg-white">
-      {faqs.map((item, i) => (
-        <div key={item.q}>
-          <button
-            onClick={() => setOpen(open === i ? null : i)}
-            className="flex w-full items-center justify-between gap-4 px-8 py-6 text-left transition-colors hover:bg-warm-white/60"
-          >
-            <span className="text-base font-semibold text-navy">{item.q}</span>
-            <span className="shrink-0 text-brand">
-              <Plus className={`h-5 w-5 transition-transform duration-300 ${open === i ? 'rotate-45' : ''}`} />
-            </span>
-          </button>
-          <AnimatePresence initial={false}>
-            {open === i && (
+    <>
+      {/* Desktop: across the page */}
+      <div className="relative hidden lg:block">
+        <div aria-hidden="true" className="absolute left-0 right-0 top-[7px] h-px border-t border-dashed border-navy/20" />
+        <motion.div
+          aria-hidden="true"
+          initial={{ scaleX: 0 }}
+          whileInView={{ scaleX: 1 }}
+          viewport={{ once: true, amount: 0.6 }}
+          transition={{ duration: 1.4, ease: EASE_OUT }}
+          className="absolute left-0 right-0 top-[7px] h-px origin-left bg-brand"
+        />
+        <ol className="relative grid grid-cols-5 gap-8">
+          {steps.map((step, i) => (
+            <li key={step.phase}>
+              <motion.span
+                aria-hidden="true"
+                initial={{ scale: 0.4, backgroundColor: 'rgb(255 255 255)' }}
+                whileInView={{ scale: 1, backgroundColor: 'rgb(243 111 33)' }}
+                viewport={{ once: true, amount: 0.6 }}
+                transition={{ delay: 0.15 + i * 0.27, duration: 0.3 }}
+                className="mb-6 block h-[15px] w-[15px] rounded-full border-2 border-brand"
+              />
               <motion.div
-                key="body"
-                initial={{ height: 0, opacity: 0 }}
-                animate={{ height: 'auto', opacity: 1 }}
-                exit={{ height: 0, opacity: 0 }}
-                transition={{ duration: 0.25, ease: 'easeOut' }}
-                className="overflow-hidden"
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.6 }}
+                transition={{ delay: 0.25 + i * 0.27, duration: 0.5, ease: EASE_OUT }}
               >
-                <p className="px-8 pb-6 text-sm font-light leading-relaxed text-grey">{item.a}</p>
+                <p className="mb-2 font-mono text-[11px] uppercase tracking-[0.2em] text-navy/50">{step.timeline}</p>
+                <h3 className="mb-2 text-xl font-display font-medium text-navy">{step.phase}</h3>
+                <p className="text-sm font-light leading-relaxed text-grey">{step.detail}</p>
               </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
-      ))}
-    </div>
+            </li>
+          ))}
+        </ol>
+      </div>
+
+      {/* Phones and tablets: down a spine */}
+      <ol className="relative space-y-8 border-l border-dashed border-navy/20 pl-8 lg:hidden">
+        {steps.map((step) => (
+          <li key={step.phase} className="relative">
+            <span aria-hidden="true" className="absolute -left-[40px] top-1 h-[15px] w-[15px] rounded-full border-2 border-brand bg-brand" />
+            <p className="mb-1 font-mono text-[11px] uppercase tracking-[0.2em] text-navy/50">{step.timeline}</p>
+            <h3 className="mb-1 text-lg font-display font-medium text-navy">{step.phase}</h3>
+            <p className="text-sm font-light leading-relaxed text-grey">{step.detail}</p>
+          </li>
+        ))}
+      </ol>
+    </>
   );
 }
 
 /* ─── Page ─── */
 export default function BuildPage() {
   return (
-    <div className="font-sans">
+    <div className="pt-16 font-sans">
 
-      {/* ── Section 1: Hero ── */}
-      <section className="relative overflow-hidden bg-navy px-6 pt-32 pb-24 md:pt-44 md:pb-32">
-        {/* Grid overlay */}
-        <NavyBackdrop hero />
-        {/* Brand glow */}
-        <div className="pointer-events-none absolute -top-40 right-0 h-[600px] w-[600px] rounded-full bg-brand/5 blur-[120px]" />
-        {/* Gradient fade */}
-        <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-warm-white" />
-
-        <div className="relative z-10 max-w-7xl mx-auto">
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="mb-4 text-[11px] font-bold uppercase tracking-[0.22em] text-brand"
-          >
-            Venture Build
-          </motion.p>
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="mb-6 max-w-4xl text-4xl font-display font-medium tracking-tight text-warm-white md:text-6xl lg:text-7xl"
-          >
-            We don&apos;t just back founders.{' '}
-            <span className="text-brand">We build companies with them.</span>
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="mb-8 max-w-2xl text-base font-light leading-relaxed text-warm-white/60 md:text-lg"
-          >
-            Maxinor&apos;s Venture Build engine co-creates AI-native startups from validated white spaces. We bring the operators, the technology infrastructure, and the market expertise. You bring the domain insight and founder commitment.
-          </motion.p>
-          {/* Chips */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.25 }}
-            className="mb-10 flex flex-wrap gap-3"
-          >
-            {['AI-Native', '90 Days to Launch', 'Operator Co-Creation'].map((chip) => (
-              <span
-                key={chip}
-                className="rounded-full border border-warm-white/15 bg-warm-white/5 px-4 py-2 text-xs font-semibold tracking-wide text-warm-white/70"
-              >
-                {chip}
-              </span>
-            ))}
-          </motion.div>
-          {/* CTAs */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="flex flex-wrap gap-4"
-          >
-            <Link href="/contact" className={primaryBtn}>
-              Start a conversation <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-            </Link>
-            <Link href="/scale" className={ghostBtn}>
-              See how we scale
-            </Link>
-          </motion.div>
+      {/* ── Section 1: Hero — words on the left, the compass pointing at Build on the right ── */}
+      <PaperSection fill className="border-t-0 py-16 md:py-[clamp(24px,5svh,64px)]">
+        <div className="grid items-center gap-12 md:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)]">
+          <div>
+            <Eyebrow>Venture Build</Eyebrow>
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.1, ease: EASE_OUT }}
+              className="mb-[clamp(16px,3svh,28px)] text-[clamp(36px,min(5.4vw,7.6svh),76px)] font-display font-medium leading-[1.02] tracking-[-0.03em]"
+            >
+              We don&apos;t just back founders.{' '}
+              <span className="text-brand">We build companies with them.</span>
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="mb-[clamp(20px,3.5svh,32px)] max-w-xl border-t border-navy/10 pt-5 text-base font-light leading-relaxed text-grey md:text-lg"
+            >
+              Maxinor&apos;s Venture Build engine co-creates AI-native startups from validated white spaces. We bring the operators, the technology infrastructure, and the market expertise. You bring the domain insight and founder commitment.
+            </motion.p>
+            {/* The three promises, as a ruled strip */}
+            <motion.ul
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.25 }}
+              className="mb-[clamp(24px,4svh,40px)] flex w-fit flex-wrap divide-x divide-navy/10 rounded-full border border-navy/10 bg-white/60 font-mono text-[11px] uppercase tracking-[0.16em] text-navy/70"
+            >
+              {['AI-Native', '90 Days to Launch', 'Operator Co-Creation'].map((chip) => (
+                <li key={chip} className="px-4 py-2">{chip}</li>
+              ))}
+            </motion.ul>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="flex flex-wrap gap-4"
+            >
+              <Link href="/contact" className={primaryButtonClass}>
+                Start a conversation <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+              </Link>
+              <Link href="/scale" className={secondaryButtonClass}>
+                See how we scale
+              </Link>
+            </motion.div>
+          </div>
+          <div className="hidden justify-center md:flex">
+            <RouteCompass here="Build" className="w-[min(78%,58svh,440px)] animate-fade [animation-delay:200ms]" />
+          </div>
         </div>
-      </section>
+      </PaperSection>
 
       {/* ── Section 2: The Problem We Solve ── */}
-      <section className="bg-warm-white px-6 py-20 md:py-28">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="mb-14 md:mb-16"
-          >
-            <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">The Problem We Solve</p>
-            <h2 className="max-w-2xl text-3xl font-display font-medium tracking-tight text-navy md:text-4xl">
-              Most startups fail before they find their model.
-            </h2>
-          </motion.div>
-          <div className="grid gap-6 md:grid-cols-3">
-            {painPoints.map((p, i) => (
-              <motion.div
-                key={p.number}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: i * 0.1 }}
-                className="relative rounded-[2rem] border border-grey/15 bg-white p-8 card-interactive spotlight spotlight-border"
-              >
-                <span className="pointer-events-none absolute right-6 top-4 select-none text-7xl font-display font-bold leading-none text-brand/5">
-                  {p.number}
-                </span>
-                <div className="mb-5 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-brand/10">
-                  <p.icon className="h-5 w-5 text-brand" />
-                </div>
-                <h3 className="mb-3 text-lg font-display font-semibold text-navy">{p.title}</h3>
-                <p className="text-sm font-light leading-relaxed text-grey">{p.body}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <PaperSection className="py-20 md:py-28">
+        <Reveal className="mb-12 md:mb-14">
+          <Eyebrow>The Problem We Solve</Eyebrow>
+          <RevealText
+            className="max-w-2xl text-3xl font-display font-medium tracking-tight md:text-5xl"
+            parts={[{ text: 'Most startups fail before they ' }, { text: 'find their model.', className: 'text-brand' }]}
+          />
+        </Reveal>
+        <Stagger className={`${panelClass} md:grid-cols-3`}>
+          {painPoints.map((p) => (
+            <StaggerItem key={p.title} className="group relative px-6 py-8 transition-colors duration-300 hover:bg-white md:px-8">
+              <HoverRule />
+              <p.icon aria-hidden="true" className="mb-6 h-5 w-5 text-navy/40 transition-colors duration-300 group-hover:text-brand" strokeWidth={1.5} />
+              <h3 className="mb-3 text-xl font-display font-medium text-navy">{p.title}</h3>
+              <p className="text-[15px] font-light leading-relaxed text-grey">{p.body}</p>
+            </StaggerItem>
+          ))}
+        </Stagger>
+      </PaperSection>
 
       {/* ── Section 3: What Venture Build Covers ── */}
-      <section className="bg-white px-6 py-20 md:py-28 border-t border-grey/10">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="mb-14 md:mb-16"
-          >
-            <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">What We Cover</p>
-            <h2 className="max-w-2xl text-3xl font-display font-medium tracking-tight text-navy md:text-4xl">
-              Three engines. One integrated build.
-            </h2>
-          </motion.div>
-          <div className="grid gap-6 md:grid-cols-3">
-            {engines.map((engine, i) => (
-              <motion.div
-                key={engine.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: i * 0.08 }}
-                className="flex flex-col rounded-[2rem] border border-grey/15 bg-warm-white p-8 card-interactive spotlight spotlight-border"
+      <PaperSection className="py-20 md:py-28">
+        <Reveal className="mb-12 md:mb-14">
+          <Eyebrow>What We Cover</Eyebrow>
+          <RevealText
+            className="max-w-2xl text-3xl font-display font-medium tracking-tight md:text-5xl"
+            parts={[{ text: 'Three engines. ' }, { text: 'One integrated build.', className: 'text-brand' }]}
+          />
+        </Reveal>
+        <Stagger className={`${panelClass} md:grid-cols-3`}>
+          {engines.map((engine) => (
+            <StaggerItem key={engine.title} className="group relative flex flex-col px-6 py-8 transition-colors duration-300 hover:bg-white md:px-8">
+              <HoverRule />
+              <div className="mb-5 flex items-center gap-3">
+                <engine.icon aria-hidden="true" className="h-5 w-5 text-navy/40 transition-colors duration-300 group-hover:text-brand" strokeWidth={1.5} />
+                <h3 className="text-xl font-display font-medium text-navy">{engine.title}</h3>
+              </div>
+              <RuledList items={engine.items} className="mb-6 flex-1" />
+              <Link
+                href={engine.href}
+                className="inline-flex items-center gap-1.5 text-sm font-semibold text-navy transition-all duration-200 hover:gap-2.5 hover:text-brand"
               >
-                <div className="mb-5 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-brand/10">
-                  <engine.icon className="h-5 w-5 text-brand" />
-                </div>
-                <h3 className="mb-5 text-xl font-display font-semibold text-navy">{engine.title}</h3>
-                <ul className="mb-6 flex-1 space-y-3">
-                  {engine.items.map((item) => (
-                    <li key={item} className="flex items-start gap-2.5 text-sm font-light leading-relaxed text-grey">
-                      <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-brand" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-                <Link
-                  href={engine.href}
-                  className="inline-flex items-center gap-1 text-sm font-semibold text-brand transition-all duration-200 hover:gap-2"
-                >
-                  Learn more <ArrowRight className="h-3.5 w-3.5" />
-                </Link>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+                Learn more <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </StaggerItem>
+          ))}
+        </Stagger>
+      </PaperSection>
 
       {/* ── Section 4: How It Works ── */}
-      <section className="relative overflow-hidden bg-navy px-6 py-20 md:py-28 border-t border-white/5">
-        <NavyBackdrop />
-        <div className="pointer-events-none absolute -top-60 left-1/2 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-brand/5 blur-[100px]" />
-        <div className="relative z-10 max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="mb-14 md:mb-20"
-          >
-            <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">The Build Process</p>
-            <h2 className="max-w-2xl text-3xl font-display font-medium tracking-tight text-warm-white md:text-4xl">
-              From white space to working business.
-            </h2>
-          </motion.div>
-
-          {/* Desktop: horizontal steps */}
-          <div className="hidden lg:grid lg:grid-cols-5 lg:gap-0">
-            {steps.map((step, i) => (
-              <motion.div
-                key={step.number}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: i * 0.1 }}
-                className="relative flex flex-col px-6 first:pl-0 last:pr-0"
-              >
-                {/* Connector line */}
-                {i < steps.length - 1 && (
-                  <div className="absolute right-0 top-5 h-px w-1/2 translate-x-full bg-white/10" />
-                )}
-                <div className="mb-4 flex items-center gap-3">
-                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-brand/40 bg-brand/10 text-xs font-bold text-brand">
-                    {step.number}
-                  </span>
-                  <motion.div initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.3 + i * 0.15, ease: [0.22, 1, 0.36, 1] }} className="h-px flex-1 origin-left bg-gradient-to-r from-brand/60 to-white/10" />
-                </div>
-                <p className="mb-1 text-xs font-bold uppercase tracking-[0.18em] text-brand/70">{step.timeline}</p>
-                <h3 className="mb-3 text-lg font-display font-semibold text-warm-white">{step.phase}</h3>
-                <p className="text-sm font-light leading-relaxed text-warm-white/50">{step.detail}</p>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Mobile/tablet: vertical stack */}
-          <div className="grid gap-6 lg:hidden">
-            {steps.map((step, i) => (
-              <motion.div
-                key={step.number}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.08 }}
-                className="flex gap-5 rounded-[1.5rem] border border-white/8 bg-white/5 p-6 card-interactive spotlight spotlight-border"
-              >
-                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-brand/40 bg-brand/10 text-xs font-bold text-brand">
-                  {step.number}
-                </span>
-                <div>
-                  <p className="mb-0.5 text-[10px] font-bold uppercase tracking-[0.18em] text-brand/70">{step.timeline}</p>
-                  <h3 className="mb-2 text-base font-display font-semibold text-warm-white">{step.phase}</h3>
-                  <p className="text-sm font-light leading-relaxed text-warm-white/50">{step.detail}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <PaperSection className="py-20 md:py-28">
+        <Reveal className="mb-14 md:mb-20">
+          <Eyebrow>The Build Process</Eyebrow>
+          <RevealText
+            className="max-w-2xl text-3xl font-display font-medium tracking-tight md:text-5xl"
+            parts={[{ text: 'From white space to ' }, { text: 'working business.', className: 'text-brand' }]}
+          />
+        </Reveal>
+        <BuildCourse />
+      </PaperSection>
 
       {/* ── Section 5: Companies Built — hidden, set to true to re-enable ── */}
       {false && (
       <section className="bg-warm-white px-6 py-20 md:py-28 border-t border-grey/10">
         <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="mb-14 md:mb-16"
-          >
-            <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">Portfolio</p>
-            <h2 className="max-w-2xl text-3xl font-display font-medium tracking-tight text-navy md:text-4xl">
-              Ventures built from our platform.
-            </h2>
-          </motion.div>
           <div className="grid grid-cols-3 gap-4 md:grid-cols-5 md:gap-6">
-            {ventures.map((v, i) => (
-              <motion.a
+            {ventures.map((v) => (
+              <a
                 key={v.name}
                 href={v.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.07 }}
-                className="group flex items-center justify-center rounded-2xl border border-grey/15 bg-white p-5 hover:border-brand/30 sm:p-6 card-interactive spotlight spotlight-border"
+                className="group flex items-center justify-center rounded-2xl border border-grey/15 bg-white p-5 sm:p-6"
               >
                 <div className="relative h-10 w-full sm:h-12">
-                  <Image
-                    src={v.logo}
-                    alt={v.name}
-                    fill
-                    className="object-contain transition-opacity duration-300 group-hover:opacity-80"
-                    referrerPolicy="no-referrer"
-                  />
+                  <Image src={v.logo} alt={v.name} fill className="object-contain" referrerPolicy="no-referrer" />
                 </div>
-              </motion.a>
+              </a>
             ))}
           </div>
         </div>
@@ -488,55 +377,42 @@ export default function BuildPage() {
       )}
 
       {/* ── Section 6: FAQ ── */}
-      <section className="bg-warm-white px-6 pb-20 md:pb-28 border-t border-grey/10">
-        <div className="max-w-3xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="mb-10 md:mb-12"
-          >
-            <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">Common Questions</p>
-            <h2 className="text-3xl font-display font-medium tracking-tight text-navy md:text-4xl">
-              Everything you need to know.
-            </h2>
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-          >
-            <FaqAccordion />
-          </motion.div>
+      <PaperSection className="py-20 md:py-28">
+        <div className="grid gap-10 md:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] md:gap-16">
+          <Reveal>
+            <Eyebrow>Common Questions</Eyebrow>
+            <RevealText
+              className="text-3xl font-display font-medium tracking-tight md:text-5xl"
+              parts={[{ text: 'Everything you ' }, { text: 'need to know.', className: 'text-brand' }]}
+            />
+          </Reveal>
+          <Reveal delay={0.1}>
+            <RuledFaq items={faqs} />
+          </Reveal>
         </div>
-      </section>
+      </PaperSection>
 
-      {/* ── Section 7: CTA ── */}
-      <section className="relative overflow-hidden bg-navy px-6 py-20 text-center md:py-28">
-        <NavyBackdrop />
-        <div className="pointer-events-none absolute -bottom-40 left-1/2 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-brand/6 blur-[100px]" />
-        <div className="relative z-10 max-w-3xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-          >
-            <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">Get Started</p>
-            <h2 className="mb-5 text-3xl font-display font-medium tracking-tight text-warm-white md:text-5xl">
-              Have a white space? Let us build it with you.
-            </h2>
-            <p className="mb-10 max-w-xl mx-auto text-base font-light leading-relaxed text-warm-white/60 md:text-lg">
+      {/* ── Section 7: CTA — laid out like the hero, so the page ends where it began ── */}
+      <PaperSection fill className="py-20 md:py-[clamp(28px,6svh,128px)]">
+        <div className="grid items-center gap-12 md:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)]">
+          <Reveal>
+            <Eyebrow>Get Started</Eyebrow>
+            <RevealText
+              className="mb-6 text-4xl font-display font-medium leading-[1.05] tracking-tight md:text-[clamp(36px,min(5vw,7.4svh),64px)]"
+              parts={[{ text: 'Have a white space? ' }, { text: 'Let us build it with you.', className: 'text-brand' }]}
+            />
+            <p className="mb-10 max-w-xl border-t border-navy/10 pt-5 text-base font-light leading-relaxed text-grey md:text-lg">
               The conversation starts with an operator, not a pitch deck. Tell us about the opportunity and we will tell you if Venture Build is the right fit.
             </p>
-            <Link href="/contact" className={primaryBtn}>
+            <Link href="/contact" className={primaryButtonClass}>
               Start a conversation <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
-          </motion.div>
+          </Reveal>
+          <div className="hidden justify-center md:flex">
+            <RouteCompass here="Build" className="w-[min(70%,52svh,400px)]" />
+          </div>
         </div>
-      </section>
+      </PaperSection>
 
     </div>
   );
