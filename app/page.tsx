@@ -572,7 +572,7 @@ export default function Home() {
               {/* Other ways to reach us, ruled like the panels above */}
               <div className="mx-auto mt-10 grid max-w-xl grid-cols-1 divide-y divide-navy/10 border-y border-navy/10 text-left sm:grid-cols-2 sm:divide-x sm:divide-y-0 md:mx-0 md:mt-[clamp(20px,4.5svh,48px)]">
                 {[
-                  { label: 'Email', value: 'contact@mlabs.co.in', href: 'mailto:contact@mlabs.co.in' },
+                  { label: 'Email', value: 'mango@mlabs.co.in', href: 'mailto:mango@mlabs.co.in' },
                   { label: 'Meet', value: 'The operator team', href: '/team' },
                 ].map((item) => (
                   <Link

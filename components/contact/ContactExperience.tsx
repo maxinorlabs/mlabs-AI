@@ -40,7 +40,7 @@ function ContactIntro() {
           LinkedIn
         </Link>
         <Link
-          href="mailto:contact@mlabs.co.in"
+          href="mailto:mango@mlabs.co.in"
           className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.12em] text-navy/65 transition-colors hover:text-brand"
         >
           <Mail className="h-4 w-4" aria-hidden="true" />
