@@ -17,7 +17,6 @@ import { HeroCompass } from '@/components/Compass';
 import { HeroIntro } from '@/components/home/HeroIntro';
 import { trackSpotlight } from '@/lib/spotlight';
 import { EASE_OUT } from '@/lib/motion';
-import { PARTNER_FACES } from '@/lib/partners';
 
 // The three ways in. Each is a bearing on the hero compass: hovering or focusing one swings the needle to it.
 const ROUTES = [
@@ -82,75 +81,6 @@ function Headline() {
   );
 }
 
-// One partner's portrait on the compass's outer ring, at a bearing clear of the route labels. It drifts a little
-// with the pointer, lifts on hover and names itself. The portraits repeat the Team page,
-// so they are links for the pointer only and stay out of the tab order.
-function RingFace({
-  face,
-  spot,
-  index,
-  hovered,
-  onHover,
-  px,
-  py,
-}: {
-  face: (typeof PARTNER_FACES)[number];
-  spot: [number, number];
-  index: number;
-  hovered: boolean;
-  onHover: (i: number | null) => void;
-  px: MotionValue<number>;
-  py: MotionValue<number>;
-}) {
-  // A small drift, so a portrait never slides out from under the pointer reaching for it.
-  const x = useTransform(px, (v) => v * 8);
-  const y = useTransform(py, (v) => v * 8);
-  const [bearing, radius] = spot;
-  const rad = ((bearing - 90) * Math.PI) / 180;
-  return (
-    <motion.div
-      style={{ x, y, left: `${50 + radius * Math.cos(rad)}%`, top: `${50 + radius * Math.sin(rad)}%` }}
-      initial={{ opacity: 0, scale: 0.4 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ delay: 0.9 + index * 0.06, duration: 0.5, ease: EASE_OUT }}
-      className="absolute z-10 hidden w-[9.5%] -translate-x-1/2 -translate-y-1/2 xl:block"
-    >
-      <Link
-        href="/team"
-        tabIndex={-1}
-        onMouseEnter={() => onHover(index)}
-        onMouseLeave={() => onHover(null)}
-        className="pointer-events-auto relative block aspect-square"
-      >
-        <motion.span
-          animate={{ scale: hovered ? 1.25 : 1 }}
-          transition={{ type: 'spring', stiffness: 400, damping: 22 }}
-          className="relative block h-full w-full overflow-hidden rounded-full bg-navy/5 shadow-[0_8px_20px_-8px_rgba(11,31,59,0.45)] ring-2 ring-warm-white"
-        >
-          <Image src={face.image} alt={face.name} fill sizes="64px" className={`object-cover object-top transition duration-300 ${hovered ? '' : 'grayscale-[40%]'}`} />
-        </motion.span>
-        {hovered && (
-          <motion.span
-            initial={{ opacity: 0, y: 4 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="pointer-events-none absolute left-1/2 top-full z-20 mt-3 -translate-x-1/2 whitespace-nowrap rounded-lg bg-navy px-3 py-1.5 text-center text-warm-white shadow-xl"
-          >
-            <span className="block text-xs font-semibold">{face.name}</span>
-            <span className="block text-[10px] text-warm-white/70">{face.role}</span>
-          </motion.span>
-        )}
-      </Link>
-    </motion.div>
-  );
-}
-
-// Where the portraits sit: [bearing, radius as % of the dial]. Down the two sides of the dial, staggered across
-// two rings, clear of Build (300), Scale (0) and Invest (60), and clear of the header and the strip below.
-const FACE_SPOTS: [number, number][] = [
-  [86, 58], [102, 72], [118, 58], [134, 72], [150, 58],
-  [274, 58], [258, 72], [242, 58], [226, 72], [210, 58],
-];
-
 // One contour ring. Draws in once, then drifts with the pointer by its depth, so the rings move apart in parallax.
 function Contour({ d, k, px, py }: { d: string; k: number; px: MotionValue<number>; py: MotionValue<number> }) {
   const depth = (k + 1) / CONTOURS.length;
@@ -212,7 +142,6 @@ export function HomeHero() {
   const ref = useRef<HTMLElement>(null);
   const reduceMotion = useReducedMotion();
   const [active, setActive] = useState<number | null>(null);
-  const [hoveredFace, setHoveredFace] = useState<number | null>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] });
 
   // Scrolling away: the copy lifts and fades, the compass turns and the contours open out.
@@ -315,10 +244,10 @@ export function HomeHero() {
                   tabIndex={-1}
                   onMouseEnter={() => setActive(i)}
                   onMouseLeave={() => setActive(null)}
-                  className={`pointer-events-auto absolute hidden -translate-x-1/2 -translate-y-1/2 whitespace-nowrap rounded-full border px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.24em] transition-colors duration-300 xl:block ${
+                  className={`pointer-events-auto absolute hidden -translate-x-1/2 -translate-y-1/2 whitespace-nowrap rounded-full border px-3 py-1.5 text-xs font-extrabold uppercase tracking-[0.24em] transition-colors duration-300 xl:block ${
                     active === i
                       ? 'border-brand/40 bg-warm-white text-brand'
-                      : 'border-transparent text-navy/40 hover:border-navy/15'
+                      : 'border-transparent text-navy/70 hover:border-navy/15'
                   }`}
                   style={{ left: `${50 + 55 * Math.cos(rad)}%`, top: `${50 + 55 * Math.sin(rad)}%` }}
                 >
@@ -327,20 +256,6 @@ export function HomeHero() {
               );
             })}
           </motion.div>
-
-          {/* The partners around the dial, on its outermost ring */}
-          {PARTNER_FACES.map((face, i) => (
-            <RingFace
-              key={face.name}
-              face={face}
-              spot={FACE_SPOTS[i]}
-              index={i}
-              hovered={hoveredFace === i}
-              onHover={setHoveredFace}
-              px={px}
-              py={py}
-            />
-          ))}
 
           {/* Caption under the dial: the hovered route's one-liner */}
           <p className="absolute -bottom-6 left-1/2 hidden w-[120%] -translate-x-1/2 animate-fade text-center text-sm [animation-delay:1200ms] xl:block">
