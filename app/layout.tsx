@@ -66,14 +66,14 @@ const organizationSchema = {
   description: "India's first operator-led AI venture studio. We build, scale, and back startups, SMEs, and corporates through hands-on execution, not just capital.",
   foundingDate: '2023',
   areaServed: 'IN',
-  email: 'contact@mlabs.co.in',
+  email: 'mango@mlabs.co.in',
   telephone: '+91-98119-96965',
   sameAs: [
     'https://www.linkedin.com/company/maxinor',
   ],
   contactPoint: {
     '@type': 'ContactPoint',
-    email: 'contact@mlabs.co.in',
+    email: 'mango@mlabs.co.in',
     telephone: '+91-98119-96965',
     contactType: 'customer service',
     areaServed: 'IN',
