@@ -17,6 +17,7 @@ import { HeroCompass } from '@/components/Compass';
 import { HeroIntro } from '@/components/home/HeroIntro';
 import { trackSpotlight } from '@/lib/spotlight';
 import { EASE_OUT } from '@/lib/motion';
+import { PARTNER_FACES } from '@/lib/partners';
 
 // The three ways in. Each is a bearing on the hero compass: hovering or focusing one swings the needle to it.
 const ROUTES = [
@@ -81,39 +82,74 @@ function Headline() {
   );
 }
 
-// A photo pinned near the compass like a print on a chart table. It drifts against the pointer, more than the
-// contours do, so it reads as nearer. Stock photos (Pexels) that set the scene; they do not show our team.
-function FloatingPhoto({
-  src,
-  className,
-  rotate,
-  depth,
+// One partner's portrait on the compass's outer ring, at a bearing clear of the route labels. It drifts a little
+// with the pointer, lifts on hover and names itself. The portraits repeat the Team page,
+// so they are links for the pointer only and stay out of the tab order.
+function RingFace({
+  face,
+  spot,
+  index,
+  hovered,
+  onHover,
   px,
   py,
-  delay,
 }: {
-  src: string;
-  className: string;
-  rotate: number;
-  depth: number;
+  face: (typeof PARTNER_FACES)[number];
+  spot: [number, number];
+  index: number;
+  hovered: boolean;
+  onHover: (i: number | null) => void;
   px: MotionValue<number>;
   py: MotionValue<number>;
-  delay: number;
 }) {
-  const x = useTransform(px, (v) => v * depth * -22);
-  const y = useTransform(py, (v) => v * depth * -22);
+  // A small drift, so a portrait never slides out from under the pointer reaching for it.
+  const x = useTransform(px, (v) => v * 8);
+  const y = useTransform(py, (v) => v * 8);
+  const [bearing, radius] = spot;
+  const rad = ((bearing - 90) * Math.PI) / 180;
   return (
     <motion.div
-      style={{ x, y, rotate }}
-      initial={{ opacity: 0, scale: 0.92 }}
+      style={{ x, y, left: `${50 + radius * Math.cos(rad)}%`, top: `${50 + radius * Math.sin(rad)}%` }}
+      initial={{ opacity: 0, scale: 0.4 }}
       animate={{ opacity: 1, scale: 1 }}
-      transition={{ delay, duration: 0.9, ease: EASE_OUT }}
-      className={`absolute hidden aspect-[3/4] overflow-hidden rounded-2xl border-4 border-white shadow-[0_24px_50px_-20px_rgba(11,31,59,0.45)] xl:block ${className}`}
+      transition={{ delay: 0.9 + index * 0.06, duration: 0.5, ease: EASE_OUT }}
+      className="absolute z-10 hidden w-[9.5%] -translate-x-1/2 -translate-y-1/2 xl:block"
     >
-      <Image src={src} alt="" fill sizes="180px" className="object-cover" />
+      <Link
+        href="/team"
+        tabIndex={-1}
+        onMouseEnter={() => onHover(index)}
+        onMouseLeave={() => onHover(null)}
+        className="pointer-events-auto relative block aspect-square"
+      >
+        <motion.span
+          animate={{ scale: hovered ? 1.25 : 1 }}
+          transition={{ type: 'spring', stiffness: 400, damping: 22 }}
+          className="relative block h-full w-full overflow-hidden rounded-full bg-navy/5 shadow-[0_8px_20px_-8px_rgba(11,31,59,0.45)] ring-2 ring-warm-white"
+        >
+          <Image src={face.image} alt={face.name} fill sizes="64px" className={`object-cover object-top transition duration-300 ${hovered ? '' : 'grayscale-[40%]'}`} />
+        </motion.span>
+        {hovered && (
+          <motion.span
+            initial={{ opacity: 0, y: 4 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="pointer-events-none absolute left-1/2 top-full z-20 mt-3 -translate-x-1/2 whitespace-nowrap rounded-lg bg-navy px-3 py-1.5 text-center text-warm-white shadow-xl"
+          >
+            <span className="block text-xs font-semibold">{face.name}</span>
+            <span className="block text-[10px] text-warm-white/70">{face.role}</span>
+          </motion.span>
+        )}
+      </Link>
     </motion.div>
   );
 }
+
+// Where the portraits sit: [bearing, radius as % of the dial]. Down the two sides of the dial, staggered across
+// two rings, clear of Build (300), Scale (0) and Invest (60), and clear of the header and the strip below.
+const FACE_SPOTS: [number, number][] = [
+  [86, 58], [102, 72], [118, 58], [134, 72], [150, 58],
+  [274, 58], [258, 72], [242, 58], [226, 72], [210, 58],
+];
 
 // One contour ring. Draws in once, then drifts with the pointer by its depth, so the rings move apart in parallax.
 function Contour({ d, k, px, py }: { d: string; k: number; px: MotionValue<number>; py: MotionValue<number> }) {
@@ -176,6 +212,7 @@ export function HomeHero() {
   const ref = useRef<HTMLElement>(null);
   const reduceMotion = useReducedMotion();
   const [active, setActive] = useState<number | null>(null);
+  const [hoveredFace, setHoveredFace] = useState<number | null>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] });
 
   // Scrolling away: the copy lifts and fades, the compass turns and the contours open out.
@@ -291,9 +328,19 @@ export function HomeHero() {
             })}
           </motion.div>
 
-          {/* Two photos pinned beside the dial, clear of the route labels */}
-          <FloatingPhoto src="/images/photos/hero-desk.webp" className="-left-[14%] bottom-[2%] w-[26%]" rotate={-6} depth={1.4} px={px} py={py} delay={1.1} />
-          <FloatingPhoto src="/images/photos/hero-city.webp" className="-right-[12%] top-[52%] w-[24%]" rotate={5} depth={1} px={px} py={py} delay={1.3} />
+          {/* The partners around the dial, on its outermost ring */}
+          {PARTNER_FACES.map((face, i) => (
+            <RingFace
+              key={face.name}
+              face={face}
+              spot={FACE_SPOTS[i]}
+              index={i}
+              hovered={hoveredFace === i}
+              onHover={setHoveredFace}
+              px={px}
+              py={py}
+            />
+          ))}
 
           {/* Caption under the dial: the hovered route's one-liner */}
           <p className="absolute -bottom-6 left-1/2 hidden w-[120%] -translate-x-1/2 animate-fade text-center text-sm [animation-delay:1200ms] xl:block">
