@@ -1,14 +1,21 @@
 'use client';
 
-import { motion, AnimatePresence } from 'motion/react';
+import { motion } from 'motion/react';
 import { NavyBackdrop } from '@/components/motion/NavyBackdrop';
 import Link from 'next/link';
-import { useEffect, useRef, useState } from 'react';
-import { ArrowRight, ChevronDown } from 'lucide-react';
-import { TShapeWidget } from '@/components/TShapeWidget';
-
-const primaryBtn =
-  'inline-flex items-center justify-center rounded-full bg-brand px-8 py-4 text-base font-semibold tracking-wide text-warm-white transition-all duration-300 hover:-translate-y-1 hover:bg-brand/90 shadow-[0_0_40px_rgba(243,111,33,0.15)] hover:shadow-[0_0_60px_rgba(243,111,33,0.3)] sm:px-10 sm:py-5 group active:translate-y-0 active:scale-[0.98]';
+import { ArrowRight, ArrowUpRight } from 'lucide-react';
+import { HomeTShape } from '@/components/home/HomeTShape';
+import { Reveal, Stagger, StaggerItem } from '@/components/motion/Reveal';
+import { RevealText } from '@/components/motion/RevealText';
+import {
+  Eyebrow,
+  HoverRule,
+  PaperSection,
+  RouteCompass,
+  RuledList,
+  primaryButtonClass,
+} from '@/components/page/Paper';
+import { EASE_OUT } from '@/lib/motion';
 
 const sectors = [
   {
@@ -200,156 +207,125 @@ const sectors = [
   },
 ];
 
-const tabs = [
-  { id: 'overview', label: 'All' },
-  ...sectors.map((d) => ({ id: d.id, label: d.name })),
-];
+// Sectors whose own pages are not published yet.
+const COMING_SOON = ['media', 'education', 'defence'];
 
 export default function DomainsPage() {
-  const [activeTab, setActiveTab] = useState('overview');
-  const [expandedDomain, setExpandedDomain] = useState<string | null>(null);
-  const tabBarRef = useRef<HTMLDivElement>(null);
-
-  // IntersectionObserver: update active tab as deep-dive sections scroll into view
-  useEffect(() => {
-    const sectionIds = ['overview', ...sectors.map((d) => d.id)];
-    const observers: IntersectionObserver[] = [];
-
-    sectionIds.forEach((id) => {
-      const el = document.getElementById(id);
-      if (!el) return;
-      const obs = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) setActiveTab(id);
-        },
-        { threshold: 0.3, rootMargin: '-100px 0px -40% 0px' }
-      );
-      obs.observe(el);
-      observers.push(obs);
-    });
-
-    return () => observers.forEach((o) => o.disconnect());
-  }, []);
-
-  const scrollTo = (id: string) => {
-    const el = document.getElementById(id);
-    if (!el) return;
-    const offset = 140; // navbar + tab bar height
-    const top = el.getBoundingClientRect().top + window.scrollY - offset;
-    window.scrollTo({ top, behavior: 'smooth' });
-    setActiveTab(id);
-  };
-
   return (
-    <div className="font-sans">
+    <div className="pt-16 font-sans">
 
-      {/* ── Hero ── */}
-      <section className="relative overflow-hidden bg-navy px-6 pt-32 pb-20 md:pt-40 md:pb-24">
-        {/* Subtle grid pattern */}
-        <NavyBackdrop hero />
-        <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-warm-white" />
+      {/* ── Hero — words on the left, an index of the sectors on the right ── */}
+      <PaperSection fill className="border-t-0 py-16 md:py-[clamp(24px,5svh,64px)]">
+        <div className="grid items-center gap-12 md:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)]">
+          <div>
+            <Eyebrow>Where Operators Meet Sector Depth</Eyebrow>
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.1, ease: EASE_OUT }}
+              className="mb-[clamp(16px,3svh,28px)] text-[clamp(36px,min(5.4vw,7.6svh),76px)] font-display font-medium leading-[1.02] tracking-[-0.03em]"
+            >
+              We don&apos;t just know your industry.{' '}
+              <span className="text-brand">We&apos;ve built inside it.</span>
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="mb-[clamp(24px,4svh,40px)] max-w-xl border-t border-navy/10 pt-5 text-base font-light leading-relaxed text-grey md:text-lg"
+            >
+              Maxinor&apos;s operator network brings hands-on sector experience in six high-growth
+              sectors, from ideation through execution.
+            </motion.p>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+            >
+              <a href="#overview" className={primaryButtonClass}>
+                Find Your Sector <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+              </a>
+            </motion.div>
+          </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto">
-          <motion.p
+          {/* The six sectors as a ruled index, each jumping to its card below */}
+          <motion.ol
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="mb-4 text-[11px] font-bold uppercase tracking-[0.22em] text-brand"
+            transition={{ duration: 0.8, delay: 0.35 }}
+            className="overflow-hidden rounded-2xl border border-navy/10 bg-white/60 shadow-[0_24px_60px_-36px_rgba(11,31,59,0.35)] backdrop-blur-[2px]"
           >
-            Where Operators Meet Sector Depth
-          </motion.p>
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="mb-6 max-w-3xl text-4xl font-display font-medium tracking-tight text-warm-white md:text-6xl lg:text-7xl"
-          >
-            We don&apos;t just know your industry.{' '}
-            <span className="text-brand">We&apos;ve built inside it.</span>
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="mb-10 max-w-xl text-base font-light leading-relaxed text-warm-white/70 md:text-lg"
-          >
-            Maxinor&apos;s operator network brings hands-on sector experience in six high-growth
-            sectors, from ideation through execution.
-          </motion.p>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-          >
-            <button onClick={() => scrollTo('overview')} className={primaryBtn}>
-              Find Your Sector <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-            </button>
-          </motion.div>
+            {sectors.map((sector) => (
+              <li key={sector.id} className="border-b border-navy/10 last:border-b-0">
+                <a
+                  href={`#${sector.id}`}
+                  className="group relative flex items-center justify-between gap-4 px-5 py-[clamp(10px,1.9svh,16px)] transition-colors duration-300 hover:bg-white focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-brand"
+                >
+                  <span aria-hidden="true" className="absolute inset-y-0 left-0 w-0.5 origin-top scale-y-0 bg-brand transition-transform duration-300 group-hover:scale-y-100" />
+                  <span className="min-w-0">
+                    <span className="block text-lg font-display font-medium text-navy transition-colors group-hover:text-brand">{sector.name}</span>
+                    <span className="block truncate font-mono text-[10px] uppercase tracking-[0.18em] text-navy/45">{sector.sector}</span>
+                  </span>
+                  <ArrowRight className="h-4 w-4 shrink-0 rotate-90 text-navy/30 transition duration-300 group-hover:translate-y-0.5 group-hover:text-brand" />
+                </a>
+              </li>
+            ))}
+          </motion.ol>
         </div>
-      </section>
+      </PaperSection>
+
+      {/* ── The T: capabilities across, sectors down — the same diagram as on the Home page ── */}
+      <HomeTShape />
 
       {/* ── Sector Overview Cards ── */}
-      <section id="overview" className="bg-warm-white px-6 py-20 md:py-28">
-        <div className="max-w-7xl mx-auto">
-          <div className="mb-14 md:mb-20">
-            <TShapeWidget variant="sectors" />
-          </div>
-
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {sectors.map((sector, i) => (
-              <motion.div
-                key={sector.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: i * 0.08 }}
-                className="group relative rounded-[2rem] border border-grey/20 bg-white p-8 hover:border-brand/30 card-interactive spotlight spotlight-border"
-              >
-                <span className="pointer-events-none absolute right-5 top-3 select-none text-7xl font-display font-bold leading-none text-brand/6">
-                  {sector.number}
-                </span>
-                <p className="mb-1 text-[11px] font-bold uppercase tracking-[0.2em] text-grey/50">{sector.sector}</p>
-                <h3 className="mb-3 text-xl font-display font-semibold text-navy">{sector.name}</h3>
-                <p className="mb-5 text-sm font-light leading-relaxed text-grey">{sector.problem}</p>
-                <ul className="mb-6 space-y-2">
-                  {sector.capabilities.map((c) => (
-                    <li key={c} className="flex items-start gap-2.5 text-sm text-grey">
-                      <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-brand" />
-                      {c}
-                    </li>
-                  ))}
-                </ul>
-                <div className="mb-5 border-t border-grey/12 pt-4">
-                  <p className="text-xs text-grey/55">
+      <PaperSection className="py-20 md:py-28">
+        <div id="overview" className="scroll-mt-24">
+          <Reveal className="mb-12 md:mb-14">
+            <Eyebrow>The Sectors</Eyebrow>
+          </Reveal>
+          {/* One ruled sheet of cells: the 1px gaps show the navy hairline behind them */}
+          <Stagger className="grid gap-px overflow-hidden rounded-2xl border border-navy/10 bg-navy/10 shadow-[0_24px_60px_-36px_rgba(11,31,59,0.35)] md:grid-cols-2 lg:grid-cols-3">
+            {sectors.map((sector) => {
+              const live = !COMING_SOON.includes(sector.id);
+              return (
+                <StaggerItem
+                  key={sector.id}
+                  id={sector.id}
+                  className="group relative flex scroll-mt-24 flex-col bg-warm-white/95 px-6 py-8 transition-colors duration-300 hover:bg-white md:px-8"
+                >
+                  <HoverRule />
+                  <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.2em] text-navy/45">{sector.sector}</p>
+                  <h3 className="mb-3 text-2xl font-display font-medium text-navy">{sector.name}</h3>
+                  <p className="mb-5 text-[15px] font-light leading-relaxed text-grey">{sector.problem}</p>
+                  <RuledList items={sector.capabilities} className="mb-6 flex-1" />
+                  <p className="mb-5 text-xs leading-relaxed text-grey/70">
                     <span className="font-semibold text-navy">{sector.operator}</span> · {sector.operatorBg}
                   </p>
-                </div>
-                <div className="flex flex-wrap items-center gap-4">
-                  {['media', 'education', 'defence'].includes(sector.id) ? (
-                    <span className="inline-flex items-center gap-1 text-sm font-semibold text-grey/40">
+                  {live ? (
+                    <Link
+                      href={sector.standaloneUrl}
+                      className="inline-flex items-center gap-1.5 self-start text-sm font-semibold text-navy transition-all duration-200 hover:gap-2.5 hover:text-brand"
+                    >
+                      Explore <ArrowUpRight className="h-3.5 w-3.5" />
+                    </Link>
+                  ) : (
+                    <span className="self-start rounded-full border border-navy/10 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.18em] text-navy/40">
                       Coming Soon
                     </span>
-                  ) : (
-                    sector.standaloneUrl && (
-                      <Link
-                        href={sector.standaloneUrl}
-                        className="inline-flex items-center gap-1 text-sm font-semibold text-brand transition-all duration-200 hover:gap-2"
-                      >
-                        Explore <ArrowRight className="h-3.5 w-3.5" />
-                      </Link>
-                    )
                   )}
-                </div>
-              </motion.div>
-            ))}
-          </div>
-          <p className="mx-auto mt-14 max-w-2xl text-center text-base font-light leading-relaxed text-grey md:mt-16 md:text-lg">
-            This is why Maxinor operators are not advisors who have read the playbook.
-            <br />
-            <span className="font-semibold text-navy">They&apos;ve run the plays.</span>
-          </p>
+                </StaggerItem>
+              );
+            })}
+          </Stagger>
+          <Reveal className="mx-auto mt-14 max-w-2xl text-center md:mt-16">
+            <p className="text-base font-light leading-relaxed text-grey md:text-lg">
+              This is why Maxinor operators are not advisors who have read the playbook.
+              <br />
+              <span className="font-semibold text-navy">They&apos;ve run the plays.</span>
+            </p>
+          </Reveal>
         </div>
-      </section>
+      </PaperSection>
 
       {/* ── T-Shape Section — hidden, set to true to re-enable ── */}
       {false && (
@@ -462,28 +438,27 @@ export default function DomainsPage() {
       </section>
       )}
 
-{/* ── CTA ── */}
-      <section className="bg-warm-white px-6 py-20 text-center md:py-28 border-t border-grey/15">
-        <div className="max-w-3xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-          >
-            <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">Let&apos;s Talk</p>
-            <h2 className="mb-5 text-3xl font-display font-medium tracking-tight text-navy md:text-5xl">
-              Not sure which sector fits your problem?
-            </h2>
-            <p className="mb-8 text-base font-light leading-relaxed text-grey md:text-lg">
+      {/* ── CTA — laid out like the hero ── */}
+      <PaperSection fill className="py-20 md:py-[clamp(28px,6svh,128px)]">
+        <div className="grid items-center gap-12 md:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)]">
+          <Reveal>
+            <Eyebrow>Let&apos;s Talk</Eyebrow>
+            <RevealText
+              className="mb-6 text-4xl font-display font-medium leading-[1.05] tracking-tight md:text-[clamp(36px,min(5vw,7.4svh),64px)]"
+              parts={[{ text: 'Not sure which sector ' }, { text: 'fits your problem?', className: 'text-brand' }]}
+            />
+            <p className="mb-10 max-w-xl border-t border-navy/10 pt-5 text-base font-light leading-relaxed text-grey md:text-lg">
               Tell us what you&apos;re building. We&apos;ll tell you where we fit, and if we don&apos;t, we&apos;ll say so.
             </p>
-            <Link href="/contact" className={primaryBtn}>
+            <Link href="/contact" className={primaryButtonClass}>
               Start the conversation <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
-          </motion.div>
+          </Reveal>
+          <div className="hidden justify-center md:flex">
+            <RouteCompass className="w-[min(70%,52svh,400px)]" />
+          </div>
         </div>
-      </section>
+      </PaperSection>
     </div>
   );
 }

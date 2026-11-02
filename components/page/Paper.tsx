@@ -136,12 +136,12 @@ export type Route = (typeof ROUTES)[number]['label'];
 
 /**
  * The hero's compass with its three route labels. The needle rests on the page's own route ("you are
- * here"); pointing at another label swings it there. The labels repeat links found in the navigation,
+ * here"), or on north for a page outside the three routes; pointing at another label swings it there. The labels repeat links found in the navigation,
  * so they stay out of the tab order.
  */
-export function RouteCompass({ here, className = '' }: { here: Route; className?: string }) {
+export function RouteCompass({ here, className = '' }: { here?: Route; className?: string }) {
   const [pointed, setPointed] = useState<number | null>(null);
-  const home = ROUTES.find((r) => r.label === here)!.bearing;
+  const home = ROUTES.find((r) => r.label === here)?.bearing ?? null;
   const bearing = pointed ?? home;
 
   return (
