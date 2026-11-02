@@ -14,6 +14,7 @@ import {
   type MotionValue,
 } from 'motion/react';
 import { HeroCompass } from '@/components/Compass';
+import { HeroIntro } from '@/components/home/HeroIntro';
 import { trackSpotlight } from '@/lib/spotlight';
 import { EASE_OUT } from '@/lib/motion';
 
@@ -80,7 +81,6 @@ function Headline() {
   );
 }
 
-// One contour ring. Draws in once, then drifts with the pointer by its depth, so the rings move apart in parallax.
 // A photo pinned near the compass like a print on a chart table. It drifts against the pointer, more than the
 // contours do, so it reads as nearer. Stock photos (Pexels) that set the scene; they do not show our team.
 function FloatingPhoto({
@@ -115,6 +115,7 @@ function FloatingPhoto({
   );
 }
 
+// One contour ring. Draws in once, then drifts with the pointer by its depth, so the rings move apart in parallax.
 function Contour({ d, k, px, py }: { d: string; k: number; px: MotionValue<number>; py: MotionValue<number> }) {
   const depth = (k + 1) / CONTOURS.length;
   const x = useTransform(px, (v) => v * depth * 28);
@@ -215,10 +216,12 @@ export function HomeHero() {
   const bearing = active === null || reduceMotion ? null : ROUTES[active].bearing;
 
   return (
+    <>
+    <HeroIntro />
     <section
       ref={ref}
       onPointerMove={trackSpotlight}
-      className="group/hero relative flex min-h-[calc(100svh-4rem)] xl:h-[calc(100svh-4rem)] xl:min-h-[480px] flex-col overflow-hidden bg-warm-white text-navy"
+      className="hero-await group/hero relative flex min-h-[calc(100svh-4rem)] xl:h-[calc(100svh-4rem)] xl:min-h-[480px] flex-col overflow-hidden bg-warm-white text-navy"
     >
       {/* Paper: fine navy dot grid fading to the edges, lit orange around the pointer, and a little grain */}
       <div
@@ -333,5 +336,6 @@ export function HomeHero() {
         </div>
       </div>
     </section>
+    </>
   );
 }

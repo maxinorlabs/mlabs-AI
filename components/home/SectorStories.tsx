@@ -248,6 +248,7 @@ export function SectorStories() {
       <motion.span
         aria-hidden="true"
         style={{ x: tagX, y: tagY }}
+        initial={{ opacity: 0, scale: 0.6 }}
         animate={{ opacity: focused !== null && !open ? 1 : 0, scale: focused !== null && !open ? 1 : 0.6 }}
         transition={{ duration: 0.2 }}
         className="pointer-events-none fixed left-0 top-0 z-50 hidden items-center gap-1.5 rounded-full bg-brand px-3.5 py-2 text-xs font-semibold text-white shadow-lg [@media(hover:hover)]:md:flex"
