@@ -1,8 +1,9 @@
 'use client';
 
-import { useState, type ReactNode } from 'react';
+import { useRef, useState, type ReactNode } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
-import { AnimatePresence, motion } from 'motion/react';
+import { AnimatePresence, motion, useReducedMotion, useScroll, useTransform } from 'motion/react';
 import { Plus } from 'lucide-react';
 import { HeroCompass } from '@/components/Compass';
 import { trackSpotlight } from '@/lib/spotlight';
@@ -175,3 +176,34 @@ export const primaryButtonClass =
 
 export const secondaryButtonClass =
   'group inline-flex items-center justify-center rounded-full border border-navy/20 px-8 py-4 text-base font-semibold tracking-wide text-navy transition-all duration-300 hover:-translate-y-1 hover:border-brand hover:text-brand active:translate-y-0 active:scale-[0.98] sm:px-10';
+
+/**
+ * A full-width photo with a line from the page laid over it. The photo drifts slower than the page, so it feels
+ * like a window rather than a slide. Stock photos set the scene; the line must never present the people as clients.
+ */
+export function PhotoMoment({ src, line, position = '50% 50%' }: { src: string; line: ReactNode; position?: string }) {
+  const ref = useRef<HTMLElement>(null);
+  const reduceMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] });
+  const y = useTransform(scrollYProgress, [0, 1], reduceMotion ? ['0%', '0%'] : ['-12%', '12%']);
+
+  return (
+    <section ref={ref} className="relative h-[62svh] min-h-[360px] overflow-hidden bg-navy">
+      <motion.div style={{ y }} className="absolute inset-[-14%_0]">
+        <Image src={src} alt="" fill sizes="100vw" className="object-cover" style={{ objectPosition: position }} />
+      </motion.div>
+      <div className="absolute inset-0 bg-gradient-to-r from-navy/85 via-navy/45 to-navy/10" />
+      <div className="relative mx-auto flex h-full max-w-7xl items-end px-6 pb-[clamp(32px,8svh,80px)] md:px-12">
+        <motion.p
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          className="max-w-2xl text-3xl font-display font-medium leading-[1.12] tracking-tight text-warm-white md:text-[clamp(32px,min(4vw,6.4svh),54px)]"
+        >
+          {line}
+        </motion.p>
+      </div>
+    </section>
+  );
+}

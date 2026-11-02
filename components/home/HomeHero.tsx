@@ -81,6 +81,40 @@ function Headline() {
 }
 
 // One contour ring. Draws in once, then drifts with the pointer by its depth, so the rings move apart in parallax.
+// A photo pinned near the compass like a print on a chart table. It drifts against the pointer, more than the
+// contours do, so it reads as nearer. Stock photos (Pexels) that set the scene; they do not show our team.
+function FloatingPhoto({
+  src,
+  className,
+  rotate,
+  depth,
+  px,
+  py,
+  delay,
+}: {
+  src: string;
+  className: string;
+  rotate: number;
+  depth: number;
+  px: MotionValue<number>;
+  py: MotionValue<number>;
+  delay: number;
+}) {
+  const x = useTransform(px, (v) => v * depth * -22);
+  const y = useTransform(py, (v) => v * depth * -22);
+  return (
+    <motion.div
+      style={{ x, y, rotate }}
+      initial={{ opacity: 0, scale: 0.92 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ delay, duration: 0.9, ease: EASE_OUT }}
+      className={`absolute hidden aspect-[3/4] overflow-hidden rounded-2xl border-4 border-white shadow-[0_24px_50px_-20px_rgba(11,31,59,0.45)] xl:block ${className}`}
+    >
+      <Image src={src} alt="" fill sizes="180px" className="object-cover" />
+    </motion.div>
+  );
+}
+
 function Contour({ d, k, px, py }: { d: string; k: number; px: MotionValue<number>; py: MotionValue<number> }) {
   const depth = (k + 1) / CONTOURS.length;
   const x = useTransform(px, (v) => v * depth * 28);
@@ -253,6 +287,10 @@ export function HomeHero() {
               );
             })}
           </motion.div>
+
+          {/* Two photos pinned beside the dial, clear of the route labels */}
+          <FloatingPhoto src="/images/photos/hero-desk.webp" className="-left-[14%] bottom-[2%] w-[26%]" rotate={-6} depth={1.4} px={px} py={py} delay={1.1} />
+          <FloatingPhoto src="/images/photos/hero-city.webp" className="-right-[12%] top-[52%] w-[24%]" rotate={5} depth={1} px={px} py={py} delay={1.3} />
 
           {/* Caption under the dial: the hovered route's one-liner */}
           <p className="absolute -bottom-6 left-1/2 hidden w-[120%] -translate-x-1/2 animate-fade text-center text-sm [animation-delay:1200ms] xl:block">

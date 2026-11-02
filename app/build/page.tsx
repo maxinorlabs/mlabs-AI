@@ -18,6 +18,7 @@ import {
   Eyebrow,
   HoverRule,
   PaperSection,
+  PhotoMoment,
   RouteCompass,
   RuledFaq,
   RuledList,
@@ -290,6 +291,9 @@ export default function BuildPage() {
           </div>
         </div>
       </PaperSection>
+
+      {/* ── A photo band between the hero and the detail ── */}
+      <PhotoMoment src="/images/photos/build-team.webp" position="50% 45%" line={<>The conversation starts with an operator, <span className="text-brand">not a pitch deck.</span></>} />
 
       {/* ── Section 2: The Problem We Solve ── */}
       <PaperSection className="py-20 md:py-28">

@@ -134,6 +134,9 @@ const sectorGroups = [
   },
 ];
 
+// The picker's answers, in the same order as the engagements they point to.
+const FIT_CHOICES = ['I need clarity first', "I'm ready for operators", 'I need an AI function'];
+
 type Engagement = {
   name: string;
   duration: string;
@@ -161,18 +164,20 @@ const bulletTick: Variants = {
 };
 
 // One column of the entry-point panel, drawn like the T-shape: hairline rules, mono labels, no card chrome.
-function EngagementCard({ eng }: { eng: Engagement }) {
+// `fit` comes from the "Where are you today?" picker: the matching card lights up and the others step back.
+function EngagementCard({ eng, fit }: { eng: Engagement; fit: 'match' | 'other' | null }) {
+  const lit = fit === 'match' || (fit === null && eng.featured);
   return (
     <StaggerItem
-      className={`group relative flex flex-col px-6 py-7 transition-colors duration-300 hover:bg-white md:px-[clamp(20px,2.4vw,36px)] md:py-[clamp(16px,3svh,36px)] ${
-        eng.featured ? 'bg-white' : ''
-      }`}
+      className={`group relative flex flex-col px-6 py-7 transition-colors duration-500 hover:bg-white md:px-[clamp(20px,2.4vw,36px)] md:py-[clamp(16px,3svh,36px)] ${
+        lit ? 'bg-white' : ''
+      } [&>*]:transition-opacity [&>*]:duration-500 ${fit === 'other' ? '[&>*]:opacity-40' : ''}`}
     >
       {/* The featured route is marked by an orange rule along its top edge, like a lit route on the compass */}
       <span
         aria-hidden="true"
         className={`absolute inset-x-0 top-0 h-0.5 origin-left bg-brand transition-transform duration-500 ease-out ${
-          eng.featured ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
+          lit ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
         }`}
       />
       <p className="mb-4 flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.2em] md:mb-[clamp(8px,1.8svh,16px)]">
@@ -247,6 +252,8 @@ export default function Home() {
   const entryScale = useTransform(entryProgress, [0, 1], [0.94, 1]);
   // The closing compass echoes the hero: its labels and the button swing the needle to a bearing.
   const [ctaBearing, setCtaBearing] = useState<number | null>(null);
+  // Which "Where are you today?" answer is picked, as an index into the engagements.
+  const [fit, setFit] = useState<number | null>(null);
 
   return (
     <div className="font-sans">
@@ -350,9 +357,28 @@ export default function Home() {
               </p>
             </Reveal>
             <CourseLine stops={engagements.length} />
+            {/* A quick picker: say where you are and the matching engagement lights up */}
+            <div className="mx-auto mb-6 flex max-w-6xl flex-col items-center gap-3 md:mb-[clamp(12px,2.4svh,24px)] md:flex-row md:justify-center">
+              <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-navy/50">Where are you today?</span>
+              <div role="group" aria-label="Where are you today?" className="flex flex-wrap justify-center gap-2">
+                {FIT_CHOICES.map((choice, i) => (
+                  <button
+                    key={choice}
+                    type="button"
+                    aria-pressed={fit === i}
+                    onClick={() => setFit(fit === i ? null : i)}
+                    className={`rounded-full border px-4 py-2 text-sm font-medium transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand ${
+                      fit === i ? 'border-brand bg-brand text-white' : 'border-navy/15 bg-white/70 text-navy hover:border-brand hover:text-brand'
+                    }`}
+                  >
+                    {choice}
+                  </button>
+                ))}
+              </div>
+            </div>
             <Stagger className="mx-auto grid max-w-6xl divide-y divide-navy/10 overflow-hidden rounded-2xl border border-navy/10 bg-white/60 shadow-[0_24px_60px_-36px_rgba(11,31,59,0.35)] backdrop-blur-[2px] md:grid-cols-3 md:divide-x md:divide-y-0">
-              {engagements.map((eng) => (
-                <EngagementCard key={eng.name} eng={eng} />
+              {engagements.map((eng, i) => (
+                <EngagementCard key={eng.name} eng={eng} fit={fit === null ? null : fit === i ? 'match' : 'other'} />
               ))}
             </Stagger>
           </div>

@@ -10,6 +10,7 @@ import {
   Eyebrow,
   HoverRule,
   PaperSection,
+  PhotoMoment,
   RouteCompass,
   RuledFaq,
   RuledList,
@@ -194,6 +195,9 @@ export default function InvestPage() {
           </div>
         </div>
       </PaperSection>
+
+      {/* ── A photo band between the hero and the detail ── */}
+      <PhotoMoment src="/images/photos/invest-city.webp" position="50% 55%" line={<>Venture Capital and M&amp;A, backed by evidence, <span className="text-brand">not just conviction.</span></>} />
 
       {/* ── Section 2: The Problem ── */}
       <PaperSection className="py-20 md:py-28">

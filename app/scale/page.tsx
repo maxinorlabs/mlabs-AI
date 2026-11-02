@@ -10,6 +10,7 @@ import {
   Eyebrow,
   HoverRule,
   PaperSection,
+  PhotoMoment,
   RouteCompass,
   RuledFaq,
   RuledList,
@@ -224,6 +225,9 @@ export default function ScalePage() {
           </div>
         </div>
       </PaperSection>
+
+      {/* ── A photo band between the hero and the detail ── */}
+      <PhotoMoment src="/images/photos/scale-store.webp" position="50% 40%" line={<>Not advisory. Not consulting. <span className="text-brand">Embedded execution with skin in the game.</span></>} />
 
       {/* ── Section 2: Who This Is For ───────────────────────────────────────── */}
       <PaperSection className="py-20 md:py-28">
