@@ -1,4 +1,8 @@
 @import "tailwindcss";
+/* tools/ holds the local video editor and its Python virtualenv (hundreds of MB, with symlinks out of the
+   project). Scanning it makes webpack drop this stylesheet's dependency snapshot, so edits to components
+   never regenerate the CSS in `next dev`. Nothing in tools/ is part of the site. */
+@source not "../tools";
 @import "tw-animate-css";
 @plugin "@tailwindcss/typography";
 
@@ -11,6 +15,10 @@
   --color-grey: #4A4F57;
   --color-teal: #2CC5B8;
   --color-warm-white: #F7F7F5;
+
+  /* The site's one curve, so Tailwind's ease-out and every CSS transition match EASE_OUT in lib/motion.ts. */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --default-transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
 
   /* Fluid display sizes: each shrinks with the screen's width and height, so headings never overpower a
      short laptop or a phone. Large screens still reach the standard Tailwind size. */
@@ -37,6 +45,14 @@ body {
   box-shadow: 0 0 0 2px rgb(220 38 38 / 0.08);
 }
 
+/* Press feedback for anything clickable. The element's own `transition` must include scale. */
+@utility press {
+  &:active {
+    scale: 0.98;
+    transition-duration: 200ms;
+  }
+}
+
 @keyframes marquee {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
@@ -61,26 +77,6 @@ body {
   animation: fade 0.9s ease-out both;
 }
 
-/* Home opening curtain: the needle spins in and settles on north; the wordmark letters rise. */
-@keyframes intro-spin {
-  from { transform: rotate(-540deg); }
-  to { transform: rotate(0deg); }
-}
-.intro-needle {
-  animation: intro-spin 1.1s cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-@keyframes intro-letter {
-  from { opacity: 0; transform: translateY(100%); }
-  to { opacity: 1; transform: translateY(0); }
-}
-.intro-letter {
-  animation: intro-letter 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-/* While the curtain is up, the hero's CSS entrance waits, so it plays as the curtain lifts. */
-body:has(.hero-intro) .hero-await,
-body:has(.hero-intro) .hero-await * {
-  animation-play-state: paused;
-}
 /* Hero headline words: a short upward settle with no fade, so the text is visible from the first paint. */
 @keyframes settle {
   from { transform: translateY(0.35em); }
@@ -245,7 +241,45 @@ html.lenis.lenis-smooth {
   }
 }
 
+/* Home opening curtain: the needle spins in and settles on north; the wordmark letters rise. */
+@keyframes intro-spin {
+  from { transform: rotate(-540deg); }
+  to { transform: rotate(0deg); }
+}
+.intro-needle {
+  animation: intro-spin 1.1s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@keyframes intro-letter {
+  from { opacity: 0; transform: translateY(100%); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.intro-letter {
+  animation: intro-letter 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+/* While the curtain is up, the hero's CSS entrance waits, so it plays as the curtain lifts. */
+body:has(.hero-intro) .hero-await,
+body:has(.hero-intro) .hero-await * {
+  animation-play-state: paused;
+}
+
+/* T-shape: one ring out from a sector's node on the spine when it is pointed at. */
+@keyframes node-ping {
+  from { transform: scale(1); opacity: 0.9; }
+  to { transform: scale(4.5); opacity: 0; }
+}
+.node-ping { animation: node-ping 0.7s cubic-bezier(0.22, 1, 0.36, 1) both; }
+
+/* Coverage grid: the one-time diagonal wave that lights every sector × capability square in turn. */
+@keyframes coverage-wave {
+  0% { opacity: 0; }
+  30% { opacity: 1; }
+  100% { opacity: 0; }
+}
+/* Referenced from a class so Tailwind keeps the keyframes (it drops ones nothing in the CSS uses). */
+.coverage-wave { animation: coverage-wave 0.6s ease-out both; }
+
 @media (prefers-reduced-motion: reduce) {
+
   *,
   *::before,
   *::after {

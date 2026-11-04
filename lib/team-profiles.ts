@@ -175,44 +175,6 @@ export const teamProfiles: TeamProfile[] = [
     ],
   },
   {
-    slug: 'rajesh-ramanathan',
-    name: 'Rajesh Ramanathan',
-    role: 'BFSI',
-    shortDesc: 'Entrepreneur | ex-Accenture, ex-Wipro, ex-Mastek',
-    image:
-      '/images/whatsapp-image-2026-03-12-at-4-11-45-pm.jpg',
-    linkedin: 'https://www.linkedin.com/in/rajeshramanathan/',
-    section: 'leadership',
-    tagline: 'BFSI domain expert with decades inside the largest IT and consulting firms serving financial services.',
-    bio: [
-      'Rajesh has spent his career at the intersection of financial services and enterprise technology, building deep expertise in banking, insurance, and lending systems that most technology professionals never get close to. His consulting background means he has seen transformation programs across dozens of institutions, not just one.',
-      'At Accenture and Wipro, two of the world\'s largest IT services firms, he worked on large-scale transformation engagements across banking, insurance, and financial services clients. At Mastek, with a strong BFSI practice, he operated closer to product and delivery, building technology systems that financial institutions depend on.',
-      'At Maxinor, Rajesh leads the BFSI domain, bringing the regulatory knowledge, risk discipline, and institutional relationships that founders need to build in lending, embedded finance, insurtech, and B2B financial workflows without getting stuck in the compliance maze.',
-    ],
-    expertise: [
-      'Banking transformation',
-      'Insurance technology',
-      'Lending infrastructure',
-      'Regulatory compliance',
-      'Enterprise BFSI sales',
-      'Risk frameworks',
-    ],
-    career: [
-      {
-        company: 'Accenture',
-        context: 'Global management consulting and IT services, with a BFSI practice across banking and insurance clients.',
-      },
-      {
-        company: 'Wipro',
-        context: 'Global IT services leader focused on financial services transformation and technology delivery.',
-      },
-      {
-        company: 'Mastek',
-        context: 'Enterprise technology company with a strong BFSI practice serving UK and India markets.',
-      },
-    ],
-  },
-  {
     slug: 'priyabrata-padhi',
     name: 'Priyabrata Padhi',
     role: 'Consumer Marketing',

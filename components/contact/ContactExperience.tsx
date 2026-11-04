@@ -51,7 +51,7 @@ function ContactIntro() {
   );
 }
 
-export function ContactExperience() {
+export function ContactExperience({ interest }: { interest?: string }) {
   const contactEndpoint = withBasePath('/api/contact', configuredBasePath);
 
   return (
@@ -62,7 +62,7 @@ export function ContactExperience() {
         <div className="lg:border-r lg:border-navy/12 lg:pt-5 lg:pr-10 xl:pt-7 xl:pr-16">
           <ContactIntro />
         </div>
-        <ContactForm endpoint={contactEndpoint} />
+        <ContactForm endpoint={contactEndpoint} interest={interest} />
       </div>
     </section>
   );

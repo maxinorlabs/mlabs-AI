@@ -160,14 +160,6 @@ const verticals = [
 
 const operators = [
   {
-    name: 'Rajesh Ramanathan',
-    role: 'BFSI Sector Lead',
-    bg: 'ex-Accenture, ex-Wipro, ex-Mastek',
-    depth: '20+ years across banking transformation, insurance tech, and BFSI consulting at global scale.',
-    slug: 'rajesh-ramanathan',
-    image: '/images/whatsapp-image-2026-03-12-at-4-11-45-pm.jpg',
-  },
-  {
     name: 'Manik Sood',
     role: 'Legal & Compliance',
     bg: 'ex-Paytm, ex-Zee, ex-Healthkart',

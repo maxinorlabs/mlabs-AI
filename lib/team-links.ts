@@ -3,7 +3,6 @@ const linkedinBySlug: Record<string, string> = {
   'amar-daing': 'https://www.linkedin.com/in/amar-daing/',
   'parool-duggal': 'https://www.linkedin.com/in/parool-duggal-1b651713/',
   'alok-kumar': 'https://www.linkedin.com/in/alok02/',
-  'rajesh-ramanathan': 'https://www.linkedin.com/in/rajeshramanathan/',
   'priyabrata-padhi': 'https://www.linkedin.com/in/priyabratapadhi/',
   'dr-rachit-negi': 'https://www.linkedin.com/in/rachitnegi/',
   'saniya-fathima': 'https://www.linkedin.com/in/saniya-f-369a98213/',

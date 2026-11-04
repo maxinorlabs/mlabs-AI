@@ -16,7 +16,8 @@ import { ArrowUpRight, Plus, X } from 'lucide-react';
 import { NavyBackdrop } from '@/components/motion/NavyBackdrop';
 import { RevealText } from '@/components/motion/RevealText';
 import { COMING_SOON, SECTOR_PHOTOS, sectors } from '@/lib/sectors';
-import { EASE_OUT } from '@/lib/motion';
+import { DURATION, EASE_OUT, SPRING, STAGGER } from '@/lib/motion';
+import { cn } from '@/lib/utils';
 
 type Sector = (typeof sectors)[number];
 
@@ -59,19 +60,19 @@ function SectorPanel({ sector, onClose }: { sector: Sector; onClose: () => void 
           <Image src={photo.src} alt="" fill sizes="(min-width: 768px) 380px, 100vw" className="object-cover" style={{ objectPosition: photo.position }} />
           <div className="absolute inset-0 bg-gradient-to-t from-navy/80 via-navy/10 to-transparent" />
           <div className="absolute bottom-5 left-6 right-6 text-warm-white">
-            <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-warm-white/70">{sector.sector}</p>
+            <p className="text-[11px] font-medium uppercase tracking-[0.22em] text-warm-white/70">{sector.sector}</p>
             <p className="text-3xl font-display font-medium">{sector.name}</p>
           </div>
         </motion.div>
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.15, duration: 0.4, ease: EASE_OUT }}
+          transition={{ delay: STAGGER * 2, duration: DURATION.base, ease: EASE_OUT }}
           className="overflow-y-auto p-6 md:p-8"
         >
           <p className="mb-4 text-xl font-display font-medium leading-snug">{sector.problem}</p>
           <p className="mb-6 text-[15px] font-light leading-relaxed text-grey">{sector.problemDetail}</p>
-          <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.2em] text-navy/50">What we do</p>
+          <p className="mb-2 text-[11px] font-medium uppercase tracking-[0.22em] text-navy/50">What we do</p>
           <ul className="mb-6 border-t border-navy/10">
             {sector.capabilities.map((item) => (
               <li key={item} className="flex items-start gap-3 border-b border-navy/[0.06] py-2.5 text-[14px] text-navy/80">
@@ -80,7 +81,7 @@ function SectorPanel({ sector, onClose }: { sector: Sector; onClose: () => void 
               </li>
             ))}
           </ul>
-          <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.2em] text-navy/50">What founders tell us</p>
+          <p className="mb-2 text-[11px] font-medium uppercase tracking-[0.22em] text-navy/50">What founders tell us</p>
           <blockquote className="mb-6 border-l-2 border-brand pl-4 text-[15px] italic leading-relaxed text-navy/80">
             {sector.clientProblems[0]}
           </blockquote>
@@ -91,13 +92,13 @@ function SectorPanel({ sector, onClose }: { sector: Sector; onClose: () => void 
             {live ? (
               <Link
                 href={sector.standaloneUrl}
-                className="group inline-flex items-center gap-2 rounded-full bg-brand px-5 py-2.5 text-sm font-semibold text-warm-white transition-colors hover:bg-brand/90"
+                className="press group inline-flex items-center gap-2 rounded-full bg-brand px-5 py-2.5 text-sm font-semibold text-warm-white transition duration-300 hover:bg-brand/90"
               >
                 Explore {sector.name}
                 <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
               </Link>
             ) : (
-              <span className="rounded-full border border-navy/10 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.18em] text-navy/40">
+              <span className="rounded-full border border-navy/10 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.22em] text-navy/40">
                 Page coming soon
               </span>
             )}
@@ -108,7 +109,7 @@ function SectorPanel({ sector, onClose }: { sector: Sector; onClose: () => void 
           type="button"
           onClick={onClose}
           aria-label="Close"
-          className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full bg-warm-white/90 text-navy shadow transition hover:bg-white focus-visible:outline-2 focus-visible:outline-brand"
+          className="press absolute right-4 top-4 flex size-9 items-center justify-center rounded-full bg-warm-white/90 text-navy shadow transition duration-300 hover:rotate-90 hover:bg-white focus-visible:outline-2 focus-visible:outline-brand"
         >
           <X className="h-4 w-4" />
         </button>
@@ -155,11 +156,13 @@ export function SectorStories() {
   const drift = useTransform(progress, [0, 1], distance ? ['6%', '-6%'] : ['0%', '0%']);
 
   // The pointer tag, placed in screen coordinates.
-  const tagX = useMotionValue(0);
-  const tagY = useMotionValue(0);
+  const pointerX = useMotionValue(0);
+  const pointerY = useMotionValue(0);
+  const tagX = useSpring(pointerX, SPRING);
+  const tagY = useSpring(pointerY, SPRING);
   const placeTag = (event: { clientX: number; clientY: number }) => {
-    tagX.set(event.clientX + 16);
-    tagY.set(event.clientY + 16);
+    pointerX.set(event.clientX + 16);
+    pointerY.set(event.clientY + 16);
   };
 
   return (
@@ -175,17 +178,15 @@ export function SectorStories() {
         {/* The title stays put above the reel, so the moving cards never slice it */}
         <div className="relative mx-auto mb-8 flex w-full max-w-7xl flex-col gap-4 px-6 md:mb-[clamp(16px,3.5svh,36px)] md:flex-row md:items-end md:justify-between md:px-12">
           <div>
-            <p className="mb-3 flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.2em] text-warm-white/50">
-              <span aria-hidden="true" className="text-brand">→</span> Inside each sector
-            </p>
+            <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">Inside each sector</p>
             <RevealText
-              className="text-3xl font-display font-medium leading-[1.08] tracking-tight md:text-[clamp(28px,min(3.4vw,5.6svh),48px)]"
+              className="text-balance text-3xl font-display font-medium leading-[1.08] tracking-tight md:text-[clamp(28px,min(3.4vw,5.6svh),48px)]"
               parts={[{ text: "We don't just know your industry. " }, { text: "We've built inside it.", className: 'text-brand' }]}
             />
           </div>
           <p className="max-w-xs text-sm font-light leading-relaxed text-warm-white/55">
             Open a sector to see the problems founders bring us and how we work on them.
-            {distance > 0 && <span className="mt-2 block font-mono text-[10px] uppercase tracking-[0.2em] text-warm-white/40">Scroll to move along →</span>}
+            {distance > 0 && <span className="mt-2 block text-[11px] font-medium uppercase tracking-[0.22em] text-warm-white/40">Scroll to move along →</span>}
           </p>
         </div>
 
@@ -210,9 +211,10 @@ export function SectorStories() {
                 }}
                 onFocus={() => setFocused(i)}
                 aria-label={`Open the ${sector.name} story`}
-                className={`group relative aspect-[3/4] w-[68vw] shrink-0 snap-start overflow-hidden rounded-2xl text-left transition-[filter,opacity,transform] duration-500 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand sm:w-[42vw] md:h-[min(52svh,480px)] md:w-auto ${
-                  dimmed ? 'opacity-50 blur-[2px] md:scale-[0.97]' : ''
-                }`}
+                className={cn(
+                  'press group relative aspect-[3/4] w-[68vw] shrink-0 snap-start overflow-hidden rounded-2xl text-left transition-[opacity,scale] duration-300 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand sm:w-[42vw] md:h-[min(52svh,480px)] md:w-auto',
+                  dimmed && 'opacity-50 md:scale-[0.97]',
+                )}
               >
                 <motion.div layoutId={`sector-photo-${sector.id}`} className="absolute inset-0 overflow-hidden">
                   <motion.div style={{ x: drift }} className="absolute inset-y-0 -inset-x-[8%]">
@@ -221,18 +223,23 @@ export function SectorStories() {
                       alt=""
                       fill
                       sizes="(min-width: 768px) 420px, 70vw"
-                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
                       style={{ objectPosition: photo.position }}
                     />
                   </motion.div>
                 </motion.div>
                 <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/30 to-navy/0" />
+                {/* Deepens as the caption rises, so it stays readable over the middle of the photo */}
+                <div className="absolute inset-0 bg-gradient-to-t from-navy/90 via-navy/60 to-navy/0 opacity-0 transition-opacity duration-300 ease-out group-hover:opacity-100 group-focus-visible:opacity-100" />
                 <div className="absolute inset-x-0 bottom-0 p-5 md:p-6">
-                  <p className="mb-1 font-mono text-[9px] uppercase leading-snug tracking-[0.18em] text-warm-white/60">{sector.sector}</p>
-                  <p className="text-2xl font-display font-medium text-warm-white md:text-3xl">{sector.name}</p>
-                  <p className="mt-2 max-h-0 overflow-hidden text-sm font-light leading-relaxed text-warm-white/75 opacity-0 transition-all duration-500 group-hover:max-h-24 group-hover:opacity-100">
-                    {sector.problem}
-                  </p>
+                  {/* The caption rises to show the sector's problem. It moves as one block, so no text reflows. */}
+                  <div className="transition-transform duration-300 ease-out md:translate-y-22 md:group-hover:translate-y-0 md:group-focus-visible:translate-y-0">
+                    <p className="mb-1 text-[11px] font-medium uppercase tracking-[0.22em] text-warm-white/60">{sector.sector}</p>
+                    <p className="text-2xl font-display font-medium text-warm-white md:text-3xl">{sector.name}</p>
+                    <p className="mt-2 hidden h-20 text-sm font-light leading-snug text-warm-white/75 opacity-0 md:line-clamp-4 transition-opacity duration-300 ease-out group-hover:opacity-100 group-focus-visible:opacity-100">
+                      {sector.problem}
+                    </p>
+                  </div>
                 </div>
                 <span className="absolute right-4 top-4 flex h-8 w-8 items-center justify-center rounded-full border border-white/30 bg-navy/30 text-warm-white backdrop-blur transition-colors duration-300 group-hover:border-brand group-hover:bg-brand md:hidden">
                   <Plus className="h-4 w-4" />

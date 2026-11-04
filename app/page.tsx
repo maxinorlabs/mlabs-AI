@@ -8,6 +8,7 @@ import { PARTNER_FACES } from '@/lib/partners';
 // blog's full text never ships to the browser.
 export default function Page() {
   const insights: Insight[] = getAllPosts()
+    .filter((post) => !authorProfiles[post.author]?.blogOnly)
     .slice(0, 4)
     .map((post) => {
       const words = getPost(post.slug).content.split(/\s+/).filter(Boolean).length;

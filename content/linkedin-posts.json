@@ -86,23 +86,6 @@
       ]
     },
     {
-      "name": "Rajesh Ramanathan",
-      "handle": "rajeshramanathan",
-      "role": "FinTech",
-      "linkedinUrl": "https://www.linkedin.com/in/rajeshramanathan/",
-      "avatar": "/images/whatsapp-image-2026-03-12-at-4-11-45-pm.jpg",
-      "posts": [
-        {
-          "id": "rajesh-1",
-          "date": "2026-04-13",
-          "text": "Add Rajesh's latest LinkedIn post text here. Paste the full post and update the URL, date, likes, and comments.",
-          "url": "https://www.linkedin.com/in/rajeshramanathan/recent-activity/all/",
-          "likes": 0,
-          "comments": 0
-        }
-      ]
-    },
-    {
       "name": "Priyabrata Padhi",
       "handle": "priyabratapadhi",
       "role": "Consumer Marketing",

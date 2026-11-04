@@ -2,13 +2,14 @@
 
 import { useRef, type ReactNode } from 'react';
 import { motion, useMotionValue, useReducedMotion, useSpring } from 'motion/react';
+import { SPRING } from '@/lib/motion';
 
 // Pulls its child a few pixels toward the pointer while hovered, then springs back. Mouse only.
 export function Magnetic({ children, strength = 0.25, className = '' }: { children: ReactNode; strength?: number; className?: string }) {
   const ref = useRef<HTMLDivElement>(null);
   const reduceMotion = useReducedMotion();
-  const x = useSpring(useMotionValue(0), { stiffness: 220, damping: 18, mass: 0.6 });
-  const y = useSpring(useMotionValue(0), { stiffness: 220, damping: 18, mass: 0.6 });
+  const x = useSpring(useMotionValue(0), SPRING);
+  const y = useSpring(useMotionValue(0), SPRING);
 
   const onMove = (event: React.PointerEvent) => {
     if (reduceMotion || event.pointerType !== 'mouse' || !ref.current) return;

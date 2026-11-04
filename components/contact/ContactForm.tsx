@@ -3,6 +3,9 @@
 import { useRef, useState } from 'react';
 import { motion } from 'motion/react';
 import { ArrowRight, Check, CheckCircle2, ChevronDown, Paperclip, X } from 'lucide-react';
+import Link from 'next/link';
+import { Magnetic } from '@/components/motion/Magnetic';
+import { RISE, SPRING, revealTransition } from '@/lib/motion';
 
 const ACCEPTED_FILE_TYPES = '.pdf,.ppt,.pptx,.doc,.docx';
 const MAX_FILE_SIZE_MB = 10;
@@ -43,15 +46,15 @@ function fileToBase64(file: File): Promise<string> {
   });
 }
 
-export function ContactForm({ endpoint }: { endpoint: string }) {
+export function ContactForm({ endpoint, compact = false, interest }: { endpoint: string; compact?: boolean; interest?: string }) {
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
   const [attachedFile, setAttachedFile] = useState<File | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const labelClass = 'text-navy/72';
-  const optionalClass = 'text-navy/40';
+  const optionalClass = 'text-navy/65';
   const inputClass =
-    'contact-control h-10 w-full rounded-sm border border-navy/18 bg-transparent px-3.5 text-sm text-navy outline-none transition-[border-color,background-color,box-shadow] duration-200 placeholder:text-current placeholder:opacity-35 hover:border-navy/35 focus:border-brand focus:bg-white focus:ring-2 focus:ring-brand/15 disabled:cursor-not-allowed disabled:opacity-50';
+    `contact-control ${compact ? 'h-11' : 'h-10'} w-full rounded-sm border border-navy/25 bg-transparent px-3.5 text-base text-navy outline-none transition-[border-color,background-color,box-shadow] duration-200 placeholder:text-current placeholder:opacity-65 hover:border-navy/45 focus:border-brand focus:bg-white focus:ring-2 focus:ring-brand/15 disabled:cursor-not-allowed disabled:opacity-50 sm:text-sm`;
 
   const clearError = () => {
     if (status === 'error') {
@@ -94,7 +97,7 @@ export function ContactForm({ endpoint }: { endpoint: string }) {
         phone: String(formData.get('phone') ?? ''),
         engagementType: String(formData.get('engagementType') ?? ''),
         company: String(formData.get('company') ?? ''),
-        message: String(formData.get('message') ?? ''),
+        message: `${interest ? `Interested in: ${interest}\n\n` : ''}${String(formData.get('message') ?? '')}`,
         submittedAt: new Date().toISOString(),
       };
 
@@ -132,24 +135,25 @@ export function ContactForm({ endpoint }: { endpoint: string }) {
     }
   };
 
-  const surfaceClass =
-    'border-y border-navy/10 bg-white/45 py-6 sm:px-6 lg:px-7 lg:py-5 xl:px-9 xl:py-7';
+  const surfaceClass = compact ? '' : 'border-y border-navy/10 bg-white/45 py-6 sm:px-6 lg:px-7 lg:py-5 xl:px-9 xl:py-7';
 
   if (status === 'success') {
     return (
       <motion.div
-        initial={false}
+        initial={{ opacity: 0, y: RISE }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={revealTransition}
         className={`${surfaceClass} flex min-h-[340px] items-center justify-center text-center`}
         role="status"
       >
         <div>
-          <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-brand/10 text-brand">
-            <CheckCircle2 className="h-7 w-7" />
-          </div>
+          <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={SPRING} className="mx-auto mb-5 flex size-14 items-center justify-center rounded-full bg-brand/10 text-brand">
+            <CheckCircle2 className="size-7" />
+          </motion.div>
           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand">Message received</p>
           <h2 className="mt-2 font-display text-3xl font-medium text-navy">We&apos;ll be in touch.</h2>
           <p className="mt-3 text-sm text-navy/55">Your note is now with the Maxinor team.</p>
-          <button type="button" onClick={() => setStatus('idle')} className="mt-7 text-sm font-semibold text-brand hover:underline">
+          <button type="button" onClick={() => setStatus('idle')} className="mt-7 min-h-11 text-sm font-semibold text-brand hover:underline">
             Send another message
           </button>
         </div>
@@ -157,42 +161,23 @@ export function ContactForm({ endpoint }: { endpoint: string }) {
     );
   }
 
-  const fieldLabel = 'mb-1.5 block text-xs font-semibold uppercase tracking-[0.1em] transition-colors duration-200 group-focus-within:text-brand';
+  const fieldLabel = 'mb-1.5 block text-xs font-semibold uppercase tracking-[0.1em]';
 
-  return (
-    <motion.div
-      initial={false}
-      className={surfaceClass}
-    >
-      <form onSubmit={handleSubmit} onChange={clearError} aria-label="Contact Maxinor" noValidate>
-        <div className="mb-4 border-b border-current/10 pb-3">
-          <div className="flex items-center justify-between gap-3">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand">Start a conversation</p>
-            <p className="whitespace-nowrap text-xs leading-none text-navy/45">
-              Required unless marked optional
-            </p>
-          </div>
-          <h2 className="mt-2 font-display text-xl font-medium tracking-tight text-navy sm:text-2xl">
-            Tell us where you&apos;re headed.
-          </h2>
-        </div>
-
-        {status === 'error' && (
-          <div className="mb-3 border border-red-300 bg-red-50 px-3 py-2 text-xs text-red-700" role="alert" aria-live="assertive">
-            {errorMessage}
-          </div>
-        )}
-
-        <div className="grid gap-x-4 gap-y-3 sm:grid-cols-2">
-          <div className="group sm:col-span-2">
+  const fields = {
+    message: (
+      <div key="message" className="group sm:col-span-2">
             <label htmlFor="contact-message" className={`${fieldLabel} ${labelClass}`}>I am looking for</label>
-            <textarea id="contact-message" name="message" rows={2} placeholder="A sentence or two about the outcome you need." className={`${inputClass} h-[62px] resize-none py-2.5 leading-relaxed`} required aria-required="true" disabled={status === 'submitting'} />
+            <textarea id="contact-message" name="message" rows={compact ? 3 : 2} placeholder="A sentence or two about the outcome you need." className={`${inputClass} ${compact ? 'min-h-24 resize-y' : 'h-[62px] resize-none'} py-2.5 leading-relaxed`} required aria-required="true" disabled={status === 'submitting'} />
           </div>
-          <div className="group">
+    ),
+    company: (
+      <div key="company" className={`group ${compact ? 'sm:col-span-2' : ''}`}>
             <label htmlFor="contact-company" className={`${fieldLabel} ${labelClass}`}>Company / venture <span className={`normal-case tracking-normal ${optionalClass}`}>(Optional)</span></label>
             <input id="contact-company" name="company" type="text" autoComplete="organization" placeholder="Company or venture name" className={inputClass} disabled={status === 'submitting'} />
           </div>
-          <div className="group">
+    ),
+    engagement: (
+      <div key="engagement" className="group">
             <label htmlFor="contact-engagement" className={`${fieldLabel} ${labelClass}`}>I am</label>
             <div className="relative">
               <select id="contact-engagement" name="engagementType" defaultValue="" className={`${inputClass} appearance-none pr-10`} required aria-required="true" disabled={status === 'submitting'}>
@@ -202,15 +187,21 @@ export function ContactForm({ endpoint }: { endpoint: string }) {
               <ChevronDown className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-navy/45" aria-hidden="true" />
             </div>
           </div>
-          <div className="group">
+    ),
+    name: (
+      <div key="name" className="group">
             <label htmlFor="contact-name" className={`${fieldLabel} ${labelClass}`}>Name <span className={`normal-case tracking-normal ${optionalClass}`}>(Optional)</span></label>
             <input id="contact-name" name="name" type="text" autoComplete="name" placeholder="Your name" className={inputClass} disabled={status === 'submitting'} />
           </div>
-          <div className="group">
+    ),
+    email: (
+      <div key="email" className="group">
             <label htmlFor="contact-email" className={`${fieldLabel} ${labelClass}`}>Email</label>
             <input id="contact-email" name="email" type="email" autoComplete="email" inputMode="email" placeholder="you@company.com" className={inputClass} required aria-required="true" disabled={status === 'submitting'} />
           </div>
-          <div className="group sm:order-1">
+    ),
+    attachment: (
+      <div key="attachment" className="group sm:order-1">
             <span id="attachment-label" className={`${fieldLabel} ${labelClass}`}>Attachment <span className={`normal-case tracking-normal ${optionalClass}`}>(Optional)</span></span>
             <span id="attachment-help" className="sr-only">Accepted formats: PDF, PPT, PPTX, DOC, or DOCX. Maximum size 10MB.</span>
             <input ref={fileInputRef} id="contact-attachment" name="attachment" type="file" accept={ACCEPTED_FILE_TYPES} className="sr-only" onChange={handleFileChange} disabled={status === 'submitting'} aria-labelledby="attachment-label attachment-help" />
@@ -223,27 +214,68 @@ export function ContactForm({ endpoint }: { endpoint: string }) {
                 </button>
               </div>
             ) : (
-              <label htmlFor="contact-attachment" className={`${inputClass} flex cursor-pointer items-center gap-2 hover:border-brand hover:text-brand`}>
+              <label htmlFor="contact-attachment" className={`${inputClass} flex cursor-pointer items-center gap-2 hover:border-brand`}>
                 <Paperclip className="h-4 w-4 shrink-0" aria-hidden="true" />
                 <span>Attach file</span>
-                <span className="ml-auto text-xs opacity-45">PDF, PPT or DOC · 10MB</span>
+                <span className="ml-auto text-xs text-navy/65">PDF, PPT or DOC · 10MB</span>
               </label>
             )}
           </div>
-          <div className="group">
+    ),
+    phone: (
+      <div key="phone" className="group">
             <label htmlFor="contact-phone" className={`${fieldLabel} ${labelClass}`}>Phone number</label>
             <input id="contact-phone" name="phone" type="tel" autoComplete="tel" inputMode="tel" placeholder="+91 98765 43210" className={inputClass} required aria-required="true" disabled={status === 'submitting'} />
           </div>
+    ),
+  };
+
+  return (
+    <motion.div
+      initial={false}
+      className={surfaceClass}
+    >
+      <form onSubmit={handleSubmit} onChange={clearError} aria-label="Contact Maxinor" noValidate>
+        {compact ? <h3 className="mb-5 font-display text-2xl font-medium tracking-tight text-navy md:text-3xl">Start a conversation</h3> : <div className="mb-4 border-b border-current/10 pb-3">
+          <div className="flex items-center justify-between gap-3">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand">Start a conversation</p>
+            <p className="whitespace-nowrap text-xs leading-none text-navy/65">
+              Required unless marked optional
+            </p>
+          </div>
+          <h2 className="mt-2 font-display text-xl font-medium tracking-tight text-navy sm:text-2xl">
+            Tell us where you&apos;re headed.
+          </h2>
+        </div>}
+
+        {interest && <motion.div key={interest} initial={{ opacity: 0, y: RISE }} animate={{ opacity: 1, y: 0 }} transition={revealTransition} className="mb-5 flex items-center justify-between gap-4 rounded-sm bg-navy/[0.04] px-3 py-3 text-sm"><p>Interested in <strong className="font-semibold">{interest}</strong></p><Link href={compact ? '#entry-points' : '/#entry-points'} className="shrink-0 underline decoration-navy/30 underline-offset-4 hover:text-brand focus-visible:outline-2 focus-visible:outline-brand">Change</Link></motion.div>}
+
+        {status === 'error' && (
+          <div className="mb-3 border border-red-300 bg-red-50 px-3 py-2 text-xs text-red-700" role="alert" aria-live="assertive">
+            {errorMessage}
+          </div>
+        )}
+
+        <div className={`grid gap-x-4 sm:grid-cols-2 ${compact ? 'gap-y-4' : 'gap-y-3'}`}>
+          {(compact
+            ? ['message', 'name', 'email', 'engagement', 'phone', 'company'] as const
+            : ['message', 'company', 'engagement', 'name', 'email', 'attachment', 'phone'] as const
+          ).map((field) => fields[field])}
         </div>
 
+        <div className={compact ? 'mt-6 flex flex-wrap items-center justify-between gap-4' : ''}>
+        {compact && <p className="max-w-xs text-xs leading-relaxed text-grey">Read our <Link href="/privacy" className="underline underline-offset-2 hover:text-navy">Privacy Policy</Link> for how we handle your enquiry.</p>}
+        <Magnetic>
         <button
           type="submit"
           disabled={status === 'submitting'}
-          className="group/button mx-auto mt-4 flex cursor-pointer items-center justify-center gap-2 rounded-full border border-navy bg-navy px-6 py-2.5 text-sm font-medium tracking-wide text-warm-white shadow-[0_10px_25px_rgba(11,31,59,0.12)] transition-all duration-300 hover:border-brand hover:bg-brand focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand disabled:cursor-not-allowed disabled:opacity-60"
+          className={`press group/button flex min-h-12 cursor-pointer items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition duration-300 hover:bg-brand/85 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-navy disabled:cursor-not-allowed disabled:opacity-60 ${compact ? 'bg-brand text-white' : 'mx-auto mt-4 bg-navy text-warm-white hover:bg-brand'}`}
         >
           <span>{status === 'submitting' ? 'Sending message...' : 'Send message'}</span>
-          <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover/button:translate-x-1 motion-reduce:transition-none" aria-hidden="true" />
+          <ArrowRight className="size-4 transition-transform duration-300 group-hover/button:translate-x-1 motion-reduce:transition-none" aria-hidden="true" />
         </button>
+        </Magnetic>
+        </div>
       </form>
     </motion.div>
   );

@@ -81,9 +81,9 @@ export const sectors = [
       'Regulatory expansion across states and products',
       'Compliance and onboarding stack modernisation',
     ],
-    operator: 'Rajesh Ramanathan',
-    operatorBg: 'ex-Accenture, ex-Wipro, ex-Mastek',
-    operatorSlug: 'rajesh-ramanathan',
+    operator: 'Maxinor Team',
+    operatorBg: 'Multi-sector operator team',
+    operatorSlug: '',
     howWeEngage: [
       'Risk model design and portfolio calibration',
       'Regulatory compliance and multi-state expansion',
@@ -193,13 +193,14 @@ export const sectors = [
 // Sectors whose own pages are not published yet.
 export const COMING_SOON = ['media', 'education', 'defence'];
 
-// A photo for each sector (Pexels, free to use under the Pexels licence). They show the sector, not our
-// clients or team, so captions must never present the people in them as either.
+// A photo for each sector: Pexels (free to use under the Pexels licence), except BFSI and Media, which are
+// AI-generated (see docs/home-redesign.md). They show the sector, not our clients or team, so captions must
+// never present the people in them as either.
 export const SECTOR_PHOTOS: Record<string, { src: string; position?: string }> = {
   healthcare: { src: '/images/photos/healthcare.webp', position: '64% 40%' },
-  d2c: { src: '/images/photos/d2c.webp', position: '45% 50%' },
-  bfsi: { src: '/images/photos/bfsi.webp', position: '70% 50%' },
-  media: { src: '/images/photos/media.webp', position: '60% 50%' },
+  d2c: { src: '/images/photos/d2c-founder.webp', position: '50% 45%' },
+  bfsi: { src: '/images/photos/bfsi-bank.webp', position: '50% 38%' },
+  media: { src: '/images/photos/media-broadcast.webp', position: '62% 22%' },
   education: { src: '/images/photos/education.webp', position: '55% 40%' },
   defence: { src: '/images/photos/defence.webp', position: '50% 45%' },
 };

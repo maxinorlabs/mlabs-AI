@@ -13,10 +13,11 @@ const HEADER_OFFSET = 64;
 
 // Scrolls to an element, smoothly through Lenis when it is running, otherwise natively.
 export function scrollToElement(el: HTMLElement) {
-  if (instance) {
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (instance && !reduceMotion) {
     instance.scrollTo(el, { offset: -HEADER_OFFSET });
     return;
   }
   const top = el.getBoundingClientRect().top + window.scrollY - HEADER_OFFSET;
-  window.scrollTo({ top, behavior: 'smooth' });
+  window.scrollTo({ top, behavior: reduceMotion ? 'auto' : 'smooth' });
 }

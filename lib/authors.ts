@@ -2,6 +2,8 @@ export type AuthorProfile = {
   name: string;
   role: string;
   linkedin: string;
+  // Credited on their blog posts only; kept out of everything else, including Home's insights.
+  blogOnly?: boolean;
 };
 
 export const authorProfiles: Record<string, AuthorProfile> = {
@@ -29,6 +31,7 @@ export const authorProfiles: Record<string, AuthorProfile> = {
     name: 'Rajesh Ramanathan',
     role: 'Fintech',
     linkedin: 'https://www.linkedin.com/in/rajeshramanathan/',
+    blogOnly: true,
   },
   'Priyabrata Padhi': {
     name: 'Priyabrata Padhi',

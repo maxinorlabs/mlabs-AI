@@ -118,18 +118,18 @@ function RouteCell({
       onMouseLeave={() => onActive(null)}
       onFocus={() => onActive(index)}
       onBlur={() => onActive(null)}
-      className="group relative flex flex-1 items-center gap-5 overflow-hidden px-5 py-3 text-navy outline-none transition-colors duration-500 focus-visible:text-warm-white hover:text-warm-white sm:flex-col sm:items-start sm:gap-[clamp(6px,1.6svh,14px)] sm:py-[clamp(10px,1.8svh,16px)]"
+      className="press group relative flex flex-1 items-center gap-5 overflow-hidden px-5 py-3 text-navy outline-none transition duration-300 focus-visible:text-warm-white hover:text-warm-white sm:flex-col sm:items-start sm:gap-[clamp(6px,1.6svh,14px)] sm:py-[clamp(10px,1.8svh,16px)]"
     >
       <span
         aria-hidden="true"
-        className={`absolute inset-0 origin-bottom scale-y-0 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-y-100 group-focus-visible:scale-y-100 ${
+        className={`absolute inset-0 origin-bottom scale-y-0 transition-transform duration-300 ease-out group-hover:scale-y-100 group-focus-visible:scale-y-100 ${
           index === 0 ? 'bg-brand' : 'bg-navy'
         }`}
       />
       <span className="relative flex items-center justify-end gap-4 sm:w-full">
         <ArrowUpRight
           aria-hidden="true"
-          className="hidden h-4 w-4 transition-transform duration-500 group-hover:-translate-y-1 group-hover:translate-x-1 sm:block"
+          className="hidden size-4 transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1 sm:block"
         />
       </span>
       <span className="relative whitespace-nowrap text-base font-semibold tracking-tight md:text-[17px]">{route.label}</span>
@@ -244,7 +244,7 @@ export function HomeHero() {
                   tabIndex={-1}
                   onMouseEnter={() => setActive(i)}
                   onMouseLeave={() => setActive(null)}
-                  className={`pointer-events-auto absolute hidden -translate-x-1/2 -translate-y-1/2 whitespace-nowrap rounded-full border px-3 py-1.5 text-xs font-extrabold uppercase tracking-[0.24em] transition-colors duration-300 xl:block ${
+                  className={`pointer-events-auto absolute hidden -translate-x-1/2 -translate-y-1/2 whitespace-nowrap rounded-full border px-3 py-1.5 text-xs font-extrabold uppercase tracking-[0.22em] transition-colors duration-300 xl:block ${
                     active === i
                       ? 'border-brand/40 bg-warm-white text-brand'
                       : 'border-transparent text-navy/70 hover:border-navy/15'
@@ -279,14 +279,15 @@ export function HomeHero() {
               {OPERATORS.map((op, i) => (
                 <span
                   key={op.name}
-                  className="relative h-9 w-9 overflow-hidden rounded-full ring-2 ring-warm-white transition-transform duration-300 group-hover:-translate-y-0.5 md:h-[clamp(32px,5svh,44px)] md:w-[clamp(32px,5svh,44px)]"
-                  style={{ transitionDelay: `${i * 30}ms` }}
+                  // The team fans out, each portrait stepping left of the one beside it.
+                  className="relative h-9 w-9 overflow-hidden rounded-full ring-2 ring-warm-white transition-transform duration-300 group-hover:[translate:var(--fan)_-2px] md:h-[clamp(32px,5svh,44px)] md:w-[clamp(32px,5svh,44px)]"
+                  style={{ ['--fan' as string]: `${(i - OPERATORS.length + 1) * 4}px` }}
                 >
                   <Image src={op.src} alt={op.name} fill sizes="44px" className="object-cover object-top" />
                 </span>
               ))}
             </span>
-            <span className="text-sm font-semibold text-navy/70 transition-colors group-hover:text-navy md:text-base">
+            <span className="text-sm font-semibold text-navy/70 transition-colors duration-300 group-hover:text-navy md:text-base">
               Meet the <span className="text-brand">Operator Team</span>
               <ArrowUpRight aria-hidden="true" className="ml-1 inline h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
             </span>

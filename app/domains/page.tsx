@@ -83,9 +83,9 @@ const domains = [
       'Regulatory expansion across states and products',
       'Compliance and onboarding stack modernisation',
     ],
-    operator: 'Rajesh Ramanathan',
-    operatorBg: 'ex-Accenture, ex-Wipro, ex-Mastek',
-    operatorSlug: 'rajesh-ramanathan',
+    operator: 'Maxinor Team',
+    operatorBg: 'Multi-domain operator team',
+    operatorSlug: '',
     howWeEngage: [
       'Risk model design and portfolio calibration',
       'Regulatory compliance and multi-state expansion',

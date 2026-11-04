@@ -9,6 +9,12 @@ export const DURATION = {
   slow: 0.6,
 } as const;
 
+// How things settle: markers sliding, drawings returning to rest, small swaps.
+export const SETTLE: Transition = { duration: DURATION.fast, ease: EASE_OUT };
+
+// The one spring, for tactile moves.
+export const SPRING = { type: 'spring', stiffness: 300, damping: 22 } as const;
+
 // Delay between siblings in a staggered group.
 export const STAGGER = 0.06;
 
