@@ -207,7 +207,7 @@ export function HomeHero() {
 
           <nav
             aria-label="Ways to work with Maxinor"
-            className="flex max-w-xl animate-rise flex-col divide-y divide-navy/15 overflow-hidden rounded-xl border border-navy/15 bg-white/60 shadow-[0_24px_60px_-30px_rgba(11,31,59,0.35)] backdrop-blur-sm [animation-delay:660ms] sm:flex-row sm:divide-x sm:divide-y-0"
+            className="flex max-w-xl animate-rise flex-col divide-y divide-navy/15 overflow-hidden rounded-xl border border-navy/15 bg-white shadow-[0_12px_24px_-16px_rgba(11,31,59,0.35)] [animation-delay:660ms] sm:flex-row sm:divide-x sm:divide-y-0"
           >
             {ROUTES.map((route, i) => (
               <RouteCell key={route.href} route={route} index={i} onActive={setActive} />
@@ -272,7 +272,7 @@ export function HomeHero() {
       </div>
 
       {/* Proof strip: the operators behind the studio */}
-      <div className="relative z-10 border-t border-navy/10 bg-warm-white/70 backdrop-blur-sm">
+      <div className="relative z-10 border-t border-navy/10 bg-warm-white">
         <div className="mx-auto flex max-w-7xl animate-rise items-center justify-between gap-6 px-6 py-[clamp(8px,2svh,20px)] [animation-delay:900ms]">
           <Link href="/team" className="group flex items-center gap-4">
             <span className="flex -space-x-2.5">
@@ -294,7 +294,7 @@ export function HomeHero() {
           </Link>
           {/* Scroll cue: a line that draws down once, inviting the visitor into the page */}
           <div aria-hidden="true" className="pointer-events-none hidden h-10 w-px overflow-hidden bg-navy/10 md:block">
-            <span className="block h-full w-full origin-top animate-draw-down bg-gradient-to-b from-brand to-brand/0 [animation-delay:1100ms]" />
+            <span className="block h-full w-full origin-top animate-draw-down bg-brand [animation-delay:1100ms]" />
           </div>
         </div>
       </div>

@@ -54,7 +54,7 @@ export function ContactForm({ endpoint, compact = false, interest }: { endpoint:
   const labelClass = 'text-navy/72';
   const optionalClass = 'text-navy/65';
   const inputClass =
-    `contact-control ${compact ? 'h-11' : 'h-10'} w-full rounded-sm border border-navy/25 bg-transparent px-3.5 text-base text-navy outline-none transition-[border-color,background-color,box-shadow] duration-200 placeholder:text-current placeholder:opacity-65 hover:border-navy/45 focus:border-brand focus:bg-white focus:ring-2 focus:ring-brand/15 disabled:cursor-not-allowed disabled:opacity-50 sm:text-sm`;
+    `contact-control ${compact ? 'h-11' : 'h-10'} w-full rounded-xl border border-navy/25 bg-transparent px-3.5 text-base text-navy outline-none transition-[border-color,background-color,box-shadow] duration-200 placeholder:text-current placeholder:opacity-65 hover:border-navy/45 focus:border-brand focus:bg-white focus:ring-2 focus:ring-brand/15 disabled:cursor-not-allowed disabled:opacity-50 sm:text-sm`;
 
   const clearError = () => {
     if (status === 'error') {
@@ -150,7 +150,7 @@ export function ContactForm({ endpoint, compact = false, interest }: { endpoint:
           <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={SPRING} className="mx-auto mb-5 flex size-14 items-center justify-center rounded-full bg-brand/10 text-brand">
             <CheckCircle2 className="size-7" />
           </motion.div>
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand">Message received</p>
+          <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-brand">Message received</p>
           <h2 className="mt-2 font-display text-3xl font-medium text-navy">We&apos;ll be in touch.</h2>
           <p className="mt-3 text-sm text-navy/55">Your note is now with the Maxinor team.</p>
           <button type="button" onClick={() => setStatus('idle')} className="mt-7 min-h-11 text-sm font-semibold text-brand hover:underline">
@@ -161,7 +161,7 @@ export function ContactForm({ endpoint, compact = false, interest }: { endpoint:
     );
   }
 
-  const fieldLabel = 'mb-1.5 block text-xs font-semibold uppercase tracking-[0.1em]';
+  const fieldLabel = 'mb-1.5 block text-[11px] font-medium uppercase tracking-[0.22em]';
 
   const fields = {
     message: (
@@ -209,7 +209,7 @@ export function ContactForm({ endpoint, compact = false, interest }: { endpoint:
               <div className={`${inputClass} flex items-center gap-2`}>
                 <Check className="h-4 w-4 shrink-0 text-brand" aria-hidden="true" />
                 <span className="min-w-0 flex-1 truncate">{attachedFile.name}</span>
-                <button type="button" onClick={removeFile} className="rounded-sm p-1 opacity-50 transition-opacity hover:opacity-100 focus-visible:outline-2 focus-visible:outline-brand" aria-label={`Remove ${attachedFile.name}`}>
+                <button type="button" onClick={removeFile} className="rounded-full p-1 opacity-50 transition-opacity hover:opacity-100 focus-visible:outline-2 focus-visible:outline-brand" aria-label={`Remove ${attachedFile.name}`}>
                   <X className="h-3.5 w-3.5" />
                 </button>
               </div>
@@ -248,7 +248,7 @@ export function ContactForm({ endpoint, compact = false, interest }: { endpoint:
           </h2>
         </div>}
 
-        {interest && <motion.div key={interest} initial={{ opacity: 0, y: RISE }} animate={{ opacity: 1, y: 0 }} transition={revealTransition} className="mb-5 flex items-center justify-between gap-4 rounded-sm bg-navy/[0.04] px-3 py-3 text-sm"><p>Interested in <strong className="font-semibold">{interest}</strong></p><Link href={compact ? '#entry-points' : '/#entry-points'} className="shrink-0 underline decoration-navy/30 underline-offset-4 hover:text-brand focus-visible:outline-2 focus-visible:outline-brand">Change</Link></motion.div>}
+        {interest && <motion.div key={interest} initial={{ opacity: 0, y: RISE }} animate={{ opacity: 1, y: 0 }} transition={revealTransition} className="mb-5 flex items-center justify-between gap-4 rounded-xl bg-navy/[0.04] px-3 py-3 text-sm"><p>Interested in <strong className="font-semibold">{interest}</strong></p><Link href={compact ? '#entry-points' : '/#entry-points'} className="shrink-0 underline decoration-navy/30 underline-offset-4 hover:text-brand focus-visible:outline-2 focus-visible:outline-brand">Change</Link></motion.div>}
 
         {status === 'error' && (
           <div className="mb-3 border border-red-300 bg-red-50 px-3 py-2 text-xs text-red-700" role="alert" aria-live="assertive">

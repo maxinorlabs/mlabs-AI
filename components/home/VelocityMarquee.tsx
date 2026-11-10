@@ -75,13 +75,12 @@ export function VelocityMarquee({ items, baseSpeed = 1.6 }: { items: string[]; b
       onBlur={() => setHeld(false)}
       className="relative overflow-hidden whitespace-nowrap border-y border-navy/10 bg-warm-white"
     >
-      <div aria-hidden="true" className="grain absolute inset-0 opacity-[0.35] mix-blend-multiply" />
       {/* The strip: words over a ruler (a tall tick at every 10th mark), moving together. Edges fade out at the screen sides. */}
       <div className="[mask-image:linear-gradient(90deg,transparent,black_6%,black_90%,transparent)]">
       <motion.div
         aria-hidden="true"
         style={{ x }}
-        className="relative flex w-max py-5 pb-7 font-mono text-[11px] uppercase tracking-[0.22em] text-navy/70 md:py-6 md:pb-8 md:text-xs"
+        className="relative flex w-max py-5 pb-7 text-[11px] font-medium uppercase tracking-[0.22em] text-navy/70 md:py-6 md:pb-8 md:text-xs"
       >
         {[0, 1].map((copy) => (
           // Each copy carries its own ruler, so the two halves are identical and the loop has no seam.

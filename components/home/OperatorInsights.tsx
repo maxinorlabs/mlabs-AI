@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { motion } from 'motion/react';
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import { NavyBackdrop } from '@/components/motion/NavyBackdrop';
-import { RevealText } from '@/components/motion/RevealText';
+import { SectionHeader } from '@/components/home/SectionHeader';
 import { SETTLE } from '@/lib/motion';
 import { cn } from '@/lib/utils';
 
@@ -53,26 +53,18 @@ export function OperatorInsights({ insights }: { insights: Insight[] }) {
     <section className="relative overflow-clip bg-navy px-6 py-16 text-warm-white md:px-12 md:py-20">
       <NavyBackdrop />
       <div className="relative mx-auto w-full max-w-6xl">
-      <div className="mb-10 flex flex-col gap-4 md:mb-[clamp(24px,5svh,48px)] md:flex-row md:items-end md:justify-between">
-        <div>
-          <RevealText
-            className="max-w-2xl text-3xl font-display font-medium tracking-tight md:text-5xl"
-            parts={[{ text: 'Operator-tested ' }, { text: 'insights.', className: 'text-brand' }]}
-          />
-          <p className="mt-4 max-w-xl text-base font-light leading-relaxed text-warm-white/60 md:text-lg">
-            Written by founders and operators who have been in the trenches.
-          </p>
-        </div>
+      <SectionHeader eyebrow="Insights" parts={[{ text: 'Operator-tested ' }, { text: 'insights.', className: 'text-brand' }]}>
+        <p className="text-pretty text-base font-light leading-relaxed text-warm-white/60">Written by founders and operators who have been in the trenches.</p>
         <Link
           href="/blog"
-          className="press group inline-flex w-fit items-center gap-2 rounded-full border border-white/20 px-5 py-2.5 text-sm font-semibold text-warm-white transition duration-300 hover:border-brand hover:bg-brand"
+          className="press group mt-4 inline-flex w-fit items-center gap-2 rounded-full border border-white/20 px-5 py-2.5 text-sm font-semibold text-warm-white transition duration-300 hover:border-brand hover:bg-brand"
         >
           All articles
-          <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+          <ArrowRight aria-hidden="true" className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
         </Link>
-      </div>
+      </SectionHeader>
 
-      <div className="grid gap-8 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] md:gap-10">
+      <div className="grid gap-8 lg:grid-cols-2 lg:gap-10">
         {/* The list */}
         <ol className="border-t border-white/15">
           {insights.map((post, i) => (
@@ -81,7 +73,7 @@ export function OperatorInsights({ insights }: { insights: Insight[] }) {
                 href={`/blog/${post.slug}`}
                 onMouseEnter={() => setActive(i)}
                 onFocus={() => setActive(i)}
-                className="press group relative flex items-start gap-4 py-5 pl-4 transition-[scale] duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand md:py-[clamp(14px,2.6svh,24px)]"
+                className="press group relative flex items-start gap-4 py-5 pl-4 transition-[scale] duration-300 md:py-5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand "
               >
                 {active === i && <motion.span aria-hidden="true" layoutId="insight-marker" transition={SETTLE} className="absolute inset-y-0 left-0 w-0.5 bg-brand" />}
                 <span className="min-w-0 flex-1">
@@ -91,7 +83,7 @@ export function OperatorInsights({ insights }: { insights: Insight[] }) {
                   <span className={`block text-lg font-display font-medium leading-snug transition-colors duration-300 md:text-xl ${active === i ? 'text-brand' : 'text-warm-white group-hover:text-brand'}`}>
                     {post.title}
                   </span>
-                  <span className="mt-2 block text-sm leading-relaxed text-warm-white/70 md:hidden">{post.excerpt}</span>
+                  <span className="mt-2 block text-sm leading-relaxed text-warm-white/70 lg:hidden">{post.excerpt}</span>
                   <span className="mt-2 flex items-center gap-2 text-xs text-warm-white/75">
                     <Avatar name={post.author} image={post.authorImage} size={22} />
                     {post.author} · {post.minutes} min read
@@ -105,7 +97,7 @@ export function OperatorInsights({ insights }: { insights: Insight[] }) {
 
         {/* The reading panel (desktop). Every article sits in the same grid cell, so moving down the list is an
             immediate crossfade with no waiting and no jump in height. */}
-        <div className="relative hidden self-start overflow-hidden rounded-xl bg-warm-white p-8 text-navy md:sticky md:top-24 md:grid">
+        <div className="relative hidden self-start overflow-hidden rounded-2xl bg-warm-white p-8 text-navy lg:sticky lg:top-24 lg:grid">
           {insights.map((post, i) => (
             <div
               key={post.slug}
@@ -115,8 +107,8 @@ export function OperatorInsights({ insights }: { insights: Insight[] }) {
               )}
             >
               <p className="mb-4 border-l-2 border-brand pl-3 text-[11px] font-medium uppercase tracking-[0.22em] text-navy/70">{post.category}</p>
-              <p className="mb-5 text-[clamp(24px,min(2.6vw,4.4svh),36px)] font-display font-medium leading-[1.15] tracking-tight">{post.title}</p>
-              <p className="mb-8 line-clamp-5 flex-1 text-[15px] font-light leading-relaxed text-grey">{post.excerpt}</p>
+              <p className="mb-4 text-balance font-display text-2xl font-medium leading-tight tracking-tight">{post.title}</p>
+              <p className="mb-8 line-clamp-5 flex-1 text-pretty text-base font-light leading-relaxed text-grey">{post.excerpt}</p>
               <div className="flex items-center justify-between gap-4 border-t border-navy/10 pt-5">
                 <span className="flex items-center gap-3">
                   <Avatar name={post.author} image={post.authorImage} size={40} />

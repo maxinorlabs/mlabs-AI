@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { animate, motion, useInView, useReducedMotion, useTransform } from 'motion/react';
 import { ArrowUpRight } from 'lucide-react';
+import { SectionHeader } from '@/components/home/SectionHeader';
 import { NavyBackdrop } from '@/components/motion/NavyBackdrop';
 import { useScrub } from '@/components/motion/useScrub';
 import { DURATION, EASE_OUT, SETTLE } from '@/lib/motion';
@@ -112,22 +113,17 @@ export function OperatorProof() {
   const clipPath = useTransform(progress, (p) => (reduceMotion ? 'none' : `circle(${(p * 150).toFixed(2)}% at 76% 0%)`));
 
   return (
-    <motion.section ref={ref} style={{ clipPath }} aria-labelledby="operator-proof-heading" className="relative overflow-hidden bg-navy px-6 py-16 text-warm-white md:px-12 md:py-20">
+    <motion.section ref={ref} style={{ clipPath }} aria-label="Track record" className="relative overflow-hidden bg-navy px-6 py-16 text-warm-white md:px-12 md:py-20">
       <NavyBackdrop />
       <div className="relative mx-auto w-full max-w-6xl">
-        <div className="mb-12 grid gap-6 md:mb-[clamp(28px,6svh,64px)] md:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] md:items-end">
-          <div>
-            <h2 id="operator-proof-heading" className="text-balance font-display text-3xl font-medium leading-tight tracking-tight md:text-4xl">
-              Not advisors who have read the playbook. <span className="text-brand">They&apos;ve run the plays.</span>
-            </h2>
-          </div>
-          <p className="max-w-md text-base font-light leading-relaxed text-warm-white/60 md:justify-self-end">
+        <SectionHeader eyebrow="Track record" parts={[{ text: 'Not advisors who have read the playbook. ' }, { text: "They've run the plays.", className: 'text-brand' }]}>
+          <p className="text-pretty text-base font-light leading-relaxed text-warm-white/60">
             Experience from the operators’ careers before Maxinor. Select a figure to explore the role behind it.
           </p>
-        </div>
+        </SectionHeader>
 
         {/* The numbers, each signed by the operator behind it */}
-        <div role="group" aria-label="Explore operator career experience" className="grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-white/20 bg-white/20 lg:grid-cols-4">
+        <div role="group" aria-label="Explore operator career experience" className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/20 bg-white/20 lg:grid-cols-4">
           {RECORDS.map((record, i) => (
             <motion.button
               key={record.label}
@@ -161,7 +157,7 @@ export function OperatorProof() {
         </div>
 
         {/* Every story sits in the same grid cell, so swapping is a crossfade and the page never jumps */}
-        <div id="operator-career-story" role="region" aria-label="Selected operator career story" className="mt-7 grid border-b border-white/20 pb-7">
+        <div id="operator-career-story" role="region" aria-label="Selected operator career story" className="mt-4 grid rounded-2xl border border-white/10 bg-white/5 p-5 sm:p-6 lg:mt-5">
           {RECORDS.map((item, i) => (
             <div
               key={item.label}
@@ -171,7 +167,7 @@ export function OperatorProof() {
               )}
             >
               <div className="flex items-start gap-4">
-                <Image src={item.image} alt={item.who} width={64} height={64} className="size-16 shrink-0 rounded-lg object-cover object-top" />
+                <Image src={item.image} alt={item.who} width={64} height={64} className="size-16 shrink-0 rounded-xl object-cover object-top" />
                 <div>
                   <p className="font-display text-lg font-medium">{item.who}</p>
                   <p className="mt-1 text-xs leading-relaxed text-warm-white/75">{item.role}</p>
@@ -180,7 +176,7 @@ export function OperatorProof() {
               </div>
               <div>
                 <p className="mb-2 text-[11px] font-medium uppercase tracking-[0.22em] text-warm-white/65">Career experience · before Maxinor</p>
-                <h3 className="font-display text-xl font-medium">{item.title}</h3>
+                <h3 className="font-display text-2xl font-medium leading-tight tracking-tight">{item.title}</h3>
                 <p className="mt-3 text-sm leading-relaxed text-warm-white/80">{item.detail}</p>
               </div>
             </div>

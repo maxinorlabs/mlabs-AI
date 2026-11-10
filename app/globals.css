@@ -6,6 +6,14 @@
 @import "tw-animate-css";
 @plugin "@tailwindcss/typography";
 
+/* Screens that can hold a whole plan card in place while the next slides over it: any laptop window, or a tablet
+   standing upright. Phones can't, because a card there is taller than the screen. */
+@custom-variant stack {
+  @media (min-width: 64rem) and (min-height: 30rem), (min-width: 48rem) and (min-height: 54rem) {
+    @slot;
+  }
+}
+
 @theme {
   --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-display), ui-sans-serif, system-ui, sans-serif;

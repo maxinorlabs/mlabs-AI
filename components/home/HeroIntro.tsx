@@ -83,7 +83,7 @@ export function HeroIntro() {
                 </span>
               ))}
             </p>
-            <p className="intro-letter mt-4 font-mono text-[11px] uppercase tracking-[0.3em] text-warm-white/50" style={{ animationDelay: '700ms' }}>
+            <p className="intro-letter mt-4 text-[11px] font-medium uppercase tracking-[0.22em] text-warm-white/50" style={{ animationDelay: '700ms' }}>
               Operators backing Entrepreneurs
             </p>
           </motion.div>

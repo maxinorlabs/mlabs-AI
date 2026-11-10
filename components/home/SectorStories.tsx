@@ -13,8 +13,8 @@ import {
   useTransform,
 } from 'motion/react';
 import { ArrowUpRight, Plus, X } from 'lucide-react';
+import { SectionHeader } from '@/components/home/SectionHeader';
 import { NavyBackdrop } from '@/components/motion/NavyBackdrop';
-import { RevealText } from '@/components/motion/RevealText';
 import { COMING_SOON, SECTOR_PHOTOS, sectors } from '@/lib/sectors';
 import { DURATION, EASE_OUT, SPRING, STAGGER } from '@/lib/motion';
 import { cn } from '@/lib/utils';
@@ -70,19 +70,19 @@ function SectorPanel({ sector, onClose }: { sector: Sector; onClose: () => void 
           transition={{ delay: STAGGER * 2, duration: DURATION.base, ease: EASE_OUT }}
           className="overflow-y-auto p-6 md:p-8"
         >
-          <p className="mb-4 text-xl font-display font-medium leading-snug">{sector.problem}</p>
-          <p className="mb-6 text-[15px] font-light leading-relaxed text-grey">{sector.problemDetail}</p>
+          <p className="mb-4 pr-10 text-xl font-display font-medium leading-snug">{sector.problem}</p>
+          <p className="mb-6 text-pretty text-base font-light leading-relaxed text-grey">{sector.problemDetail}</p>
           <p className="mb-2 text-[11px] font-medium uppercase tracking-[0.22em] text-navy/50">What we do</p>
           <ul className="mb-6 border-t border-navy/10">
             {sector.capabilities.map((item) => (
-              <li key={item} className="flex items-start gap-3 border-b border-navy/[0.06] py-2.5 text-[14px] text-navy/80">
-                <span aria-hidden="true" className="mt-[6px] h-1.5 w-1.5 shrink-0 rotate-45 bg-brand" />
+              <li key={item} className="flex items-start gap-3 border-b border-navy/[0.06] py-2.5 text-sm text-navy/80">
+                <span aria-hidden="true" className="mt-1.5 size-1.5 shrink-0 rotate-45 bg-brand" />
                 {item}
               </li>
             ))}
           </ul>
           <p className="mb-2 text-[11px] font-medium uppercase tracking-[0.22em] text-navy/50">What founders tell us</p>
-          <blockquote className="mb-6 border-l-2 border-brand pl-4 text-[15px] italic leading-relaxed text-navy/80">
+          <blockquote className="mb-6 border-l-2 border-brand pl-4 text-base italic leading-relaxed text-navy/80">
             {sector.clientProblems[0]}
           </blockquote>
           <div className="flex flex-wrap items-center justify-between gap-4 border-t border-navy/10 pt-5">
@@ -172,28 +172,27 @@ export function SectorStories() {
       style={{ ['--reel' as string]: `${distance}px` }}
       className="relative bg-navy text-warm-white md:h-[calc(100svh-4rem+var(--reel))]"
     >
-      <div className="relative overflow-hidden py-20 md:sticky md:top-16 md:flex md:h-[calc(100svh-4rem)] md:flex-col md:justify-center md:py-0">
+      <div className="relative overflow-hidden py-16 md:sticky md:top-16 md:flex md:h-[calc(100svh-4rem)] md:flex-col md:justify-center md:py-0">
         <NavyBackdrop />
 
         {/* The title stays put above the reel, so the moving cards never slice it */}
-        <div className="relative mx-auto mb-8 flex w-full max-w-7xl flex-col gap-4 px-6 md:mb-[clamp(16px,3.5svh,36px)] md:flex-row md:items-end md:justify-between md:px-12">
-          <div>
-            <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">Inside each sector</p>
-            <RevealText
-              className="text-balance text-3xl font-display font-medium leading-[1.08] tracking-tight md:text-[clamp(28px,min(3.4vw,5.6svh),48px)]"
-              parts={[{ text: "We don't just know your industry. " }, { text: "We've built inside it.", className: 'text-brand' }]}
-            />
-          </div>
-          <p className="max-w-xs text-sm font-light leading-relaxed text-warm-white/55">
-            Open a sector to see the problems founders bring us and how we work on them.
-            {distance > 0 && <span className="mt-2 block text-[11px] font-medium uppercase tracking-[0.22em] text-warm-white/40">Scroll to move along →</span>}
-          </p>
+        <div className="relative px-6 md:px-12">
+          <SectionHeader
+            eyebrow="Inside each sector"
+            parts={[{ text: "We don't just know your industry. " }, { text: "We've built inside it.", className: 'text-brand' }]}
+            className="mx-auto mb-8 w-full max-w-6xl md:mb-[clamp(16px,3.5svh,36px)]"
+          >
+            <p className="text-pretty text-sm font-light leading-relaxed text-warm-white/60">
+              Open a sector to see the problems founders bring us and how we work on them.
+              {distance > 0 && <span className="mt-2 block text-[11px] font-medium uppercase tracking-[0.22em] text-warm-white/40">Scroll to move along →</span>}
+            </p>
+          </SectionHeader>
         </div>
 
         <motion.div
           ref={trackRef}
           style={{ x }}
-          className="relative flex w-full snap-x snap-mandatory scroll-px-6 items-center gap-4 overflow-x-auto px-6 pb-4 [scrollbar-width:none] md:w-max md:snap-none md:gap-5 md:overflow-visible md:px-12 md:pb-0"
+          className="relative flex w-full snap-x snap-mandatory scroll-px-6 items-center gap-4 overflow-x-auto px-6 pb-4 [scrollbar-width:none] md:w-max md:snap-none md:gap-5 md:overflow-visible md:pb-0 md:pl-[max(3rem,calc((100vw-72rem)/2))] md:pr-12"
           onMouseLeave={() => setFocused(null)}
         >
           {sectors.map((sector, i) => {
@@ -241,7 +240,7 @@ export function SectorStories() {
                     </p>
                   </div>
                 </div>
-                <span className="absolute right-4 top-4 flex h-8 w-8 items-center justify-center rounded-full border border-white/30 bg-navy/30 text-warm-white backdrop-blur transition-colors duration-300 group-hover:border-brand group-hover:bg-brand md:hidden">
+                <span className="absolute right-4 top-4 flex size-8 items-center justify-center rounded-full border border-white/30 bg-navy/60 text-warm-white transition-colors duration-300 group-hover:border-brand group-hover:bg-brand md:hidden">
                   <Plus className="h-4 w-4" />
                 </span>
               </motion.button>

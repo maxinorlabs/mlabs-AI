@@ -9,7 +9,7 @@ The Home page now combines the live site, the committed revamp (30538c3) and the
 - T-shape: the live / committed design (scroll-drawn spine, styled capability bar), with its sectors linking to their pages.
 - Sectors: the committed navy reel of photo cards, one photograph per sector, each opening into its story (2026-11-03: chosen over the review's single-panel explorer).
 - Capability marquee: kept as live.
-- Entry points: the live three-card layout and "Where are you today?" picker; each card's button now carries the engagement into the enquiry form (from the review).
+- Entry points: a stack of three bold photo cards (white, navy, orange), chosen by the client on 2026-11-06 from four working concepts. Each card holds under the header while the next slides over it, and its steps tick off as it arrives. Each card's button carries the engagement into the enquiry form (from the review).
 - Insights: the review's version.
 - Closing: the live "Ready to Scale Your Vision?" design on the left, with the review's compact enquiry form on the right.
 - Footer and Contact page context (`?engagement=` / `?sector=`): from the review. Contact form accents stay brand orange.
@@ -24,6 +24,44 @@ Pexels licence (https://www.pexels.com/license/): free commercial use, no attrib
 | --- | --- | --- |
 | public/images/photos/d2c-founder.webp | Ivan S | https://www.pexels.com/photo/man-talking-on-cellphone-while-using-laptop-7620718/ |
 | public/images/photos/bfsi-trading.webp | Tima Miroshnichenko | https://www.pexels.com/photo/man-in-white-dress-shirt-sitting-in-front-of-computer-monitor-7567593/ |
+
+### Entry point photos 2026-11-06, no recognisable people (on Home, awaiting sign-off)
+
+Chosen because both stock sites leave consent from recognisable people to the user, and these show only hands and a robot. All three were retouched, so they differ from the originals: handwriting cleared from the notes, maker's lettering removed from the arm, and a brand name blurred on a highlighter.
+
+| File | Source | Credit |
+|---|---|---|
+| public/images/photos/entry-free-discovery.webp | https://www.pexels.com/photo/sticky-notes-on-the-task-board-wall-6804093/ | cottonbro studio, Pexels |
+| public/images/photos/entry-free-partnership.webp | https://www.pexels.com/photo/colleagues-pointing-on-documents-9489074/ | Monstera Production, Pexels |
+| public/images/photos/entry-free-ai.webp | https://www.pexels.com/photo/robot-on-a-black-background-8438865/ | Pavel Danilyuk, Pexels |
+
+Alternates checked: https://www.pexels.com/photo/hands-on-table-with-chart-8068694/ (RDNE Stock project) and https://unsplash.com/photos/white-robotic-arm-in-display-showroom-kE0JmtbvXxM (ZHENYU LUO).
+
+### Entry point stock photos 2026-11-05 (replaced, not on Home)
+
+Logos on a laptop and on glass, a printed mug and a maker's mark on the robot arm were retouched out, so these files differ from the originals. They show real people: never caption or present them as Maxinor staff, clients, founders or real events.
+
+| File | Source | Credit |
+|---|---|---|
+| public/images/photos/entry-stock-discovery.webp | https://www.pexels.com/photo/a-man-discussing-while-pointing-on-the-sticky-notes-4623462/ | Ketut Subiyanto, Pexels |
+| public/images/photos/entry-stock-partnership.webp | https://unsplash.com/photos/six-colleagues-collaborating-around-a-conference-table-with-laptops-RdEFWm0N84o | Ngital, Unsplash License |
+| public/images/photos/entry-stock-ai-robot.webp | https://www.pexels.com/photo/engineers-developing-robotic-arm-3913031/ | ThisIsEngineering, Pexels |
+
+Rights check, 2026-11-06. All three pages are live, with the right photographer and a free listing. None states that a model release exists. Pexels and Unsplash both leave consent from recognisable people to the user, and Pexels says promotional use will likely need it. None of the photos is cleared for launch yet:
+
+- entry-stock-ai-robot.webp: **unresolved conflict, do not launch as is.** ThisIsEngineering is a Royal Academy of Engineering library. Its own consent form says the library is for editorial, not commercial, use and may not be altered, and its Flickr photos checked carry CC BY-NC-ND 2.0. This site is commercial and the file is retouched. This exact photo was not found on Flickr, so its own terms are unconfirmed. Contact: photos@raeng.org.uk.
+- entry-stock-partnership.webp: uploaded by Ngital, a digital marketing agency in Dhaka. Its caption describes Bangladeshi professionals in Dhaka, so it is not an Indian setting. Ask through Unsplash's message button.
+- entry-stock-discovery.webp: Ketut Subiyanto. No contact link was found on the Pexels profile.
+
+### Entry point photos added 2026-11-05 (AI-generated, not used)
+
+Replaced by the stock photos above. Generated with the Codex CLI image tool at 1536×1024, converted to WebP q88, chosen from six candidates. They depict no real person and must not be captioned or presented as Maxinor staff, clients, founders or real events.
+
+| File | Source | Subject |
+|---|---|---|
+| public/images/photos/entry-discovery.webp | AI-generated, Codex CLI image tool | Operator and founder at a glass wall of sticky notes and a hand-drawn roadmap; no legible text or logos |
+| public/images/photos/entry-partnership.webp | AI-generated, Codex CLI image tool | Operator working with a founding team in a small D2C warehouse; no legible text or logos |
+| public/images/photos/entry-ai-centre.webp | AI-generated, Codex CLI image tool | Engineering team around a tabletop robotic arm with an abstract node diagram behind; no legible text or logos |
 
 ### Sector photos replaced 2026-11-04 (AI-generated)
 
