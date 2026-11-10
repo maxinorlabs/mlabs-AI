@@ -12,28 +12,31 @@ import {
   useScroll,
   useSpring,
   useTransform,
+  type AnimationPlaybackControls,
   type MotionValue,
 } from 'motion/react';
-import { ArrowUpRight, MousePointer2, PenTool, Square, Type } from 'lucide-react';
+import { ArrowUpRight, Check, MousePointer2, PenTool, Square, Type } from 'lucide-react';
+import { FILLS, Glyph, STEPS, smooth, type Card } from '@/components/home/capabilitySteps';
 import { Reveal } from '@/components/motion/Reveal';
+import { POINTER_INSET, PointerMark } from '@/components/home/pointer';
+import { SectionHeader } from '@/components/home/SectionHeader';
 import { RevealText } from '@/components/motion/RevealText';
 import { CAPABILITIES, GROUPS, SECTORS } from '@/components/TShapeWidget';
 import { capabilities as DETAIL } from '@/lib/capabilities';
 import { sectors as SECTOR_DATA } from '@/lib/sectors';
-import { DURATION, EASE_OUT, SETTLE, SPRING, STAGGER } from '@/lib/motion';
+import { DURATION, EASE_OUT, GLIDE, PLAY_THROUGH, SETTLE, SPRING, STAGGER } from '@/lib/motion';
 import { cn } from '@/lib/utils';
 
-// Breadth and depth as a bento, after the feature grids on vibrant.design (Agno, Resurf, Modal) and their
-// hover-reactive grid textures. The signature tile is a coverage grid: six sectors by eight capabilities,
-// forty-eight squares that swell and light around the pointer and name the pair under it. The first time it
-// is seen, a diagonal wave lights every square once ("your entire business covered"); that is the section's
-// only unprompted motion. Below it, each capability is a tile holding a tiny working product, which the pointer
-// scrubs like a timeline (see "capability tiles"). No invented numbers: each tile's line is the first sentence of
-// that capability's own description. Reduced motion: no wave, no swelling, no tile animation.
+// Breadth and depth as a bento, after the feature grids on vibrant.design (Agno, Resurf, Modal). Each capability is a
+// tile holding a flip book of its steps, which the pointer turns (see "flip books"; the earlier product panels stay
+// behind SHOW_PRODUCT_PANELS). The coverage grid of six
+// sectors by eight capabilities is hidden for now (see SHOW_COVERAGE_GRID); its first view lights one diagonal wave.
+// No invented numbers: each tile's line is the first sentence of that capability's own description. Reduced motion:
+// no wave, no swelling, no tile animation.
 
 type Sel = { r: number; c: number } | null;
 
-const ITEMS = CAPABILITIES.map((cap) => {
+export const ITEMS = CAPABILITIES.map((cap) => {
   const d = DETAIL.find((x) => x.path === cap.href);
   return { ...cap, tagline: (d?.description ?? '').split(/(?<=\.)\s/)[0] };
 });
@@ -254,11 +257,14 @@ function CoverageGrid({ sel, onSelect }: { sel: Sel; onSelect: (s: Sel) => void 
 // trails. Position is written straight through with no spring, so it can't lag; only `live` eases, for the moment
 // the pointer enters or leaves. `x` and `y` are the pointer in the drawing's own 320 × 160 units, easing in from the rest position; `ax` is the same across with
 // no easing at all, for things that fade in under the pointer instead of travelling to it; `px` and `py` are
-// the pointer in the panel's pixels, `width` is the panel's width, and `p` is progress across the panel. At rest p is 1 and each panel shows the
-// finished work. On touch screens scrolling a tile into view moves the pointer; keyboard focus plays it once.
+// the pointer in the panel's pixels, `width` and `height` are the panel's size, `p` is progress across the panel, and `auto`
+// is 1 while the tile plays itself. At rest p is 1 and each panel shows the
+// finished work. Each tile plays its idea once, by itself, the first time it scrolls into view, so visitors see that it
+// responds; the real pointer takes over at once. On touch screens scrolling a tile into view moves the pointer instead,
+// and keyboard focus plays it once.
 // Everything runs on motion values, so nothing re-renders. All wording comes from that capability's approved
 // deliverables in lib/capabilities.ts; keep it that way, and never add figures.
-type Scrub = {
+export type Scrub = {
   p: MotionValue<number>;
   x: MotionValue<number>;
   y: MotionValue<number>;
@@ -266,14 +272,16 @@ type Scrub = {
   px: MotionValue<number>;
   py: MotionValue<number>;
   width: MotionValue<number>;
+  height: MotionValue<number>;
   live: MotionValue<number>;
+  auto: MotionValue<number>;
 };
 
 const NAVY = '#0B1F3B';
 const BRAND = '#F36F21';
-const SHEET_SHADOW = 'shadow-[0_12px_24px_-16px_rgba(11,31,59,0.35)]';
-const mix = (from: number, to: number, k: number) => from + (to - from) * k;
-const clamp = (v: number, min: number, max: number) => Math.min(max, Math.max(min, v));
+export const SHEET_SHADOW = 'shadow-[0_12px_24px_-16px_rgba(11,31,59,0.35)]';
+export const mix = (from: number, to: number, k: number) => from + (to - from) * k;
+export const clamp = (v: number, min: number, max: number) => Math.min(max, Math.max(min, v));
 
 // A small sheet of product UI, cropped by the bottom of the panel so it reads as part of something larger.
 function Surface({ children }: { children: React.ReactNode }) {
@@ -289,14 +297,6 @@ function Art({ children }: { children: React.ReactNode }) {
 }
 
 const LABEL = { fontFamily: 'var(--font-sans)', fontSize: 12.5, fontWeight: 500 };
-
-// Sliders and charts run this far in from each side of the panel.
-const POINTER_INSET = 24;
-
-// The one mark that sits under the pointer on a slider or chart. Place it with `x` and `y`, or `left` and `top`.
-function PointerMark({ style }: { style: React.ComponentProps<typeof motion.span>['style'] }) {
-  return <motion.span style={style} className="absolute -ml-2 -mt-2 size-4 rounded-full border-2 border-white bg-brand shadow" />;
-}
 
 // A status mark: an empty ring, a spinner while the step runs, then a tick.
 function Status({ k, last }: { k: MotionValue<number>; last?: boolean }) {
@@ -360,8 +360,13 @@ function ArtLayer({ layer, index, onPick, className, children }: { layer: Motion
 
 // Product & Design: a design canvas. Whatever layer the pointer is on is selected, and the operator's name tag
 // travels on the pointer itself, the way a teammate's does in a design tool.
-function DesignCanvas({ px, py, width, live }: Scrub) {
+function DesignCanvas({ px, py, width, height, live, auto }: Scrub) {
   const hit = useMotionValue(3);
+  // Layers are normally picked by real hit testing. When the tile plays itself no pointer is there, so go by height.
+  useMotionValueEvent(py, 'change', (v) => {
+    if (auto.get() < 0.5) return;
+    hit.set(clamp(Math.floor((v / Math.max(1, height.get()) - 0.22) / 0.78 * DESIGN_LAYERS.length), 0, DESIGN_LAYERS.length - 1));
+  });
   const layer = useTransform([hit, live], ([i, on]: number[]) => (on < 0.5 ? 3 : i));
   const marker = useSpring(useTransform(layer, (i) => 4 + i * 40), SPRING);
   // The arrow's tip sits on the pointer. At rest it parks on the button.
@@ -769,6 +774,111 @@ function DealRoom({ px, width, live }: Scrub) {
   );
 }
 
+/* ------------------------------------------------------------------ flip books (on Home since 2026-11-10) */
+
+// Each capability is a small book of its steps. Pages turn over as the pointer crosses, ending on the orange outcome,
+// so at rest the book lies open on the outcome. Chosen by the client over the product panels above, which stay here
+// behind SHOW_PRODUCT_PANELS.
+const PAGE_WIDTH = 112;
+const PAGE_GAP = 8;
+const PAGE_SPAN = 0.2;
+
+function Page({ card, i, along, live }: { card: Card; i: number; along: MotionValue<number>; live: MotionValue<number> }) {
+  const start = 0.1 + i * 0.28;
+  const turned = useTransform([along, live], ([v, on]: number[]) => mix(1, smooth(clamp((v - start) / PAGE_SPAN, 0, 1)), on));
+  const rotateY = useTransform(turned, (t) => -180 * t);
+  // A page changes pile while edge-on, when it can't be seen, so the swap in order never shows.
+  const zIndex = useTransform(turned, (t) => (t < 0.5 ? 10 - i : 20 + i));
+  const face = 'absolute inset-0 flex flex-col justify-between rounded-lg p-2.5 [backface-visibility:hidden]';
+  return (
+    <motion.div
+      style={{ rotateY, zIndex, left: PAGE_WIDTH + PAGE_GAP, width: PAGE_WIDTH, transformOrigin: `-${PAGE_GAP / 2}px 50%`, transformStyle: 'preserve-3d' }}
+      className={cn('absolute inset-y-0 rounded-lg', SHEET_SHADOW)}
+    >
+      <div className={cn(face, FILLS[i])}>
+        <Glyph card={card} size="lg" />
+        <span className="text-xs font-medium leading-tight">{card.name}</span>
+      </div>
+      <div className={cn(face, 'border border-navy/[0.08] bg-white text-navy [transform:rotateY(180deg)]')}>
+        <span className="flex size-6 items-center justify-center rounded-full bg-navy text-warm-white">
+          <Check aria-hidden="true" strokeWidth={2.5} className="size-3.5" />
+        </span>
+        <span className="text-xs font-medium leading-tight">{card.name}</span>
+      </div>
+    </motion.div>
+  );
+}
+
+// The pages are 104 high on a short tile. On a tall one they grow to fill the panel's height, up to a page's own
+// proportions, so the book never sits small in empty space.
+const PAGE_HEIGHT = 104;
+const PAGE_TALLEST = 180;
+const BOOK_MARGIN = 20;
+
+function FlipBook({ cards, px, width, height, live }: Pick<Scrub, 'px' | 'width' | 'height' | 'live'> & { cards: Card[] }) {
+  const pageHeight = useTransform(height, (h) => clamp(h - BOOK_MARGIN * 2, PAGE_HEIGHT, PAGE_TALLEST));
+  const along = useTransform([px, width], ([v, w]: number[]) => clamp((v - POINTER_INSET) / Math.max(1, w - POINTER_INSET * 2), 0, 1));
+  const outcome = cards[cards.length - 1];
+  return (
+    <div className="absolute inset-0 flex items-center justify-center [perspective:900px]">
+      <motion.div className="relative" style={{ width: PAGE_WIDTH * 2 + PAGE_GAP, height: pageHeight }}>
+        <span className="absolute inset-y-0 left-0 rounded-lg border border-dashed border-navy/15" style={{ width: PAGE_WIDTH }} />
+        <div className={cn('absolute inset-y-0 flex flex-col justify-between rounded-lg p-2.5', FILLS[3], SHEET_SHADOW)} style={{ left: PAGE_WIDTH + PAGE_GAP, width: PAGE_WIDTH }}>
+          <Glyph card={outcome} size="lg" />
+          <span className="text-xs font-medium leading-tight">{outcome.name}</span>
+        </div>
+        {cards.slice(0, -1).map((card, i) => (
+          <Page key={card.name} card={card} i={i} along={along} live={live} />
+        ))}
+      </motion.div>
+    </div>
+  );
+}
+
+// The book is drawn for the short tile. On taller tiles it grows a little, measured from the panel itself, and the
+// pointer is converted into the book's own units, so the pages turn exactly under it.
+const BOOK_MIN_WIDTH = 260;
+
+function BookStage({ cards, px, live }: Scrub & { cards: Card[] }) {
+  const box = useRef<HTMLDivElement>(null);
+  const panelWidth = useMotionValue(320);
+  const panelHeight = useMotionValue(144);
+  useEffect(() => {
+    const el = box.current;
+    if (!el) return;
+    const measure = () => {
+      panelWidth.set(el.clientWidth);
+      panelHeight.set(el.clientHeight);
+    };
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [panelWidth, panelHeight]);
+  const scale = useTransform([panelWidth, panelHeight], ([w, h]: number[]) => clamp(Math.min(h / 150, w / BOOK_MIN_WIDTH), 1, 1.4));
+  const width = useTransform([panelWidth, scale], ([w, s]: number[]) => w / s);
+  const height = useTransform([panelHeight, scale], ([h, s]: number[]) => h / s);
+  const x = useTransform([px, scale], ([v, s]: number[]) => v / s);
+  return (
+    <div ref={box} className="absolute inset-0">
+      <motion.div style={{ width, height, scale, transformOrigin: '0 0' }} className="absolute left-0 top-0">
+        <FlipBook cards={cards} px={x} width={width} height={height} live={live} />
+      </motion.div>
+    </div>
+  );
+}
+
+// One component per capability, made once, so a tile never sees a new component type and remounts.
+const FLIP_BOOKS: Record<string, (scrub: Scrub) => React.ReactElement> = Object.fromEntries(
+  Object.entries(STEPS).map(([href, cards]) => {
+    const Book = (scrub: Scrub) => <BookStage {...scrub} cards={cards} />;
+    return [href, Book];
+  }),
+);
+
+// The product panels each tile held before the flip books. Setting this to true brings them back.
+const SHOW_PRODUCT_PANELS: boolean = false;
+
 const VIGNETTE: Record<string, (scrub: Scrub) => React.ReactElement> = {
   '/capabilities/ai-tech': AiRun,
   '/capabilities/product-research': DesignCanvas,
@@ -784,8 +894,22 @@ const VIGNETTE: Record<string, (scrub: Scrub) => React.ReactElement> = {
 const TALL_TILES = ['/capabilities/product-research', '/capabilities/mergers-acquisitions'];
 const PANEL_DOTS = { backgroundImage: 'radial-gradient(rgb(11 31 59 / 0.14) 1px, transparent 1.3px)', backgroundSize: '14px 14px' };
 
-function Tile({ item, still }: { item: (typeof ITEMS)[number]; still: boolean }) {
-  const Drawing = VIGNETTE[item.href];
+const DIAL_TILE = '/capabilities/venture-capital';
+// Seconds between one column's play-through starting and the next.
+const COLUMN_GAP = 0.45;
+
+// Where the tile's own play-through sits at each moment, in the panel's pixels. Most run corner to corner. The dial
+// sweeps a full circle from where it rests, because a straight line would swing its needle through the hub.
+const playPoint = (href: string, v: number, width: number, height: number) => {
+  if (!SHOW_PRODUCT_PANELS || href !== DIAL_TILE) return [v * width, v * height];
+  const scale = Math.min(width / 320, height / 160);
+  const angle = (DEAL_PARTS[0].len / 2 + v) * Math.PI * 2;
+  return [(width - 320 * scale) / 2 + (160 + 70 * Math.sin(angle)) * scale, (height - 160 * scale) / 2 + (66 - 70 * Math.cos(angle)) * scale];
+};
+
+// `drawing` swaps in a different panel, for trying options on the lab pages.
+export function Tile({ item, still, column, drawing }: { item: (typeof ITEMS)[number]; still: boolean; column: number; drawing?: (scrub: Scrub) => React.ReactElement }) {
+  const Drawing = drawing ?? (SHOW_PRODUCT_PANELS ? VIGNETTE : FLIP_BOOKS)[item.href];
   const ref = useRef<HTMLAnchorElement>(null);
   const well = useRef<HTMLDivElement>(null);
   const touch = useRef(false);
@@ -798,6 +922,10 @@ function Tile({ item, still }: { item: (typeof ITEMS)[number]; still: boolean })
   const px = useMotionValue(0);
   const py = useMotionValue(0);
   const panelWidth = useMotionValue(0);
+  const panelHeight = useMotionValue(0);
+  const auto = useMotionValue(0);
+  const playing = useRef<AnimationPlaybackControls | null>(null);
+  const waiting = useRef<ReturnType<typeof setTimeout> | null>(null);
   // Written straight through while the pointer is here. `live` only eases the way in and out.
   const scrub: Scrub = {
     p: useTransform([across, live], ([v, on]: number[]) => mix(1, v, on)),
@@ -807,7 +935,9 @@ function Tile({ item, still }: { item: (typeof ITEMS)[number]; still: boolean })
     px,
     py,
     width: panelWidth,
+    height: panelHeight,
     live,
+    auto,
   };
 
   // Takes a point in the panel's pixels. The drawings fit their 320 × 160 units inside the panel, centred.
@@ -818,6 +948,7 @@ function Tile({ item, still }: { item: (typeof ITEMS)[number]; still: boolean })
     const height = box.clientHeight;
     const scale = Math.min(width / 320, height / 160);
     panelWidth.set(width);
+    panelHeight.set(height);
     px.set(left);
     py.set(top);
     pointerX.set((left - (width - 320 * scale) / 2) / scale);
@@ -825,14 +956,14 @@ function Tile({ item, still }: { item: (typeof ITEMS)[number]; still: boolean })
     // The outer tenth of each side counts as the ends, so both are easy to reach.
     across.set(clamp((left / width - 0.1) / 0.8, 0, 1));
   };
-  const enter = () => {
+  const enter = (transition = SETTLE) => {
     if (active.current) return;
     active.current = true;
-    animate(live, 1, SETTLE);
+    animate(live, 1, transition);
   };
-  const leave = () => {
+  const leave = (transition = SETTLE) => {
     active.current = false;
-    animate(live, 0, SETTLE);
+    animate(live, 0, transition);
   };
 
   // No hover on a touch screen, so scrolling the tile up the page moves the pointer through it.
@@ -848,23 +979,70 @@ function Tile({ item, still }: { item: (typeof ITEMS)[number]; still: boolean })
     else leave();
   });
 
-  // Only the panel tracks. Over the tile's words it rests, so nothing slides out of view.
+  // The tile plays its own idea once. Stopping it hands straight over to whatever is driving it now.
+  const stopPlaying = () => {
+    if (waiting.current) clearTimeout(waiting.current);
+    waiting.current = null;
+    playing.current?.stop();
+    playing.current = null;
+    auto.set(0);
+  };
+  const playOnce = () => {
+    const box = well.current;
+    if (still || !box) return;
+    stopPlaying();
+    const at = (v: number) => {
+      const [left, top] = playPoint(item.href, v, box.clientWidth, box.clientHeight);
+      place(left, top);
+    };
+    auto.set(1);
+    at(0);
+    enter(GLIDE);
+    playing.current = animate(0, 1, {
+      ...PLAY_THROUGH,
+      onUpdate: at,
+      onComplete: () => {
+        playing.current = null;
+        auto.set(0);
+        leave(GLIDE);
+      },
+    });
+  };
+
+  // The first time the tile is on screen, column by column, so only a few move at once. It waits for the column's
+  // entrance to finish. Phones skip this, because scrolling already drives them.
+  const inView = useInView(well, { once: true, amount: 0.6 });
+  const startOnArrival = useRef(() => {});
+  useEffect(() => {
+    startOnArrival.current = () => {
+      if (!touch.current && !active.current) playOnce();
+    };
+  });
+  useEffect(() => {
+    if (!inView || still) return;
+    waiting.current = setTimeout(() => {
+      waiting.current = null;
+      startOnArrival.current();
+    }, (DURATION.base + column * COLUMN_GAP) * 1000);
+    return () => {
+      if (waiting.current) clearTimeout(waiting.current);
+    };
+  }, [inView, still, column]);
+
+  // Only the panel tracks. Over the tile's words it rests, so nothing slides out of view. The mouse always wins.
   const follow = (event: React.PointerEvent<HTMLDivElement>) => {
     const box = well.current?.getBoundingClientRect();
     if (still || !box || event.pointerType !== 'mouse') return;
+    if (playing.current || waiting.current) {
+      stopPlaying();
+      // The tile may still be easing in, so finish that quickly and the handle lands exactly under the pointer.
+      animate(live, 1, SETTLE);
+    }
     place(event.clientX - box.left, event.clientY - box.top);
     enter();
   };
   const play = (event: React.FocusEvent<HTMLAnchorElement>) => {
-    const box = well.current;
-    if (still || !box || !event.currentTarget.matches(':focus-visible')) return;
-    enter();
-    animate(0, 1, {
-      duration: DURATION.slow * 3,
-      ease: EASE_OUT,
-      onUpdate: (v) => place(v * box.clientWidth, v * box.clientHeight),
-      onComplete: leave,
-    });
+    if (event.currentTarget.matches(':focus-visible')) playOnce();
   };
 
   return (
@@ -874,7 +1052,7 @@ function Tile({ item, still }: { item: (typeof ITEMS)[number]; still: boolean })
       onFocus={play}
       className="tile press group/tile flex flex-1 flex-col rounded-2xl border border-navy/[0.08] bg-white p-1.5 transition-[border-color,box-shadow,scale] duration-300 hover:border-navy/20 hover:shadow-[0_22px_44px_-30px_rgba(11,31,59,0.5)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand active:border-navy/20"
     >
-      <div ref={well} aria-hidden="true" onPointerMove={follow} onPointerLeave={leave} style={PANEL_DOTS} className={cn('relative flex-1 overflow-hidden rounded-xl bg-[#EFF1F3]', TALL_TILES.includes(item.href) ? 'min-h-56' : 'min-h-36')}>
+      <div ref={well} aria-hidden="true" onPointerMove={follow} onPointerLeave={() => leave()} style={PANEL_DOTS} className={cn('relative flex-1 overflow-hidden rounded-xl bg-[#EFF1F3]', TALL_TILES.includes(item.href) ? 'min-h-56' : 'min-h-36')}>
         {Drawing && <Drawing {...scrub} />}
       </div>
       <div className="flex items-start justify-between gap-3 px-3 pb-2.5 pt-3.5">
@@ -893,31 +1071,43 @@ function Tile({ item, still }: { item: (typeof ITEMS)[number]; still: boolean })
 
 /* ------------------------------------------------------------------ the section */
 
+// The sector × capability grid is hidden for now: the capability tiles carry this section on their own. Its code
+// stays in this file, so setting this to true brings it back.
+const SHOW_COVERAGE_GRID: boolean = false;
+
+const HEADING = [{ text: 'Six sectors. One operator team. ' }, { text: 'Your entire business covered.', className: 'text-brand' }];
+
 export function HomeBento() {
   const reduceMotion = useReducedMotion();
   const [sel, setSel] = useState<Sel>(null);
 
   return (
     <section className="relative bg-warm-white px-6 py-16 text-navy md:px-12 md:py-20">
-      <div className="mx-auto grid w-full max-w-6xl gap-4 lg:grid-cols-12 lg:gap-5">
-        {/* Heading, and the reading of the grid */}
-        <div className="mb-10 flex flex-col lg:col-span-5 lg:mb-0 lg:pr-6">
-          <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">The T-Shape Advantage</p>
-          <RevealText
-            className="max-w-[16ch] text-balance font-display text-3xl font-medium leading-[1.05] tracking-tight md:text-5xl"
-            parts={[{ text: 'Six sectors. One operator team. ' }, { text: 'Your entire business covered.', className: 'text-brand' }]}
-          />
-          <div className="mt-auto hidden min-h-[150px] pt-10 lg:block" aria-live="polite">
-            <Readout sel={sel} />
-          </div>
-        </div>
+      <div className="mx-auto w-full max-w-6xl">
+        {SHOW_COVERAGE_GRID ? (
+          <div className="mb-10 grid gap-4 lg:grid-cols-12 lg:gap-5">
+            {/* Heading, and the reading of the grid */}
+            <div className="mb-10 flex flex-col lg:col-span-5 lg:mb-0 lg:pr-6">
+              <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] text-brand">The T-Shape Advantage</p>
+              <RevealText
+                className="max-w-[16ch] text-balance font-display text-3xl font-medium leading-[1.05] tracking-tight md:text-5xl"
+                parts={HEADING}
+              />
+              <div className="mt-auto hidden min-h-[150px] pt-10 lg:block" aria-live="polite">
+                <Readout sel={sel} />
+              </div>
+            </div>
 
-        <Reveal className="lg:col-span-7">
-          <CoverageGrid sel={sel} onSelect={setSel} />
-        </Reveal>
+            <Reveal className="lg:col-span-7">
+              <CoverageGrid sel={sel} onSelect={setSel} />
+            </Reveal>
+          </div>
+        ) : (
+          <SectionHeader eyebrow="The T-Shape Advantage" parts={HEADING} />
+        )}
 
         {/* The capabilities, in their three groups */}
-        <div className="mt-6 grid gap-8 lg:col-span-12 lg:mt-10 lg:grid-cols-3 lg:gap-5">
+        <div className="grid gap-8 lg:grid-cols-3 lg:gap-5">
           {GROUPS.map((g, i) => (
             <Reveal key={g.id} delay={i * STAGGER} className="group/col flex flex-col">
               <Link
@@ -929,7 +1119,7 @@ export function HomeBento() {
               </Link>
               <div className="grid flex-1 gap-4 sm:grid-cols-2 lg:flex lg:flex-col lg:gap-5">
                 {ITEMS.filter((it) => it.group === g.id).map((it) => (
-                  <Tile key={it.name} item={it} still={!!reduceMotion} />
+                  <Tile key={it.name} item={it} still={!!reduceMotion} column={i} />
                 ))}
               </div>
             </Reveal>

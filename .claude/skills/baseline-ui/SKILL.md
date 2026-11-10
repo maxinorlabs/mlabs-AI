@@ -35,11 +35,11 @@ The client wants a site that is highly visual with rich micro-interactions, and 
 The capability tiles in `components/home/HomeBento.tsx` are the approved look. New cards and visuals follow them.
 
 - Shell: `Tile` is a white card, `rounded-2xl border border-navy/[0.08] bg-white p-1.5`
-- Visual well: inset `rounded-xl bg-[#EFF1F3]` with a faint dot grid, holding a mini product (see Images and visuals)
+- Visual well: inset `rounded-xl bg-[#EFF1F3]` with a faint dot grid, holding a flip book of the capability's four steps, ending on the orange outcome (chosen by the client on 2026-11-10; the mini products below are kept behind `SHOW_PRODUCT_PANELS`)
 - Text: title and one line sit below the well, with `ArrowUpRight` top right
 - Grouping: a small label with a brand dot above each column (`h-1.5 w-1.5 rounded-full bg-brand`, then `text-sm font-medium text-navy/55`)
 - Layout: columns may hold tiles of different heights (a bento), never a uniform grid of identical cards
-- Hover: the border darkens, a soft navy shadow appears, the arrow nudges and turns brand, and the pointer drives the mini product
+- Hover: the border darkens, a soft navy shadow appears, the arrow nudges and turns brand, and the pointer turns the flip book's pages
 
 ## Typography
 
@@ -77,7 +77,7 @@ There are exactly two typefaces, both loaded in `app/layout.tsx`.
   3. Optional supporting line, at most 2 lines, on the right on desktop and below on phones
 - MUST left-align headers. Centre only a closing call to action
 - NEVER put an arrow, a dot or a border in the eyebrow
-- If a shared `SectionHeader` component exists, use it. If not and you are touching two or more headers, extract one
+- MUST use `SectionHeader` from `components/home/SectionHeader.tsx` on Home. Eyebrows reuse the section's name on the side rail, so no new copy is needed
 
 ## Spacing
 
@@ -97,7 +97,7 @@ Only two surfaces exist. Sections alternate between them, and two navy sections 
 - Paper: `bg-warm-white text-navy`, with `border-t border-navy/10` only where two paper sections meet
 - Navy: `relative overflow-clip bg-navy text-warm-white`, with `<NavyBackdrop />` as the first child and content in a `relative` wrapper
 - NEVER use another section background, gradient wash, blob, texture or glow. The dot grid belongs to panels and the hero's paper
-- Cards on paper are white. Cards on navy are `border-white/10 bg-white/5`
+- Cards on paper are white. Cards on navy are `border-white/10 bg-white/5`. One reading sheet on navy may be `bg-warm-white`, as Insights does, so the text it holds stands out
 - Wells inside cards are `#EFF1F3` on paper
 - Modals use `bg-navy/70 backdrop-blur-sm` with `data-lenis-prevent`. Blur belongs to modals and the navbar only
 
@@ -105,7 +105,7 @@ Only two surfaces exist. Sections alternate between them, and two navy sections 
 
 Every content block carries a visual, chosen from these three. A visual must explain the content, never just decorate it.
 
-**Mini products**, for concepts and capabilities. This replaced abstract diagrams, after studying vibrant.design (ToDesktop, Clerk, Modal, Stripe):
+**Mini products**, for concepts. The capability tiles held these until 2026-11-10 and now hold flip books, so these rules apply wherever a mini product is used. This replaced abstract diagrams, after studying vibrant.design (ToDesktop, Clerk, Modal, Stripe):
 - MUST show a miniature of the real work, in a tool the audience recognises (a run log, a board, a tracker, a ledger), not an abstract shape or an icon diagram
 - MUST use real words, taken from that capability's `deliverables` or `description` in `lib/capabilities.ts`. NEVER invent copy or figures
 - MUST use a different tool for each one, and make something visibly get done
@@ -132,6 +132,7 @@ Every content block carries a visual, chosen from these three. A visual must exp
 - MUST convert the pointer into the drawing's own units, allowing for how the SVG is fitted, or things sit near the pointer instead of under it
 - MUST use real hit testing (`onPointerEnter` on the element) to select something, never a percentage of the panel
 - Touch: scrolling the tile into view moves the pointer through it. Keyboard: focus plays it once
+- MUST play each panel's idea once by itself the first time it scrolls into view, column by column, then rest on the finished work. This is the section's one unprompted animation. Use `PLAY_THROUGH`, slow and evenly paced so each step can be followed. The real pointer takes over at once. Never loop it
 - At rest, every panel shows the finished work
 - MUST run panels on motion values only, with no React state
 - MUST check a panel part-way through, not just at both ends, by parking every tile mid-scrub
@@ -143,6 +144,7 @@ Every content block carries a visual, chosen from these three. A visual must exp
 - MUST use daylight or natural light, an Indian setting where relevant, and no legible text or logos
 - MUST keep the subject in the upper two-thirds, because the caption scrim covers the rest
 - MUST never present the people as Maxinor staff, clients or real events
+- MUST use free stock photos only without recognisable people, unless a signed release is on file: hands, people from behind, objects, places. Pexels and Unsplash leave that consent to the user. Check the uploader too, because a free listing can sit on stricter terms at the source
 - MUST export WebP at about q88 through `next/image`, record the source in `docs/home-redesign.md`, and check the crop in the real card, not the raw file
 
 **Data**, for proof: real figures only, with `CountUp`. NEVER invent a number.
@@ -153,12 +155,13 @@ Every interactive element responds to the pointer. Use the matching pattern, nev
 
 | Element | Response |
 |---|---|
-| Card link | Border darkens, shadow appears, arrow nudges, the pointer drives its mini product, and its group label responds |
+| Card link | Border darkens, shadow appears, arrow nudges, the pointer drives its panel, and its group label responds |
 | Primary button | Colour shift, `Magnetic` on the main call to action only |
 | Text link | Underline colour moves to brand |
 | Any selection (tab, figure, list row, picker, rail) | One orange marker slides from the last choice to the new one |
-| Content that swaps | Crossfade with no exit to wait for, and no change in height |
+| Choosing between plans | A stack of bold photo cards: on any laptop window or upright tablet (the `stack:` variant), each holds under the header while the next slides over it, and the covered card sinks back as the next one arrives. Elsewhere the same cards sit in a plain column. The card uses the Photo card response, and its steps tick off once as it arrives. Never a table or white boxes |
 | Photo card | Image scales to 105% inside its frame, the caption rises as one block and the scrim deepens behind it |
+| Content that swaps | Crossfade with no exit to wait for, and no change in height |
 | Anything clickable | The `press` utility: scales to 98% while pressed |
 | Cursor-reactive grid | Local response near the pointer, mouse only, resets on leave |
 
@@ -176,7 +179,7 @@ Every interactive element responds to the pointer. Use the matching pattern, nev
 
 Motion must feel like one system: same curve, same few durations. Use the tokens in `lib/motion.ts`.
 
-- MUST use `EASE_OUT` for all easing, and `ease-out` in CSS, which is set to the same curve in `app/globals.css`. NEVER write another curve
+- MUST use `EASE_OUT` for all easing, and `ease-out` in CSS, which is set to the same curve in `app/globals.css`. NEVER write another curve. The exceptions are `GLIDE`, for a large surface crossing the page, such as the navy plan slab, because `EASE_OUT` starts so fast that its first frame looks like a jump, and `PLAY_THROUGH`, for a panel playing itself
 - MUST use only these durations:
 
 | Tier | Use | Value |
@@ -200,6 +203,7 @@ Motion must feel like one system: same curve, same few durations. Use the tokens
 - MUST write pointer-driven values through refs or motion values, never React state
 - NEVER read scroll from `scroll` events. Use `useScrub` or `useScroll`
 - MUST respect `prefers-reduced-motion`: no loops, no pointer motion, content fully visible at once
+- MUST use the `motion-reduce:` and `motion-safe:` variants for anything the server renders. A class chosen by `useReducedMotion` can differ from the server's, and React leaves the server's class in place
 - NEVER animate large `blur()` or `backdrop-filter` surfaces, or large images
 - NEVER apply `will-change` outside an active animation
 
@@ -226,9 +230,10 @@ Motion must feel like one system: same curve, same few durations. Use the tokens
 
 - MUST use only the brand tokens in `app/globals.css`: brand, navy, grey, teal and warm-white, plus the `#EFF1F3` well
 - MUST keep brand orange as the single accent in a view. Teal is rare and never beside orange
+- MUST use navy, not white, for small text on a brand orange surface. White on this orange is about 3:1 and too faint. White is for large headings only
 - NEVER use gradients, except the navy caption scrim over photos (`bg-gradient-to-t from-navy via-navy/30 to-navy/0`)
 - NEVER use glow effects as primary affordances
-- MUST use one card shadow: `hover:shadow-[0_22px_44px_-30px_rgba(11,31,59,0.5)]`, on hover only. Sheets inside a panel use `shadow-[0_12px_24px_-16px_rgba(11,31,59,0.35)]`
+- MUST use one card shadow: `hover:shadow-[0_22px_44px_-30px_rgba(11,31,59,0.5)]`, on hover only. Sheets inside a panel use `shadow-[0_12px_24px_-16px_rgba(11,31,59,0.35)]`. Cards in the plan stack use `shadow-[0_-12px_32px_-20px_rgba(11,31,59,0.35)]`, cast upward onto the card beneath
 - MUST give empty states one clear next action
 
 ## Before finishing
@@ -236,7 +241,7 @@ Motion must feel like one system: same curve, same few durations. Use the tokens
 Test interactions by watching them, not by parking them. Sweep a real mouse at full speed across each element in a clean headless browser, including its edges and the text around it, and read frames from the movement. A throttled browser or synthetic events can pass while the real thing is broken. When screenshotting a hover in Puppeteer, use `captureBeyondViewport: false`, or it resizes the page and drops the hover.
 
 1. Compare the section with its neighbours in the browser. It must look like the same site
-2. Check phone (390px) and laptop widths, and confirm no horizontal scroll
+2. Check phone (390px) and laptop widths, and confirm no horizontal scroll. Check a short laptop window too, 1342×631, which is the size this site is reviewed at. Nothing may switch off below a height a real browser window has
 3. Check hover, keyboard focus and touch
 4. Check with reduced motion on
 5. Run `/baseline-ui <file>` and fix the violations

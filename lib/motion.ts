@@ -12,6 +12,12 @@ export const DURATION = {
 // How things settle: markers sliding, drawings returning to rest, small swaps.
 export const SETTLE: Transition = { duration: DURATION.fast, ease: EASE_OUT };
 
+// For a large surface crossing the page: it needs a gentle start, or its first frame looks like a jump.
+export const GLIDE: Transition = { duration: DURATION.slow, ease: [0.45, 0, 0.2, 1] };
+
+// A panel playing its idea by itself. Slow and evenly paced, so each step can be followed.
+export const PLAY_THROUGH: Transition = { duration: 2.4, ease: [0.37, 0, 0.63, 1] };
+
 // The one spring, for tactile moves.
 export const SPRING = { type: 'spring', stiffness: 300, damping: 22 } as const;
 
