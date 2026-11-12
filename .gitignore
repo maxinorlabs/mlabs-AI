@@ -6,3 +6,6 @@ coverage/
 .env*
 !.env.example
 .open-next/
+
+# Local Claude Code skills, agents and settings. Never part of the site.
+.claude/
